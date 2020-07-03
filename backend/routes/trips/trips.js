@@ -1,10 +1,10 @@
 const trips = require('express').Router();
 
-const { getAllTrips, getTripById } = require('../../queries/trips/trips');
+const { getAllTrips, getTripById, createTrip } = require('../../queries/trips/trips');
 
 trips.get("/", getAllTrips);
 trips.get("/:id", getTripById);
-trips.post("/");
+trips.post("/", createTrip);
 trips.patch("/id");
 trips.delete("/:id");
 

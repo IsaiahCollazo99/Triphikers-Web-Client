@@ -14,7 +14,7 @@ module.exports = {
             if(trips.length) {
                 res.status(200).json({
                     status: "OK",
-                    message: "Retrieved all trips",
+                    message: "Retrieved all trips.",
                     trips
                 })
             } else {
@@ -39,17 +39,47 @@ module.exports = {
 
             res.status(200).json({
                 status: "OK",
-                message: `Retrieved trip ${id}`,
+                message: `Retrieved trip ${id}.`,
                 trip
             })
 
         } catch ( error ) {
             if(error.received == 0) {
-                next({ status: 404, error: `Trip ${id} doesn't exist`})
+                next({ status: 404, error: `Trip ${id} doesn't exist.d`})
             } else {
                 next(error);
             }
 
+        }
+    },
+
+    createTrip: async ( req, res, next ) => {
+        try {
+            const {
+                planner_id, destination, date_from, date_to, group_type, language, 
+                before_trip_meetup, trip_type, trip_title, first_time, accommodation,
+                budget, split_costs, itinerary, description
+            } = req.body;
+
+            const trip = await db.one(`
+                INSERT INTO trips (planner_id, destination, date_from, date_to, group_type,
+                language, before_trip_meetup, trip_type, trip_title, first_time, accommodation,
+                budget, split_costs, itinerary, description)
+                VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13, $14, $15)
+                RETURNING *
+            `, [planner_id, destination, date_from, date_to, group_type, language,
+                before_trip_meetup, trip_type, trip_title, first_time, accommodation,
+                budget, split_costs, itinerary, description]
+            )
+
+            res.status(200).json({
+                status: "OK",
+                message: "Created new trip.",
+                trip
+            })
+
+        } catch ( error ) {
+            next(error);
         }
     }
 } 
