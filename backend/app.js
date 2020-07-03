@@ -5,9 +5,13 @@ require("dotenv").config();
 
 const PORT = process.env.PORT;
 
+const tripsRouter = require("./routes/trips/trips");
+
 app.use(cors());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
+
+app.use("/trips", tripsRouter);
 
 app.use((error, req, res, next) => {
     console.log(error);
