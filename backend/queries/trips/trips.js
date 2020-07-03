@@ -3,8 +3,8 @@ const db = require("../../db/db");
 module.exports = {
     getAllTrips: async ( req, res, next ) => {
         try {
-            const trips = db.any(`
-                SELECT users.full_name, users.age, users.profile_pic, users.country_of_origin,
+            const trips = await db.any(`
+                SELECT users.full_name, users.age, users.profile_picture, users.country_of_origin,
                 users.gender, trips.*
                 FROM trips
                 LEFT JOIN users on users.id = trips.planner_id

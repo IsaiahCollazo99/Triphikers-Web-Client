@@ -32,6 +32,6 @@ CREATE TABLE trips (
     accommodation VARCHAR,
     budget INTEGER,
     split_costs VARCHAR,
-    itinierary VARCHAR,
+    itinerary VARCHAR,
     description VARCHAR
 );
