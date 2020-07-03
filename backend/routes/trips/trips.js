@@ -1,9 +1,9 @@
 const trips = require('express').Router();
 
-const { getAllTrips } = require('../../queries/trips/trips');
+const { getAllTrips, getTripById } = require('../../queries/trips/trips');
 
 trips.get("/", getAllTrips);
-trips.get("/:id");
+trips.get("/:id", getTripById);
 trips.post("/");
 trips.patch("/id");
 trips.delete("/:id");
