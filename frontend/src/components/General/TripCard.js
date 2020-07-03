@@ -14,8 +14,8 @@ const TripCard = ({ trip }) => {
 
             <header>
                 <div className="tripCardInfo">
-                    <p>{trip.trip_name}</p>
-                    <p>{trip.destination}</p>
+                    <p>{trip.trip_title}</p>
+                    <p><span>Destination: </span>{trip.destination}</p>
                     <p>
                         <span>From:</span> {trip.date_from}
                         <span> To:</span> {trip.date_to}
