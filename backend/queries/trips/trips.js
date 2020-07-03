@@ -45,7 +45,7 @@ module.exports = {
 
         } catch ( error ) {
             if(error.received == 0) {
-                next({ status: 404, error: `Trip ${id} doesn't exist.d`})
+                next({ status: 404, error: `Trip ${id} doesn't exist.`})
             } else {
                 next(error);
             }
@@ -78,6 +78,23 @@ module.exports = {
                 trip
             })
 
+        } catch ( error ) {
+            next(error);
+        }
+    },
+
+    deleteTrip: async ( req, res, next ) => {
+        const { id } = req.params;
+        try {
+            await db.none(`
+                DELETE FROM trips
+                WHERE id=$1
+            `, id);
+
+            res.status(200).json({
+                status: "OK",
+                message: `Deleted trip ${id}`
+            })
         } catch ( error ) {
             next(error);
         }
