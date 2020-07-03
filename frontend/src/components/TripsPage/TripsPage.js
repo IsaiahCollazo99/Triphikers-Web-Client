@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { getAllTrips } from '../../util/apiCalls/getRequests';
 import TripCard from '../General/TripCard';
+import '../../css/tripsPage/tripsPage.css';
 
 const TripsPage = () => {
     const [ trips, setTrips ] = useState([]);
@@ -27,7 +28,7 @@ const TripsPage = () => {
     })
     
     return (
-        <div className="tripPage">
+        <div className="tripsPage">
             {tripsList}
         </div>
     )
