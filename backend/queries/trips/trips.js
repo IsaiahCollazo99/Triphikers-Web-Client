@@ -83,6 +83,24 @@ module.exports = {
         }
     },
 
+    completeTrip: async ( req, res, next) => {
+        const { id } = req.params;
+        try {
+            db.none(`
+                UPDATE trips
+                SET is_completed = 'true' 
+                WHERE id=$1
+            `, id);
+
+            res.status(200).json({
+                status: "OK",
+                message: "Completed trip",
+            })
+        } catch ( error ) {
+            next(error);
+        }
+    },
+
     deleteTrip: async ( req, res, next ) => {
         const { id } = req.params;
         try {

@@ -33,5 +33,6 @@ CREATE TABLE trips (
     budget INTEGER,
     split_costs VARCHAR,
     itinerary VARCHAR,
-    description VARCHAR
+    description VARCHAR,
+    is_completed BOOLEAN DEFAULT 'false'
 );

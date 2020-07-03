@@ -4,13 +4,14 @@ const {
     getAllTrips, 
     getTripById, 
     createTrip,
-    deleteTrip
+    deleteTrip,
+    completeTrip
 } = require('../../queries/trips/trips');
 
 trips.get("/", getAllTrips);
 trips.get("/:id", getTripById);
 trips.post("/", createTrip);
-trips.patch("/id");
+trips.patch("/:id", completeTrip);
 trips.delete("/:id", deleteTrip);
 
 module.exports = trips;
