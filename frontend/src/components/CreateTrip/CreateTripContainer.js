@@ -51,7 +51,7 @@ const CreateTripsContainer = () => {
         createTrip({...pageOne, ...pageTwo});
     }
 
-    const formPageDisplay = page === 2 ? 
+    const formPageDisplay = page === 1 ? 
         <CreateTripForm1 {...pageOne} handlePageChange={handlePageChange} /> :
         <CreateTripForm2 {...pageTwo} handlePageChange={handlePageChange} handleSubmit={handleSubmit}/>
     

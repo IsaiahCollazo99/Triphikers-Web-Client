@@ -38,7 +38,7 @@
     margin: 0.25em;
 }
 
-.createTripsContainer label:last-of-type {
+.createTrip2 label:last-of-type {
     grid-column: 1 / 4;
     width: 65%;
     justify-self: center;
@@ -52,7 +52,16 @@
     justify-content: space-evenly;
 }
 
-.createTripsContainer button, .createTripsContainer input[type="submit"] {
+.createTrip2 button, .createTrip2 input[type="submit"] {
     width: 25%;
     border-radius: 0.75em;
+}
+
+.createTrip1 input[type="submit"] {
+    grid-column: 2 / 3;
+    align-self: center;
+    justify-self: center;
+    width: 45%;
+    border-radius: 1em;
+    padding: 0.75em 0.25em;
 }
