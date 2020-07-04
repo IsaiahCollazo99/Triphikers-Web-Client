@@ -2,20 +2,20 @@ import React, { useState } from 'react';
 import { useInput } from '../../util/customHooks';
 
 const CreateTripsContainer = () => {
-    const [ destination, setDestination ] = useInput("disabled");
-    const [ dateFrom, setDateFrom ] = useInput("");
-    const [ dateTo, setDateTo ] = useInput("");
-    const [ groupType, setGroupType ] = useInput("disabled");
-    const [ language, setLanguage ] = useInput("disabled");
-    const [ meetup, setMeetup ] = useInput("disabled");
-    const [ tripType, setTripType ] = useInput("disabled");
-    const [ title, setTitle ] = useInput("");
-    const [ firstTime, setFirstTime ] = useInput("disabled");
-    const [ accommodation, setAccommodation ] = useInput("disabled");
-    const [ budget, setBudget ] = useInput("disabled");
-    const [ split, setSplit ] = useInput("disabled");
-    const [ itinerary, setItinerary ] = useInput("disabled");
     const [ page, setPage ] = useState(1);
+    const destination = useInput("disabled");
+    const dateFrom = useInput("");
+    const dateTo = useInput("");
+    const groupType = useInput("disabled");
+    const language = useInput("disabled");
+    const meetup = useInput("disabled");
+    const tripType = useInput("disabled");
+    const title = useInput("");
+    const firstTime = useInput("disabled");
+    const accommodation = useInput("disabled");
+    const budget = useInput("disabled");
+    const split = useInput("disabled");
+    const itinerary = useInput("disabled");
     
     return (
         <div className="createTripsContainer">
