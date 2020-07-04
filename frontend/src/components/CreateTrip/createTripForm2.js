@@ -15,59 +15,74 @@ const CreateTripForm2 = ( props ) => {
     } = props;
     
     return (
-        <form onSubmit={handleSubmit}>
-            <header>
-                <h1>Create a Trip</h1>
-                <h3>2/2</h3>
-            </header>
-        
-            <label htmlFor="title">Trip Title: </label>
-            <input type="text" {...title} placeholder="Enter a Trip Title" name="title" required />
+        <>
+        <header>
+            <h1>Create a Trip</h1>
+            <h3>2/2</h3>
+        </header>
+        <form onSubmit={handleSubmit} className="createTrip2">
+            <label htmlFor="title">
+                <p>Trip Title: </p>
+                <input type="text" {...title} placeholder="Enter a Trip Title" name="title" required />
+            </label>
 
-            <label htmlFor="firstTime">First Time: </label>
-            <select {...firstTime} name="firstTime" requried>
-                <option value="" disabled>Is this your first time?</option>
-                <option value="Yes" disabled>Yes</option>
-                <option value="No" disabled>No</option>
-            </select>
+            <label htmlFor="firstTime">
+                <p>First Time: </p>
+                <select {...firstTime} name="firstTime" requried>
+                    <option value="" disabled>Is this your first time?</option>
+                    <option value="Yes" disabled>Yes</option>
+                    <option value="No" disabled>No</option>
+                </select>
+            </label>
 
-            <label htmlFor="accommodation">Accommodation: </label>
-            <select {...accommodation} name="accommodation" required>
-                <option value="" disabled>Select an Accommodation</option>
-                <option value="Camping">Camping</option>
-                <option value="Couchsurf">CouchSurf</option>
-                <option value="Home">Home</option>
-                <option value="Hotel">Hotel</option>
-                <option value="Hostel">Hostel</option>
-                <option value="Other">Other</option>
-            </select>
+            <label htmlFor="accommodation">
+                <p>Accommodation: </p>
+                <select {...accommodation} name="accommodation" required>
+                    <option value="" disabled>Select an Accommodation</option>
+                    <option value="Camping">Camping</option>
+                    <option value="Couchsurf">CouchSurf</option>
+                    <option value="Home">Home</option>
+                    <option value="Hotel">Hotel</option>
+                    <option value="Hostel">Hostel</option>
+                    <option value="Other">Other</option>
+                </select>
+            </label>
 
-            <label htmlFor="budget">Your Budget: </label>
-            <input type="number" name="budget" {...budget} required/>
+            <label htmlFor="budget">
+                <p>Your Budget: </p>
+                <input type="number" name="budget" {...budget} required/>
+            </label>
             
-            <label htmlFor="split">Split Costs: </label>
-            <select {...split} name="split" required>
-                <option value="" disabled>Split Costs?</option>
-                <option value="Yes">Yes</option>
-                <option value="No">No</option>
-            </select>
+            <label htmlFor="split">
+                <p>Split Costs: </p>
+                <select {...split} name="split" required>
+                    <option value="" disabled>Split Costs?</option>
+                    <option value="Yes">Yes</option>
+                    <option value="No">No</option>
+                </select>
+            </label>
 
-            <label htmlFor="itinerary">Itinerary Type: </label>
-            <select {...itinerary} name="itinerary" required>
-                <option value="" disabled>Select An Itinerary Type</option>
-                <option value="Set">Set</option>
-                <option value="Flexible">Flexible</option>
-                <option value="None">None</option>
-            </select>
+            <label htmlFor="itinerary">
+                <p>Itinerary Type: </p>
+                <select {...itinerary} name="itinerary" required>
+                    <option value="" disabled>Select An Itinerary Type</option>
+                    <option value="Set">Set</option>
+                    <option value="Flexible">Flexible</option>
+                    <option value="None">None</option>
+                </select>
+            </label>
 
-            <label htmlFor="description">Describe Your Trip: </label>
-            <textarea {...description} name="description" col="15" rows="10"/>
+            <label htmlFor="description">
+                <p>Describe Your Trip: </p>
+                <textarea {...description} name="description" col="15" rows="10"/>
+            </label>
 
             <div className="buttons">
                 <button onClick={handlePageChange}>Back</button>
                 <input type="submit" />
             </div>
         </form>
+        </>
     )
 }
 
