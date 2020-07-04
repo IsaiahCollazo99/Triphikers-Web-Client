@@ -16,6 +16,10 @@ const CreateTripsContainer = () => {
     const budget = useInput("disabled");
     const split = useInput("disabled");
     const itinerary = useInput("disabled");
+
+    const handlePageChange = () => {
+        page === 1 ? setPage(2) : setPage(1);
+    }
     
     return (
         <div className="createTripsContainer">
