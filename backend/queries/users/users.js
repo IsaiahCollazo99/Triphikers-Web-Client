@@ -1,7 +1,7 @@
 const db = require("../../db/db");
 
-module.exports {
-  const createNewUser = async (req, res, next) => {
+module.exports = {
+  createNewUser = async (req, res, next) => {
     try {
       const { id, full_name, email, age, gender, bio, country_of_origin } = req.body;
       let user = await db.one(
