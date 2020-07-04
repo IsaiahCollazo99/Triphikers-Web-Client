@@ -19,48 +19,48 @@ const CreateTripForm1 = ( props ) => {
                 <h3>1/2</h3>
             </header>
         
-            <label for="destination">Select a Destination:</label>
+            <label htmlFor="destination">Select a Destination:</label>
             <select {...destination} name="destination" required>
                 <option value="" disabled>Select a Destination</option>
-                <option value="newYork">New York</option>
+                <option value="NY">New York</option>
             </select>
 
-            <label for="dateFrom">Date From: </label>
+            <label htmlFor="dateFrom">Date From: </label>
             <input type="date" {...dateFrom} name="dateFrom" required />
-            <label for="dateTo">Date To: </label>
+            <label htmlFor="dateTo">Date To: </label>
             <input type="date" {...dateTo} name="dateTo" required />
 
-            <label for="groupType">Group Type: </label>
+            <label htmlFor="groupType">Group Type: </label>
             <select {...groupType} name="groupType" required>
                 <option value="" disabled>Select a Group Type</option>
-                <option value="male">Male</option>
-                <option value="female">Female</option>
-                <option value="onlyWomen">Women Only</option>
-                <option value="onlyMen">Men Only</option>
-                <option value="any">Any</option>
+                <option value="Male">Male</option>
+                <option value="Female">Female</option>
+                <option value="Only Women">Women Only</option>
+                <option value="Only Men">Men Only</option>
+                <option value="Any">Any</option>
             </select>
 
-            <label for="language">Language: </label>
+            <label htmlFor="language">Language: </label>
             <select {...language} name="language" required>
                 <option value="" disabled>Select a Language</option>
-                <option value="english">English</option>
+                <option value="English">English</option>
             </select>
 
-            <label for="meetup">Before Trip Meetup: </label>
+            <label htmlFor="meetup">Before Trip Meetup: </label>
             <select {...meetup} name="meetup" required>
                 <option value="" disabled>Select a Before Trip Meetup</option>
-                <option value="inPerson">In Person</option>
-                <option value="videoCall">Video Call</option>
+                <option value="In Person">In Person</option>
+                <option value="Video Call">Video Call</option>
             </select>
 
-            <label for="tripType">Trip Type: </label>
+            <label htmlFor="tripType">Trip Type: </label>
             <select {...tripType} name="tripType" required>
                 <option value="" disabled>Select a Trip Type</option>
-                <option value="explore">Explore Cities</option>
-                <option value="layover">Airport Layovers</option>
-                <option value="roadTrip">Road Trip</option>
-                <option value="adventure">Backpacking</option>
-                <option value="other">Other</option>
+                <option value="Explore Cities">Explore Cities</option>
+                <option value="Airport Layovers">Airport Layovers</option>
+                <option value="Road Trip">Road Trip</option>
+                <option value="Backpacking">Backpacking</option>
+                <option value="Other">Other</option>
             </select>
 
             <input type="submit" value="Next Page" />
