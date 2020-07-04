@@ -74,7 +74,7 @@ const CreateTripForm2 = ( props ) => {
 
             <label htmlFor="description">
                 <p>Describe Your Trip: </p>
-                <textarea {...description} name="description" col="15" rows="10"/>
+                <textarea {...description} name="description" col="15" rows="5"/>
             </label>
 
             <div className="buttons">

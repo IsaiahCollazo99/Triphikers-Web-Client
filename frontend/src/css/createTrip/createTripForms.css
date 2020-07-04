@@ -11,7 +11,7 @@
 .createTripsContainer form {
     display: grid;
     grid-template-columns: 1fr 1fr 1fr;
-    grid-template-rows: 1fr 1fr 1fr;
+    grid-template-rows: 1fr 1fr 1fr 1fr;
 }
 
 .createTripsContainer label {
@@ -26,7 +26,6 @@
 
 .createTripsContainer input, .createTripsContainer select {
     width: 75%;
-    /* align-self: center; */
 }
 
 .createTripDates {
@@ -37,4 +36,23 @@
 
 .createTripDates input {
     margin: 0.25em;
+}
+
+.createTripsContainer label:last-of-type {
+    grid-column: 1 / 4;
+    width: 65%;
+    justify-self: center;
+}
+
+.createTripsContainer .buttons {
+    grid-column: 2 / 3;
+    grid-row: 4 / 5;
+    align-self: center;
+    display: flex;
+    justify-content: space-evenly;
+}
+
+.createTripsContainer button, .createTripsContainer input[type="submit"] {
+    width: 25%;
+    border-radius: 0.75em;
 }
