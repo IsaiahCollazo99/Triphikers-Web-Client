@@ -1,4 +1,5 @@
 import React from 'react';
+import '../../css/createTrip/createTripForms.css';
 
 const CreateTripForm1 = ( props ) => {
     const {

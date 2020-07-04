@@ -3,6 +3,7 @@ import { useInput } from '../../util/customHooks';
 import CreateTripForm1 from './CreateTripForm1';
 import CreateTripForm2 from './CreateTripForm2';
 import { createTrip } from '../../util/apiCalls/postRequests';
+import '../../css/createTrip/createTripContainer.css';
 
 const CreateTripsContainer = () => {
     const [ page, setPage ] = useState(1);
