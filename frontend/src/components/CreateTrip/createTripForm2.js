@@ -30,8 +30,8 @@ const CreateTripForm2 = ( props ) => {
                 <p>First Time: </p>
                 <select {...firstTime} name="firstTime" requried>
                     <option value="" disabled>Is this your first time?</option>
-                    <option value="Yes" disabled>Yes</option>
-                    <option value="No" disabled>No</option>
+                    <option value="Yes">Yes</option>
+                    <option value="No">No</option>
                 </select>
             </label>
 

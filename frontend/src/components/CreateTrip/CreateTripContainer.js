@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { useHistory } from 'react-router-dom';
 import { useInput } from '../../util/customHooks';
 import CreateTripForm1 from './CreateTripForm1';
 import CreateTripForm2 from './CreateTripForm2';
@@ -6,6 +7,8 @@ import { createTrip } from '../../util/apiCalls/postRequests';
 import '../../css/createTrip/createTripContainer.css';
 
 const CreateTripsContainer = () => {
+    const history = useHistory();
+    
     const [ page, setPage ] = useState(1);
     const destination = useInput("");
     const dateFrom = useInput("");
@@ -46,9 +49,10 @@ const CreateTripsContainer = () => {
         description,
     }
 
-    const handleSubmit = ( e ) => {
+    const handleSubmit = async ( e ) => {
         e.preventDefault();
-        createTrip({...pageOne, ...pageTwo});
+        await createTrip({...pageOne, ...pageTwo});
+        history.push("/trips");
     }
 
     const formPageDisplay = page === 1 ? 
