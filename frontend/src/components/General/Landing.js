@@ -2,7 +2,7 @@ import React from "react";
 import logo from "../../images/logo.png";
 import { Link } from "react-router-dom"
 
-export default function Landing() {
+ const LandingPage = () =>{
 	return (
 		<section>
 			<section className="headers">
@@ -55,4 +55,5 @@ export default function Landing() {
 			</section>
 		</section>
 	);
-}
+ }
+ export default LandingPage
