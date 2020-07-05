@@ -1,6 +1,10 @@
 const users = require("express").Router();
-const { createNewUser } = require("../../queries/users/users");
+const {
+  createUser,
+  getAllUsers
+} = require("../../queries/users/users");
 
-users.post("/", createNewUser);
+users.post("/", createUser);
+users.get("/", getAllUsers)
 
 module.exports = users;
