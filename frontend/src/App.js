@@ -15,6 +15,7 @@ function App() {
         <Route exact path="/">
             <LandingPage />
         </Route>
+        
         <Route path="/sign_up">
           <SignUpForm />
         </Route>
@@ -28,9 +29,7 @@ function App() {
         <Route path="/signUp_email">
 					<SignUpFormWithEmail/>
 				</Route>
-				<Route path="/">
-					<TripsPage />
-				</Route>
+
         <Route exact path="/trips">
           <TripsPage />
         </Route>
