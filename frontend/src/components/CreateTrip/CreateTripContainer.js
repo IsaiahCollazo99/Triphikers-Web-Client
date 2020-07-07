@@ -18,7 +18,6 @@ const CreateTripsContainer = () => {
     const meetup = useInput("");
     const tripType = useInput("");
     const title = useInput("");
-    const firstTime = useInput("");
     const accommodation = useInput("");
     const budget = useInput("");
     const split = useInput("");
@@ -41,7 +40,6 @@ const CreateTripsContainer = () => {
 
     const pageTwo = {
         title,
-        firstTime,
         accommodation,
         budget,
         split,
