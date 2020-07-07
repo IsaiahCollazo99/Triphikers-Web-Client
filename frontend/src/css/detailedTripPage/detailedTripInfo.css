@@ -1,0 +1,4 @@
+.dt-info {
+    display: flex;
+    flex-direction: column;
+}
