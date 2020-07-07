@@ -53,7 +53,7 @@ const CreateTripsContainer = () => {
         history.push("/trips");
     }
 
-    const formPageDisplay = page === 2 ? 
+    const formPageDisplay = page === 1 ? 
         <CreateTripForm1 {...pageOne} handlePageChange={handlePageChange} /> :
         <CreateTripForm2 {...pageTwo} handlePageChange={handlePageChange} handleSubmit={handleSubmit}/>
     
