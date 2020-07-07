@@ -1,29 +1,36 @@
-import React from 'react';
-import './App.css';
-import TripsPage from './components/TripsPage/TripsPage';
-import LocationPage from "./components/Location/LocationPage";
-import { Switch, Route, useHistory } from 'react-router-dom';
+import React from "react";
+import "./App.css";
+import TripsPage from "./components/TripsPage/TripsPage";
+import { Switch, Route } from "react-router-dom";
+import LandingPage from "./components/General/Landing";
+import SignUpForm from "./components/Login/SignUpForm";
+import SignUpFormWithEmail from "./components/Login/SignUpFormWithEmail";
 
 function App() {
-  // const history = useHistory();
-  // const locationRedirect = (id) => history.push(`/location/${id}`);
-
-  // const fetchLocation = (id) => {
-  //   locationRedirect(id);
-  // };
-
-  return (
-    <div className="App">
-      <Switch>
-        <Route exact path="/">
-          <TripsPage />
+	return (
+		<div className="App">
+			<Switch>
+				<Route exact path="/">
+					<LandingPage />
         </Route>
-        <Route path={"/location/:id"}>
-          <LocationPage/>
+        <Route path="/sign_up">
+					<SignUpForm />
         </Route>
-      </Switch>
-    </div>
-  );
+        {/* <Route path="/signUp_facebook">
+					<SignUpFormWithFacebook />
+        </Route>
+        <Route path="/signUp_google">
+					<SignUpFormWithGoogle/>
+        </Route> */}
+        <Route path="/signUp_email">
+					<SignUpFormWithEmail/>
+				</Route>
+				<Route path="/">
+					<TripsPage />
+				</Route>
+			</Switch>
+		</div>
+	);
 }
 
 export default App;

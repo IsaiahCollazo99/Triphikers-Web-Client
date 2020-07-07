@@ -5,6 +5,7 @@ require("dotenv").config();
 
 const PORT = process.env.PORT;
 
+const usersRouter = require("./routes/users/users")
 const tripsRouter = require("./routes/trips/trips");
 const locationsRouter = require("./routes/locations/location");
 
@@ -12,6 +13,7 @@ app.use(cors());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 
+app.use("/api/users", usersRouter)
 app.use("/api/trips", tripsRouter);
 app.use("/api/locations", locationsRouter);
 
