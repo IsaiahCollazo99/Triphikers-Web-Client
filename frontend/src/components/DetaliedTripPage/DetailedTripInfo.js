@@ -1,6 +1,6 @@
 import React from 'react';
 
-const DetailedTripInfo = () => {
+const DetailedTripInfo = ({ trip = {} }) => {
     return (
         <section className="detailedTripInfo">
             Detailed Trip Info

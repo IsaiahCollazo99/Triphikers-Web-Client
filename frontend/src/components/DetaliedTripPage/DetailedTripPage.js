@@ -30,15 +30,15 @@ const DetailedTripPage = () => {
             <DetailedTripNav trip={trip}/>
             <Switch>
                 <Route exact path={"/trips/:tripId/"}>
-                    <DetailedTripInfo />
+                    <DetailedTripInfo trip={trip} />
                 </Route>
 
                 <Route exact path={"/trips/:tripId/requests"}>
-                    <DetailedTripRequests />
+                    <DetailedTripRequests trip={trip} />
                 </Route>
 
                 <Route exact path={"/trips/:tripId/travelers"}>
-                    <DetailedTripTravelers />
+                    <DetailedTripTravelers trip={trip} />
                 </Route>
             </Switch>
         </div>
