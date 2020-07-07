@@ -38,7 +38,19 @@
     margin: 0.25em;
 }
 
-.createTrip2 label:last-of-type {
+.tripForm2Bottom {
+    grid-column: 1 / 4;
+    display: flex;
+    justify-content: space-evenly;
+    justify-self: center;
+    width: 100%;
+}
+
+.tripForm2Bottom label {
+    width: 40%;
+}
+
+.createTripDesc{
     grid-column: 1 / 4;
     width: 65%;
     justify-self: center;
