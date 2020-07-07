@@ -5,6 +5,7 @@ import { Switch, Route } from "react-router-dom";
 import LandingPage from "./components/General/Landing";
 import SignUpForm from "./components/Login/SignUpForm";
 import SignUpFormWithEmail from "./components/Login/SignUpFormWithEmail";
+import SignUpForm2 from "./components/Login/SignUpForm2"
 
 function App() {
 	return (
@@ -24,7 +25,10 @@ function App() {
         </Route> */}
         <Route path="/signUp_email">
 					<SignUpFormWithEmail/>
-				</Route>
+        </Route>
+        < Route path="/createAccount2/3">
+          <SignUpForm2/>
+        </Route>
 				<Route path="/">
 					<TripsPage />
 				</Route>
