@@ -4,7 +4,6 @@ import '../../css/createTrip/createTripForms.css';
 const CreateTripForm2 = ( props ) => {
     const {
         title,
-        firstTime,
         accommodation,
         budget,
         split,
@@ -26,15 +25,6 @@ const CreateTripForm2 = ( props ) => {
                 <input type="text" {...title} placeholder="Enter a Trip Title" name="title" required />
             </label>
 
-            <label htmlFor="firstTime">
-                <p>First Time: </p>
-                <select {...firstTime} name="firstTime" requried>
-                    <option value="" disabled>Is this your first time?</option>
-                    <option value="Yes">Yes</option>
-                    <option value="No">No</option>
-                </select>
-            </label>
-
             <label htmlFor="accommodation">
                 <p>Accommodation: </p>
                 <select {...accommodation} name="accommodation" required>
@@ -52,27 +42,29 @@ const CreateTripForm2 = ( props ) => {
                 <p>Your Budget: </p>
                 <input type="number" name="budget" {...budget} required/>
             </label>
-            
-            <label htmlFor="split">
-                <p>Split Costs: </p>
-                <select {...split} name="split" required>
-                    <option value="" disabled>Split Costs?</option>
-                    <option value="Yes">Yes</option>
-                    <option value="No">No</option>
-                </select>
-            </label>
 
-            <label htmlFor="itinerary">
-                <p>Itinerary Type: </p>
-                <select {...itinerary} name="itinerary" required>
-                    <option value="" disabled>Select An Itinerary Type</option>
-                    <option value="Set">Set</option>
-                    <option value="Flexible">Flexible</option>
-                    <option value="None">None</option>
-                </select>
-            </label>
+            <div className="tripForm2Bottom">
+                <label htmlFor="split">
+                    <p>Split Costs: </p>
+                    <select {...split} name="split" required>
+                        <option value="" disabled>Split Costs?</option>
+                        <option value="Yes">Yes</option>
+                        <option value="No">No</option>
+                    </select>
+                </label>
 
-            <label htmlFor="description">
+                <label htmlFor="itinerary">
+                    <p>Itinerary Type: </p>
+                    <select {...itinerary} name="itinerary" required>
+                        <option value="" disabled>Select An Itinerary Type</option>
+                        <option value="Set">Set</option>
+                        <option value="Flexible">Flexible</option>
+                        <option value="None">None</option>
+                    </select>
+                </label>
+            </div>
+
+            <label htmlFor="description" className="createTripDesc">
                 <p>Describe Your Trip: </p>
                 <textarea {...description} name="description" col="15" rows="5"/>
             </label>
