@@ -1,6 +1,6 @@
 import React from "react";
 
-const LocationReviews = () => {
+const LocationReviews = (id) => {
     return (
         <div>
             Reviews

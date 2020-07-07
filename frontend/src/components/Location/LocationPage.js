@@ -3,21 +3,24 @@ import LocationAttractions from "./LocationAttractions";
 import LocationNavbar from "./LocationNavbar";
 import LocationHotspots from "./LocationHotspots";
 import LocationReviews from "./LocationReviews";
-import { Route, Switch } from "react-router-dom";
+import { Route, Switch, useParams } from "react-router-dom";
+import LocationInfo from "./LocationInfo";
 
 const LocationPage = () => {
+    const { locationId } = useParams();
+    debugger
     return(
         <div className="container">
-        Locations Page
-            <div className="locationNavbar">
+            Locations Page
+            {/* <LocationInfo id={locationId}/> */}
+            {/* <div className="locationNavbar">
                 <LocationNavbar/>
                 <Switch>
-                    <Route exact path={"/location/hotspots"} component={LocationHotspots}/>
-                    <Route exact path={"/location/attractions"} component={LocationAttractions}/>
-                    <Route exact path={"/location/reviews"} component={LocationReviews}/>
+                    <Route exact path={"/location/:id/hotspots"} component={LocationHotspots}/>
+                    <Route exact path={"/location/:id/attractions"} component={LocationAttractions}/>
+                    <Route exact path={"/location/:id/reviews"} component={LocationReviews}/>
                 </Switch>
-            </div>
-            
+            </div> */}
         </div>
     )
 }

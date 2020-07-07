@@ -1,6 +1,6 @@
 import React from "react";
 
-const LocationAttractions = () => {
+const LocationAttractions = (id) => {
     return (
         <div>
             attractions
