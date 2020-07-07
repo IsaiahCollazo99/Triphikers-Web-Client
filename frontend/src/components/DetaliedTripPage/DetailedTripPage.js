@@ -12,8 +12,8 @@ const DetailedTripPage = () => {
 
     const getTripCall = async () => {
         try {
-            const tripById = await getTripById(id);
-            setTrip(tripById.trip);
+            const data = await getTripById(id);
+            setTrip(data.trip);
         } catch (error) {
             console.log(error);
         }
