@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 // import { Map, GoogleApiWrapper } from 'google-maps-react';
 import axios from "axios";
+import "../../css/locations/LocationInfo.css";
 let apiKey ="AIzaSyCpINhVI_CTjIc8xOastGFa5-dHpE-oIgg";
 
 const LocationInfo = ({info}) => {
@@ -33,19 +34,24 @@ const LocationInfo = ({info}) => {
     }, [info])
 
     return(
-        <div className="locationInfo">
-            <img className="cityImage" src ={info.image}/>
+        <div className="locationInfoContainer">
+            <div className="locationImageContainer">
+                <img className="cityImage" src={info.image} alt="location"/>
+                <div class="overlay">
+                    <div class="locationName">{info.location_name}</div>
+                </div>
+            </div>
             <div className="details">
                 {/* <div className="map">
                     <Map google={info.google} zoom={14}/>
                 </div> */}
-                <p>{info.location_name}</p>
-                <p>Currency Exchange</p>
+                <p className="locationPageText">{info.location_name}</p>
+                <p className="locationPageText">Currency Exchange</p>
                     {currencyPrint(currency)}
             </div>
             <div className="emergencyServices">
-                <p>Emergency Services</p>
-                <p>{info.emergency_services}</p>
+                <p className="locationPageText">Emergency Services</p>
+                <p className="locationPageText">{info.emergency_services}</p>
             </div>
         </div>
     )

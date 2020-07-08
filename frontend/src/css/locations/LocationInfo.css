@@ -1,0 +1,77 @@
+/* background main color
+    dark blue: #021F66
+    medium blue: #083DCC
+    light blue: #3370FF
+    yellow: #FDB21A
+*/
+
+.locationInfoContainer {
+    display: grid;
+    grid-template-columns: 70% 30%;
+    grid-template-rows: 50% 50%;
+    width: 100vw;
+    background-color: #021F66;
+    color: white;
+}
+
+.locationImageContainer {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    border: 2px solid black;
+    grid-row-start: 1;
+    grid-column: 1/3;
+}
+
+.overlay {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 100%;
+    width: 100%;
+    opacity: 0%;
+    transition: .5s ease;
+    background-color: #021F66;
+  }
+
+.locationImageContainer:hover .overlay {
+    opacity: 1;
+}
+
+.locationName {
+    color: white;
+    font-size: 100px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    -ms-transform: translate(-50%, -50%);
+  }
+
+.cityImage {
+    display: block;
+    object-fit: cover;
+    width: 100%;
+    height: 100%;
+}
+
+.details {
+    grid-row-start: 2;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    border: 2px solid black;
+}
+
+.emergencyServices{
+    grid-row-start: 2;
+    align-items: center;
+    text-align: center;
+    border: 2px solid black;
+}
+
+.locationPageText{
+    font-size: 20px;
+}
