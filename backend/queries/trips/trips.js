@@ -31,7 +31,7 @@ module.exports = {
         try {
             const trip = await db.one(`
                 SELECT users.full_name, users.age, users.profile_picture, 
-                users.country_of_origin, users.gender, trips.*
+                users.country_of_origin, users.gender, users.bio, trips.*
                 FROM trips
                 LEFT JOIN users on users.id = trips.planner_id
                 WHERE trips.id=$1
