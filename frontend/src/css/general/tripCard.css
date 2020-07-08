@@ -3,6 +3,9 @@
     grid-template-columns: 1fr 4fr;
     grid-template-rows: 1fr 1fr;
     width: 80%;
+    background-color: #001f66;
+    margin: 1.5em 0;
+    padding-left: 1em;
 }
 
 .tripCard aside {
@@ -20,6 +23,10 @@
     justify-content: space-between;
     align-items: center;
     padding: 1em;
+}
+
+.tripCardTitle {
+    font-weight: bold;
 }
 
 .tripCardButtons {
@@ -40,6 +47,7 @@
 
 .tripCard span {
     font-weight: bold;
+    color: #ffc655;
 }
 
 .tc-tl {

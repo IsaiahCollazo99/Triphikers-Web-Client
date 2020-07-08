@@ -15,7 +15,7 @@ function App() {
         <Route exact path="/">
             <LandingPage />
         </Route>
-        
+
         <Route path="/sign_up">
           <SignUpForm />
         </Route>
@@ -34,7 +34,7 @@ function App() {
           <TripsPage />
         </Route>
 
-        <Route path="/trips/create">
+        <Route exact path="/trips/create">
           <CreateTripsContainer />
         </Route>
 
