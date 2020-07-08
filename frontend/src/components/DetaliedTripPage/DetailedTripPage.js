@@ -5,6 +5,7 @@ import DetailedTripNav from './DetailedTripNav';
 import DetailedTripInfo from './DetailedTripInfo';
 import DetailedTripRequests from './DetailedTripRequests';
 import DetailedTripTravelers from './DetailedTripTravelers';
+import '../../css/detailedTripPage/detailedTripPage.css';
 
 const DetailedTripPage = () => {
     const { id } = useParams();

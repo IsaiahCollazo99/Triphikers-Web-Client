@@ -1,0 +1,20 @@
+.dt-nav {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    padding: 0.5em;
+}
+
+.dt-nav a {
+    color: white;
+    font-weight: bold;
+    text-decoration: none;
+}
+
+.dt-nav a:hover {
+    color: #CC8800;
+}
+
+.dt-nav .active {
+    color: #FFB219;
+}

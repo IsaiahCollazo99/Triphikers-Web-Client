@@ -38,7 +38,7 @@ function App() {
           <CreateTripsContainer />
         </Route>
 
-        <Route exact path="/trips/:id">
+        <Route path="/trips/:id">
           <DetailedTripPage />
         </Route>
       </Switch>
