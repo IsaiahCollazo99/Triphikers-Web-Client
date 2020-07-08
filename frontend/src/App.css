@@ -2,3 +2,13 @@
     display: flex;
     justify-content: center;
 }
+
+.error {
+    font-weight: bold;
+    color: red;
+}
+
+.success {
+    font-weight: bold;
+    color: rgb(0, 228, 0);
+}
