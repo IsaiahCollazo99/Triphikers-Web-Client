@@ -1,6 +1,7 @@
 import React from 'react';
 import '../../css/general/tripCard.css';
 import { useHistory } from 'react-router-dom';
+import { completeTrip } from '../../util/apiCalls/patchRequests';
 
 const TripCard = ({ trip, deleteTripCall }) => {
     const history = useHistory();
@@ -11,6 +12,27 @@ const TripCard = ({ trip, deleteTripCall }) => {
 
     const handleDeleteClick = () => {
         deleteTripCall(trip.id);
+    }
+
+    const completeTripCall = async () => {
+        let res = await completeTrip(trip.id);
+        console.log(res);
+    }
+
+    const displayExpired = () => {
+        const currentDate = new Date();
+        if(currentDate.getTime() > new Date(trip.date_to).getTime() || trip.is_completed) {
+            return (
+                <p className="error">EXPIRED</p>
+            )
+        } else {
+            return (
+                <>
+                    <button>Request</button>
+                    <button onClick={completeTripCall}>Complete</button>
+                </>
+            )
+        }
     }
     
     return (
@@ -32,9 +54,9 @@ const TripCard = ({ trip, deleteTripCall }) => {
                         <span> To:</span> {trip.date_to}
                     </p>
                 </div>
-
+                
                 <div className="tripCardButtons">
-                    <button>Request</button>
+                    {displayExpired()}
                     <button onClick={redirect}>Details</button>
                     <button onClick={handleDeleteClick}>Delete</button>
                 </div>
