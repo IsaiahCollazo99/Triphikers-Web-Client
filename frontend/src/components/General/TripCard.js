@@ -2,11 +2,15 @@ import React from 'react';
 import '../../css/general/tripCard.css';
 import { useHistory } from 'react-router-dom';
 
-const TripCard = ({ trip }) => {
+const TripCard = ({ trip, deleteTripCall }) => {
     const history = useHistory();
     
     const redirect = () => {
         history.push("/trips/" + trip.id);
+    }
+
+    const handleDeleteClick = () => {
+        deleteTripCall(trip.id);
     }
     
     return (
@@ -32,6 +36,7 @@ const TripCard = ({ trip }) => {
                 <div className="tripCardButtons">
                     <button>Request</button>
                     <button onClick={redirect}>Details</button>
+                    <button onClick={handleDeleteClick}>Delete</button>
                 </div>
             </header>
 
