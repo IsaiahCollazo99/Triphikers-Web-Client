@@ -1,4 +1,5 @@
 import React from 'react';
+import '../../css/detailedTripPage/detailedTripInfo.css';
 
 const DetailedTripInfo = ({ trip = {} }) => {
     return (
@@ -8,8 +9,8 @@ const DetailedTripInfo = ({ trip = {} }) => {
                     <p>{trip.trip_title}</p>
                     <p>{trip.destination}</p>
                     <div className="dt-dates">
-                        <p>{trip.date_from}</p>
-                        <p>{trip.date_to}</p>
+                        <p><span>Date From: </span>{trip.date_from}</p>
+                        <p><span>Date To: </span>{trip.date_to}</p>
                     </div>
                 </section>
 
@@ -18,7 +19,10 @@ const DetailedTripInfo = ({ trip = {} }) => {
                 </section>
             </header>
 
-            <article>{trip.description}</article>
+            <article>
+                <span>Description: </span>
+                <p>{trip.description}</p>
+            </article>
 
             <main>
                 <p><span>Group Type: </span>{trip.group_type}</p>
