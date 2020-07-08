@@ -42,6 +42,9 @@ function App() {
         <Route path="/trips/:id">
           <DetailedTripPage />
         </Route>
+        <Route path="/location/:locationId">
+          <LocationPage/>
+        </Route>
       </Switch>
     </div>
 	);

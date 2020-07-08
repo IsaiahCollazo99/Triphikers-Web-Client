@@ -27,14 +27,14 @@ const LocationPage = () => {
     return(
         <div className="container">
             <LocationInfo info={locationInfo}/>
-            {/* <div className="locationNavbar">
+            <div className="locationNavbar">
                 <LocationNavbar/>
                 <Switch>
                     <Route exact path={"/location/:id/hotspots"} component={LocationHotspots}/>
                     <Route exact path={"/location/:id/attractions"} component={LocationAttractions}/>
                     <Route exact path={"/location/:id/reviews"} component={LocationReviews}/>
                 </Switch>
-            </div> */}
+            </div>
         </div>
     )
 }
