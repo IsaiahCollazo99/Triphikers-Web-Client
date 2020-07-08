@@ -1,5 +1,5 @@
 import React, {useState} from "react";
-import { FaSpinner } from 'react-icons/fa';
+// import { FaSpinner } from 'react-icons/fa';
 import { useHistory } from "react-router-dom";
 import Axios from "axios";
 const SignUpFormWithEmail = () => {
