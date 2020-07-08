@@ -12,7 +12,11 @@
     width: 100%;
     justify-content: space-between;
     border-bottom: 1px solid white;
-    padding-bottom: 0.50em;
+    padding-bottom: 1em;
+}
+
+.dt-info header p {
+    margin: 0.5em 0;
 }
 
 .dt-hi {
@@ -24,7 +28,7 @@
 .dt-dates {
     display: flex;
     flex-direction: row;
-    width: 100%
+    width: 100%;
 }
 
 .dt-dates p:first-of-type {
@@ -32,7 +36,7 @@
 }
 
 .dt-info article {
-    padding: 0.5em 0; 
+    padding: 1em 0; 
     border-bottom: 1px solid white;
 }
 
@@ -41,14 +45,14 @@
 }
 
 .dt-info main {
-    margin-top: 0.5em;
+    margin-top: 1em;
     display: grid;
     grid-template-columns: 1fr 1fr 1fr;
     grid-template-rows: 1fr 1fr 1fr;
 }
 
 .dt-info main p {
-    padding: 0.5em;
+    padding: 1em;
 }
 
 .dt-ib {
@@ -62,4 +66,5 @@
 
 .dt-info span {
     font-weight: bold;
+    color: #ffc655;
 }

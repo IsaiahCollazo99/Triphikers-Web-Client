@@ -6,7 +6,7 @@ const DetailedTripInfo = ({ trip = {} }) => {
         <section className="dt-info">
             <header>
                 <section className="dt-hi">
-                    <p><span>Title: </span>{trip.trip_title}</p>
+                    <p className="dt-title"><span>Title: </span>{trip.trip_title}</p>
                     <p><span>Destination: </span>{trip.destination}</p>
                     <div className="dt-dates">
                         <p><span>Date From: </span>{trip.date_from}</p>
