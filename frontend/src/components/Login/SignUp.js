@@ -3,7 +3,7 @@ import { Link }from "react-router-dom"
 
 
 
-const SignUpForm = () => {
+const Signup = () => {
   
   return (
     <div>
@@ -13,21 +13,21 @@ const SignUpForm = () => {
       </div>
       <div>
       <button className="signIpBtn">
-          <Link to="/signUp_facebook">
+          <Link to="/signUpFacebook">
             SIGN UP WITH FACEBOOK
 					</Link>
         </button>
       </div>
       <div>
       <button className="signIpBtn">
-          <Link to="/signUp_google">
+          <Link to="/signUpGoogle">
             SIGN UP WITH GOOGLE
 					</Link>
         </button>
       </div>
       <div>
       <button className="signIpBtn">
-          <Link to="/signUp_email">
+          <Link to="/signUp1">
             SIGN UP WITH EMAIL
 					</Link>
         </button>
@@ -37,4 +37,4 @@ const SignUpForm = () => {
   )
 }
 
-export default SignUpForm;
+export default Signup;
