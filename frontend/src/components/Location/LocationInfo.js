@@ -37,8 +37,8 @@ const LocationInfo = ({info}) => {
         <div className="locationInfoContainer">
             <div className="locationImageContainer">
                 <img className="cityImage" src={info.image} alt="location"/>
-                <div class="overlay">
-                    <div class="locationName">{info.location_name}</div>
+                <div className="overlay">
+                    <div className="locationName">{info.location_name}</div>
                 </div>
             </div>
             <div className="details">

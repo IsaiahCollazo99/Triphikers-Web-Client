@@ -8,6 +8,9 @@ const PORT = process.env.PORT;
 const usersRouter = require("./routes/users/users")
 const tripsRouter = require("./routes/trips/trips");
 const locationsRouter = require("./routes/locations/location");
+const mapsRouter = require("./routes/apiCalls/maps");
+
+app.use("/api/maps", mapsRouter);
 
 app.use(cors());
 app.use(bodyParser.urlencoded({ extended: true }));
