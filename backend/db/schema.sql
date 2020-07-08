@@ -5,6 +5,7 @@ CREATE DATABASE triphikers_db;
 
 DROP TABLE IF EXISTS trips;
 DROP TABLE IF EXISTS users;
+DROP TABLE IF EXISTS locations;
 
 CREATE TABLE users (
     id VARCHAR UNIQUE NOT NULL,
@@ -35,4 +36,14 @@ CREATE TABLE trips (
     itinerary VARCHAR,
     description VARCHAR,
     is_completed BOOLEAN DEFAULT 'false'
+);
+
+CREATE TABLE locations (
+    id SERIAL PRIMARY KEY,
+    image VARCHAR,
+    latitude VARCHAR,
+    longitude VARCHAR,
+    location_name VARCHAR,
+    emergency_services VARCHAR,
+    poster_id VARCHAR REFERENCES users(id) ON DELETE CASCADE
 );
