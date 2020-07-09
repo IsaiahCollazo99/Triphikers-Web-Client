@@ -10,7 +10,7 @@
     grid-template-columns: 70% 30%;
     grid-template-rows: 50% 50%;
     width: 100vw;
-    height: 50%;
+    height: 30%;
     background-color: #021F66;
     color: white;
 }
@@ -63,12 +63,16 @@
     display: flex;
     flex-direction: column;
     align-items: center;
+    justify-content: center;
     border: 1px solid black;
 }
 
 .emergencyServices{
     grid-row-start: 2;
+    display: flex;
+    flex-direction: column;
     align-items: center;
+    justify-content: center;
     text-align: center;
     border: 1px solid black;
 }

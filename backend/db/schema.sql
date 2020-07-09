@@ -41,8 +41,8 @@ CREATE TABLE trips (
 CREATE TABLE locations (
     id SERIAL PRIMARY KEY,
     image VARCHAR,
-    latitude VARCHAR,
-    longitude VARCHAR,
+    lat INTEGER,
+    lng INTEGER,
     location_name VARCHAR,
     emergency_services VARCHAR,
     poster_id VARCHAR REFERENCES users(id) ON DELETE CASCADE

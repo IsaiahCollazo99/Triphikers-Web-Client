@@ -9,6 +9,7 @@
     border: 1px solid black;
     background-color: #021F66;
     display: flex;
+    justify-content: space-evenly;
 }
 
 .Links {

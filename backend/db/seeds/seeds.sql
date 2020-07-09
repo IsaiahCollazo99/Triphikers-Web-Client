@@ -33,5 +33,5 @@ VALUES
     'Just want to explore around cities with my friends and some new people'
 );
 
-INSERT INTO locations (id, image, latitude, longitude, location_name, emergency_services, poster_id)
+INSERT INTO locations (id, image, lat, lng, location_name, emergency_services, poster_id)
 VALUES (1, 'https://cdn.londonandpartners.com/visit/general-london/areas/river/76709-640x360-houses-of-parliament-and-london-eye-on-thames-from-above-640.jpg', 51, 00, 'London', 999, 1);

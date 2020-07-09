@@ -1,8 +1,8 @@
 import React from "react";
 
-const LocationHotspots = (id) => {
+const LocationHotspots = ({id}) => {
     return (
-        <div>
+        <div className="hotSpotContainer">
             hotspots
         </div>
     )
