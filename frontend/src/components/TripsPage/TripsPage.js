@@ -17,7 +17,6 @@ const TripsPage = () => {
             setResponse(<p className="error">There was a problem with the delete request.</p>)
             console.log(error);
         }
-
     }
     
     const getTripsCall = async () => {
