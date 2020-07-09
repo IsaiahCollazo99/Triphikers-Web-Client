@@ -25,6 +25,7 @@ const DetailedTripPage = () => {
         getTripCall();
     }, [])
 
+    
     return (
         <div className="detailedTripContainer">
             <header className="dt-header">
