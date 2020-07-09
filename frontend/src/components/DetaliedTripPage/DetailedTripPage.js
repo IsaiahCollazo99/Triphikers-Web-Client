@@ -54,7 +54,7 @@ const DetailedTripPage = () => {
             <DetailedTripNav trip={trip}/>
             <Switch>
                 <Route exact path={"/trips/:tripId/"}>
-                    <DetailedTripInfo trip={trip} />
+                    <DetailedTripInfo trip={trip} getTripCall={getTripCall}/>
                 </Route>
 
                 <Route exact path={"/trips/:tripId/requests"}>

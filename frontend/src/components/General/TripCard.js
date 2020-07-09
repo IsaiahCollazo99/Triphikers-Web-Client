@@ -16,7 +16,6 @@ const TripCard = ({ trip, deleteTripCall }) => {
 
     const completeTripCall = async () => {
         let res = await completeTrip(trip.id);
-        console.log(res);
     }
 
     const displayExpired = () => {
