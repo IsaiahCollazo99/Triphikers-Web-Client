@@ -1,0 +1,22 @@
+/* background main color
+    dark blue: #021F66
+    medium blue: #083DCC
+    light blue: #3370FF
+    yellow: #FDB21A
+*/
+
+.hotSpotContainer {
+    background-color: #083DCC;
+    height: 100%;
+}
+
+.hotSpotModal {
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.4s ease-in-out;
+}
+
+.modalShowing-true {
+    opacity: 1;
+    pointer-events: showing;
+}

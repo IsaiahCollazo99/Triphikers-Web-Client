@@ -1,9 +1,19 @@
-import React from "react";
+import React, { useState } from "react";
+import "../../css/locations/LocationHotspots.css";
 
 const LocationHotspots = ({id}) => {
+    const [modal, setModal] = useState(false);
+
+    const toggleModal = () => {
+        setModal(!modal)
+    }
+
     return (
         <div className="hotSpotContainer">
-            hotspots
+            <div className={`hotSpotModal modalShowing-${modal}`}>
+                Modal
+            </div>
+            <button onClick={toggleModal}>Submit a Hotspot</button>
         </div>
     )
 }

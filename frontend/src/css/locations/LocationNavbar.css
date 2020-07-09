@@ -16,3 +16,7 @@
     color: white;
     text-decoration-style: none;
 }
+
+.Links:hover{
+    cursor: pointer;
+}

@@ -22,17 +22,17 @@ const LocationPage = () => {
 
     useEffect(() => {
         fetchLocationData(locationId);
-    }, [])
+    }, [locationId])
 
     return(
         <div className="container">
             <LocationInfo info={locationInfo}/>
             <div className="locationNavbar">
-                <LocationNavbar/>
+                <LocationNavbar id={locationId}/>
                 <Switch>
-                    <Route exact path={"/location/:id/hotspots"} component={LocationHotspots} info={locationInfo}/>
-                    <Route exact path={"/location/:id/attractions"} component={LocationAttractions}/>
-                    <Route exact path={"/location/:id/reviews"} component={LocationReviews}/>
+                    <Route exact path={`/location/:locationId/hotspots`} component={LocationHotspots} info={locationInfo}/>
+                    <Route exact path={`/location/:locationId/attractions`} component={LocationAttractions}/>
+                    <Route exact path={`/location/:locationId/reviews`} component={LocationReviews}/>
                 </Switch>
             </div>
         </div>

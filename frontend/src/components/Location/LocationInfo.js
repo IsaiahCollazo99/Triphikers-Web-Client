@@ -1,15 +1,11 @@
 import React, { useState, useEffect } from "react";
-import { Map, GoogleApiWrapper } from 'google-maps-react';
+// import { Map, GoogleApiWrapper } from 'google-maps-react';
 import axios from "axios";
 import "../../css/locations/LocationInfo.css";
 let apiKey ="AIzaSyCpINhVI_CTjIc8xOastGFa5-dHpE-oIgg";
 
 const LocationInfo = ({info}) => {
     const [currency, setCurrency] = useState([])
-    // const [coordinates, setCoordinates] = useState({})
-    // const [lat, setLat] = useState({});
-    // const [lng, setLng] = useState({});
-    // coordinates = { lat:70, lng: -73}
     //is information coming from backend, will have to change the child info
 
     const getAllInfo = async (info) => {
@@ -33,17 +29,17 @@ const LocationInfo = ({info}) => {
           }
     }
 
-    const getMap = (lat, lng) => {
-        if(lat !== undefined){
-            let object = {
-                lat: lat,
-                lng: lng
-            }
-            return(
-                <Map google={window.google} zoom={6} style={{width: '20%', height: '20%'}} initialCenter={object}/>
-            )
-        }
-    }
+    // const getMap = (lat, lng) => {
+    //     if(lat !== undefined){
+    //         let object = {
+    //             lat: lat,
+    //             lng: lng
+    //         }
+    //         return(
+    //             <Map google={window.google} zoom={6} style={{position: 'relative',width: '15%', height: '15%'}} initialCenter={object}/>
+    //         )
+    //     }
+    // }
 
 
     useEffect(() => {
@@ -59,13 +55,14 @@ const LocationInfo = ({info}) => {
                 </div>
             </div>
             <div className="details">
-                <div className="map">
-                    {getMap(info.lat, info.lng)}
-                    {/* <Map google={window.google} zoom={14} style={{width: '20%', height: '20%'}} initialCenter={getMap}/> */}
+                <div className="detailsMap">
+                    {/* {getMap(info.lat, info.lng)} */}
                 </div>
-                <p className="locationPageText">{info.location_name}</p>
-                <p className="locationPageText">Currency Exchange</p>
-                    {currencyPrint(currency)}
+                <div className="detailsText">
+                    <p className="locationPageText">{info.location_name}</p>
+                    <p className="locationPageText">Currency Exchange</p>
+                        {currencyPrint(currency)}
+                </div>
             </div>
             <div className="emergencyServices">
                 <p className="locationPageText">Emergency Services</p>
