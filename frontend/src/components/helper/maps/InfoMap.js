@@ -1,17 +1,15 @@
 import React from 'react';
-import { GoogleMap, useLoadScript, Marker, InfoWindow } from '@react-google-maps/api';
+import { GoogleMap, useLoadScript} from '@react-google-maps/api';
 let apiKey = "AIzaSyA0vq8MgHI_qpQ45Ug8ZyOPCoIEtk5MjjM";
 
 const libraries = ["places"];
-// const mapContainerStyle = {
-//     width: "18vw",
-//     height: "18vh",
-// }
-// const options = {
-//     styles: MapStyles
-// }
+const mapContainerStyle = {
+    width: "18vw",
+    height: "18vh",
+}
 
-const GoogleMaps = ({ location, mapContainerStyle }) => {
+const InfoMap = ({ location }) => {
+
     const {isLoaded, loadError} = useLoadScript({
         googleMapsApiKey: apiKey,
         libraries,
@@ -27,4 +25,4 @@ const GoogleMaps = ({ location, mapContainerStyle }) => {
     )
 }
 
-export default GoogleMaps;
+export default InfoMap;
