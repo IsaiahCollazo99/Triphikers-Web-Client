@@ -1,56 +1,40 @@
 import React from "react";
 import logo from "../../images/logo.png";
-import { Link } from "react-router-dom"
+import LandingPageIcons from "./LandingPageIcons";
 
  const LandingPage = () =>{
 	return (
 		<main className="landingPage">
-			<header>
-				{/* <img src={logo} alt="triphikersLogo" /> */}
-				<h1>TRIPHIKERS</h1>
-      </header>
-      
-      <section className="lp-icons"> 
-        <button>
-					<Link to="/creat_a_plan">
-            CREATE A PLAN
-					</Link>
-        </button>
+      <section className="lp-top">
+        <header>
+          {/* <img src={logo} alt="triphikersLogo" /> */}
+          <h1>TRIPHIKERS</h1>
+        </header>
+        
+        <LandingPageIcons />
 
-        <button>
-          <Link to="/find_buddies">
-            FIND BUDDIES
-          </Link>
-        </button>
-
-        <button>
-          <Link to="/travel">
-            TRAVEL
-					</Link>
-        </button>
-			</section>
-
-      <section>
-        <button className="signUpBtn">
-          <Link to="/sign_up">
+        <section className="lp-signUpIn">
+          <button>
             CREATE ACCOUNT
-          </Link>
-        </button>
+          </button>
 
-        <button className="signIpBtn">
-          <Link to="/sign_in">
+          <button>
             LOGIN
-					</Link>
-        </button>
-			</section>
+          </button>
+        </section>
 
-			<section>
-				<p>LATEST TRIPS</p>
-			</section>
+      </section>
+			
+      <section className="lp-bottom">
+        <section className="lp-latestTrips">
+          <p>LATEST TRIPS</p>
+        </section>
 
-			<section>
-				<p>MOST POPULAR DESTINATION</p>
-			</section>
+        <section className="lp-mostPopular">
+          <p>MOST POPULAR DESTINATION</p>
+        </section>
+      </section>
+
 		</main>
 	);
  }
