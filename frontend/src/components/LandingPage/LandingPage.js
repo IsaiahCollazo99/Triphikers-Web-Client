@@ -4,15 +4,13 @@ import { Link } from "react-router-dom"
 
  const LandingPage = () =>{
 	return (
-		<section>
-			<section className="headers">
-				<section>
-					{/* <img src={logo} alt="triphikersLogo" /> */}
-				</section>
+		<main className="landingPage">
+			<header>
+				{/* <img src={logo} alt="triphikersLogo" /> */}
 				<h1>TRIPHIKERS</h1>
-      </section>
+      </header>
       
-      <section> 
+      <section className="lp-icons"> 
         <button>
 					<Link to="/creat_a_plan">
             CREATE A PLAN
@@ -53,7 +51,7 @@ import { Link } from "react-router-dom"
 			<section>
 				<p>MOST POPULAR DESTINATION</p>
 			</section>
-		</section>
+		</main>
 	);
  }
  export default LandingPage
