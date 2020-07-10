@@ -2,6 +2,7 @@ import React from "react";
 import logo from "../../images/logo.png";
 import LandingPageIcons from "./LandingPageIcons";
 import LandingPageLatest from "./LandingPageLatest";
+import LandingPagePopular from "./LandingPagePopular";
 
  const LandingPage = () =>{
 	return (
@@ -29,9 +30,7 @@ import LandingPageLatest from "./LandingPageLatest";
       <section className="lp-bottom">
         <LandingPageLatest />
 
-        <section className="lp-mostPopular">
-          <p>MOST POPULAR DESTINATION</p>
-        </section>
+        <LandingPagePopular />
       </section>
 
 		</main>
