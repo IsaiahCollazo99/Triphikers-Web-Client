@@ -1,6 +1,7 @@
 import React from "react";
 import logo from "../../images/logo.png";
 import LandingPageIcons from "./LandingPageIcons";
+import LandingPageLatest from "./LandingPageLatest";
 
  const LandingPage = () =>{
 	return (
@@ -26,9 +27,7 @@ import LandingPageIcons from "./LandingPageIcons";
       </section>
 			
       <section className="lp-bottom">
-        <section className="lp-latestTrips">
-          <p>LATEST TRIPS</p>
-        </section>
+        <LandingPageLatest />
 
         <section className="lp-mostPopular">
           <p>MOST POPULAR DESTINATION</p>
