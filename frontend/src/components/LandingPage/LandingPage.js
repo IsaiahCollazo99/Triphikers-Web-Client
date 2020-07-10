@@ -4,9 +4,16 @@ import LandingPageIcons from "./LandingPageIcons";
 import LandingPageLatest from "./LandingPageLatest";
 import LandingPagePopular from "./LandingPagePopular";
 import '../../css/landingPage/landingPage.css';
+import { useHistory } from "react-router-dom";
 
- const LandingPage = () =>{
-	return (
+const LandingPage = () => {
+  const history = useHistory();
+ 
+  const redirect = () => {
+    history.push("/sign_up");
+  }
+    
+  return (
 		<main className="landingPage">
       <section className="lp-top">
         <header>
@@ -14,14 +21,14 @@ import '../../css/landingPage/landingPage.css';
           <h1>TRIPHIKERS</h1>
         </header>
         
-        <LandingPageIcons />
+        <LandingPageIcons redirect={redirect} />
 
         <section className="lp-buttons">
-          <button>
+          <button onClick={redirect}>
             CREATE ACCOUNT
           </button>
 
-          <button>
+          <button onClick={() => history.push("/sign_in")}>
             LOGIN
           </button>
         </section>
