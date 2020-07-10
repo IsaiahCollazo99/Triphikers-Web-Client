@@ -5,7 +5,7 @@ let apiKey = "AIzaSyA0vq8MgHI_qpQ45Ug8ZyOPCoIEtk5MjjM";
 const libraries = ["places"];
 const mapContainerStyle = {
     width: "50vw",
-    height: "40vh",
+    height: "50vh",
 }
 
 const HotspotMap = ({ location, fetchHotspotCoordinates }) => {

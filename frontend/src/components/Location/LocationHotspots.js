@@ -33,6 +33,7 @@ const LocationHotspots = ({info}) => {
                 <h1 className="hotSpotTitle">Hotspot Submission</h1>
                 <p className="lat"><b>Latitude:</b> {submitCoordinates.lat}</p>
                 <p className="lng"><b>Longitude:</b> {submitCoordinates.lng}</p>
+                <input type="text" placeholder="Hotspot Title"/>
                 <input type="text" placeholder="Type a Description"/>
                 <input type="submit"/>
             </form>
