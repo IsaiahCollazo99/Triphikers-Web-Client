@@ -3,6 +3,7 @@ import logo from "../../images/logo.png";
 import LandingPageIcons from "./LandingPageIcons";
 import LandingPageLatest from "./LandingPageLatest";
 import LandingPagePopular from "./LandingPagePopular";
+import '../../css/landingPage/landingPage.css';
 
  const LandingPage = () =>{
 	return (
@@ -15,7 +16,7 @@ import LandingPagePopular from "./LandingPagePopular";
         
         <LandingPageIcons />
 
-        <section className="lp-signUpIn">
+        <section className="lp-buttons">
           <button>
             CREATE ACCOUNT
           </button>

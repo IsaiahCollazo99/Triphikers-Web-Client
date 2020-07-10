@@ -5,18 +5,18 @@ const LandingPageIcons = () => {
     return (
         <section className="lp-icons"> 
           <article>
-            <FaBook />
-            <p>CREATE A PLAN</p>
+            <FaBook size="2em" />
+            <h3>CREATE A PLAN</h3>
           </article>
 
           <article>
-            <FaUsers />
-            <p>FIND BUDDIES</p>
+            <FaUsers size="2em" />
+            <h3>FIND BUDDIES</h3>
           </article>
 
           <article>
-            <FaPlane />
-            <p>TRAVEL</p>
+            <FaPlane size="2em" />
+            <h3>TRAVEL</h3>
           </article>
         </section>
     )
