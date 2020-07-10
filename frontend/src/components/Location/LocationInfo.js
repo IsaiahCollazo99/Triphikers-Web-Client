@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
-// import { Map, GoogleApiWrapper } from 'google-maps-react';
 import axios from "axios";
 import "../../css/locations/LocationInfo.css";
+import InfoMap from "../helper/maps/InfoMap";
 let apiKey ="AIzaSyCpINhVI_CTjIc8xOastGFa5-dHpE-oIgg";
 
 const LocationInfo = ({info}) => {
@@ -29,18 +29,17 @@ const LocationInfo = ({info}) => {
           }
     }
 
-    // const getMap = (lat, lng) => {
-    //     if(lat !== undefined){
-    //         let object = {
-    //             lat: lat,
-    //             lng: lng
-    //         }
-    //         return(
-    //             <Map google={window.google} zoom={6} style={{position: 'relative',width: '15%', height: '15%'}} initialCenter={object}/>
-    //         )
-    //     }
-    // }
-
+    const getMap = (lat, lng) => {
+        if(lat !== undefined){
+            let coordinates = {
+                lat: lat,
+                lng: lng
+            }
+            return(
+                <InfoMap location={coordinates}/>
+            )
+        }
+    }
 
     useEffect(() => {
         getAllInfo(info);
@@ -56,7 +55,7 @@ const LocationInfo = ({info}) => {
             </div>
             <div className="details">
                 <div className="detailsMap">
-                    {/* {getMap(info.lat, info.lng)} */}
+                    {getMap(info.lat, info.lng)}
                 </div>
                 <div className="detailsText">
                     <p className="locationPageText">{info.location_name}</p>
@@ -72,6 +71,4 @@ const LocationInfo = ({info}) => {
     )
 }
 
-export default GoogleApiWrapper({
-    apiKey: (apiKey)
-  })(LocationInfo)
+export default LocationInfo;

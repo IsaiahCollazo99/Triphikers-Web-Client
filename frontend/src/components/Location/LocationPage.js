@@ -30,9 +30,15 @@ const LocationPage = () => {
             <div className="locationNavbar">
                 <LocationNavbar id={locationId}/>
                 <Switch>
-                    <Route exact path={`/location/:locationId/hotspots`} component={LocationHotspots} info={locationInfo}/>
-                    <Route exact path={`/location/:locationId/attractions`} component={LocationAttractions}/>
-                    <Route exact path={`/location/:locationId/reviews`} component={LocationReviews}/>
+                    <Route exact path={`/location/:locationId/hotspots`}>
+                        <LocationHotspots info={locationInfo}/>
+                    </Route>
+                    <Route exact path={`/location/:locationId/attractions`}>
+                        <LocationAttractions info={locationInfo}/>
+                    </Route>
+                    <Route exact path={`/location/:locationId/reviews`}>
+                        <LocationReviews info={locationInfo}/>
+                    </Route>
                 </Switch>
             </div>
         </div>

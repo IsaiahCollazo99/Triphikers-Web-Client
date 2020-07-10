@@ -67,11 +67,6 @@
     justify-content: space-around;
 }
 
-.detailsMap {
-    display: flex;
-    
-}
-
 .detailsText{
     align-items: center;
     justify-content: center;
@@ -89,4 +84,8 @@
 
 .locationPageText{
     font-size: 110%;
+}
+
+.googleMaps {
+    padding-top: 3%;
 }
