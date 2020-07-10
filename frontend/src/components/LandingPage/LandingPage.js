@@ -38,6 +38,8 @@ const LandingPage = () => {
       <section className="lp-bottom">
         <LandingPageLatest />
 
+        <button onClick={redirect}>See More Trips</button>
+
         <LandingPagePopular />
       </section>
 
