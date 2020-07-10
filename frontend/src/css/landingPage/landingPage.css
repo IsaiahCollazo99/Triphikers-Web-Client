@@ -1,0 +1,53 @@
+.landingPage {
+    width: 70%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.lp-top {
+    width: 100%;
+    height: 100vh;
+}
+
+.lp-top header {
+    margin: 1em 0;
+    width: 100%;
+    font-size: 3em;
+}
+
+.lp-icons {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    width: 100%;
+    padding: 5em 0;
+}
+
+.lp-icons article {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.lp-icons {
+    font-size: 1em;
+}
+
+.lp-buttons {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    margin-top: 3.5em;
+}
+
+.lp-buttons button {
+    padding: .5em;
+    width: 25%;
+    border-radius: 1.5em;
+}
+
+.lp-bottom {
+    height: 100vh;
+}

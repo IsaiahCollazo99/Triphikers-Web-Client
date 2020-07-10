@@ -4,7 +4,7 @@ import TripsPage from './components/TripsPage/TripsPage';
 import { Switch, Route } from 'react-router-dom';
 import CreateTripsContainer from './components/CreateTrip/CreateTripContainer';
 import DetailedTripPage from './components/DetaliedTripPage/DetailedTripPage';
-import LandingPage from "./components/General/Landing";
+import LandingPage from "./components/LandingPage/LandingPage";
 import SignUpForm from "./components/Login/SignUpForm";
 import SignUpFormWithEmail from "./components/Login/SignUpFormWithEmail";
 import LocationPage from "../src/components/Location/LocationPage";
