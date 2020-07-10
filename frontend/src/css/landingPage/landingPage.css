@@ -47,3 +47,7 @@
     width: 25%;
     border-radius: 1.5em;
 }
+
+.lp-bottom {
+    height: 100vh;
+}
