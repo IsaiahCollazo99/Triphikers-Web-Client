@@ -1,15 +1,18 @@
 import React, { useState } from "react";
-import { Link } from "react-router-dom";
+
 
 const CreateSignUpForm1 = (props) => {
-	const { email, password, confirmPassword, handleSignUpPageChange } = props;
-
+	const { email, password, confirmPassword, handlePageChange } = props;
+	const handleSubmit = (e) => {
+		e.preventDefault()
+		handlePageChange(2)
+	}
 	return (
 		<>
 			<h1>
 				CREATE AN ACCOUNT <span>1 / 3</span>
 			</h1>
-			<form className="signUpPage1" onSubmit={handleSignUpPageChange}>
+			<form className="signUpPage1" onSubmit={handleSubmit}>
 				<section>
 					<label className="formLabel">Email: </label>
 				</section>
@@ -20,7 +23,7 @@ const CreateSignUpForm1 = (props) => {
 						name="email"
 						autoComplete="on"
 						required
-						// className={emailClass} required
+		
 					/>
 				</section>
 				<section>
@@ -40,14 +43,14 @@ const CreateSignUpForm1 = (props) => {
 				</section>
 				<section>
 					<input
-						type="confirmPassword"
+						type="password"
 						{...confirmPassword}
 						name="password"
 						autoComplete="on"
 						required
 					/>
 					<button type="submit">
-						<Link to="/signUp2">Continue</Link>
+						Continue
 					</button>
 				</section>
 			</form>

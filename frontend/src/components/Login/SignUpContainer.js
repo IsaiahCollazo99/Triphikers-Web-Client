@@ -1,69 +1,73 @@
 import React, { useState } from 'react';
 import { useHistory } from 'react-router-dom';
 import { useInput } from '../../util/customHooks';
-import CreateSignupForm1 from './CreateSignupForm1';
-import CreateSignupForm2 from './CreateSignupForm2';
-import CreateSignupForm3 from './CreateSignUpForm3';
-// import { Login } from "../../util/apiCalls/usersRequests"
+import CreateSignUpForm1 from './CreateSignUpForm1';
+import CreateSignUpForm2 from './CreateSignUpForm2';
+import CreateSignUpForm3 from './CreateSignUpForm3';
+import { createUser } from "../../util/apiCalls/usersRequests"
+import { Login } from "../../util/apiCalls/usersRequests"
 
 
 
 const CreateSignUpContainer = () => {
     const history = useHistory();
     
-    //const [ page, setPage ] = useState(1);
-    // const destination = useInput("");
-    // const dateFrom = useInput("");
-    // const dateTo = useInput("");
-    // const groupType = useInput("");
-    // const language = useInput("");
-    // const meetup = useInput("");
-    // const tripType = useInput("");
-    // const title = useInput("");
-    // const accommodation = useInput("");
-    // const budget = useInput("");
-    // const split = useInput("");
-    // const itinerary = useInput("");
-    // const description = useInput("");
+    const [page, setPage] = useState(1);
+    const email = useInput("");
+    const password = useInput("");
+    const confirmPassword = useInput("")
+    const firstName = useInput("");
+    const lastName = useInput("");
+    const birthday = useInput("");
+    const gender = useInput("");
+    const bio = useInput("");
+    const language = useInput("");
+    const country = useInput("");
 
-    // const handlePageChange = () => {
-    //     page === 1 ? setPage(2) : setPage(1);
-    // }
+    const handlePageChange = (toPage) => {
+        setPage(toPage);
+    }
 
-    // const pageOne = {
-    //     destination,
-    //     dateFrom,
-    //     dateTo,
-    //     groupType,
-    //     language,
-    //     meetup,
-    //     tripType
-    // }
+    const pageOne = {
+        email,
+        password,
+        confirmPassword,
+    }
 
-    // const pageTwo = {
-    //     title,
-    //     accommodation,
-    //     budget,
-    //     split,
-    //     itinerary,
-    //     description,
-    // }
+    const pageTwo = {
+        firstName,
+        lastName,
+        birthday,
+        gender,
+    }
+    const pageThree = {
+        bio,
+        language,
+        country, 
+    }
 
-    // const handleSubmit = async ( e ) => {
-    //     e.preventDefault();
-    //     await createTrip({...pageOne, ...pageTwo});
-    //     history.push("/trips");
-    // }
+    const handleSubmit = async ( e ) => {
+        e.preventDefault();
+        await createUser({...pageOne, ...pageTwo,...pageThree});
+        history.push("/trips");
+    }
 
-    // const formPageDisplay = page === 1 ? 
-    //     <CreateTripForm1 {...pageOne} handlePageChange={handlePageChange} /> :
-    //     <CreateTripForm2 {...pageTwo} handlePageChange={handlePageChange} handleSubmit={handleSubmit}/>
+    const getFormDisplay = () => {
+        if (page === 1) {
+            return <CreateSignUpForm1 {...pageOne} handlePageChange={handlePageChange} />
+        } else if(page === 2) {
+            return <CreateSignUpForm2 {...pageTwo} handlePageChange={handlePageChange} />
+        } else if(page === 3) {
+            return <CreateSignUpForm3 {...pageThree} handlePageChange={handlePageChange} handleSubmit={handleSubmit} />
+        }
+    }
     
-    // return (
-    //     <div className="createTripsContainer">
-    //         {formPageDisplay}
-    //     </div>
-    // )
+
+    return (
+        <div className="createSignUpContainer">
+            {getFormDisplay()}
+        </div>
+    )
 }
 
 export default CreateSignUpContainer;

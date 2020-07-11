@@ -9,6 +9,7 @@ import SignUp from "./components/Login/SignUp";
 import CreateSignUpForm1 from "./components/Login/CreateSignUpForm1";
 import CreateSignUpForm2 from "./components/Login/CreateSignUpForm2";
 import CreateSignUpForm3 from "./components/Login/CreateSignUpForm3";
+import CreateSignUpContainer from "./components/Login/SignUpContainer";
 
 function App() {
 	return (
@@ -18,9 +19,7 @@ function App() {
 					<LandingPage />
 				</Route>
 
-				<Route path="/signUp">
-					<SignUp />
-				</Route>
+				
 				{/* <Route path="/signUpFacebook">
           <SignUpFormWithFacebook />
         </Route>
@@ -28,14 +27,8 @@ function App() {
           <SignUpFormWithGoogle/>
         </Route> */}
 
-				<Route path="/signUp1">
-					<CreateSignUpForm1 />
-				</Route>
-				<Route path="/signUp2">
-					<CreateSignUpForm2 />
-				</Route>
-				<Route path="/signUp3">
-					<CreateSignUpForm3 />
+				<Route path="/signUp" >
+					<CreateSignUpContainer/>
 				</Route>
 				<Route exact path="/trips">
 					<TripsPage />

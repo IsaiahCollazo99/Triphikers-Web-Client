@@ -6,7 +6,7 @@ const CreateSignUpForm3 = (props) => {
 		bio,
 		languages,
 		country,
-		handleSignUpPageChange,
+		handlePageChange,
 		handleSignUp,
 	} = props;
 
@@ -18,7 +18,7 @@ const CreateSignUpForm3 = (props) => {
 			<form onSubmit={handleSignUp} className="createUser">
 				<div>
 					<label>Bio : </label>
-					<input type="text" {...bio} name="bio" />
+					<textarea col="10" row="5" {...bio} name="bio" />
 				</div>
 				<div>
 					<label>Languages : </label>
@@ -28,11 +28,11 @@ const CreateSignUpForm3 = (props) => {
 					<label>Country : </label>
 					<input type="text" {...country} name="country" />
 				</div>
-				<button className="backBtn" onClick={handleSignUpPageChange}>
-					<Link to="/signUp2">back</Link>
+				<button className="backBtn" onClick={()=>{handlePageChange(2)}}>
+				back
 				</button>
-				<button className="signUp" onClick={handleSignUpPageChange}>
-					<Link to="/userProfile">Sign Up</Link>
+				<button className="signUp" type="submit">
+				Sign Up
 				</button>
 			</form>
 		</div>

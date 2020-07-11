@@ -1,10 +1,9 @@
 import axios from "axios";
 import { apiURL } from "../../util/apiURL";
-const userFullName = (firstName, LastName) => {
-  return fullName  = firstName + LastName
-}
 
-const API = apiUrl();
+
+
+const API = apiURL();
 export const createUser = async (userObj) => {
   const {
     firstName: { value: firstName },
@@ -13,7 +12,8 @@ export const createUser = async (userObj) => {
     age: { value: age },
     gender: { value: gender}
   } = userObj
-  const res = await axios.get(API + /api/users, {
-    firstName, lastName, country, age, gender
+  const fullName = firstName + lastName;
+  const res = await axios.get(API + "/api/users", {
+    fullName, country, age, gender
   })
 }
