@@ -1,10 +1,10 @@
 import React from "react";
-import logo from "../../images/logo.png";
 import LandingPageIcons from "./LandingPageIcons";
 import LandingPageLatest from "./LandingPageLatest";
 import LandingPagePopular from "./LandingPagePopular";
 import '../../css/landingPage/landingPage.css';
 import { useHistory } from "react-router-dom";
+import LandingPageNav from "./LandingPageNav";
 
 const LandingPage = () => {
   const history = useHistory();
@@ -16,11 +16,9 @@ const LandingPage = () => {
   return (
 		<main className="landingPage">
       <section className="lp-top">
-        <header>
-          {/* <img src={logo} alt="triphikersLogo" /> */}
-          <h1>TRIPHIKERS</h1>
-          <p>A portal for solo travelers</p>
-        </header>
+        <LandingPageNav />
+
+        <h2>A portal for solo travelers</h2>
 
         <section className="lp-buttons">
           <button onClick={redirect}>
