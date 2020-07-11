@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import axios from "axios";
 import { useInput } from "../../util/customHooks";
 import HotspotMap from "../helper/maps/HotspotMaps";
@@ -52,27 +52,29 @@ const LocationHotspots = ({info}) => {
             <div className="hotSpotMap">
                 {getMap(info.lat, info.lng)}
             </div>
-            <form className="hotSpotForm" onSubmit={handleSubmit}>
-                <h1 className="hotSpotTitle">Hotspot Submission</h1>
-                <p className="submitLat"><b>Latitude:</b> {submitCoordinates.lat}</p>
-                <p className="submitLng"><b>Longitude:</b> {submitCoordinates.lng}</p>
-                <input type="text" placeholder="Hotspot Title" {...submitHotspotTitle}/>
-                <input type="text" placeholder="Type a Description" {...submitHotspotBody}/>
-                <input type="submit"/>
-                {submitted ? (
-                    <p className="success">Submission Complete</p>
-                ): null}
-            </form>
+            <div className="formWithSelect">
+                <form className="hotSpotForm" onSubmit={handleSubmit}>
+                    <h1 className="hotSpotTitle">Hotspot Submission</h1>
+                    <p className="submitLat"><b>Latitude:</b> {submitCoordinates.lat}</p>
+                    <p className="submitLng"><b>Longitude:</b> {submitCoordinates.lng}</p>
+                    <input type="text" placeholder="Hotspot Title" {...submitHotspotTitle}/>
+                    <input type="text" placeholder="Type a Description" {...submitHotspotBody}/>
+                    <input type="submit"/>
+                    {submitted ? (
+                        <p className="success">Submission Complete</p>
+                    ): null}
+                </form>
                 {selectedHotspot ? (
                     <div className="Selected">
                         <h1 className="hotSpotSelectedTitle">Selected Hotspot</h1>
                         <p className="submitLat"><b>Latitude:</b> {selectedHotspot.lat}</p>
                         <p className="submitLat"><b>Longitude:</b> {selectedHotspot.lng}</p>
-                        <h2>{selectedHotspot.hotspot_title}</h2>
-                        <p>{selectedHotspot.body}</p>
-                        <p>Submitted by {selectedHotspot.poster_id}</p>
+                        <h2><b>Title:</b> {selectedHotspot.hotspot_title}</h2>
+                        <p><b>Description:</b> {selectedHotspot.body}</p>
+                        <p><b>Submitted By:</b> {selectedHotspot.poster_id}</p>
                     </div>
                 ) : null}
+            </div>
         </div>
     )
 }

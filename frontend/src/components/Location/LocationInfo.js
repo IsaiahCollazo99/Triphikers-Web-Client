@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import "../../css/locations/LocationInfo.css";
 import InfoMap from "../helper/maps/InfoMap";
-let apiKey ="AIzaSyCpINhVI_CTjIc8xOastGFa5-dHpE-oIgg";
+// let apiKey ="AIzaSyCpINhVI_CTjIc8xOastGFa5-dHpE-oIgg";
 
 const LocationInfo = ({info}) => {
     const [currency, setCurrency] = useState([])
@@ -23,7 +23,7 @@ const LocationInfo = ({info}) => {
         for (let key in exchange) {
             const value = exchange[key];
             array.push(
-                <div className="values">
+                <div className="values" key={key}>
                     <p>{key} : {value} </p>
                 </div>
             )

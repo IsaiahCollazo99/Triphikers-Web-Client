@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { GoogleMap, useLoadScript, Marker, InfoWindow } from '@react-google-maps/api';
+import { GoogleMap, useLoadScript, Marker } from '@react-google-maps/api';
 import axios from "axios";
 let apiKey = "AIzaSyA0vq8MgHI_qpQ45Ug8ZyOPCoIEtk5MjjM";
 
@@ -36,7 +36,7 @@ const HotspotMap = ({ location, fetchData }) => {
                 selected: selected
             });
         }
-    }, [markers, selected])
+    }, [markers, selected, fetchData])
     
     
     if(loadError) return "Error loading maps";

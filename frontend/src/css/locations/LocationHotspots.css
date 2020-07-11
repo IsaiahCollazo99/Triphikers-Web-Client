@@ -14,15 +14,22 @@
 }
 
 .mapTitle{
+    display: flex;
     position: absolute;
     margin: 0;
-    margin-left: 20%;
+    /* margin-left: 20%; */
     padding: 0;
     z-index: 10;
     color: black;
 }
 
 .hotSpotForm {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+}
+
+.formWithSelect {
     display: flex;
     flex-direction: column;
 }
