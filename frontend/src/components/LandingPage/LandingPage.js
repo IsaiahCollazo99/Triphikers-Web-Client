@@ -17,7 +17,7 @@ const LandingPage = () => {
 		<main className="landingPage">
       <LandingPageNav />
       <section className="lp-top">
-        <h2>A portal for solo travelers</h2>
+        <h2>FIND NEW TRAVEL PARTNERS FOR LIFE</h2>
 
         <section className="lp-buttons">
           <button onClick={redirect}>

@@ -24,13 +24,44 @@
     display: flex;
     flex-direction: row;
     justify-content: space-evenly;
-    margin-top: 3.5em;
 }
 
 .lp-buttons button {
-    padding: .5em;
+    padding: 1em .5em;
     width: 25%;
-    border-radius: 1.5em;
+    border-radius: 2em;
+    font-weight: bold;
+    font-family: 'Roboto';
+    font-size: 1.25em;
+}
+
+.lp-buttons :first-child {
+    background-color: rgb(255, 157, 0);
+    border: 2px solid #272A33;
+    opacity: 0.8;
+    transition: 0.3s ease-in-out;
+}
+
+.lp-buttons :first-child:hover {
+    background-color: #272A33;
+    border-color: rgb(255, 157, 0);
+    color: white;
+    cursor: pointer;
+}
+
+.lp-buttons :last-child {
+    background-color: #272A33;
+    color: white;
+    border: 2px solid rgb(255, 157, 0);
+    opacity: 0.8;
+    transition: 0.3s ease-in-out;
+}
+
+.lp-buttons :last-child:hover {
+    background-color: rgb(255, 157, 0);
+    border-color: #272A33;
+    cursor: pointer;
+    color: black;
 }
 
 .lp-middle {
