@@ -35,4 +35,13 @@
     color: white;
     text-decoration: none;
     font-family: 'Roboto';
+    font-weight: 500;
 }
+
+.lp-navRight a:hover {
+    color: #6433FF
+}
+
+/* .lp-nav .active {
+    color
+} */
