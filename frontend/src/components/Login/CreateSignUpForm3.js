@@ -1,42 +1,40 @@
-import React, { useState } from "react";
+import React from "react";
 import { Link } from "react-router-dom";
 
-const CreateSignUpForm3 = () => {
-	const [bio, setBio] = useState("");
-	const [languages, setLanguages] = useState("");
-	const [country, setCountry] = useState("");
-  
+const CreateSignUpForm3 = (props) => {
+	const {
+		bio,
+		languages,
+		country,
+		handleSignUpPageChange,
+		handleSignUp,
+	} = props;
+
 	return (
 		<div>
 			<div>
 				<h1>CREATE AN ACCOUNT 3 / 3</h1>
 			</div>
-			<div>
-				<label>Bio : </label>
-				<input
-					// value={Bio}
-					onChange={(e) => setBio(e.currentTarget.value)}
-				/>
-			</div>
-			<div>
-				<label>Languages : </label>
-				<input
-					// value={languages}
-					onChange={(e) => setLanguages(e.currentTarget.value)}
-				/>
-			</div>
-			<div>
-				<label>Country : </label>
-				<input value={country} onChange={(e) => setCountry(e.currentTarget.value)} />
-			</div>
-			<button className="backBtn">
-				<Link to="/signUp2">back</Link>
-			</button>
-      <button className="signUp">
-        <Link to="/userProfile">
-            Sign Up
-        </Link>
-     </button>
+			<form onSubmit={handleSignUp} className="createUser">
+				<div>
+					<label>Bio : </label>
+					<input type="text" {...bio} name="bio" />
+				</div>
+				<div>
+					<label>Languages : </label>
+					<input type="text" {...languages} name="languages" />
+				</div>
+				<div>
+					<label>Country : </label>
+					<input type="text" {...country} name="country" />
+				</div>
+				<button className="backBtn" onClick={handleSignUpPageChange}>
+					<Link to="/signUp2">back</Link>
+				</button>
+				<button className="signUp" onClick={handleSignUpPageChange}>
+					<Link to="/userProfile">Sign Up</Link>
+				</button>
+			</form>
 		</div>
 	);
 };

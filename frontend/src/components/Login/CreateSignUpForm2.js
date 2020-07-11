@@ -1,48 +1,40 @@
-import React, { useState } from "react";
+import React from "react";
 import { Link } from "react-router-dom";
 
-const CreateSignUpForm2 = () => {
-	const [firstName, setFirstName] = useState("");
-	const [lastName, setLastName] = useState("");
-	const [age, setAge] = useState("");
-	const [gender, setGender] = useState("");
+const CreateSignUpForm2 = (props) => {
+	const { firstName, lastName, age, gender, handleSignUpPageChange } = props;
 	return (
-		<div>
+		<>
 			<div>
 				<h1>CREATE AN ACCOUNT 2 / 3</h1>
 			</div>
-			<div>
-				<label>First Name : </label>
-				<input
-					 value={firstName}
-					onChange={(e) => setFirstName(e.currentTarget.value)}
-				/>
-			</div>
-			<div>
-				<label>Last Name : </label>
-				<input
-					value={lastName}
-					onChange={(e) => setLastName(e.currentTarget.value)}
-				/>
-			</div>
-			<div>
-				<label>Birthday : </label>
-				<input value={age} onChange={(e) => setAge(e.currentTarget.value)} />
-			</div>
-			<div>
-				<label>Gender : </label>
-				<input
-					value={gender}
-					onChange={(e) => setGender(e.currentTarget.value)}
-				/>
-			</div>
-			<button className="backBtn">
-				<Link to="/signUp1">back</Link>
-			</button>
-			<button className="continueBtn">
-				<Link to ="/signUp3">continue</Link>
-			</button>
-		</div>
+			<form className="signUpPage1" onSubmit={handleSignUpPageChange}>
+				<div>
+					<label>First Name : </label>
+					<input type="text" name="firstName" {...firstName} required />
+				</div>
+				<div>
+					<label>Last Name : </label>
+					<input type="text" {...lastName} name="lastName" require />
+				</div>
+				<div>
+					<label>Birthday : </label>
+					<input type="number" name="age" {...age} />
+				</div>
+				<div>
+					<label>Gender : </label>
+					<input type="text" name="gender" {...gender} />
+				</div>
+				<div>
+					<button className="backBtn">
+						<Link to="/signUp1">back</Link>
+					</button>
+					<button className="continueBtn">
+						<Link to="/signUp3">continue</Link>
+					</button>
+				</div>
+			</form>
+		</>
 	);
 };
 
