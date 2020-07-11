@@ -19,8 +19,6 @@ const HotspotMap = ({ location, fetchData }) => {
         libraries,
     });
 
-    console.log(selected)
-
     const fetchMarkers = async () => {
         try {
             let res = await axios.get(`http://localhost:3001/api/hotspots`);

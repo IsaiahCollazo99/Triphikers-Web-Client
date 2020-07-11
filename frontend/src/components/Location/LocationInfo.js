@@ -19,14 +19,16 @@ const LocationInfo = ({info}) => {
     }
 
     const currencyPrint = (exchange) => {
-        for (const [key, value] of Object.entries(exchange)) {
-            //need to print both currencies
-            return(
+        let array = [];
+        for (let key in exchange) {
+            const value = exchange[key];
+            array.push(
                 <div className="values">
                     <p>{key} : {value} </p>
                 </div>
             )
           }
+          return array
     }
 
     const getMap = (lat, lng) => {
