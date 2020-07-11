@@ -9,38 +9,36 @@ const mapContainerStyle = {
     height: "50vh",
 }
 
-const HotspotMap = ({ location, fetchHotspotCoordinates }) => {
+const HotspotMap = ({ location, fetchData }) => {
     const [markers, setMarkers] = useState([]);
+    const [allMarkers, setAllMarkers] = useState([]);
+    const [selected, setSelected] = useState(null);
+
     const {isLoaded, loadError} = useLoadScript({
         googleMapsApiKey: apiKey,
         libraries,
     });
 
+    console.log(selected)
+
     const fetchMarkers = async () => {
         try {
             let res = await axios.get(`http://localhost:3001/api/hotspots`);
-            showMarkers(res.data.hotspots)
+            setAllMarkers(res.data.hotspots)
         } catch (error) {
             console.log(error)
         }
     }
 
-    const showMarkers = (allMarkers) => {
-        if(allMarkers !== undefined){
-            allMarkers.map((marker, index) => {
-                return (
-                    <Marker key={index} position={{ lat: parseFloat(marker.lat), lng: parseFloat(marker.lng) }}/>
-                )
-            })
-        }
-    }
-
     useEffect(() => {
         fetchMarkers();
-        if(markers.length === undefined ) {
-            fetchHotspotCoordinates(markers);
+        if(markers.length === undefined || selected !== null ) {
+            fetchData({
+                coordinates: markers,
+                selected: selected
+            });
         }
-    }, [markers])
+    }, [markers, selected])
     
     
     if(loadError) return "Error loading maps";
@@ -50,11 +48,15 @@ const HotspotMap = ({ location, fetchHotspotCoordinates }) => {
     return(
         <div className="googleMaps">
             <h1 className="mapTitle">Hotspots <span role="img" aria-label="pin">📍</span></h1>
-            <GoogleMap mapContainerStyle={mapContainerStyle} zoom={13} center={location} onClick={(e) => {setMarkers({
+            <GoogleMap key={allMarkers} mapContainerStyle={mapContainerStyle} zoom={13} center={location} onClick={(e) => {setMarkers({
                 lat: e.latLng.lat(),
                 lng: e.latLng.lng(),
             })}}>
-                {showMarkers()}
+
+                {allMarkers.map((marker) => (
+                    <Marker key={marker.id} position={{ lat: parseFloat(marker.lat), lng: parseFloat(marker.lng) }} onClick={() => {setSelected(marker)}}/>
+                ))}
+
                 <Marker position={{ lat: parseFloat(markers.lat), lng: parseFloat(markers.lng) }}/>
             </GoogleMap>
         </div>

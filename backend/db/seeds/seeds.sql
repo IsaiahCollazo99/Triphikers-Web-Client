@@ -37,5 +37,5 @@ INSERT INTO locations (id, image, lat, lng, location_name, emergency_services, p
 VALUES (1, 'https://cdn.londonandpartners.com/visit/general-london/areas/river/76709-640x360-houses-of-parliament-and-london-eye-on-thames-from-above-640.jpg', 51, -0.24, 'London', 999, 1);
 
 INSERT INTO hotspots (id, lat, lng, hotspot_title, body, poster_id)
-VALUES (1, 40.7580, 73.9855, 'Times Square', 'I love Times Square, its so busy', 1),
-(2, 38.8977, 77.0365, 'The White House', 'So presidential', 2);
+VALUES (1, 40.7580, -73.9855, 'Times Square', 'I love Times Square, its so busy', 1),
+(2, 38.8977, -77.0365, 'The White House', 'So presidential', 2);
