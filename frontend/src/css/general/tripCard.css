@@ -3,7 +3,7 @@
     grid-template-columns: 1fr 4fr;
     grid-template-rows: 1fr 1fr;
     width: 80%;
-    background-color: #001f66;
+    background-color: white;
     margin: 1.5em 0;
     padding-left: 1em;
 }
@@ -47,7 +47,7 @@
 
 .tripCard span {
     font-weight: bold;
-    color: #ffc655;
+    color: #3370FF;
 }
 
 .tc-tl {

@@ -19,9 +19,8 @@ const LandingPage = () => {
         <header>
           {/* <img src={logo} alt="triphikersLogo" /> */}
           <h1>TRIPHIKERS</h1>
+          <p>A portal for solo travelers</p>
         </header>
-        
-        <LandingPageIcons redirect={redirect} />
 
         <section className="lp-buttons">
           <button onClick={redirect}>
@@ -33,6 +32,10 @@ const LandingPage = () => {
           </button>
         </section>
 
+      </section>
+
+      <section className="lp-middle">
+        <LandingPageIcons redirect={redirect} />
       </section>
 			
       <section className="lp-bottom">
