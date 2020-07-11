@@ -1,8 +1,10 @@
 import React, { useState } from 'react';
 import { useHistory } from 'react-router-dom';
 import { useInput } from '../../util/customHooks';
-// import CreateSignupForm1 from './CreateSignupForm1';
-// import CreateSignupForm2 from './CreateSignupForm2';
+import CreateSignupForm1 from './CreateSignupForm1';
+import CreateSignupForm2 from './CreateSignupForm2';
+import CreateSignupForm3 from './CreateSignUpForm3';
+// import { Login } from "../../util/apiCalls/usersRequests"
 
 
 
