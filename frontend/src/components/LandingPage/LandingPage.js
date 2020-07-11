@@ -15,9 +15,8 @@ const LandingPage = () => {
     
   return (
 		<main className="landingPage">
+      <LandingPageNav />
       <section className="lp-top">
-        <LandingPageNav />
-
         <h2>A portal for solo travelers</h2>
 
         <section className="lp-buttons">
