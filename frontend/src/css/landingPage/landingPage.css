@@ -12,11 +12,63 @@
     flex-direction: column;
     align-items: center;
     justify-content: space-evenly;
+    padding-top: 3em;
 }
 
-.lp-top h2 {
+.lp-top::before {
+    content: "";
+    background-image: url(../../images/landingPageBground2.jpg);
+    background-position: center;
+    background-size: cover;
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    right: 0px;
+    bottom: 0px;
+    opacity: 0.25;
+    z-index: -1;
+}
+
+.lp-top h1 {
     font-size: 2em;
-    font-family: 'Roboto';
+    font-family: 'Prompt';
+    background: linear-gradient(
+        to top,
+        #6334ff,
+        #0099ff
+    );
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    font-weight: 900;
+}
+
+.lp-icons {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    width: 70%;
+    font-size: 1em;
+}
+
+.lp-icons article {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: #272A33;
+    color: #7a51ff;
+    padding: 3em 1.5em;
+    width: 250px;
+    height: 250px;
+    justify-content: center;
+    border-radius: 1.5em;
+    transition: 0.3s ease-in-out;
+}
+
+.lp-icons article:hover {
+    background-color: #7a51ff;
+    color: #272A33;
+    cursor: pointer;
 }
 
 .lp-buttons {
@@ -26,7 +78,7 @@
     justify-content: space-evenly;
 }
 
-.lp-buttons button {
+.landingPage button {
     padding: 1em .5em;
     width: 25%;
     border-radius: 2em;
@@ -35,14 +87,13 @@
     font-size: 1.25em;
 }
 
-.lp-buttons :first-child {
+.lp-createAccount {
     background-color: rgb(255, 157, 0);
     border: 2px solid #272A33;
-    opacity: 0.8;
     transition: 0.3s ease-in-out;
 }
 
-.lp-buttons :first-child:hover {
+.lp-createAccount:hover {
     background-color: #272A33;
     border-color: rgb(255, 157, 0);
     color: white;
@@ -53,7 +104,6 @@
     background-color: #272A33;
     color: white;
     border: 2px solid rgb(255, 157, 0);
-    opacity: 0.8;
     transition: 0.3s ease-in-out;
 }
 
@@ -66,37 +116,80 @@
 
 .lp-middle {
     width: 100%;
-    height: 100vh;
-    background-color: #9bb9ff;
-}
-
-.lp-icons {
-    display: flex;
-    flex-direction: row;
-    justify-content: space-evenly;
-    width: 70%;
-    padding: 4em 0;
-    font-size: 1em;
-}
-
-.lp-icons article {
+    height: fit-content;
+    position: relative;
     display: flex;
     flex-direction: column;
     align-items: center;
-    background-color: #9fbcff;
-    padding: 3em 1.5em;
-    width: 250px;
-    height: 250px;
-    justify-content: center;
-    border-radius: 1.5em;
-    transition: 0.3s ease-in-out;
+    padding: 2em 0;
 }
 
-.lp-icons article:hover {
-    background-color: #82a7ff;
-    cursor: pointer;
+.lp-middleBground {
+    background-image: repeating-linear-gradient(45deg, transparent, transparent 17px, rgba(255,255,255,.5) 17px, rgba(255,255,255,.5) 34px);
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    bottom: 0px;
+    right: 0px;
+    opacity: 0.65;
+    z-index: -2;
+}
+
+.lp-middle h1 {
+    font-size: 2em;
+    margin-bottom: 1em;
+    text-align: center;
+    font-family: 'Prompt';
+    background: linear-gradient(
+        to top,
+        #6334ff,
+        #0099ff
+    );
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    font-weight: 900;
+}
+
+.lp-middle section {
+    width: 80%;
+    margin-bottom: 3em;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+}
+
+.lp-middle img {
+    width: 40%;
+}
+
+.lp-middle article {
+    width: 40%;
+}
+
+.lp-middle p {
+    font-size: 1.5em;
 }
 
 .lp-bottom {
-    height: 100vh;
+    width: 100%;
+    height: 50vh;
+    position: relative;
+    z-index: -1;
+}
+
+.lp-bottomBground {
+    background-image: url(../../images/landingPageBground.jpg);
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    bottom: 0px;
+    right: 0px;
+    opacity: 0.5;
+    z-index: -2;
+    width:100%;
+    height:100%;
 }

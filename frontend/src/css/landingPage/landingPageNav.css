@@ -8,8 +8,9 @@
     padding: 1em 0.75em;
     background-color: black;
     opacity: 0.8;
-    position: sticky;
+    position: fixed;
     top: 0;
+    z-index: 2;
 }
 
 .lp-navLeft {
@@ -20,6 +21,15 @@
 .lp-nav h1 {
     font-size: 3em;
     font-family: 'Prompt';
+}
+
+.lp-nav h1:hover {
+    cursor: pointer;
+}
+
+.lp-navLeft a {
+    color: rgb(255, 157, 0);
+    text-decoration: none;
 }
 
 .lp-navRight {
@@ -37,10 +47,10 @@
     font-weight: 500;
 }
 
-.lp-navRight a:hover {
-    color: #6433FF;
+.lp-navRight a:hover:not(.active) {
+    color: rgb(255, 157, 0);
 }
 
-/* .lp-nav .active {
-    color
-} */
+.lp-nav .active {
+    color: #6433FF;
+}
