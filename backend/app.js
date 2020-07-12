@@ -5,9 +5,20 @@ require("dotenv").config();
 
 const PORT = process.env.PORT;
 
+const usersRouter = require("./routes/users/users")
+const tripsRouter = require("./routes/trips/trips");
+const locationsRouter = require("./routes/locations/location");
+const mapsRouter = require("./routes/apiCalls/maps");
+
+app.use("/api/maps", mapsRouter);
+
 app.use(cors());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
+
+app.use("/api/users", usersRouter)
+app.use("/api/trips", tripsRouter);
+app.use("/api/locations", locationsRouter);
 
 app.use((error, req, res, next) => {
     console.log(error);

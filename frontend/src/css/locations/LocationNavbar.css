@@ -1,0 +1,17 @@
+/* background main color
+    dark blue: #021F66
+    medium blue: #083DCC
+    light blue: #3370FF
+    yellow: #FDB21A
+*/
+
+.locationNavbarContainer{
+    border: 1px solid black;
+    background-color: #021F66;
+    display: flex;
+}
+
+.Links {
+    color: white;
+    text-decoration-style: none;
+}
