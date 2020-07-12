@@ -11,7 +11,7 @@ const LandingPageAbout = () => {
     const history = useHistory();
  
     const redirect = () => {
-      history.push("/sign_up");
+      history.push("/signUp");
     }
     
     return (
@@ -25,7 +25,7 @@ const LandingPageAbout = () => {
             <section className="lp-buttons">
                 <LandingPageCreateAccount redirect={redirect} />
 
-                <button onClick={() => history.push("/sign_in")}>
+                <button onClick={() => history.push("/signIn")}>
                     LOGIN
                 </button>
             </section>
