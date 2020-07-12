@@ -11,7 +11,7 @@ const LandingPageIcons = ({ redirect }) => {
 
           <article onClick={redirect}>
             <FaUsers size="2em" />
-            <h3>FIND BUDDIES</h3>
+            <h3>FIND TRAVELERS</h3>
           </article>
 
           <article onClick={redirect}>
