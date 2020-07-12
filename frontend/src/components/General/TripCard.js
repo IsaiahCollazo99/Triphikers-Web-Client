@@ -1,12 +1,37 @@
 import React from 'react';
 import '../../css/general/tripCard.css';
 import { useHistory } from 'react-router-dom';
+import { completeTrip } from '../../util/apiCalls/patchRequests';
 
-const TripCard = ({ trip }) => {
+const TripCard = ({ trip, deleteTripCall }) => {
     const history = useHistory();
     
     const redirect = () => {
         history.push("/trips/" + trip.id);
+    }
+
+    const handleDeleteClick = () => {
+        deleteTripCall(trip.id);
+    }
+
+    const completeTripCall = async () => {
+        let res = await completeTrip(trip.id);
+    }
+
+    const displayExpired = () => {
+        const currentDate = new Date();
+        if(currentDate.getTime() > new Date(trip.date_to).getTime() || trip.is_completed) {
+            return (
+                <p className="error">EXPIRED</p>
+            )
+        } else {
+            return (
+                <>
+                    <button>Request</button>
+                    <button onClick={completeTripCall}>Complete</button>
+                </>
+            )
+        }
     }
     
     return (
@@ -21,17 +46,18 @@ const TripCard = ({ trip }) => {
 
             <header>
                 <div className="tripCardInfo">
-                    <p>{trip.trip_title}</p>
+                    <p className="tripCardTitle">{trip.trip_title}</p>
                     <p><span>Destination: </span>{trip.destination}</p>
                     <p>
                         <span>From:</span> {trip.date_from}
                         <span> To:</span> {trip.date_to}
                     </p>
                 </div>
-
+                
                 <div className="tripCardButtons">
-                    <button>Request</button>
+                    {displayExpired()}
                     <button onClick={redirect}>Details</button>
+                    <button onClick={handleDeleteClick}>Delete</button>
                 </div>
             </header>
 

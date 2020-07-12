@@ -1,24 +1,61 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
+import '../../css/detailedTripPage/detailedTripInfo.css';
+import { deleteTrip } from '../../util/apiCalls/deleteRequests';
+import { useHistory } from 'react-router-dom';
+import { completeTrip } from '../../util/apiCalls/patchRequests';
+import { getTripById } from '../../util/apiCalls/getRequests';
 
-const DetailedTripInfo = ({ trip = {} }) => {
+const DetailedTripInfo = ({ trip = {}, getTripCall }) => {
+    const history = useHistory();
+
+    const deleteTripCall = async () => {
+        await deleteTrip(trip.id);
+        history.push("/trips");
+    }
+
+    const completeTripCall = async () => {
+        await completeTrip(trip.id);
+        getTripCall();
+    }
+
+    const displayExpired = () => {
+        const currentDate = new Date();
+        if(currentDate.getTime() > new Date(trip.date_to).getTime() || trip.is_completed) {
+            return (
+                <p className="error">EXPIRED</p>
+            )
+        } else {
+            return (
+                <>
+                    <button>Request</button>
+                    <button onClick={completeTripCall}>Complete</button>
+                </>
+            )
+        }
+    }
+    
     return (
         <section className="dt-info">
             <header>
                 <section className="dt-hi">
-                    <p>{trip.trip_title}</p>
-                    <p>{trip.destination}</p>
+                    <p className="dt-title"><span>Title: </span>{trip.trip_title}</p>
+                    <p><span>Destination: </span>{trip.destination}</p>
                     <div className="dt-dates">
-                        <p>{trip.date_from}</p>
-                        <p>{trip.date_to}</p>
+                        <p><span>Date From: </span>{trip.date_from}</p>
+                        <p><span>Date To: </span>{trip.date_to}</p>
                     </div>
                 </section>
 
                 <section className="dt-buttons">
-                    <button>Request</button>
+                    {displayExpired()}
+                    <button onClick={deleteTripCall}>Delete</button>
                 </section>
             </header>
 
-            <article>{trip.description}</article>
+            <article>
+                <span>Description: </span>
+                <p>{trip.description}</p>
+            </article>
 
             <main>
                 <p><span>Group Type: </span>{trip.group_type}</p>

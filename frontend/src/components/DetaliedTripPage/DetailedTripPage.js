@@ -5,6 +5,7 @@ import DetailedTripNav from './DetailedTripNav';
 import DetailedTripInfo from './DetailedTripInfo';
 import DetailedTripRequests from './DetailedTripRequests';
 import DetailedTripTravelers from './DetailedTripTravelers';
+import '../../css/detailedTripPage/detailedTripPage.css';
 
 const DetailedTripPage = () => {
     const { id } = useParams();
@@ -24,13 +25,37 @@ const DetailedTripPage = () => {
         getTripCall();
     }, [])
 
+    
     return (
         <div className="detailedTripContainer">
-            <header></header>
+            <header className="dt-header">
+                <section className="dt-user">
+                    <img src={trip.profile_picture} alt={trip.full_name} />
+                    <div className="dt-userInteraction">
+                        {/* The user's rating goes in the span */}
+                        <p>{trip.full_name}<span></span></p> 
+                        <section>
+                            {/* Social Media Here */}
+                        </section>
+
+                    </div>
+                </section>
+
+                <section className="dt-userInfo">
+                    <p><span>Age: </span>{trip.age}</p>
+                    <p><span>Country of Origin: </span>{trip.country_of_origin}</p>
+                    <p><span>Gender: </span>{trip.gender}</p>
+                </section>
+
+                <section className="dt-bio">
+                    <span>Bio: </span>
+                    <p>{trip.bio}</p>
+                </section>
+            </header>
             <DetailedTripNav trip={trip}/>
             <Switch>
                 <Route exact path={"/trips/:tripId/"}>
-                    <DetailedTripInfo trip={trip} />
+                    <DetailedTripInfo trip={trip} getTripCall={getTripCall}/>
                 </Route>
 
                 <Route exact path={"/trips/:tripId/requests"}>

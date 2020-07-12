@@ -1,4 +1,70 @@
 .dt-info {
     display: flex;
     flex-direction: column;
+    border: 2px solid white;
+    padding: 1em;
+    background-color: #001f66;
+}
+
+.dt-info header {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    justify-content: space-between;
+    border-bottom: 1px solid white;
+    padding-bottom: 1em;
+}
+
+.dt-info header p {
+    margin: 0.5em 0;
+}
+
+.dt-hi {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+}
+
+.dt-dates {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+}
+
+.dt-dates p:first-of-type {
+    margin-right: 1em;
+}
+
+.dt-info article {
+    padding: 1em 0; 
+    border-bottom: 1px solid white;
+}
+
+.dt-info article p {
+    margin-top: 0.35em;
+}
+
+.dt-info main {
+    margin-top: 1em;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-rows: 1fr 1fr 1fr;
+}
+
+.dt-info main p {
+    padding: 1em;
+}
+
+.dt-ib {
+    display: flex;
+    flex-direction: row;
+    grid-column: 1 / 4;
+    justify-self: center;
+    width: 100%;
+    justify-content: space-evenly;
+}
+
+.dt-info span {
+    font-weight: bold;
+    color: #ffc655;
 }

@@ -1,5 +1,6 @@
 import React from 'react';
 import { NavLink } from 'react-router-dom';
+import '../../css/detailedTripPage/detailedTripNav.css';
 
 const DetailedTripNav = ({ trip = {} }) => {
     const displayRequests = () => {
@@ -10,7 +11,7 @@ const DetailedTripNav = ({ trip = {} }) => {
     }
     
     return (
-        <nav>
+        <nav className="dt-nav">
             <NavLink exact to={`/trips/${trip.id}`}>Trip</NavLink>
             <NavLink exact to={`/trips/${trip.id}/travelers`}>Travelers</NavLink>
             <NavLink exact to={`/trips/${trip.id}/requests`}>Requests</NavLink>
