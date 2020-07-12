@@ -15,12 +15,8 @@
 
 .mapTitle{
     display: flex;
-    position: absolute;
-    margin: 0;
-    /* margin-left: 20%; */
-    padding: 0;
-    z-index: 10;
-    color: black;
+    /* flex-shrink: inherit;
+    needs to be able to shrink when the aspect ratio is changed */
 }
 
 .hotSpotForm {

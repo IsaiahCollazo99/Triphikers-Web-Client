@@ -55,5 +55,6 @@ CREATE TABLE hotspots (
     lng VARCHAR,
     hotspot_title VARCHAR,
     body VARCHAR,
+    image VARCHAR,
     poster_id VARCHAR REFERENCES users(id) ON DELETE CASCADE
 );

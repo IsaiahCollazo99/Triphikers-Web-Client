@@ -34,8 +34,9 @@ VALUES
 );
 
 INSERT INTO locations (id, image, lat, lng, location_name, emergency_services, poster_id)
-VALUES (1, 'https://cdn.londonandpartners.com/visit/general-london/areas/river/76709-640x360-houses-of-parliament-and-london-eye-on-thames-from-above-640.jpg', 51, -0.24, 'London', 999, 1);
+VALUES (1, 'https://cdn.londonandpartners.com/visit/general-london/areas/river/76709-640x360-houses-of-parliament-and-london-eye-on-thames-from-above-640.jpg', 51, -0.24, 'London', 999, 1),
+(2, 'https://static01.nyt.com/images/2019/05/29/realestate/00skyline-south4/88ce0191bfc249b6aae1b472158cccc4-superJumbo.jpg', 40.730610, -73.935242, 'New York City', 911, 2);
 
-INSERT INTO hotspots (id, lat, lng, hotspot_title, body, poster_id)
-VALUES (1, 40.7580, -73.9855, 'Times Square', 'I love Times Square, its so busy', 1),
-(2, 38.8977, -77.0365, 'The White House', 'So presidential', 2);
+INSERT INTO hotspots (id, lat, lng, hotspot_title, body, image, poster_id)
+VALUES (1, 40.7580, -73.9855, 'Times Square', 'I love Times Square, its so busy', 'https://cdn.britannica.com/66/154566-050-36E73C15/Times-Square-New-York-City.jpg', 1),
+(2, 38.8977, -77.0365, 'The White House', 'So presidential', 'https://www.keranews.org/sites/kera/files/styles/x_large/public/202003/whitehouse-photo_wide.jpg', 2);

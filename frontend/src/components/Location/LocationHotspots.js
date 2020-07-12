@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import ImageUploader from 'react-images-upload';
 import axios from "axios";
 import { useInput } from "../../util/customHooks";
 import HotspotMap from "../helper/maps/HotspotMaps";
@@ -8,6 +9,7 @@ const LocationHotspots = ({info}) => {
     const [submitCoordinates, setSubmitCoordinates] = useState([]);
     const [selectedHotspot, setSelectedHotspot] = useState(null);
     const [submitted, setSubmitted] = useState(null);
+    const [pictures, setPictures] = useState([]);
     const submitHotspotTitle = useInput("");
     const submitHotspotBody = useInput("");
 
@@ -15,6 +17,13 @@ const LocationHotspots = ({info}) => {
         setSubmitCoordinates(data.coordinates);
         setSelectedHotspot(data.selected);
     }
+
+    const onDrop = (picture) => {
+        debugger
+        setPictures(picture);
+    }
+
+    // onDrop = onDrop.bind();
 
     const getMap = (lat, lng) => {
         if(lat !== undefined){
@@ -59,6 +68,13 @@ const LocationHotspots = ({info}) => {
                     <p className="submitLng"><b>Longitude:</b> {submitCoordinates.lng}</p>
                     <input type="text" placeholder="Hotspot Title" {...submitHotspotTitle}/>
                     <input type="text" placeholder="Type a Description" {...submitHotspotBody}/>
+                    <ImageUploader
+                        withIcon={true}
+                        buttonText='Choose images'
+                        onChange={onDrop}
+                        imgExtension={['.jpg', '.gif', '.png', '.gif']}
+                        maxFileSize={5242880}
+                    />
                     <input type="submit"/>
                     {submitted ? (
                         <p className="success">Submission Complete</p>

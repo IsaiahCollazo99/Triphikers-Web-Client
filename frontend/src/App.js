@@ -7,7 +7,7 @@ import DetailedTripPage from './components/DetaliedTripPage/DetailedTripPage';
 import LandingPage from "./components/General/Landing";
 import SignUpForm from "./components/Login/SignUpForm";
 import SignUpFormWithEmail from "./components/Login/SignUpFormWithEmail";
-import LocationPage from "../src/components/Location/LocationPage";
+import LocationPage from "./components/Location/LocationPage";
 
 function App() {
   return (
