@@ -2,11 +2,13 @@ import React from "react";
 
 
 const CreateSignUpForm2 = (props) => {
-	const { firstName, lastName, age, gender, handlePageChange } = props;
+	const { firstName, lastName, birthday, gender, handlePageChange } = props;
+
 	const handleSubmit = (e) => {
 		e.preventDefault();
 		handlePageChange(3)
 	}
+
 	return (
 		<>
 			<div>
@@ -23,7 +25,7 @@ const CreateSignUpForm2 = (props) => {
 				</div>
 				<div>
 					<label>Birthday : </label>
-					<input type="date" name="age" {...age} />
+					<input type="date" name="birthday" {...birthday} />
 				</div>
 				<div>
 					<label>Gender : </label>
@@ -33,9 +35,7 @@ const CreateSignUpForm2 = (props) => {
 					<button className="backBtn" onClick={()=>{handlePageChange(1)}}>
 					back
 					</button>
-					<button className="continueBtn" type="submit">
-					continue
-					</button>
+					<input className="continueBtn" type="submit" value="continue"/>
 				</div>
 			</form>
 		</>

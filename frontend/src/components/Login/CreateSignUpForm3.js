@@ -4,10 +4,10 @@ import React from "react";
 const CreateSignUpForm3 = (props) => {
 	const {
 		bio,
-		languages,
+		language,
 		country,
 		handlePageChange,
-		handleSignUp,
+		handleSubmit,
 	} = props;
 
 	return (
@@ -15,14 +15,14 @@ const CreateSignUpForm3 = (props) => {
 			<div>
 				<h1>CREATE AN ACCOUNT 3 / 3</h1>
 			</div>
-			<form onSubmit={handleSignUp} className="createUser">
+			<form onSubmit={handleSubmit} className="createUser">
 				<div>
 					<label>Bio : </label>
 					<textarea col="10" row="5" {...bio} name="bio" />
 				</div>
 				<div>
-					<label>Languages : </label>
-					<input type="text" {...languages} name="languages" />
+					<label>Language : </label>
+					<input type="text" {...language} name="language" />
 				</div>
 				<div>
 					<label>Country : </label>
@@ -31,9 +31,7 @@ const CreateSignUpForm3 = (props) => {
 				<button className="backBtn" onClick={()=>{handlePageChange(2)}}>
 				back
 				</button>
-				<button className="signUp" type="submit">
-				Sign Up
-				</button>
+				<input className="signUp" type="submit" />
 			</form>
 		</div>
 	);

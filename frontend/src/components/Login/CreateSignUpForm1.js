@@ -3,6 +3,7 @@ import React, { useState } from "react";
 
 const CreateSignUpForm1 = (props) => {
 	const { email, password, confirmPassword, handlePageChange } = props;
+	
 	const handleSubmit = (e) => {
 		e.preventDefault()
 		handlePageChange(2)
