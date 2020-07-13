@@ -1,4 +1,4 @@
-.lp-nav {
+.mainNav {
     width: 100%;
     display: flex;
     flex-direction: row;
@@ -6,46 +6,49 @@
     justify-content: space-between;
     color: rgb(255, 157, 0);
     padding: 1em 0.75em;
-    background-color: black;
-    opacity: 0.8;
-    position: fixed;
+    background-color: #272A33;
+    position: sticky;
     top: 0;
 }
 
-.lp-navLeft {
+.mainNav {
     display: flex;
     align-items: center;
 }
 
-.lp-nav h1 {
+.mainNav h1 {
     font-size: 3em;
     font-family: 'Prompt';
 }
 
-.lp-navLeft a {
+.mainNav h1:hover {
+    cursor: pointer;
+}
+
+.mainNav-left a {
     color: rgb(255, 157, 0);
     text-decoration: none;
 }
 
-.lp-navRight {
+.mainNav-right {
     display: flex;
     align-items: center;
     justify-content: space-evenly;
-    width: 50%;
+    width: 30%;
     font-size: 1.5em;
 }
 
-.lp-navRight a {
+.mainNav-right a {
     color: white;
     text-decoration: none;
     font-family: 'Roboto';
     font-weight: 500;
 }
 
-.lp-navRight a:hover:not(.active) {
+.mainNav-right a:hover:not(.active) {
     color: rgb(255, 157, 0);
 }
 
-.lp-nav .active {
+.mainNav .active {
     color: #6433FF;
 }

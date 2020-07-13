@@ -1,9 +1,8 @@
 import React from 'react';
-import { NavLink, Link, useLocation } from 'react-router-dom';
+import { NavLink, Link } from 'react-router-dom';
+import '../../css/general/navBar.css';
 
 const NavBar = () => {
-    const location = useLocation();
-
     const isOnTripsPage = () => window.location.pathname === "/trips";
     const isOnCreateTripsPage = () => window.location.pathname === "/trips/create";
 
