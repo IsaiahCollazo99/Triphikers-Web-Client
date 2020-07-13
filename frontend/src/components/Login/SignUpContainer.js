@@ -6,11 +6,12 @@ import CreateSignUpForm2 from "./CreateSignUpForm2";
 import CreateSignUpForm3 from "./CreateSignUpForm3";
 import { createUser } from "../../util/apiCalls/usersRequests";
 import { Login } from "../../util/apiCalls/usersRequests";
+import { signUp, uploadPicture } from "../../util/firebaseFunction";
 
 const CreateSignUpContainer = () => {
-	const [error, setError] = useState(null);
+	const [ error, setError ] = useState(null);
 	const history = useHistory();
-	const [page, setPage] = useState(1);
+	const [ page, setPage ] = useState(1);
 	const email = useInput("");
 	const password = useInput("");
 	const confirmPassword = useInput("");
@@ -21,6 +22,7 @@ const CreateSignUpContainer = () => {
 	const bio = useInput("");
 	const language = useInput("");
 	const country = useInput("");
+	const [ profilePicture, setProfilePicture ] = useState(null);
 
 	const handlePageChange = (toPage) => {
 		setPage(toPage);
@@ -38,33 +40,31 @@ const CreateSignUpContainer = () => {
 		birthday,
 		gender,
 	};
+
 	const pageThree = {
 		bio,
 		language,
 		country,
+		setProfilePicture
 	};
+
+	const createUserCall = async ( firebaseData ) => {
+		const user = {
+			...pageOne,
+			...pageTwo,
+			...pageThree,
+			...firebaseData
+		}
+	}
 
 	const handleSubmit = async (e) => {
 		e.preventDefault();
-		// await createUser({ ...pageOne, ...pageTwo, ...pageThree });
-		console.log(email, password);
-
 		try {
-			debugger;
-			// let res = await signUp(email, password);
-			// await axios.post(`${API}/api/users`, {
-			// 	id: res.user.uid,
-			// 	email: email,
-
-			// });
-			history.push("/");
-
-			debugger;
+			const { user: firebaseUser } = await signUp(email.value, password.value);
+			uploadPicture(`${firebaseUser.uid}/profile_picture`, {id: firebaseUser.uid, file: profilePicture}, createUserCall);
 		} catch (error) {
 			setError(error.message);
 		}
-
-		history.push("/trips");
 	};
 
 	const getFormDisplay = () => {

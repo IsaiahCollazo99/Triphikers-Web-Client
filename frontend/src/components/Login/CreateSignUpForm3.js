@@ -1,7 +1,18 @@
 import React from "react";
 
 const CreateSignUpForm3 = (props) => {
-	const { bio, language, country, handlePageChange, handleSubmit } = props;
+	const { 
+		bio, 
+		language, 
+		country, 
+		setProfilePicture,
+		handlePageChange, 
+		handleSubmit 
+	} = props;
+
+	const handleFileSelect = ( e ) => {
+		setProfilePicture(e.target.files[0]);
+	}
 
 	return (
 		<>
@@ -11,14 +22,17 @@ const CreateSignUpForm3 = (props) => {
 		</header>
 
 		<form onSubmit={handleSubmit}>
-			<label htmlFor="bio">Bio : </label>
+			<label htmlFor="bio">Bio : (OPTIONAL)</label>
 			<textarea col="10" row="5" {...bio} name="bio" />
 
 			<label htmlFor="language">Language : </label>
-			<input type="text" {...language} name="language" />
+			<input type="text" {...language} name="language" required />
 
 			<label htmlFor="country">Country : </label>
-			<input type="text" {...country} name="country" />
+			<input type="text" {...country} name="country" required />
+
+			<label htmlFor="profilePic">Profile Picture : </label>
+			<input type="file" name="profilePic" accept=".png .jpg .jpeg" onChange={handleFileSelect} required />
 
 			<div className="buttons">
 				<button onClick={() => handlePageChange(2)} type="button">

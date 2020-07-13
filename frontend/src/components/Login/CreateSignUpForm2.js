@@ -22,10 +22,10 @@ const CreateSignUpForm2 = (props) => {
 			<input type="text" {...lastName} name="lastName" required />
 
 			<label htmlFor="birthday">Birthday : </label>
-			<input type="date" name="birthday" {...birthday} />
+			<input type="date" name="birthday" {...birthday} required />
 
 			<label htmlFor="gender">Gender : </label>
-			<input type="text" name="gender" {...gender} />
+			<input type="text" name="gender" {...gender} required />
 
 			<div className="buttons">
 				<button onClick={()=> handlePageChange(1)} type="button">
