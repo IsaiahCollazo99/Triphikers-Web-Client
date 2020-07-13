@@ -11,29 +11,30 @@ const CreateSignUpForm3 = (props) => {
 	} = props;
 
 	return (
-		<div>
-			<div>
-				<h1>CREATE AN ACCOUNT 3 / 3</h1>
-			</div>
-			<form onSubmit={handleSubmit} className="createUser">
-				<div>
-					<label>Bio : </label>
-					<textarea col="10" row="5" {...bio} name="bio" />
-				</div>
-				<div>
-					<label>Language : </label>
-					<input type="text" {...language} name="language" />
-				</div>
-				<div>
-					<label>Country : </label>
-					<input type="text" {...country} name="country" />
-				</div>
+		<>
+		<header>
+			<h1>CREATE AN ACCOUNT</h1>
+			<h3>3/3</h3>
+		</header>
+
+		<form onSubmit={handleSubmit} className="createUser">
+			<label htmlFor="bio">Bio : </label>
+			<textarea col="10" row="5" {...bio} name="bio" />
+
+			<label htmlFor="language">Language : </label>
+			<input type="text" {...language} name="language" />
+
+			<label htmlFor="country">Country : </label>
+			<input type="text" {...country} name="country" />
+
+			<div className="buttons">
 				<button className="backBtn" onClick={()=>{handlePageChange(2)}}>
-				back
+					back
 				</button>
 				<input className="signUp" type="submit" />
-			</form>
-		</div>
+			</div>
+		</form>
+		</>
 	);
 };
 

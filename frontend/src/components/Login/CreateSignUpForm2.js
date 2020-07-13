@@ -11,33 +11,31 @@ const CreateSignUpForm2 = (props) => {
 
 	return (
 		<>
-			<div>
-				<h1>CREATE AN ACCOUNT 2 / 3</h1>
+		<header>
+			<h1>CREATE AN ACCOUNT</h1>
+			<h3>2/3</h3>
+		</header>
+
+		<form className="signUpPage1" onSubmit={handleSubmit}>
+			<label htmlFor="firstName">First Name : </label>
+			<input type="text" name="firstName" {...firstName} required />
+
+			<label htmlFor="lastName">Last Name : </label>
+			<input type="text" {...lastName} name="lastName" required />
+
+			<label htmlFor="birthday">Birthday : </label>
+			<input type="date" name="birthday" {...birthday} />
+
+			<label htmlFor="gender">Gender : </label>
+			<input type="text" name="gender" {...gender} />
+
+			<div className="buttons">
+				<button className="backBtn" onClick={()=>{handlePageChange(1)}}>
+				back
+				</button>
+				<input className="continueBtn" type="submit" value="continue"/>
 			</div>
-			<form className="signUpPage1" onSubmit={handleSubmit}>
-				<div>
-					<label>First Name : </label>
-					<input type="text" name="firstName" {...firstName} required />
-				</div>
-				<div>
-					<label>Last Name : </label>
-					<input type="text" {...lastName} name="lastName" required />
-				</div>
-				<div>
-					<label>Birthday : </label>
-					<input type="date" name="birthday" {...birthday} />
-				</div>
-				<div>
-					<label>Gender : </label>
-					<input type="text" name="gender" {...gender} />
-				</div>
-				<div>
-					<button className="backBtn" onClick={()=>{handlePageChange(1)}}>
-					back
-					</button>
-					<input className="continueBtn" type="submit" value="continue"/>
-				</div>
-			</form>
+		</form>
 		</>
 	);
 };
