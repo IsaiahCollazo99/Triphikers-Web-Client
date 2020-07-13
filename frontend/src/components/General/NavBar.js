@@ -1,12 +1,23 @@
 import React from 'react';
 import { NavLink, Link, useLocation } from 'react-router-dom';
 
-const displayCreateTrip = () => {
-    const location = useLocation();
-    debugger;
-}
-
 const NavBar = () => {
+    const location = useLocation();
+
+    const isOnTripsPage = () => window.location.pathname === "/trips";
+    const isOnCreateTripsPage = () => window.location.pathname === "/trips/create";
+
+
+    const displayCreateTrip = () => {
+        if(isOnTripsPage() || isOnCreateTripsPage()) {
+            return null
+        } else {
+            return (
+                <NavLink to="/trips/create">CREATE A TRIP</NavLink>
+            )
+        }
+    }
+    
     return (
         <nav className="mainNav">
             <section className="mainNav-left">
