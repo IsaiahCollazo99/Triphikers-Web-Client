@@ -1,10 +1,10 @@
 \c triphikers_db;
 
--- INSERT INTO users (id, full_name, email, age, gender, bio, country_of_origin)
--- VALUES 
--- (1, 'Isaiah Collazo', 'test@test.com', 20, 'Male', 'Hello', 'USA'),
--- (2, 'Kahoelani Taylor', 'test2@test.com', 21, 'Female', 'Hello', 'USA'),
--- (3, 'Carmen Rivera', 'test3@test.com', 45, 'Female', 'Hello', 'USA');
+INSERT INTO users (id, full_name, email, age, gender, bio, country_of_origin)
+VALUES 
+(1, 'Isaiah Collazo', 'test@test.com', 20, 'Male', 'Hello', 'USA'),
+(2, 'Kahoelani Taylor', 'test2@test.com', 21, 'Female', 'Hello', 'USA'),
+(3, 'Carmen Rivera', 'test3@test.com', 45, 'Female', 'Hello', 'USA');
 
 INSERT INTO trips (
     planner_id, destination, date_from, date_to, group_type, language, before_trip_meetup, 
