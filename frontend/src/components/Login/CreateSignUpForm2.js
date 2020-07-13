@@ -28,7 +28,7 @@ const CreateSignUpForm2 = (props) => {
 			<input type="text" name="gender" {...gender} />
 
 			<div className="buttons">
-				<button onClick={()=> handlePageChange(1)}>
+				<button onClick={()=> handlePageChange(1)} type="button">
 					BACK
 				</button>
 				<input type="submit" value="NEXT PAGE" />
