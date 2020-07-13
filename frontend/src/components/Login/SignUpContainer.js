@@ -4,8 +4,7 @@ import { useInput } from "../../util/customHooks";
 import CreateSignUpForm1 from "./CreateSignUpForm1";
 import CreateSignUpForm2 from "./CreateSignUpForm2";
 import CreateSignUpForm3 from "./CreateSignUpForm3";
-import { createUser } from "../../util/apiCalls/usersRequests";
-import { Login } from "../../util/apiCalls/usersRequests";
+import { createUser } from "../../util/apiCalls/postRequests";
 import { signUp, uploadPicture } from "../../util/firebaseFunction";
 
 const CreateSignUpContainer = () => {
@@ -50,11 +49,14 @@ const CreateSignUpContainer = () => {
 
 	const createUserCall = async ( firebaseData ) => {
 		const user = {
-			...pageOne,
+			email,
 			...pageTwo,
 			...pageThree,
 			...firebaseData
 		}
+
+		await createUser(user);
+		history.push("/trips");
 	}
 
 	const handleSubmit = async (e) => {

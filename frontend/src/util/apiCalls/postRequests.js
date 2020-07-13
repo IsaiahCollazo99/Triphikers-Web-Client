@@ -25,3 +25,49 @@ export const createTrip = async ( tripObj ) => {
         trip_title, accommodation, budget, split_costs, itinerary, description
     })
 }
+
+const getUserAge = ( birthday ) => {
+    const today = new Date();
+    const userBirthday = new Date(birthday);
+    const currentYearBirthday = new Date(
+        today.getFullYear(), 
+        userBirthday.getMonth(), 
+        userBirthday.getDate()
+    );
+
+    if(today >= currentYearBirthday) {
+        return today.getFullYear() - userBirthday.getFullYear();
+    } else {
+        return today.getFullYear() - userBirthday.getFullYear() - 1;
+    }
+}
+
+export const createUser = async ( userObj ) => {
+    const {
+      email: { value: email },
+      firstName: { value: firstName },
+      lastName: { value: lastName },
+      birthday: { value: birthday },
+      gender: { value: gender},
+      bio: { value: bio },
+      language: { value: language },
+      country: { value: country_of_origin },
+      url: profile_picture,
+      id
+    } = userObj
+
+    const full_name = firstName + lastName;
+
+    const age = getUserAge(birthday);
+
+    const res = await axios.post(API + "/api/users", {
+        id,
+        full_name,
+        email,
+        age,
+        profile_picture,
+        gender,
+        bio,
+        country_of_origin
+    })
+  }
