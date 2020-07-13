@@ -45,9 +45,8 @@ const CreateSignUpContainer = () => {
 	};
 
 	const handleSubmit = async (e) => {
-		//e.preventDefault();
+		e.preventDefault();
 		// await createUser({ ...pageOne, ...pageTwo, ...pageThree });
-		console.log("Signup Container");
 		console.log(email, password);
 
 		try {
@@ -79,15 +78,15 @@ const CreateSignUpContainer = () => {
 			);
 		} else if (page === 3) {
 			return (
-				<CreateSignUpForm3
-					{...pageThree}
-					handlePageChange={handlePageChange}
-					handleSubmit={handleSubmit}
-				/>
+				<CreateSignUpForm3 {...pageThree} handlePageChange={handlePageChange} handleSubmit={handleSubmit} />
 			);
 		}
 	};
-	return <div className="createSignUpContainer">{getFormDisplay()}</div>;
+	return (
+		<div className="createSignUpContainer">
+			{getFormDisplay()}
+		</div>
+	);
 };
 
 export default CreateSignUpContainer;
