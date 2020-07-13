@@ -16,9 +16,9 @@ export const getFirebaseIdToken = () => {
 }
 
 export const uploadPicture = async ( folderPath, data, callback ) => {
-    const userImg = data.image ? data.image : data;
-    let storageRef = storage().ref(folderPath + userImg.name);
-    let upload = storageRef.put(userImg);
+    const now = new Date().toString();
+    let storageRef = storage().ref(folderPath + now);
+    let upload = storageRef.put(data.file);
 
     await upload.on('state_changed', snapshot => {
 		

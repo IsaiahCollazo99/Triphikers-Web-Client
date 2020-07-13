@@ -56,7 +56,7 @@ export const createUser = async ( userObj ) => {
       id
     } = userObj
 
-    const full_name = firstName + lastName;
+    const full_name = firstName + " " + lastName;
 
     const age = getUserAge(birthday);
 

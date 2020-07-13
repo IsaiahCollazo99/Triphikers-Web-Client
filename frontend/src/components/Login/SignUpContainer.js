@@ -63,8 +63,10 @@ const CreateSignUpContainer = () => {
 		e.preventDefault();
 		try {
 			const { user: firebaseUser } = await signUp(email.value, password.value);
-			uploadPicture(`${firebaseUser.uid}/profile_picture`, {id: firebaseUser.uid, file: profilePicture}, createUserCall);
+			debugger;
+			uploadPicture(`${firebaseUser.uid}/profile_picture/`, {id: firebaseUser.uid, file: profilePicture}, createUserCall);
 		} catch (error) {
+			console.log(error);
 			setError(error.message);
 		}
 	};

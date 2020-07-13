@@ -32,7 +32,7 @@ const CreateSignUpForm3 = (props) => {
 			<input type="text" {...country} name="country" required />
 
 			<label htmlFor="profilePic">Profile Picture : </label>
-			<input type="file" name="profilePic" accept=".png .jpg .jpeg" onChange={handleFileSelect} required />
+			<input type="file" name="profilePic" accept=".png, .jpg, .jpeg" onChange={handleFileSelect} required />
 
 			<div className="buttons">
 				<button onClick={() => handlePageChange(2)} type="button">
