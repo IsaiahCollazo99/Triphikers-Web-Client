@@ -8,7 +8,7 @@ DROP TABLE IF EXISTS users;
 DROP TABLE IF EXISTS locations;
 
 CREATE TABLE users (
-    id VARCHAR UNIQUE NOT NULL,
+    id VARCHAR UNIQUE NOT NULL PRIMARY KEY,
     full_name VARCHAR,
     email VARCHAR,
     age INTEGER,

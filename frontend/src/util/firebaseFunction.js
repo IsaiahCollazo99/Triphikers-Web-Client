@@ -1,8 +1,6 @@
 import firebase from "../firebase";
 import { storage } from 'firebase';
 
-const provider = new firebase.auth.GoogleAuthProvider();
-provider.addScope('https://www.googleapis.com/auth/contacts.readonly');
 firebase.auth().useDeviceLanguage();
 
 export const logout = () => firebase.auth().signOut();
@@ -17,8 +15,29 @@ export const signUp = (email, password) => {
 
 export const signUpWithGoogle = async () => {
     try {
-        await firebase.auth().signInWithRedirect(provider);
-        const result = await firebase.auth().getRedirectResult()
+        const provider = new firebase.auth.GoogleAuthProvider();
+        const result = await firebase.auth().signInWithPopup(provider);
+        return result;
+    } catch (error) {
+        throw error;
+    }
+}
+
+export const signUpWithFacebook = async () => {
+    try {
+        const provider = new firebase.auth.FacebookAuthProvider();
+        provider.addScope('email');
+        const result = await firebase.auth().signInWithPopup(provider);
+        return result;
+    } catch (error) {
+        throw error;
+    }
+}
+
+export const signUpWithTwitter = async () => {
+    try {
+        const provider = new firebase.auth.TwitterAuthProvider();
+        const result = await firebase.auth().signInWithPopup(provider);
         return result;
     } catch (error) {
         throw error;

@@ -2,10 +2,23 @@ import React from "react";
 
 
 const CreateSignUpForm2 = (props) => {
-	const { firstName, lastName, birthday, gender, handlePageChange } = props;
+	const { firstName, lastName, birthday, gender, handlePageChange, user } = props;
+
 	const handleSubmit = (e) => {
 		e.preventDefault();
 		handlePageChange(3)
+	}
+
+	const displayBackButton = () => {
+		if(!user) {
+			return (
+				<button onClick={()=> handlePageChange(1)} type="button">
+					BACK
+				</button>
+			)
+		} else {
+			return null;
+		}
 	}
 	return (
 		<>
@@ -28,9 +41,7 @@ const CreateSignUpForm2 = (props) => {
 			<input type="text" name="gender" {...gender} required />
 
 			<div className="buttons">
-				<button onClick={()=> handlePageChange(1)} type="button">
-					BACK
-				</button>
+				{displayBackButton()}
 				<input type="submit" value="NEXT PAGE" />
 			</div>
 		</form>

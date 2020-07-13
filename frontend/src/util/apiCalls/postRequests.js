@@ -44,7 +44,7 @@ const getUserAge = ( birthday ) => {
 
 export const createUser = async ( userObj ) => {
     const {
-      email: { value: email },
+      userEmail: email,
       firstName: { value: firstName },
       lastName: { value: lastName },
       birthday: { value: birthday },

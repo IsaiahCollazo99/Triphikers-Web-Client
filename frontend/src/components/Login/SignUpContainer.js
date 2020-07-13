@@ -1,16 +1,17 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useHistory } from "react-router-dom";
 import { useInput } from "../../util/customHooks";
 import CreateSignUpForm1 from "./CreateSignUpForm1";
 import CreateSignUpForm2 from "./CreateSignUpForm2";
 import CreateSignUpForm3 from "./CreateSignUpForm3";
+import SignUpMethod from './SignUpMethod';
 import { createUser } from "../../util/apiCalls/postRequests";
 import { signUp, uploadPicture } from "../../util/firebaseFunction";
 
 const CreateSignUpContainer = () => {
 	const [ error, setError ] = useState(null);
 	const history = useHistory();
-	const [ page, setPage ] = useState(1);
+	const [ page, setPage ] = useState(0);
 	const email = useInput("");
 	const password = useInput("");
 	const confirmPassword = useInput("");
@@ -22,6 +23,13 @@ const CreateSignUpContainer = () => {
 	const language = useInput("");
 	const country = useInput("");
 	const [ profilePicture, setProfilePicture ] = useState(null);
+	const [ user, setUser ] = useState(null);
+
+	useEffect(() => {
+		if(user) {
+			setPage(2);
+		}
+	}, [user])
 
 	const handlePageChange = (toPage) => {
 		setPage(toPage);
@@ -38,6 +46,7 @@ const CreateSignUpContainer = () => {
 		lastName,
 		birthday,
 		gender,
+		user
 	};
 
 	const pageThree = {
@@ -48,22 +57,29 @@ const CreateSignUpContainer = () => {
 	};
 
 	const createUserCall = async ( firebaseData ) => {
-		const user = {
-			email,
+		const userEmail = user ? user.email : email.value;
+		const fullUser = {
+			userEmail,
 			...pageTwo,
 			...pageThree,
 			...firebaseData
 		}
 
-		await createUser(user);
+		await createUser(fullUser);
 		history.push("/trips");
 	}
 
 	const handleSubmit = async (e) => {
 		e.preventDefault();
 		try {
-			const { user: firebaseUser } = await signUp(email.value, password.value);
-			debugger;
+			let firebaseUser;
+			if(user) {
+				firebaseUser = user;
+			} else {
+				const { user: signUpRes } = await signUp(email.value, password.value);
+				firebaseUser = signUpRes;
+			}
+
 			uploadPicture(`${firebaseUser.uid}/profile_picture/`, {id: firebaseUser.uid, file: profilePicture}, createUserCall);
 		} catch (error) {
 			console.log(error);
@@ -72,7 +88,11 @@ const CreateSignUpContainer = () => {
 	};
 
 	const getFormDisplay = () => {
-		if (page === 1) {
+		if (page === 0) {
+			return (
+				<SignUpMethod handlePageChange={handlePageChange} setUser={setUser} />
+			)
+		} else if (page === 1) {
 			return (
 				<CreateSignUpForm1 {...pageOne} handlePageChange={handlePageChange} />
 			);
