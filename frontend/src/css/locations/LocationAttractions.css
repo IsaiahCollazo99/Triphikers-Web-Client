@@ -11,3 +11,12 @@
 .searchResults{
     color: black;
 }
+
+.searchInput{
+    width: 50vw;
+}
+
+.gpsImg{
+    height: auto;
+    width: 10%;
+}
