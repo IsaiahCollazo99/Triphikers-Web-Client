@@ -28,8 +28,8 @@ const NavBar = () => {
             <section className="mainNav-right">
                 {displayCreateTrip()}
                 <NavLink to="/trips">TRIPS</NavLink>
-                {/* When State management is added updated from /profile to /user/:userId */}
-                <NavLink to="/profile">PROFILE</NavLink>
+                {/* When State management is added updated from /user to /user/:userId */}
+                <NavLink to="/user">PROFILE</NavLink>
             </section>
         </nav>
     )

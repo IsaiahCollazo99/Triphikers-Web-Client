@@ -13,8 +13,19 @@ import NavBar from "./components/General/NavBar";
 
 
 function App() {
+	const displayMainNav = () => {
+		if(window.location.pathname.includes("/trips" ) || window.location.pathname === "/user") {
+			return (
+				<NavBar />
+			)
+		} else {
+			return null;
+		}
+	}
+	
 	return (
 		<div className="App">
+			{displayMainNav()}
 			<Switch>
 				<Route exact path="/">
 					<LandingPage />
@@ -27,8 +38,6 @@ function App() {
 				<Route path="/signIn" >
 					<Login />
 				</Route>
-
-				<NavBar />
 				
 				<Route path="/user" >
 					<UserPage />
@@ -37,9 +46,11 @@ function App() {
 				<Route exact path="/trips">
 					<TripsPage />
 				</Route>
+
 				<Route path="/trips/create">
 					<CreateTripsContainer />
 				</Route>
+
 				<Route path="/trips/:id">
 					<DetailedTripPage />
 				</Route>
