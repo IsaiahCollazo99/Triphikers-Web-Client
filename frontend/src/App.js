@@ -11,6 +11,7 @@ import CreateSignUpForm2 from "./components/Login/CreateSignUpForm2";
 import CreateSignUpForm3 from "./components/Login/CreateSignUpForm3";
 import CreateSignUpContainer from "./components/Login/SignUpContainer";
 import LocationPage from "./components/Location/LocationPage"
+import Login	from "./components/Login/Login"
 
 function App() {
 	return (
@@ -29,8 +30,14 @@ function App() {
         </Route> */}
 
 				<Route path="/signUp" >
-					<CreateSignUpContainer/>
+					<CreateSignUpContainer />
+				
 				</Route>
+
+				<Route path="/signIn" >
+					<Login />
+				</Route>
+				
 				<Route exact path="/trips">
 					<TripsPage />
 				</Route>

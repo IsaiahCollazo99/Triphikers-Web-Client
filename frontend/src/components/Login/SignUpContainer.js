@@ -10,8 +10,8 @@ import { Login } from "../../util/apiCalls/usersRequests"
 
 
 const CreateSignUpContainer = () => {
+    const [error, setError] = useState(null);
     const history = useHistory();
-    
     const [page, setPage] = useState(1);
     const email = useInput("");
     const password = useInput("");
@@ -46,23 +46,38 @@ const CreateSignUpContainer = () => {
         country, 
     }
 
-    const handleSubmit = async ( e ) => {
+    const handleSubmit = async (e) => {
         e.preventDefault();
-        await createUser({...pageOne, ...pageTwo,...pageThree});
-        history.push("/trips");
-    }
-
-    const getFormDisplay = () => {
-        if (page === 1) {
-            return <CreateSignUpForm1 {...pageOne} handlePageChange={handlePageChange} />
-        } else if(page === 2) {
-            return <CreateSignUpForm2 {...pageTwo} handlePageChange={handlePageChange} />
-        } else if(page === 3) {
-            return <CreateSignUpForm3 {...pageThree} handlePageChange={handlePageChange} handleSubmit={handleSubmit} />
+        // await createUser({ ...pageOne, ...pageTwo, ...pageThree });
+        console.log(email, password);
+       
+        try {
+            debugger
+            // let res = await signUp(email, password);
+            // await axios.post(`${API}/api/users`, {
+            // 	id: res.user.uid,
+            // 	email: email,
+            			
+            // });
+            history.push("/")
+                
+            debugger;
+        } catch (error) {
+            setError(error.message);
         }
-    }
-    
+            
+        history.push("/trips");
+    };
 
+const getFormDisplay = () => {
+    if (page === 1) {
+        return <CreateSignUpForm1 {...pageOne} handlePageChange={handlePageChange} />
+    } else if (page === 2) {
+        return <CreateSignUpForm2 {...pageTwo} handlePageChange={handlePageChange} />
+    } else if (page === 3) {
+        return <CreateSignUpForm3 {...pageThree} handlePageChange={handlePageChange} handleSubmit={handleSubmit} />
+    }
+}
     return (
         <div className="createSignUpContainer">
             {getFormDisplay()}
