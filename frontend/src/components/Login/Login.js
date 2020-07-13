@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { useHistory } from "react-router-dom";
+import LandingPageNav from "../LandingPage/LandingPageNav"
 // import { login } from "../../util/firebaseFunctions";
 
 
@@ -17,17 +18,23 @@ export default function Login() {
 		
 		try {
 			// await login(email, password);
-			history.push("/user");
+      history.push("/user");
+      console.log(email, password)
 		} catch (error) {
 			debugger;
 			setError(error.message);
 		}
 	};
   return (
-   
-		<div className="logInFormDiv">
+   <>
+       {/* <div>
+				<LandingPageNav/>
+       </div>  */}
+    <div className="logInFormDiv">
 			
-					{error ? <p className="error">{error.message}</p> : null}
+				{error ? <p className="error">{error.message}</p> : null}
+		
+				
       <form onSubmit={handleSignIn} className="signIn">
         <label>Email :
 						<input
@@ -51,7 +58,8 @@ export default function Login() {
 							Log in
 						</button>
 			</form>			
-	</div>
+			</div>
+			</>
        
 	);
 }

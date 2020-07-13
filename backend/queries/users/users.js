@@ -17,6 +17,7 @@ module.exports = {
       VALUES ($1, $2, $3, $4, $5, $6, $7) RETURNING *`,
 				[id, full_name, email, age, gender, bio, country_of_origin]
 			);
+			console.log(1000, user)
 			res.status(200).json({
 				status: "OK",
 				user,

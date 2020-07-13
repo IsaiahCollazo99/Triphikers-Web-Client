@@ -5,13 +5,16 @@ import { Switch, Route } from "react-router-dom";
 import CreateTripsContainer from "./components/CreateTrip/CreateTripContainer";
 import DetailedTripPage from "./components/DetaliedTripPage/DetailedTripPage";
 import LandingPage from "./components/LandingPage/LandingPage";
-import SignUp from "./components/Login/SignUp";
+// import SignUp from "./components/Login/SignUp";
 import CreateSignUpForm1 from "./components/Login/CreateSignUpForm1";
 import CreateSignUpForm2 from "./components/Login/CreateSignUpForm2";
 import CreateSignUpForm3 from "./components/Login/CreateSignUpForm3";
 import CreateSignUpContainer from "./components/Login/SignUpContainer";
 import LocationPage from "./components/Location/LocationPage"
 import Login	from "./components/Login/Login"
+import UserPage from "./components/User/UserPage";
+import LandingPageNav from "./components/LandingPage/LandingPageNav";
+
 
 function App() {
 	return (
@@ -31,11 +34,16 @@ function App() {
 
 				<Route path="/signUp" >
 					<CreateSignUpContainer />
-				
 				</Route>
 
 				<Route path="/signIn" >
 					<Login />
+				{/* <LandingPageNav/> */}
+				</Route>
+				
+				<Route path="/user" >
+					<UserPage />
+					<LandingPageNav/>
 				</Route>
 				
 				<Route exact path="/trips">
