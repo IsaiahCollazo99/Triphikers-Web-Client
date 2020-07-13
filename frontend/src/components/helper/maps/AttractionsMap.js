@@ -52,9 +52,9 @@ const AttractionsMap = ({ location, fetchData }) => {
         <div className="googleMaps">
             <h1 className="mapTitle">Attractions <span role="img" aria-label="pin"> 📸</span></h1>
 
-            {/* <Search/> */}
+            <Search markers={markers}/>
 
-            <GoogleMap mapContainerStyle={mapContainerStyle} zoom={13} center={location} onClick={(e) => {setMarkers({
+            <GoogleMap mapContainerStyle={mapContainerStyle} zoom={12} center={location} onClick={(e) => {setMarkers({
                 lat: e.latLng.lat(),
                 lng: e.latLng.lng(),
             })}} onLoad={onMapLoad}>
@@ -65,10 +65,20 @@ const AttractionsMap = ({ location, fetchData }) => {
     )
 }
 
-// const Search = () => {
-//     const {} = usePlacesAutocomplete({
-//         requestOptions
-//     })
-// }
+const Search = (markers) => {
+    const {ready, value, suggestions: {status, data}, setValue, clearSuggestions} = usePlacesAutocomplete({
+        requestOptions: {
+            location: { lat: () => parseFloat(markers.lat), lng: () => parseFloat(markers.lng) },
+            radius:  10 * 1000,
+        }
+    })
+    return(
+        <Combobox onSelect={ (address) => {console.log(address)} }>
+            <ComboboxInput value={value} onChange={(e)=>{
+                setValue(e.target.value)
+            }} disabled={!ready} placeholder="Enter Attraction"/>
+        </Combobox>
+    )
+}
 
 export default AttractionsMap;

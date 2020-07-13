@@ -34,8 +34,8 @@ const LocationInfo = ({info}) => {
     const getMap = (lat, lng) => {
         if(lat !== undefined){
             let coordinates = {
-                lat: lat,
-                lng: lng
+                lat: parseFloat(lat),
+                lng: parseFloat(lng)
             }
             return(
                 <InfoMap location={coordinates}/>

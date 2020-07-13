@@ -11,8 +11,8 @@ const LocationAttractions = ({info}) => {
     const getMap = (lat, lng) => {
         if(lat !== undefined){
             let coordinates = {
-                lat: lat,
-                lng: lng
+                lat: parseFloat(lat),
+                lng: parseFloat(lng)
             }
             return(
                 <AttractionsMap location={coordinates} fetchData={fetchData}/>

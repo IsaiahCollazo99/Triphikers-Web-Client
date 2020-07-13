@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import ImageUploader from 'react-images-upload';
 import axios from "axios";
 import { useInput } from "../../util/customHooks";
 import HotspotMap from "../helper/maps/HotspotMaps";
@@ -9,7 +8,7 @@ const LocationHotspots = ({info}) => {
     const [submitCoordinates, setSubmitCoordinates] = useState([]);
     const [selectedHotspot, setSelectedHotspot] = useState(null);
     const [submitted, setSubmitted] = useState(null);
-    const [pictures, setPictures] = useState([]);
+    const [imageFile, setImageFile] = useState(null);
     const submitHotspotTitle = useInput("");
     const submitHotspotBody = useInput("");
 
@@ -18,18 +17,11 @@ const LocationHotspots = ({info}) => {
         setSelectedHotspot(data.selected);
     }
 
-    const onDrop = (picture) => {
-        debugger
-        setPictures(picture);
-    }
-
-    // onDrop = onDrop.bind();
-
     const getMap = (lat, lng) => {
         if(lat !== undefined){
             let coordinates = {
-                lat: lat,
-                lng: lng
+                lat: parseFloat(lat),
+                lng: parseFloat(lng)
             }
             return(
                 <HotspotMap location={coordinates} fetchData={fetchData}/>
@@ -45,6 +37,7 @@ const LocationHotspots = ({info}) => {
                 lng: submitCoordinates.lng,
                 hotspot_title: submitHotspotTitle.value,
                 body: submitHotspotBody.value,
+                image: imageFile,
                 poster_id: 1
             })
             setSubmitCoordinates([]);
@@ -55,6 +48,20 @@ const LocationHotspots = ({info}) => {
             console.log(error)
         }
     }
+
+    const handleFileChange = (e) => {
+        e.preventDefault();
+        setImageFile({ selectedFile: e.target.files[0] })
+    }
+
+    //coming back to this, may directly upload image without submission button
+    // const uploadHandler = async () => {
+    //     try {
+    //        await 
+    //     } catch (error) {
+    //         console.log(error)
+    //     }
+    // }
 
     return (
         <div className="hotSpotContainer">
@@ -68,13 +75,8 @@ const LocationHotspots = ({info}) => {
                     <p className="submitLng"><b>Longitude:</b> {submitCoordinates.lng}</p>
                     <input type="text" placeholder="Hotspot Title" {...submitHotspotTitle}/>
                     <input type="text" placeholder="Type a Description" {...submitHotspotBody}/>
-                    <ImageUploader
-                        withIcon={true}
-                        buttonText='Choose images'
-                        onChange={onDrop}
-                        imgExtension={['.jpg', '.gif', '.png', '.gif']}
-                        maxFileSize={5242880}
-                    />
+                    <input type="file" onChange={handleFileChange}/>
+                    {/* <button onClick={uploadHandler}>Upload!</button> */}
                     <input type="submit"/>
                     {submitted ? (
                         <p className="success">Submission Complete</p>
