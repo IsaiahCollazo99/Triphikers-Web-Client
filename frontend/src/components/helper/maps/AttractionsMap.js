@@ -43,6 +43,11 @@ const AttractionsMap = ({ location, fetchData }) => {
         }
     }, [markers, fetchData])
     
+
+    const panTo = React.useCallback(({lat, lng}) => {
+        mapRef.current.panTo({lat, lng});
+        mapRef.current.setZoom(14);
+    } , []);
     
     if(loadError) return "Error loading maps";
     if(!isLoaded) return "Loading maps";
@@ -52,9 +57,9 @@ const AttractionsMap = ({ location, fetchData }) => {
         <div className="googleMaps">
             <h1 className="mapTitle">Attractions <span role="img" aria-label="pin"> 📸</span></h1>
 
-            <Search markers={markers}/>
+            <Search  panTo={panTo} markers={location}/>
 
-            <GoogleMap mapContainerStyle={mapContainerStyle} zoom={12} center={location} onClick={(e) => {setMarkers({
+            <GoogleMap mapContainerStyle={mapContainerStyle} zoom={11} center={location} onClick={(e) => {setMarkers({
                 lat: e.latLng.lat(),
                 lng: e.latLng.lng(),
             })}} onLoad={onMapLoad}>
@@ -65,19 +70,32 @@ const AttractionsMap = ({ location, fetchData }) => {
     )
 }
 
-const Search = (markers) => {
+const Search = ({panTo, markers}) => {
     const {ready, value, suggestions: {status, data}, setValue, clearSuggestions} = usePlacesAutocomplete({
         requestOptions: {
-            location: { lat: () => parseFloat(markers.lat), lng: () => parseFloat(markers.lng) },
+            location: { lat: () => markers.lat, lng: () => markers.lng },
             radius:  10 * 1000,
         }
     })
     return(
-        <Combobox onSelect={ (address) => {console.log(address)} }>
-            <ComboboxInput value={value} onChange={(e)=>{
-                setValue(e.target.value)
-            }} disabled={!ready} placeholder="Enter Attraction"/>
-        </Combobox>
+        <div className="search">
+            <Combobox onSelect={async (address) => {
+                    try {
+                        const res = await getGeocode({address});
+                        const { lat, lng } = await getLatLng(res[0]);
+                        panTo({ lat, lng })
+                    } catch(error) {
+                        console.log(error)
+                    }
+                }}>
+                <ComboboxInput value={value} onChange={(e)=>{
+                    setValue(e.target.value)
+                }} disabled={!ready} placeholder="Search An Attraction"/>
+                <ComboboxPopover>
+                    {status === "OK" && data.map(({description }, index) => <ComboboxOption key={index} value={description} className="searchResults"/>)}
+                </ComboboxPopover>
+            </Combobox>
+        </div>
     )
 }
 

@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import AttractionsMap from "../helper/maps/AttractionsMap";
+import "../../css/locations/LocationAttractions.css";
 
 const LocationAttractions = ({info}) => {
     const [submitCoordinates, setSubmitCoordinates] = useState([]);

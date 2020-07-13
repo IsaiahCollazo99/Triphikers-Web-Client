@@ -20,7 +20,7 @@ const InfoMap = ({ location }) => {
 
     return(
         <div className="googleMaps">
-            <GoogleMap mapContainerStyle={mapContainerStyle} zoom={6} center={location}></GoogleMap>
+            <GoogleMap mapContainerStyle={mapContainerStyle} zoom={9} center={location}></GoogleMap>
         </div>
     )
 }
