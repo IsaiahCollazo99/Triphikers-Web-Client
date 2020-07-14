@@ -50,6 +50,7 @@ const LocationHotspots = ({info}) => {
     }
 
     const handleFileChange = (e) => {
+        debugger
         e.preventDefault();
         setImageFile({ selectedFile: e.target.files[0] })
     }
@@ -75,7 +76,7 @@ const LocationHotspots = ({info}) => {
                     <p className="submitLng"><b>Longitude:</b> {submitCoordinates.lng}</p>
                     <input type="text" placeholder="Hotspot Title" {...submitHotspotTitle}/>
                     <input type="text" placeholder="Type a Description" {...submitHotspotBody}/>
-                    <input type="file" onChange={handleFileChange}/>
+                    {/* <input type="file" onChange={handleFileChange}/> */}
                     {/* <button onClick={uploadHandler}>Upload!</button> */}
                     <input type="submit"/>
                     {submitted ? (
