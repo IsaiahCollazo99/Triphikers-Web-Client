@@ -4,10 +4,18 @@ import { deleteTrip } from '../../util/apiCalls/deleteRequests';
 import TripCard from '../General/TripCard';
 import '../../css/tripsPage/tripsPage.css';
 import { completeTrip } from '../../util/apiCalls/patchRequests';
+import TripsPageFilter from './TripsPageFilter';
+import { useHistory } from 'react-router-dom';
 
 const TripsPage = () => {
     const [ trips, setTrips ] = useState([]);
     const [ response, setResponse ] = useState(null);
+
+    const history = useHistory();
+
+    const redirect = () => {
+        history.push("/trips/create");
+    }
 
     const completeTripCall = async ( id ) => {
         try {
@@ -66,8 +74,12 @@ const TripsPage = () => {
     
     return (
         <div className="tripsPage">
-            {response}
-            {tripsList}
+            <button onClick={redirect} className="tp-createTrip">CREATE A TRIP</button>
+            <TripsPageFilter />
+            <div className="tripsPageFeed">
+                {response}
+                {tripsList}
+            </div>
         </div>
     )
 }
