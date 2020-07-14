@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { useInput } from "../../util/customHooks";
 import HotspotMap from "../helper/maps/HotspotMaps";
@@ -7,6 +7,7 @@ import "../../css/locations/LocationHotspots.css";
 const LocationHotspots = ({info}) => {
     const [submitCoordinates, setSubmitCoordinates] = useState([]);
     const [selectedHotspot, setSelectedHotspot] = useState(null);
+    const [allMarkers, setAllMarkers] = useState([]);
     const [submitted, setSubmitted] = useState(null);
     const [imageFile, setImageFile] = useState(null);
     const submitHotspotTitle = useInput("");
@@ -17,6 +18,15 @@ const LocationHotspots = ({info}) => {
         setSelectedHotspot(data.selected);
     }
 
+    const fetchMarkers = async () => {
+        try {
+            let res = await axios.get(`http://localhost:3001/api/hotspots`);
+            setAllMarkers(res.data.hotspots)
+        } catch (error) {
+            console.log(error)
+        }
+    }
+
     const getMap = (lat, lng) => {
         if(lat !== undefined){
             let coordinates = {
@@ -24,7 +34,7 @@ const LocationHotspots = ({info}) => {
                 lng: parseFloat(lng)
             }
             return(
-                <HotspotMap location={coordinates} fetchData={fetchData}/>
+                <HotspotMap location={coordinates} fetchData={fetchData} allMarkers={allMarkers}/>
             )
         }
     }
@@ -63,6 +73,10 @@ const LocationHotspots = ({info}) => {
     //         console.log(error)
     //     }
     // }
+
+    useEffect(() => {
+        fetchMarkers();
+    }, [submitted])
 
     return (
         <div className="hotSpotContainer">

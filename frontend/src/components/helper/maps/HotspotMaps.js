@@ -9,9 +9,8 @@ const mapContainerStyle = {
     height: "45vh",
 }
 
-const HotspotMap = ({ location, fetchData }) => {
+const HotspotMap = ({ location, fetchData, allMarkers }) => {
     const [markers, setMarkers] = useState([]);
-    const [allMarkers, setAllMarkers] = useState([]);
     const [selected, setSelected] = useState(null);
 
     const {isLoaded, loadError} = useLoadScript({
@@ -19,17 +18,9 @@ const HotspotMap = ({ location, fetchData }) => {
         libraries,
     });
 
-    const fetchMarkers = async () => {
-        try {
-            let res = await axios.get(`http://localhost:3001/api/hotspots`);
-            setAllMarkers(res.data.hotspots)
-        } catch (error) {
-            console.log(error)
-        }
-    }
+    
 
     useEffect(() => {
-        fetchMarkers();
         if(markers.length === undefined || selected !== null ) {
             fetchData({
                 coordinates: markers,
@@ -46,7 +37,7 @@ const HotspotMap = ({ location, fetchData }) => {
     return(
         <div className="googleMaps">
             <h1 className="mapTitle">Hotspots <span role="img" aria-label="pin">📍</span></h1>
-            <GoogleMap key={allMarkers} mapContainerStyle={mapContainerStyle} zoom={13} center={location} onClick={(e) => {setMarkers({
+            <GoogleMap mapContainerStyle={mapContainerStyle} zoom={13} center={location} onClick={(e) => {setMarkers({
                 lat: e.latLng.lat(),
                 lng: e.latLng.lng(),
             })}}>
