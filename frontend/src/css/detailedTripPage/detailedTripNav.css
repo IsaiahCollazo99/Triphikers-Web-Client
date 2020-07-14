@@ -3,21 +3,21 @@
     flex-direction: row;
     justify-content: space-evenly;
     padding: 1em;
-    border-left: 2px solid white;
-    border-right: 2px solid white;
+    border-left: 2px solid #272A33;
+    border-right: 2px solid #272A33;
     font-size: 1.2em;
 }
 
 .dt-nav a {
-    color: white;
+    color: #272A33;
     font-weight: bold;
     text-decoration: none;
 }
 
 .dt-nav a:hover:not(.active){
-    color: #CC8800;
+    color: rgb(255, 157, 0);
 }
 
 .dt-nav .active {
-    color: #FFB219;
+    color: #6433FF;
 }
