@@ -27,8 +27,8 @@ const DetailedTripInfo = ({ trip = {}, getTripCall }) => {
         } else {
             return (
                 <>
-                    <button>Request</button>
-                    <button onClick={completeTripCall}>Complete</button>
+                    <button className="dt-req">Request</button>
+                    <button onClick={completeTripCall} className="dt-com">Complete</button>
                 </>
             )
         }
@@ -48,7 +48,7 @@ const DetailedTripInfo = ({ trip = {}, getTripCall }) => {
 
                 <section className="dt-buttons">
                     {displayExpired()}
-                    <button onClick={deleteTripCall}>Delete</button>
+                    <button onClick={deleteTripCall} className="dt-del">Delete</button>
                 </section>
             </header>
 

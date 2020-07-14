@@ -4,8 +4,8 @@ CREATE DATABASE triphikers_db;
 \c triphikers_db;
 
 DROP TABLE IF EXISTS trips;
-DROP TABLE IF EXISTS users;
 DROP TABLE IF EXISTS locations;
+DROP TABLE IF EXISTS users;
 
 CREATE TABLE users (
     id VARCHAR UNIQUE NOT NULL PRIMARY KEY,
