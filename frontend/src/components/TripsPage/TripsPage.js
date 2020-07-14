@@ -3,10 +3,22 @@ import { getAllTrips } from '../../util/apiCalls/getRequests';
 import { deleteTrip } from '../../util/apiCalls/deleteRequests';
 import TripCard from '../General/TripCard';
 import '../../css/tripsPage/tripsPage.css';
+import { completeTrip } from '../../util/apiCalls/patchRequests';
 
 const TripsPage = () => {
     const [ trips, setTrips ] = useState([]);
     const [ response, setResponse ] = useState(null);
+
+    const completeTripCall = async ( id ) => {
+        try {
+            const completeTripResponse = await completeTrip(id);
+            setResponse(completeTripResponse);
+            getTripsCall();
+        } catch ( error ) {
+            setResponse(<p className="error">There was a problem with the complete request.</p>)
+            console.log(error);
+        }
+    }
 
     const deleteTripCall = async ( id ) => {
         try {
@@ -47,7 +59,7 @@ const TripsPage = () => {
         tripsList = trips.map(trip => {
             console.log(trip);
             return (
-                <TripCard trip={trip} deleteTripCall={deleteTripCall} key={trip.id} />
+                <TripCard trip={trip} deleteTripCall={deleteTripCall} completeTripCall={completeTripCall} key={trip.id} />
             )
         })
     }

@@ -54,10 +54,40 @@
 .tripCardButtons {
     display: flex;
     justify-content: space-evenly;
-    width: 60%;
+    width: 40%;
     align-self: center;
     align-items: center;
     height: 100%;
+}
+
+.tripCard button {
+    width: 6em;
+    background-color: #272A33;
+    border-radius: 0.75em;
+    padding: 0.25em 0;
+    transition: 0.3s ease-in-out;
+}
+
+.tripCard button:hover {
+    cursor: pointer;
+}
+
+.tc-req, .tc-com {
+    color: rgb(0, 228, 0);
+}
+
+.tc-req:hover, .tc-com:hover {
+    background-color: rgb(0, 228, 0);
+    color: #272A33;
+}
+
+.tc-del {
+    color: red;
+}
+
+.tc-del:hover {
+    background-color: red;
+    color: #272A33;
 }
 
 .tripCard section {

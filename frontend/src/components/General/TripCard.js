@@ -1,21 +1,22 @@
 import React from 'react';
 import '../../css/general/tripCard.css';
 import { useHistory } from 'react-router-dom';
-import { completeTrip } from '../../util/apiCalls/patchRequests';
 
-const TripCard = ({ trip, deleteTripCall }) => {
+const TripCard = ({ trip, deleteTripCall, completeTripCall }) => {
     const history = useHistory();
     
-    const redirect = () => {
-        history.push("/trips/" + trip.id);
+    const redirect = (e) => {
+        if(e.target.nodeName !== "BUTTON") {
+            history.push("/trips/" + trip.id);
+        }
     }
 
     const handleDeleteClick = () => {
         deleteTripCall(trip.id);
     }
 
-    const completeTripCall = async () => {
-        let res = await completeTrip(trip.id);
+    const handleCompleteClick = () => {
+        completeTripCall(trip.id);
     }
 
     const displayExpired = () => {
@@ -27,8 +28,8 @@ const TripCard = ({ trip, deleteTripCall }) => {
         } else {
             return (
                 <>
-                    <button>Request</button>
-                    <button onClick={completeTripCall}>Complete</button>
+                    <button className="tc-req">Request</button>
+                    <button onClick={handleCompleteClick} className="tc-com">Complete</button>
                 </>
             )
         }
@@ -58,7 +59,7 @@ const TripCard = ({ trip, deleteTripCall }) => {
                 
                 <div className="tripCardButtons">
                     {displayExpired()}
-                    <button onClick={handleDeleteClick}>Delete</button>
+                    <button onClick={handleDeleteClick} className="tc-del">Delete</button>
                 </div>
             </header>
 
