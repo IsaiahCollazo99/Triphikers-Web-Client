@@ -1,7 +1,6 @@
 import React from "react";
 import LandingPageIcons from "./LandingPageIcons";
 import LandingPageLatest from "./LandingPageLatest";
-import LandingPagePopular from "./LandingPagePopular";
 import '../../css/landingPage/landingPage.css';
 import { useHistory } from "react-router-dom";
 import LandingPageCreateAccount from "./LandingPageCreateAccount";
@@ -57,8 +56,6 @@ const LandingPageAbout = () => {
             <LandingPageLatest />
 
             <button onClick={redirect}>See More Trips</button>
-
-            <LandingPagePopular />
         </section>
         </>
     )
