@@ -35,13 +35,15 @@ const TripCard = ({ trip, deleteTripCall }) => {
     }
     
     return (
-        <div className="tripCard">
+        <div className="tripCard" onClick={redirect}>
             <aside>
                 <img src={trip.profile_picture} alt={trip.full_name}/>
-                <p>{trip.full_name}</p>
-                <p>{trip.country_of_origin}</p>
-                <p>{trip.age}</p>
-                <p>{trip.gender}</p>
+                <div className="tc-userInfo">
+                    <p>{trip.full_name}</p>
+                    <p>{trip.country_of_origin}</p>
+                    <p>{trip.age}</p>
+                    <p>{trip.gender}</p>
+                </div>
             </aside>
 
             <header>
@@ -56,7 +58,6 @@ const TripCard = ({ trip, deleteTripCall }) => {
                 
                 <div className="tripCardButtons">
                     {displayExpired()}
-                    <button onClick={redirect}>Details</button>
                     <button onClick={handleDeleteClick}>Delete</button>
                 </div>
             </header>
