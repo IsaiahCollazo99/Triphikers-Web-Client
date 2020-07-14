@@ -27,9 +27,9 @@ export default function Login() {
 	};
   return (
    <>
-       {/* <div>
+       <div>
 				<LandingPageNav/>
-       </div>  */}
+       </div> 
     <div className="logInFormDiv">
 			
 				{error ? <p className="error">{error.message}</p> : null}
