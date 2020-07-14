@@ -78,7 +78,7 @@
     justify-content: space-evenly;
 }
 
-.landingPage button {
+.landingPage button:not(.lp-carouselBtn):not(.tc-btn){
     padding: 1em .5em;
     width: 25%;
     border-radius: 2em;
@@ -178,6 +178,9 @@
     height: 50vh;
     position: relative;
     z-index: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
 .lp-bottomBground {

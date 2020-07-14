@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import TripCard from '../General/TripCard';
 import { getAllTrips } from '../../util/apiCalls/getRequests';
 import { useHistory } from 'react-router-dom';
+import '../../css/landingPage/landingPageCarousel.css';
 
 const LandingPageLatest = () => {
     const [ trips, setTrips ] = useState([]);
@@ -51,9 +52,9 @@ const LandingPageLatest = () => {
         <section className="lp-latestTrips">
             <h2>LATEST TRIPS</h2>
             <div className="lp-carousel">
-                <button onClick={handlePrevTrip}>PREV</button>
+                <button onClick={handlePrevTrip} className="lp-carouselBtn">{"<"}</button>
                 {displayedTrip()}
-                <button onClick={handleNextTrip}>NEXT</button>
+                <button onClick={handleNextTrip} className="lp-carouselBtn">{">"}</button>
             </div>
         </section>
     )
