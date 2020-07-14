@@ -37,7 +37,7 @@ const HotspotMap = ({ location, fetchData, allMarkers }) => {
     return(
         <div className="googleMaps">
             <h1 className="mapTitle">Hotspots <span role="img" aria-label="pin">📍</span></h1>
-            <GoogleMap mapContainerStyle={mapContainerStyle} zoom={13} center={location} onClick={(e) => {setMarkers({
+            <GoogleMap mapContainerStyle={mapContainerStyle} zoom={11} center={location} onClick={(e) => {setMarkers({
                 lat: e.latLng.lat(),
                 lng: e.latLng.lng(),
             })}}>
