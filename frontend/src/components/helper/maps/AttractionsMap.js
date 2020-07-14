@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { GoogleMap, useLoadScript, Marker } from '@react-google-maps/api';
-import gspIcon from "../../../images/FindMeIcon.svg"
+import gspIcon from "../../../images/gps.png"
 import usePlacesAutocomplete, {
     getGeocode,
     getLatLng,
@@ -10,21 +10,19 @@ import {
     ComboboxInput,
     ComboboxPopover,
     ComboboxList,
-    ComboboxOption,
-    ComboboxOptionText,
+    ComboboxOption
   } from "@reach/combobox";
   import "@reach/combobox/styles.css";
-import axios from "axios";
 let apiKey = "AIzaSyA0vq8MgHI_qpQ45Ug8ZyOPCoIEtk5MjjM";
 
 const libraries = ["places"];
 const mapContainerStyle = {
     width: "50vw",
-    height: "45vh",
+    height: "40vh",
 }
 
 const AttractionsMap = ({ location, fetchData }) => {
-    const [markers, setMarkers] = useState([]);
+    const [address, setAddress] = useState([]);
 
     const {isLoaded, loadError} = useLoadScript({
         googleMapsApiKey: apiKey,
@@ -36,19 +34,18 @@ const AttractionsMap = ({ location, fetchData }) => {
         mapRef.current = map;
     }, []);
 
-    useEffect(() => {
-        if(markers.length === undefined ) {
-            fetchData({
-                coordinates: markers
-            });
-        }
-    }, [markers, fetchData])
-    
-
     const panTo = React.useCallback(({lat, lng}) => {
         mapRef.current.panTo({lat, lng});
         mapRef.current.setZoom(16);
     } , []);
+
+    useEffect(() => {
+        if(address.length > 0 ) {
+            fetchData({
+                address: address
+            });
+        }
+    }, [address, fetchData])
     
     if(loadError) return "Error loading maps";
     if(!isLoaded) return "Loading maps";
@@ -56,38 +53,33 @@ const AttractionsMap = ({ location, fetchData }) => {
 
     return(
         <div className="googleMaps">
-            <h1 className="mapTitle">Attractions <span role="img" aria-label="pin"> 📸</span></h1>
-
-            <Search  panTo={panTo} markers={location}/>
-            <Locate panTo={panTo}/>
-
-            <GoogleMap mapContainerStyle={mapContainerStyle} zoom={11} center={location} onClick={(e) => {setMarkers({
-                lat: e.latLng.lat(),
-                lng: e.latLng.lng(),
-            })}} onLoad={onMapLoad}>
-
-                <Marker position={{ lat: parseFloat(markers.lat), lng: parseFloat(markers.lng) }}/>
-            </GoogleMap>
+            <div className="attractionTitle">
+                <h1 className="mapTitle">Attractions <span role="img" aria-label="pin"> 📸</span></h1>
+                <Locate panTo={panTo}/>
+            </div>
+            <Search  panTo={panTo} location={location} setAddress={setAddress}/>
+            <GoogleMap mapContainerStyle={mapContainerStyle} zoom={11} center={location} onLoad={onMapLoad}/>
         </div>
     )
 }
 
 const Locate = ({panTo}) => {
     return(
-        <button className="locateMeButton" onClick={() => {
-            navigator.geolocation.getCurrentPosition((position) => {
-                panTo({ lat: position.coords.latitude, lng: position.coords.longitude})
-            }, () => null)
-        }}>
-            <img className="gpsImg" src={gspIcon} alt="locate me"/>
-        </button>
+        <div className="findMe">
+            <p><b>Find Me:</b></p>
+            <img className="gpsIcon" src={gspIcon} alt="locate me" onClick={() => {
+                navigator.geolocation.getCurrentPosition((position) => {
+                    panTo({ lat: position.coords.latitude, lng: position.coords.longitude})
+                }, () => null)
+            }}/>
+        </div>
     )
 }
 
-const Search = ({panTo, markers}) => {
+const Search = ({panTo, location, setAddress}) => {
     const {ready, value, suggestions: {status, data}, setValue, clearSuggestions} = usePlacesAutocomplete({
         requestOptions: {
-            location: { lat: () => markers.lat, lng: () => markers.lng },
+            location: { lat: () => location.lat, lng: () => location.lng },
             radius:  10 * 1000,
         }
     })
@@ -97,10 +89,10 @@ const Search = ({panTo, markers}) => {
                 setValue(address, false);
                 clearSuggestions();
                     try {
+                        setAddress(address); //add driving directions here
                         const res = await getGeocode({address});
                         const { lat, lng } = await getLatLng(res[0]);
-                        console.log(address) //add driving directions here
-                        panTo({ lat, lng })
+                        panTo({ lat, lng });
                     } catch(error) {
                         console.log(error)
                     }
