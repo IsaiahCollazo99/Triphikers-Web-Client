@@ -1,30 +1,83 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import AttractionsMap from "../helper/maps/AttractionsMap";
 import "../../css/locations/LocationAttractions.css";
+import usePlacesAutocomplete, {
+    getGeocode,
+    getLatLng,
+  } from "use-places-autocomplete";
+import {
+    Combobox,
+    ComboboxInput,
+    ComboboxPopover,
+    ComboboxList,
+    ComboboxOption
+  } from "@reach/combobox";
+  import "@reach/combobox/styles.css";
 
 const LocationAttractions = ({info}) => {
-    const [address, setAddress] = useState([])
+    const [address, setAddress] = useState([]);
+    const [coord, setCoord] = useState([]);
+    const [zoom, setZoom] = useState(11);
 
-    const fetchData = (data) => {
-        setAddress(data.address);
+    const Search = ({ coord, setAddress, setCoord, setZoom}) => {
+        const {ready, value, suggestions: {status, data}, setValue, clearSuggestions} = usePlacesAutocomplete({
+            requestOptions: {
+                location: { lat: () => coord.lat, lng: () => coord.lng },
+                radius:  10 * 1000,
+            }
+        })
+        return(
+            <div className="search">
+                <Combobox onSelect={async (address) => {
+                    setValue(address, false);
+                    clearSuggestions();
+                        try {
+                            const res = await getGeocode({address});
+                            const { lat, lng } = await getLatLng(res[0]);
+                            setAddress(address); //add driving directions here
+                            setCoord({ lat, lng });
+                            setZoom(16)
+                        } catch(error) {
+                            console.log(error)
+                        }
+                    }}>
+                    <ComboboxInput className="searchInput" value={value} onChange={(e)=>{
+                        setValue(e.target.value)
+                    }} disabled={!ready} placeholder="Search An Attraction"/>
+                    <ComboboxPopover>
+                        <ComboboxList>
+                            {status === "OK" && data.map(({description }, index) => <ComboboxOption key={index} value={description} className="searchResults"/>)}
+                        </ComboboxList>
+                    </ComboboxPopover>
+                </Combobox>
+            </div>
+        )
     }
 
-    const getMap = (lat, lng) => {
-        if(lat !== undefined){
+    const getMap = (coord, zoom) => {
+        if(coord !== undefined){
             let coordinates = {
-                lat: parseFloat(lat),
-                lng: parseFloat(lng)
+                lat: parseFloat(coord.lat),
+                lng: parseFloat(coord.lng)
             }
             return(
-                <AttractionsMap location={coordinates} fetchData={fetchData}/>
+                <AttractionsMap location={coordinates} zoom ={zoom}/>
             )
         }
     }
 
+    useEffect(() => {
+        if(info !== undefined){
+            setCoord({lat: info.lat, lng: info.lng})
+        }
+    }, [info])
+
     return (
         <div className="attractionsContainer">
             <div className="attractionMap">
-                {getMap(info.lat, info.lng)}
+                <h1 className="mapTitle">Attractions <span role="img" aria-label="pin"> 📸</span></h1>
+                <Search coord={coord} setAddress={setAddress} setCoord={setCoord} setZoom={setZoom}/>
+                {getMap(coord, zoom)}
             </div>
             <div className="selectedAttraction">
             {address.length ? (
