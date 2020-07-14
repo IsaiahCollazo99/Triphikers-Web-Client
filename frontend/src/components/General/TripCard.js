@@ -28,8 +28,8 @@ const TripCard = ({ trip, deleteTripCall, completeTripCall }) => {
         } else {
             return (
                 <>
-                    <button className="tc-req">Request</button>
-                    <button onClick={handleCompleteClick} className="tc-com">Complete</button>
+                    <button className="tc-req tc-btn">Request</button>
+                    <button onClick={handleCompleteClick} className="tc-com tc-btn">Complete</button>
                 </>
             )
         }
@@ -59,7 +59,7 @@ const TripCard = ({ trip, deleteTripCall, completeTripCall }) => {
                 
                 <div className="tripCardButtons">
                     {displayExpired()}
-                    <button onClick={handleDeleteClick} className="tc-del">Delete</button>
+                    <button onClick={handleDeleteClick} className="tc-del tc-btn">Delete</button>
                 </div>
             </header>
 

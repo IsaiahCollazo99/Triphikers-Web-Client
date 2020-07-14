@@ -1,0 +1,70 @@
+.lp-latestTrips {
+    margin-top: 2em;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    transition: 0.3s ease-in-out;
+}
+
+.lp-bottom h1 {
+    font-size: 2em;
+    text-align: center;
+    font-family: 'Prompt';
+    background: linear-gradient(
+        to top,
+        #6334ff,
+        #0099ff
+    );
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    font-weight: 900;
+}
+
+.lp-carousel {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    align-items: center;
+}
+
+.lp-carouselBtn {
+    width: 1em;
+    height: 4em;
+    font-size: 2em;
+    font-family: 'Prompt';
+    font-weight: 700;
+    background-color: #272A33;
+    border: 2px solid rgb(255, 157, 0);
+    transition: 0.3s ease-in-out;
+    color: rgb(255, 157, 0);
+}
+
+.lp-carouselBtn:hover {
+    background-color: rgb(255, 157, 0);
+    border-color: #272A33;
+    color: #272A33;
+    cursor: pointer;
+}
+
+.lp-latestTrips .tripCard {
+    width: 80%;
+    font-size: 1.25em;
+}
+
+.lp-latestTrips img {
+    width: 150px;
+    height: 150px;
+}
+
+.lp-latestTrips .tripCardButtons {
+    width: 60%;
+}
+
+.lp-latestTrips .tripCard button {
+    padding: 0.5em 0.5em;
+    border-radius: 1.5em;
+    width: 25%;
+}
