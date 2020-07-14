@@ -55,7 +55,7 @@ const LandingPageAbout = () => {
             <div className="lp-bottomBground"></div>
             <LandingPageLatest />
 
-            <button onClick={redirect}>See More Trips</button>
+            <button onClick={redirect} className="lp-seeMore">See More Trips</button>
         </section>
         </>
     )
