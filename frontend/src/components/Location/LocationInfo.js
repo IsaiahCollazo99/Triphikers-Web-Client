@@ -1,9 +1,7 @@
 import React, { useState, useEffect } from "react";
-// import { Map, GoogleApiWrapper } from 'google-maps-react';
 import axios from "axios";
 import "../../css/locations/LocationInfo.css";
-let apiKey ="AIzaSyCpINhVI_CTjIc8xOastGFa5-dHpE-oIgg";
-
+import InfoMap from "../helper/maps/InfoMap";
 const LocationInfo = ({info}) => {
     const [currency, setCurrency] = useState([])
     //is information coming from backend, will have to change the child info
@@ -11,7 +9,7 @@ const LocationInfo = ({info}) => {
     const getAllInfo = async (info) => {
         try {
             let currency = await axios.get(`https://api.exchangeratesapi.io/latest?symbols=USD,GBP`);
-            setCurrency(currency.data.rates)
+            setCurrency(currency.data.rates);
             //currency doesnt exist in location db, needs to be dry coded
         } catch (error) {
             console.log(error)
@@ -19,14 +17,28 @@ const LocationInfo = ({info}) => {
     }
 
     const currencyPrint = (exchange) => {
-        for (const [key, value] of Object.entries(exchange)) {
-            //need to print both currencies
-            return(
-                <div className="values">
+        let array = [];
+        for (let key in exchange) {
+            const value = exchange[key];
+            array.push(
+                <div className="values" key={key}>
                     <p>{key} : {value} </p>
                 </div>
             )
           }
+          return array
+    }
+
+    const getMap = (lat, lng) => {
+        if(lat !== undefined){
+            let coordinates = {
+                lat: parseFloat(lat),
+                lng: parseFloat(lng)
+            }
+            return(
+                <InfoMap location={coordinates}/>
+            )
+        }
     }
 
     useEffect(() => {
@@ -42,12 +54,14 @@ const LocationInfo = ({info}) => {
                 </div>
             </div>
             <div className="details">
-                {/* <div className="map">
-                    <Map google={info.google} zoom={14}/>
-                </div> */}
-                <p className="locationPageText">{info.location_name}</p>
-                <p className="locationPageText">Currency Exchange</p>
-                    {currencyPrint(currency)}
+                <div className="detailsMap">
+                    {getMap(info.lat, info.lng)}
+                </div>
+                <div className="detailsText">
+                    <p className="locationPageText">{info.location_name}</p>
+                    <p className="locationPageText">Currency Exchange</p>
+                        {currencyPrint(currency)}
+                </div>
             </div>
             <div className="emergencyServices">
                 <p className="locationPageText">Emergency Services</p>
@@ -58,7 +72,3 @@ const LocationInfo = ({info}) => {
 }
 
 export default LocationInfo;
-
-// export default GoogleApiWrapper({
-//     apiKey: (apiKey)
-//   })(LocationInfo)

@@ -8,15 +8,18 @@ module.exports = {
 				full_name,
 				email,
 				age,
+				profile_picture,
 				gender,
 				bio,
 				country_of_origin,
 			} = req.body;
+			
 			let user = await db.one(
-				`INSERT INTO users(id, full_name, email, age, gender, bio, country_of_origin)
-      VALUES ($1, $2, $3, $4, $5, $6, $7) RETURNING *`,
-				[id, full_name, email, age, gender, bio, country_of_origin]
+				`INSERT INTO users(id, full_name, email, age, profile_picture, gender, bio, country_of_origin)
+      VALUES ($1, $2, $3, $4, $5, $6, $7, $8) RETURNING *`,
+				[id, full_name, email, age, profile_picture, gender, bio, country_of_origin]
 			);
+
 			res.status(200).json({
 				status: "OK",
 				user,
@@ -48,7 +51,7 @@ module.exports = {
 			const { id } = req.params;
 			let user = await db.one(
 				`SELECT * FROM users
-            WHERE id=$1`,
+            	WHERE id=$1`,
 				id
 			);
 			res.status(200).json({
@@ -125,6 +128,7 @@ module.exports = {
 			next(error);
 		}
 	},
+
   getUsersPosts: async (req, res, next) => {
     try {
       // const { id } = req.params;
@@ -154,19 +158,19 @@ module.exports = {
     const { id } = req.params;
     try {
       if (id) {
-        await db.one(" Select* From users where id=$1", id);
+        await db.one(" SELECT * FROM users WHERE id=$1", id);
         next()
       } else {
         throw{ error: 400, error: "No ID supplied"}
       }
     } catch (error) {
       if (error.received === 0) {
-        next({
+        throw {
           status: 400,
-          error: "User ID doesn't exist"
-        });
+          error: "User doesn't exist"
+        };
       } else {
-        next(error);
+        throw error;
       }
     }
   }

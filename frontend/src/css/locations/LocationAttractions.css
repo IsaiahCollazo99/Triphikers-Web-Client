@@ -1,0 +1,65 @@
+/* .search{
+    position: absolute;
+    top: 1rem;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 100%;
+    max-width: 400px;
+    z-index: 10;
+} */
+
+.attractionsContainer {
+    display: flex;
+    flex-direction: row;
+    background-color: #083DCC;
+    height: 57vh;
+    justify-content: space-evenly;
+}
+
+.attractionMapContainer {
+    display: flex;
+    flex-direction: column;
+}
+
+.attractionTitle{
+    display: flex;
+    flex-direction: row;
+    width: 50vw;
+}
+
+.searchResults{
+    color: black;
+}
+
+.searchInput{
+    width: 50vw;
+}
+
+.findMe {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+.gpsIcon{
+    height: auto;
+    width: 7%;
+}
+
+.gpsIcon:hover {
+    cursor: pointer;
+}
+
+.directions{
+    color: blue;
+    text-decoration: underline;
+}
+
+.directions:hover{
+    cursor: pointer;
+}
+
+.attractionInfo {
+    display: flex;
+    flex-direction: column;
+}

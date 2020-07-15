@@ -2,13 +2,24 @@ import React from "react";
 
 
 const CreateSignUpForm2 = (props) => {
-	const { firstName, lastName, birthday, gender, handlePageChange } = props;
+	const { firstName, lastName, birthday, gender, handlePageChange, user } = props;
 
 	const handleSubmit = (e) => {
 		e.preventDefault();
 		handlePageChange(3)
 	}
 
+	const displayBackButton = () => {
+		if(!user) {
+			return (
+				<button onClick={()=> handlePageChange(1)} type="button">
+					BACK
+				</button>
+			)
+		} else {
+			return null;
+		}
+	}
 	return (
 		<>
 		<header>
@@ -16,7 +27,7 @@ const CreateSignUpForm2 = (props) => {
 			<h3>2/3</h3>
 		</header>
 
-		<form className="signUpPage1" onSubmit={handleSubmit}>
+		<form onSubmit={handleSubmit}>
 			<label htmlFor="firstName">First Name : </label>
 			<input type="text" name="firstName" {...firstName} required />
 
@@ -24,16 +35,14 @@ const CreateSignUpForm2 = (props) => {
 			<input type="text" {...lastName} name="lastName" required />
 
 			<label htmlFor="birthday">Birthday : </label>
-			<input type="date" name="birthday" {...birthday} />
+			<input type="date" name="birthday" {...birthday} required />
 
 			<label htmlFor="gender">Gender : </label>
-			<input type="text" name="gender" {...gender} />
+			<input type="text" name="gender" {...gender} required />
 
 			<div className="buttons">
-				<button className="backBtn" onClick={()=>{handlePageChange(1)}}>
-				back
-				</button>
-				<input className="continueBtn" type="submit" value="continue"/>
+				{displayBackButton()}
+				<input type="submit" value="NEXT PAGE" />
 			</div>
 		</form>
 		</>

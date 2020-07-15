@@ -5,49 +5,64 @@ import { Switch, Route } from "react-router-dom";
 import CreateTripsContainer from "./components/CreateTrip/CreateTripContainer";
 import DetailedTripPage from "./components/DetaliedTripPage/DetailedTripPage";
 import LandingPage from "./components/LandingPage/LandingPage";
+// import LandingPageNav from "./components/LandingPage/LandingPageNav";
 import CreateSignUpContainer from "./components/Login/SignUpContainer";
 import LocationPage from "./components/Location/LocationPage"
 import Login	from "./components/Login/Login"
+import UserPage from "./components/User/UserPage";
+import NavBar from "./components/General/NavBar";
+import { AuthRoute, ProtectedRoute } from "./util/routesUtil";
+import LandingPageNav from "./components/LandingPage/LandingPageNav";
+
 
 function App() {
+	const displayMainNav = () => {
+		if(window.location.pathname.includes("/trips" ) || window.location.pathname === "/user") {
+			return (
+				<NavBar />
+			)
+		} else {
+			return (
+				<LandingPageNav />
+			)
+		}
+	}
+	
 	return (
 		<div className="App">
+			{displayMainNav()}
 			<Switch>
-				<Route exact path="/">
+				<AuthRoute exact path="/">
 					<LandingPage />
-				</Route>
+				</AuthRoute>
 
-				
-				{/* <Route path="/signUpFacebook">
-          <SignUpFormWithFacebook />
-        </Route>
-        <Route path="/signUpGoogle">
-          <SignUpFormWithGoogle/>
-        </Route> */}
-
-				<Route path="/signUp" >
+				<AuthRoute path="/signUp" >
 					<CreateSignUpContainer />
-				</Route>
+				</AuthRoute>
 
-				<Route path="/signIn" >
+				<AuthRoute path="/signIn" >
 					<Login />
-				</Route>
+				</AuthRoute>
 				
-				<Route exact path="/trips">
+				<ProtectedRoute path="/user" >
+					<UserPage />
+				</ProtectedRoute>
+				
+				<ProtectedRoute exact path="/trips">
 					<TripsPage />
-				</Route>
+				</ProtectedRoute>
 
-				<Route path="/trips/create">
+				<ProtectedRoute path="/trips/create">
 					<CreateTripsContainer />
-				</Route>
+				</ProtectedRoute>
 
-				<Route path="/trips/:id">
+				<ProtectedRoute path="/trips/:id">
 					<DetailedTripPage />
-				</Route>
-			
-				<Route path="/location/:locationId">
-					<LocationPage/>
-				</Route>
+				</ProtectedRoute>
+				
+				<ProtectedRoute path="/location/:locationId">
+				<LocationPage/>
+				</ProtectedRoute>
 			</Switch>
 		</div>
 	);

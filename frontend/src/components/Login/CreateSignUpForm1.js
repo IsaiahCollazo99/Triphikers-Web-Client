@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 
 
 const CreateSignUpForm1 = (props) => {
@@ -15,7 +15,7 @@ const CreateSignUpForm1 = (props) => {
 			<h3>1/3</h3>
 		</header>
 
-		<form className="signUpPage1" onSubmit={handleSubmit}>
+		<form onSubmit={handleSubmit}>
 			<label htmlFor="email">Email: </label>
 			<input type="email" {...email} name="email" autoComplete="on" required />
 

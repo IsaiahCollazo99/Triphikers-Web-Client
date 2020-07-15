@@ -23,10 +23,6 @@
     font-family: 'Prompt';
 }
 
-.lp-nav h1:hover {
-    cursor: pointer;
-}
-
 .lp-navLeft a {
     color: rgb(255, 157, 0);
     text-decoration: none;

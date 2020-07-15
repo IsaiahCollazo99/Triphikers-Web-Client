@@ -1,47 +1,70 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import '../../css/general/tripCard.css';
 import { useHistory } from 'react-router-dom';
-import { completeTrip } from '../../util/apiCalls/patchRequests';
+import { AuthContext } from '../../providers/AuthContext';
 
-const TripCard = ({ trip, deleteTripCall }) => {
+const TripCard = ({ trip, deleteTripCall, completeTripCall }) => {
+    const { currentUser } = useContext(AuthContext);
     const history = useHistory();
     
-    const redirect = () => {
-        history.push("/trips/" + trip.id);
+    const redirect = (e) => {
+        if(e.target.nodeName !== "BUTTON") {
+            history.push("/trips/" + trip.id);
+        }
     }
 
     const handleDeleteClick = () => {
         deleteTripCall(trip.id);
     }
 
-    const completeTripCall = async () => {
-        let res = await completeTrip(trip.id);
+    const handleCompleteClick = () => {
+        completeTripCall(trip.id);
     }
 
     const displayExpired = () => {
         const currentDate = new Date();
-        if(currentDate.getTime() > new Date(trip.date_to).getTime() || trip.is_completed) {
-            return (
-                <p className="error">EXPIRED</p>
-            )
-        } else {
+        const currentTime = currentDate.getTime();
+        const dateToTime = new Date(trip.date_to).getTime();
+        if(currentTime > dateToTime || trip.is_completed) {
             return (
                 <>
-                    <button>Request</button>
-                    <button onClick={completeTripCall}>Complete</button>
+                <p className="error">EXPIRED</p>
+                <button onClick={handleDeleteClick} className="tc-del tc-btn">Delete</button>
                 </>
             )
+        } else {
+            if(currentUser) {
+                if(currentUser.id === trip.planner_id) {
+                    return (
+                        <>
+                        <button onClick={handleCompleteClick} className="tc-com tc-btn">Complete</button>
+                        <button onClick={handleDeleteClick} className="tc-del tc-btn">Delete</button>
+                        </>
+                    )
+                } else {
+                    return (
+                        <button className="tc-req tc-btn">Request</button>
+                    )
+    
+                }
+            } else {
+                return (
+                    <button className="tc-req tc-btn">Request</button>
+                )
+            }
         }
     }
     
     return (
-        <div className="tripCard">
+        <div className="tripCard" onClick={redirect}>
             <aside>
                 <img src={trip.profile_picture} alt={trip.full_name}/>
-                <p>{trip.full_name}</p>
-                <p>{trip.country_of_origin}</p>
-                <p>{trip.age}</p>
-                <p>{trip.gender}</p>
+                <div className="tc-userInfo">
+                    <p>{trip.full_name}</p>
+                    <p>{trip.country_of_origin}</p>
+                    <p>{trip.age}</p>
+                    <p>{trip.gender}</p>
+                </div>
             </aside>
 
             <header>
@@ -56,8 +79,6 @@ const TripCard = ({ trip, deleteTripCall }) => {
                 
                 <div className="tripCardButtons">
                     {displayExpired()}
-                    <button onClick={redirect}>Details</button>
-                    <button onClick={handleDeleteClick}>Delete</button>
                 </div>
             </header>
 

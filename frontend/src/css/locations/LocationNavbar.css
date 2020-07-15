@@ -9,9 +9,14 @@
     border: 1px solid black;
     background-color: #021F66;
     display: flex;
+    justify-content: space-evenly;
 }
 
 .Links {
     color: white;
     text-decoration-style: none;
+}
+
+.Links:hover{
+    cursor: pointer;
 }

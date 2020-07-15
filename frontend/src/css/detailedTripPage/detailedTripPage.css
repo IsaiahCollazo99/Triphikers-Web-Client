@@ -1,29 +1,52 @@
 .detailedTripContainer {
     width: 70%;
+    margin: 2em 0;
+}
+
+.detailedTripContainer p {
+    font-weight: 500;
+}
+
+.detailedTripContainer span {
+    font-weight: 800;
 }
 
 .dt-header {
     display: flex;
     flex-direction: row;
     justify-content: center;
-    border: 2px solid white;
-    background-color: #001f66;
+    border: 2px solid #272A33;
+    background-color: white;
     font-size: 1.2em;
 }
 
 .dt-user {
     width: 33%;
     padding: 1em;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    font-weight: 600;
+    justify-content: space-evenly;
+}
+
+.dt-user img {
+    width: 200px;
+    height: 200px;
+    object-fit: cover;
+    border-radius: 7em;
+    margin-bottom: 20px;
 }
 
 .dt-userInfo {
     width: 33%;
     display: flex;
     flex-direction: column;
-    border-right: 1px solid white;
-    border-left: 1px solid white;
+    border-right: 1px solid #272A33;
+    border-left: 1px solid #272A33;
     padding: 1em;
 }
+
 
 .dt-userInfo p {
     margin: 0.35em 0;
@@ -39,7 +62,7 @@
 
 .dt-userInfo span {
     font-weight: bold;
-    color: #ffc655;
+    color: #6433FF;
 }
 
 
@@ -50,5 +73,5 @@
 
 .dt-bio span {
     font-weight: bold;
-    color: #ffc655;
+    color: #6433FF;
 }
