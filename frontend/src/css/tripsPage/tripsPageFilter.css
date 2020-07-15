@@ -1,0 +1,36 @@
+.tp-filter {
+    margin-bottom: 2em;
+    width: 50%;
+    display: flex;
+    justify-content: space-evenly;
+}
+
+.tp-filter input[type="search"] {
+    width: 70%;
+    background-color: #272A33;
+    color: white;
+    border: 3px solid rgb(255, 157, 0);
+    font-size: 1.25em;
+    transition: 0.3s ease-in-out;
+}
+
+.tp-filter input[type="search"]:focus {
+    background-color: rgb(255, 157, 0);
+    color: #272A33;
+    border: 3px solid #272A33;
+}
+
+.tp-filter input[type="submit"] {
+    width: 20%;
+    background-color: rgb(255, 157, 0);
+    border: 2px solid #272A33;
+    color: #272A33;
+    transition: 0.3s ease-in-out;
+}
+
+.tp-filter input[type="submit"]:hover {
+    background-color: #272A33;
+    border-color: rgb(255, 157, 0);
+    color: rgb(255, 157, 0);
+    cursor: pointer;
+}

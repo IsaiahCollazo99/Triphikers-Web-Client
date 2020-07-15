@@ -34,13 +34,13 @@ import { Link } from "react-router-dom"
 
       <section>
         <button className="signUpBtn">
-          <Link to="/sign_up">
+          <Link to="/signUp">
             CREATE ACCOUNT
           </Link>
         </button>
 
         <button className="signIpBtn">
-          <Link to="/sign_in">
+          <Link to="/signIn">
             LOGIN
 					</Link>
         </button>

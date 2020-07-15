@@ -1,7 +1,39 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import '../../css/detailedTripPage/detailedTripInfo.css';
+import { deleteTrip } from '../../util/apiCalls/deleteRequests';
+import { useHistory } from 'react-router-dom';
+import { completeTrip } from '../../util/apiCalls/patchRequests';
+import { getTripById } from '../../util/apiCalls/getRequests';
 
-const DetailedTripInfo = ({ trip = {} }) => {
+const DetailedTripInfo = ({ trip = {}, getTripCall }) => {
+    const history = useHistory();
+
+    const deleteTripCall = async () => {
+        await deleteTrip(trip.id);
+        history.push("/trips");
+    }
+
+    const completeTripCall = async () => {
+        await completeTrip(trip.id);
+        getTripCall();
+    }
+
+    const displayExpired = () => {
+        const currentDate = new Date();
+        if(currentDate.getTime() > new Date(trip.date_to).getTime() || trip.is_completed) {
+            return (
+                <p className="error">EXPIRED</p>
+            )
+        } else {
+            return (
+                <>
+                    <button className="dt-req">Request</button>
+                    <button onClick={completeTripCall} className="dt-com">Complete</button>
+                </>
+            )
+        }
+    }
+    
     return (
         <section className="dt-info">
             <header>
@@ -15,7 +47,8 @@ const DetailedTripInfo = ({ trip = {} }) => {
                 </section>
 
                 <section className="dt-buttons">
-                    <button>Request</button>
+                    {displayExpired()}
+                    <button onClick={deleteTripCall} className="dt-del">Delete</button>
                 </section>
             </header>
 

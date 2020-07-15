@@ -4,12 +4,12 @@ CREATE DATABASE triphikers_db;
 \c triphikers_db;
 
 DROP TABLE IF EXISTS trips;
-DROP TABLE IF EXISTS users;
 DROP TABLE IF EXISTS locations;
 DROP TABLE IF EXISTS hotspots;
+DROP TABLE IF EXISTS users;
 
 CREATE TABLE users (
-    id VARCHAR UNIQUE NOT NULL,
+    id VARCHAR UNIQUE NOT NULL PRIMARY KEY,
     full_name VARCHAR,
     email VARCHAR,
     age INTEGER,

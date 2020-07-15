@@ -11,7 +11,7 @@ const CreateTripForm2 = ( props ) => {
         description,
         handlePageChange,
         handleSubmit
-    } = props;
+    } = props
     
     return (
         <>

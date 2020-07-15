@@ -24,8 +24,18 @@
     font-weight: bold;
 }
 
-.createTripsContainer input, .createTripsContainer select {
-    width: 75%;
+.createTripsContainer input, .createTripsContainer select, .createTripsContainer textarea {
+    width: 85%;
+    background-color: #272A33;
+    color: white;
+    border: 3px solid rgb(255, 157, 0);
+    font-size: 1.25em
+}
+
+.createTripsContainer select:focus, .createTripsContainer input:focus, .createTripsContainer textarea:focus {
+    background-color: rgb(255, 157, 0);
+    color: #272A33;
+    border: 3px solid #272A33;
 }
 
 .createTripDates {
@@ -57,16 +67,49 @@
 }
 
 .createTripsContainer .buttons {
-    grid-column: 2 / 3;
+    grid-column: 1 / 4;
     grid-row: 4 / 5;
     align-self: center;
+    justify-self: center;
     display: flex;
     justify-content: space-evenly;
+    width: 70%;
+    align-content: center;
 }
 
 .createTrip2 button, .createTrip2 input[type="submit"] {
     width: 25%;
     border-radius: 0.75em;
+    padding: 0.75em 1em;
+    font-size: 1.25em;
+    font-weight: 600;
+}
+
+.createTrip2 input[type="submit"] {
+    background-color: rgb(255, 157, 0);
+    border: 2px solid #272A33;
+    transition: 0.3s ease-in-out;
+    color: #272A33;
+}
+
+.createTrip2 input[type="submit"]:hover {
+    background-color: #272A33;
+    border-color: rgb(255, 157, 0);
+    color: rgb(255, 157, 0);
+    cursor: pointer;
+}
+
+.createTrip2 button {
+    background-color: #272A33;
+    border-color: rgb(255, 157, 0);
+    color: rgb(255, 157, 0);
+    transition: 0.3s ease-in-out;
+}
+
+.createTrip2 button:hover {
+    background-color: rgb(255, 157, 0);
+    border: 2px solid #272A33;
+    color: #272A33;
 }
 
 .createTrip1 input[type="submit"] {
@@ -76,4 +119,15 @@
     width: 45%;
     border-radius: 1em;
     padding: 0.75em 0.25em;
+    background-color: rgb(255, 157, 0);
+    border: 2px solid #272A33;
+    transition: 0.3s ease-in-out;
+    color: #272A33;
+}
+
+.createTrip1 input[type="submit"]:hover {
+    background-color: #272A33;
+    border-color: rgb(255, 157, 0);
+    color: rgb(255, 157, 0);
+    cursor: pointer;
 }

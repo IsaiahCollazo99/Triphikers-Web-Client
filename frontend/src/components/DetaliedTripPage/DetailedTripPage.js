@@ -25,6 +25,7 @@ const DetailedTripPage = () => {
         getTripCall();
     }, [])
 
+    
     return (
         <div className="detailedTripContainer">
             <header className="dt-header">
@@ -54,7 +55,7 @@ const DetailedTripPage = () => {
             <DetailedTripNav trip={trip}/>
             <Switch>
                 <Route exact path={"/trips/:tripId/"}>
-                    <DetailedTripInfo trip={trip} />
+                    <DetailedTripInfo trip={trip} getTripCall={getTripCall}/>
                 </Route>
 
                 <Route exact path={"/trips/:tripId/requests"}>

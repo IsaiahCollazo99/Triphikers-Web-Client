@@ -1,10 +1,17 @@
 const users = require("express").Router();
 const {
   createUser,
-  getAllUsers
+  getAllUsers,
+  getUserById,
+  getUsersPosts,
+  updateUser,
+  isUserExisting
 } = require("../../queries/users/users");
 
 users.post("/", createUser);
-users.get("/", getAllUsers)
+users.get("/", getAllUsers);
+users.get("/:id", isUserExisting, getUserById);
+users.get("/:id/posts", getUsersPosts);
+users.patch("/:id", isUserExisting, updateUser)
 
 module.exports = users;
