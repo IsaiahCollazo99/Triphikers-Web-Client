@@ -29,29 +29,26 @@ const AuthProvider = ({ children }) => {
             setLoading(false);
         }
     } catch(error) {
-        // if(error.response) {
-        //     if( i < 75) {
-        //         updateUser(user, i + 1);
-        //     } else {
-        //         setLoading(false);
-        //     }
-        // }
         console.log(error);
     }
 
 }
 
-useEffect(() => {
-    const unsubscribe = firebase.auth().onAuthStateChanged(updateUser)
-    return unsubscribe;
-}, [])
+    useEffect(() => {
+        const unsubscribe = firebase.auth().onAuthStateChanged(updateUser)
+        return unsubscribe;
+    }, [])
 
-if(loading) return (<div>Loading...</div>)
-return (
-    <AuthContext.Provider value={{currentUser, token, updateUser}}>
-        {children}
-    </AuthContext.Provider>
-)
+    if(loading) {
+        return (
+            <div className="loading">Loading...</div>
+        )
+    }
+    return (
+        <AuthContext.Provider value={{currentUser, token, updateUser}}>
+            {children}
+        </AuthContext.Provider>
+    )
 }
 
 export default AuthProvider;

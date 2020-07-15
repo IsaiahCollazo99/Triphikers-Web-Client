@@ -46,36 +46,6 @@ module.exports = {
 		}
 	},
 
-	getUserByFullName: async (req, res, next) => {
-		try{
-				const { fullName } = req.params;
-				const { userProfile } = req.query;
-				let user = await db.any(
-						`SELECT * FROM users
-						WHERE full_name=$1`, fullName
-				)
-
-				if(user.length) {
-						if(userProfile) {
-								res.status(200).json({
-										status: "OK",
-										user: user[0],
-										message: "Successfully retrieved user"
-								})
-						} else {
-								throw { status: 409, error: "User with that fullName exists" }
-						}
-				} else {
-						res.status(200).json({
-								status: "OK",
-								message: "No user exists with that fullName"
-						})
-				}
-		} catch (error) {
-				next(error)
-		}
-},
-
 	getUserById: async (req, res, next) => {
 		try {
 			const { id } = req.params;
@@ -158,6 +128,7 @@ module.exports = {
 			next(error);
 		}
 	},
+
   getUsersPosts: async (req, res, next) => {
     try {
       // const { id } = req.params;
@@ -187,7 +158,7 @@ module.exports = {
     const { id } = req.params;
     try {
       if (id) {
-        await db.one(" Select* From users where id=$1", id);
+        await db.one(" SELECT * FROM users WHERE id=$1", id);
         next()
       } else {
         throw{ error: 400, error: "No ID supplied"}
@@ -196,7 +167,7 @@ module.exports = {
       if (error.received === 0) {
         next({
           status: 400,
-          error: "User ID doesn't exist"
+          error: "User doesn't exist"
         });
       } else {
         next(error);
