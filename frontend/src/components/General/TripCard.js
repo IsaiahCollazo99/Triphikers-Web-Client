@@ -23,12 +23,14 @@ const TripCard = ({ trip, deleteTripCall, completeTripCall }) => {
 
     const displayExpired = () => {
         const currentDate = new Date();
-        if(currentDate.getTime() > new Date(trip.date_to).getTime() || trip.is_completed) {
+        const currentTime = currentDate.getTime();
+        const dateToTime = new Date(trip.date_to).getTime();
+        if(currentTime > dateToTime || trip.is_completed) {
             return (
                 <p className="error">EXPIRED</p>
             )
         } else {
-            if(currentUser.id === trip.user_id) {
+            if(currentUser.id === trip.planner_id) {
                 return (
                     <>
                     <button onClick={handleCompleteClick} className="tc-com tc-btn">Complete</button>
