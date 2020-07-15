@@ -25,12 +25,6 @@ const AttractionsMap = ({ location, zoom }) => {
     //     mapRef.current.panTo({lat, lng});
     //     mapRef.current.setZoom(16);
     // } , []);
-
-    // useEffect(() => {
-    //     if(location.length > 0 ) {
-    //         setCoord(location)
-    //     }
-    // }, [Search])
     
     if(loadError) return "Error loading maps";
     if(!isLoaded) return "Loading maps";
@@ -39,7 +33,6 @@ const AttractionsMap = ({ location, zoom }) => {
     return(
         <div className="googleMaps">
                 {/* <Locate panTo={panTo}/> */}
-            {/* <Search  panTo={panTo} location={location} setAddress={setAddress}/> */}
             <GoogleMap mapContainerStyle={mapContainerStyle} zoom={zoom} center={location} onLoad={onMapLoad}>
                 <Marker position={{ lat: parseFloat(location.lat), lng: parseFloat(location.lng) }}/>
             </GoogleMap>
