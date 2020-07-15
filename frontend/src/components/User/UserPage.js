@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
-// import NavBar from "../General/NavBar";
+import Profile from './Profile';
+// import Profile from  './Profile'
 
 const UserPage = () => {
     
@@ -7,7 +8,7 @@ const UserPage = () => {
     return (
       
         <>
-            {/* <NavBar /> */}
+           <Profile/> 
         </>
     )
 }

@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import { useHistory } from "react-router-dom";
-import NavBar from "../General/NavBar"
 import { login } from "../../util/firebaseFunction";
 
 

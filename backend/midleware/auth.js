@@ -1,4 +1,4 @@
-const admin = require("../firebase");
+const admin = require("../firbase");
 
 const checkFirebaseToken = async (req, res, next) => {
     try {
