@@ -12,6 +12,7 @@ import Login	from "./components/Login/Login"
 import UserPage from "./components/User/UserPage";
 import NavBar from "./components/General/NavBar";
 import { AuthRoute, ProtectedRoute } from "./util/routesUtil";
+import LandingPageNav from "./components/LandingPage/LandingPageNav";
 
 
 function App() {
@@ -21,7 +22,9 @@ function App() {
 				<NavBar />
 			)
 		} else {
-			return null;
+			return (
+				<LandingPageNav />
+			)
 		}
 	}
 	

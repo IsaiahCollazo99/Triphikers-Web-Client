@@ -109,7 +109,6 @@ const CreateSignUpContainer = () => {
 	};
 	return (
 		<>
-		<LandingPageNav />
 		<div className="createSignUpContainer">
 			{getFormDisplay()}
 		</div>

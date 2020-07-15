@@ -25,8 +25,6 @@ export default function Login() {
 	};
   	return (
 		<>
-		<LandingPageNav />
-
 		<div className="loginContainer">
 			{error ? <p className="error">{error.message}</p> : null}
 				
