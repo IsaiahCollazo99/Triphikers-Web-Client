@@ -9,6 +9,7 @@ import { useHistory } from 'react-router-dom';
 
 const TripsPage = () => {
     const [ trips, setTrips ] = useState([]);
+    const [ filteredTrips, setFilteredTrips ] = useState([]);
     const [ response, setResponse ] = useState(null);
 
     const history = useHistory();
@@ -43,7 +44,6 @@ const TripsPage = () => {
         try {
             const { trips: allTrips } = await getAllTrips();
             if(!allTrips.length) {
-                console.log("nothing")
                 setResponse(<p className="error">No Trips Found</p>)
             } else {
                 setTrips(allTrips);
@@ -57,25 +57,42 @@ const TripsPage = () => {
             console.log(error);
         }
     }
+
+    const filterTrips = ( filter ) => {
+        if(filter) {
+            let filterResult = trips.filter(trip => {
+                const { destination } = trip;
+                return destination.toLowerCase() === filter.toLowerCase();
+            })
+            setFilteredTrips(filterResult);
+        } else {
+            setFilteredTrips([]);
+        }
+    }
     
     useEffect(() => {
         getTripsCall();
     }, [])
 
-    let tripsList;
-    if(trips.length) {
-        tripsList = trips.map(trip => {
-            console.log(trip);
+    const getTripsList = ( tripsArr ) => {
+        return tripsArr.map(trip => {
             return (
                 <TripCard trip={trip} deleteTripCall={deleteTripCall} completeTripCall={completeTripCall} key={trip.id} />
             )
         })
     }
+
+    let tripsList;
+    if(filteredTrips.length) {
+        tripsList = getTripsList(filteredTrips);
+    } else if(trips.length) {
+        tripsList = getTripsList(trips);
+    }
     
     return (
         <div className="tripsPage">
             <button onClick={redirect} className="tp-createTrip">CREATE A TRIP</button>
-            <TripsPageFilter />
+            <TripsPageFilter filterTrips={filterTrips}/>
             <div className="tripsPageFeed">
                 {response}
                 {tripsList}
