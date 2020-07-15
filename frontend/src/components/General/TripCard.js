@@ -27,7 +27,10 @@ const TripCard = ({ trip, deleteTripCall, completeTripCall }) => {
         const dateToTime = new Date(trip.date_to).getTime();
         if(currentTime > dateToTime || trip.is_completed) {
             return (
+                <>
                 <p className="error">EXPIRED</p>
+                <button onClick={handleDeleteClick} className="tc-del tc-btn">Delete</button>
+                </>
             )
         } else {
             if(currentUser.id === trip.planner_id) {
