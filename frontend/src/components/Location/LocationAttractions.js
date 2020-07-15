@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import AttractionsMap from "../helper/maps/AttractionsMap";
 import "../../css/locations/LocationAttractions.css";
 import { useLoadScript } from '@react-google-maps/api';
+import gspIcon from "../../images/gps.png";
 import usePlacesAutocomplete, {
     getGeocode,
     getLatLng,
@@ -22,6 +23,7 @@ const LocationAttractions = ({info}) => {
     const [address, setAddress] = useState([]);
     const [coord, setCoord] = useState([]);
     const [zoom, setZoom] = useState(11);
+    const [locateMe, setLocateMe] = useState(null);
 
     const {isLoaded, loadError} = useLoadScript({
         googleMapsApiKey: apiKey,
@@ -63,6 +65,18 @@ const LocationAttractions = ({info}) => {
         )
     }
 
+    const Locate = ({ setCoord, setZoom, setLocateMe}) => {
+        return(
+            <div className="findMe">
+                <p><b>Find Me:</b></p>
+                <img className="gpsIcon" src={gspIcon} alt="locate me" onClick={() => {
+                    navigator.geolocation.getCurrentPosition((position) => { setCoord({lat: position.coords.latitude, lng: position.coords.longitude}, setZoom(16), setLocateMe({lat: position.coords.latitude, lng: position.coords.longitude}))
+                    }, () => null)
+                }}/>
+            </div>
+        )
+    }
+
     const getMap = (coord, zoom) => {
         if(coord.lat !== undefined){
             let coordinates = {
@@ -88,17 +102,29 @@ const LocationAttractions = ({info}) => {
         <div className="attractionsContainer">
             <div className="attractionMap">
                 <h1 className="mapTitle">Attractions <span role="img" aria-label="pin"> 📸</span></h1>
+                <Locate setCoord={setCoord} setZoom={setZoom} setLocateMe={setLocateMe}/>
                 <Search coord={info} setAddress={setAddress} setCoord={setCoord} setZoom={setZoom}/>
                 {getMap(coord, zoom)}
             </div>
-            <div className="selectedAttraction">
-            {address.length ? (
-                    <div className="attraction">
-                        <h1 className="attractionSelectedTitle">Selected Attraction</h1>
-                        <p>{address}</p>
-                        <p className="directions" onClick={() => window.open( `https://www.google.com/maps/dir/?api=1&destination=${address}&travelmode=driving`)}><b>Click Here for Directions</b></p>
-                    </div>
-                ) : null}
+            <div className="attractionInfo">
+                <div className="selectedAttraction">
+                {address.length ? (
+                        <div className="attraction">
+                            <h1 className="attractionSelectedTitle">Selected Attraction</h1>
+                            <p>{address}</p>
+                            <p className="directions" onClick={() => window.open( `https://www.google.com/maps/dir/?api=1&destination=${address}&travelmode=driving`)}><b>Click Here for Directions</b></p>
+                        </div>
+                    ) : null}
+                </div>
+                <div className="yourLocation">
+                {locateMe ? (
+                        <div className="location">
+                            <h1 className="locationTitle">Your GPS Location</h1>
+                            <p className="locationLat"><b>Latitude:</b> {locateMe.lat}</p>
+                            <p className="locationLat"><b>Longitude:</b> {locateMe.lng}</p>
+                        </div>
+                    ) : null}
+                </div>
             </div>
         </div>
     )

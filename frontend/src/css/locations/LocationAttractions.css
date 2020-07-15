@@ -53,3 +53,8 @@
 .directions:hover{
     cursor: pointer;
 }
+
+.attractionInfo {
+    display: flex;
+    flex-direction: column;
+}

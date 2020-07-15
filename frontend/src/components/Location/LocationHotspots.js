@@ -95,7 +95,9 @@ const LocationHotspots = ({info}) => {
                     {/* <button onClick={uploadHandler}>Upload!</button> */}
                     <input type="submit"/>
                     {submitted ? (
-                        <p className="success">Submission Complete</p>
+                        <div className="disappear">
+                            <p className="success">Submission Complete</p>
+                        </div>
                     ): null}
                 </form>
                 {selectedHotspot ? (

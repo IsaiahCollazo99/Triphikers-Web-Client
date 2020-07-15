@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { GoogleMap, useLoadScript, Marker } from '@react-google-maps/api';
-import gspIcon from "../../../images/gps.png"
+// import gspIcon from "../../../images/gps.png"
 
 let apiKey = "AIzaSyA0vq8MgHI_qpQ45Ug8ZyOPCoIEtk5MjjM";
 
@@ -36,19 +36,6 @@ const AttractionsMap = ({ location, zoom }) => {
             <GoogleMap mapContainerStyle={mapContainerStyle} zoom={zoom} center={location} onLoad={onMapLoad}>
                 <Marker position={{ lat: parseFloat(location.lat), lng: parseFloat(location.lng) }}/>
             </GoogleMap>
-        </div>
-    )
-}
-
-const Locate = ({panTo}) => {
-    return(
-        <div className="findMe">
-            <p><b>Find Me:</b></p>
-            <img className="gpsIcon" src={gspIcon} alt="locate me" onClick={() => {
-                navigator.geolocation.getCurrentPosition((position) => {
-                    panTo({ lat: position.coords.latitude, lng: position.coords.longitude})
-                }, () => null)
-            }}/>
         </div>
     )
 }
