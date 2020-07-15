@@ -1,10 +1,11 @@
 .lp-latestTrips {
-    margin-top: 2em;
     width: 100%;
     display: flex;
     flex-direction: column;
     align-items: center;
+    justify-content: space-evenly;
     transition: 0.3s ease-in-out;
+    height: 90%;
 }
 
 .lp-bottom h1 {
@@ -28,6 +29,7 @@
     flex-direction: row;
     justify-content: space-evenly;
     align-items: center;
+    height: 70%;
 }
 
 .lp-carouselBtn {
@@ -52,6 +54,8 @@
 .lp-latestTrips .tripCard {
     width: 80%;
     font-size: 1.25em;
+    height: 90%;
+    margin: 0;
 }
 
 .lp-latestTrips img {
