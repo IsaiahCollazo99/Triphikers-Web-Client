@@ -64,7 +64,7 @@ const LocationAttractions = ({info}) => {
     }
 
     const getMap = (coord, zoom) => {
-        if(coord !== undefined){
+        if(coord.lat !== undefined){
             let coordinates = {
                 lat: parseFloat(coord.lat),
                 lng: parseFloat(coord.lng)
