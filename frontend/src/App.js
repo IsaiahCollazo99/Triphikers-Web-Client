@@ -11,6 +11,7 @@ import LocationPage from "./components/Location/LocationPage"
 import Login	from "./components/Login/Login"
 import UserPage from "./components/User/UserPage";
 import NavBar from "./components/General/NavBar";
+import { AuthRoute, ProtectedRoute } from "./util/routesUtil";
 
 
 function App() {
@@ -28,39 +29,39 @@ function App() {
 		<div className="App">
 			{displayMainNav()}
 			<Switch>
-				<Route exact path="/">
+				<AuthRoute exact path="/">
 					<LandingPage />
-				</Route>
+				</AuthRoute>
 
-				<Route path="/signUp" >
+				<AuthRoute path="/signUp" >
 					<CreateSignUpContainer />
-				</Route>
+				</AuthRoute>
 
-				<Route path="/signIn" >
+				<AuthRoute path="/signIn" >
 					<Login />
-				</Route>
+				</AuthRoute>
 				
-				<Route path="/user" >
+				<ProtectedRoute path="/user" >
 					<UserPage />
-				</Route>
+				</ProtectedRoute>
 				
-				<Route exact path="/trips">
+				<ProtectedRoute exact path="/trips">
 					<TripsPage />
-				</Route>
+				</ProtectedRoute>
 
-				<Route path="/trips/create">
+				<ProtectedRoute path="/trips/create">
 					<CreateTripsContainer />
-				</Route>
+				</ProtectedRoute>
 
-				<Route path="/trips/:id">
+				<ProtectedRoute path="/trips/:id">
 					<DetailedTripPage />
-				</Route>
-			
-        <Route path="/location/:locationId">
-          <LocationPage/>
-        </Route>
-      </Switch>
-    </div>
+				</ProtectedRoute>
+				
+				<ProtectedRoute path="/location/:locationId">
+				<LocationPage/>
+				</ProtectedRoute>
+			</Switch>
+		</div>
 	);
 }
 

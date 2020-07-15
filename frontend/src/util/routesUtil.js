@@ -8,7 +8,7 @@ export const AuthRoute = ({children, ...rest}) => {
         <Route 
             {...rest}
             render={({location}) => {
-                return !currentUser ? children : <Redirect from={location} to="/" />
+                return !currentUser ? children : <Redirect from={location} to="/trips" />
             }}
         />
 

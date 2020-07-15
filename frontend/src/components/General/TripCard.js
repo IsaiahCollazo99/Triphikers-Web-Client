@@ -1,8 +1,10 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import '../../css/general/tripCard.css';
 import { useHistory } from 'react-router-dom';
+import { AuthContext } from '../../providers/AuthContext';
 
 const TripCard = ({ trip, deleteTripCall, completeTripCall }) => {
+    const { currentUser } = useContext(AuthContext);
     const history = useHistory();
     
     const redirect = (e) => {
@@ -26,12 +28,19 @@ const TripCard = ({ trip, deleteTripCall, completeTripCall }) => {
                 <p className="error">EXPIRED</p>
             )
         } else {
-            return (
-                <>
-                    <button className="tc-req tc-btn">Request</button>
+            if(currentUser.id === trip.user_id) {
+                return (
+                    <>
                     <button onClick={handleCompleteClick} className="tc-com tc-btn">Complete</button>
-                </>
-            )
+                    <button onClick={handleDeleteClick} className="tc-del tc-btn">Delete</button>
+                    </>
+                )
+            } else {
+                return (
+                    <button className="tc-req tc-btn">Request</button>
+                )
+
+            }
         }
     }
     
@@ -59,7 +68,6 @@ const TripCard = ({ trip, deleteTripCall, completeTripCall }) => {
                 
                 <div className="tripCardButtons">
                     {displayExpired()}
-                    <button onClick={handleDeleteClick} className="tc-del tc-btn">Delete</button>
                 </div>
             </header>
 
