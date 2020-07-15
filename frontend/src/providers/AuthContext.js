@@ -13,7 +13,7 @@ const AuthProvider = ({ children }) => {
   
   const API = apiURL();
 
-  const updateUser = async (user, i = 0) => {
+  const updateUser = async ( user ) => {
     try {
         if(user) {
             const { uid } = user;
