@@ -1,13 +1,15 @@
 import React, { useEffect, useState } from 'react';
-
-import LandingPageNav from '../LandingPage/LandingPageNav';
+import Profile from './Profile';
+// import Profile from  './Profile'
 
 const UserPage = () => {
     
     
     return (
       
-        <></>
+        <>
+           <Profile/> 
+        </>
     )
 }
 

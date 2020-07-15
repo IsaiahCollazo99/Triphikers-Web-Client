@@ -1,4 +1,4 @@
-import firebase from "../firebase";
+import firebase from '../firebase';
 import { storage } from 'firebase';
 
 firebase.auth().useDeviceLanguage();
