@@ -165,12 +165,12 @@ module.exports = {
       }
     } catch (error) {
       if (error.received === 0) {
-        next({
+        throw {
           status: 400,
           error: "User doesn't exist"
-        });
+        };
       } else {
-        next(error);
+        throw error;
       }
     }
   }
