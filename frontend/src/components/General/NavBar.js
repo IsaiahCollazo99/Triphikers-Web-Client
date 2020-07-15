@@ -1,6 +1,7 @@
 import React from 'react';
 import { NavLink, Link } from 'react-router-dom';
 import '../../css/general/navBar.css';
+import { logout } from '../../util/firebaseFunction';
 
 const NavBar = () => {
     const isOnTripsPage = () => window.location.pathname === "/trips";
@@ -15,6 +16,10 @@ const NavBar = () => {
             )
         }
     }
+
+    const redirect = async () => {
+        await logout();
+    }
     
     return (
         <nav className="mainNav">
@@ -28,6 +33,7 @@ const NavBar = () => {
                 <NavLink to="/trips">TRIPS</NavLink>
                 {/* When State management is added updated from /user to /user/:userId */}
                 <NavLink to="/user">PROFILE</NavLink>
+                <a onClick={redirect}>LOG OUT</a>
             </section>
         </nav>
     )

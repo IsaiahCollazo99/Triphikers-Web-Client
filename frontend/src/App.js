@@ -16,7 +16,7 @@ import { AuthRoute, ProtectedRoute } from "./util/routesUtil";
 
 function App() {
 	const displayMainNav = () => {
-		if(window.location.pathname.includes("/trips" ) || window.location.pathname === "/user" || window.location.pathname.includes("/signIn" )) {
+		if(window.location.pathname.includes("/trips" ) || window.location.pathname === "/user") {
 			return (
 				<NavBar />
 			)

@@ -7,6 +7,7 @@ import CreateSignUpForm3 from "./CreateSignUpForm3";
 import SignUpMethod from './SignUpMethod';
 import { createUser } from "../../util/apiCalls/postRequests";
 import { signUp, uploadPicture } from "../../util/firebaseFunction";
+import LandingPageNav from "../LandingPage/LandingPageNav";
 
 const CreateSignUpContainer = () => {
 	const [ error, setError ] = useState(null);
@@ -107,9 +108,12 @@ const CreateSignUpContainer = () => {
 		}
 	};
 	return (
+		<>
+		<LandingPageNav />
 		<div className="createSignUpContainer">
 			{getFormDisplay()}
 		</div>
+		</>
 	);
 };
 
