@@ -45,7 +45,7 @@ const LocationAttractions = ({info}) => {
                         try {
                             const res = await getGeocode({address});
                             const { lat, lng } = await getLatLng(res[0]);
-                            setAddress(address); //add driving directions here
+                            setAddress(address);
                             setCoord({ lat, lng });
                             setZoom(16)
                         } catch(error) {
@@ -100,11 +100,15 @@ const LocationAttractions = ({info}) => {
 
     return (
         <div className="attractionsContainer">
-            <div className="attractionMap">
-                <h1 className="mapTitle">Attractions <span role="img" aria-label="pin"> 📸</span></h1>
-                <Locate setCoord={setCoord} setZoom={setZoom} setLocateMe={setLocateMe}/>
-                <Search coord={info} setAddress={setAddress} setCoord={setCoord} setZoom={setZoom}/>
-                {getMap(coord, zoom)}
+            <div className="attractionMapContainer">
+                <div className="attractionTitle">
+                    <h1 className="mapTitle">Attractions <span role="img" aria-label="pin"> 📸</span></h1>
+                    <Locate className="findMeButton" setCoord={setCoord} setZoom={setZoom} setLocateMe={setLocateMe}/>
+                </div>
+                <div className="attractionMap">
+                    <Search coord={info} setAddress={setAddress} setCoord={setCoord} setZoom={setZoom}/>
+                    {getMap(coord, zoom)}
+                </div>
             </div>
             <div className="attractionInfo">
                 <div className="selectedAttraction">

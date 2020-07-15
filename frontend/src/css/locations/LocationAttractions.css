@@ -16,6 +16,11 @@
     justify-content: space-evenly;
 }
 
+.attractionMapContainer {
+    display: flex;
+    flex-direction: column;
+}
+
 .attractionTitle{
     display: flex;
     flex-direction: row;
