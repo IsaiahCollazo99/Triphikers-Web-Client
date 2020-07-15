@@ -33,18 +33,24 @@ const TripCard = ({ trip, deleteTripCall, completeTripCall }) => {
                 </>
             )
         } else {
-            if(currentUser.id === trip.planner_id) {
-                return (
-                    <>
-                    <button onClick={handleCompleteClick} className="tc-com tc-btn">Complete</button>
-                    <button onClick={handleDeleteClick} className="tc-del tc-btn">Delete</button>
-                    </>
-                )
+            if(currentUser) {
+                if(currentUser.id === trip.planner_id) {
+                    return (
+                        <>
+                        <button onClick={handleCompleteClick} className="tc-com tc-btn">Complete</button>
+                        <button onClick={handleDeleteClick} className="tc-del tc-btn">Delete</button>
+                        </>
+                    )
+                } else {
+                    return (
+                        <button className="tc-req tc-btn">Request</button>
+                    )
+    
+                }
             } else {
                 return (
                     <button className="tc-req tc-btn">Request</button>
                 )
-
             }
         }
     }
