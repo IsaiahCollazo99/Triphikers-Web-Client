@@ -1,13 +1,14 @@
 import React, { useEffect, useState } from 'react';
-
-import LandingPageNav from '../LandingPage/LandingPageNav';
+// import NavBar from "../General/NavBar";
 
 const UserPage = () => {
     
     
     return (
       
-        <></>
+        <>
+            {/* <NavBar /> */}
+        </>
     )
 }
 

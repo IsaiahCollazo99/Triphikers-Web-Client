@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { useHistory } from "react-router-dom";
-import LandingPageNav from "../LandingPage/LandingPageNav"
-// import { login } from "../../util/firebaseFunctions";
+import NavBar from "../General/NavBar"
+import { login } from "../../util/firebaseFunction";
 
 
 
@@ -17,7 +17,7 @@ export default function Login() {
 		e.preventDefault();
 		
 		try {
-			// await login(email, password);
+			 await login(email, password);
       history.push("/user");
       console.log(email, password)
 		} catch (error) {
@@ -27,9 +27,6 @@ export default function Login() {
 	};
   return (
    <>
-       <div>
-				<LandingPageNav/>
-       </div> 
     <div className="logInFormDiv">
 			
 				{error ? <p className="error">{error.message}</p> : null}
