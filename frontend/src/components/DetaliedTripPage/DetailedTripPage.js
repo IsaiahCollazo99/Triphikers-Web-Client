@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useContext } from 'react';
 import { useParams, Route, Switch } from 'react-router-dom';
 import { getTripById } from '../../util/apiCalls/getRequests';
 import DetailedTripNav from './DetailedTripNav';
@@ -6,9 +6,12 @@ import DetailedTripInfo from './DetailedTripInfo';
 import DetailedTripRequests from './DetailedTripRequests';
 import DetailedTripTravelers from './DetailedTripTravelers';
 import '../../css/detailedTripPage/detailedTripPage.css';
+import { AuthContext } from '../../providers/AuthContext';
+import { ProtectedUserRoute } from '../../util/routesUtil';
 
 const DetailedTripPage = () => {
     const { id } = useParams();
+    const { currentUser } = useContext(AuthContext);
     const [ trip, setTrip ] = useState({});
 
     const getTripCall = async () => {
@@ -25,7 +28,6 @@ const DetailedTripPage = () => {
         getTripCall();
     }, [])
 
-    
     return (
         <div className="detailedTripContainer">
             <header className="dt-header">
@@ -58,9 +60,10 @@ const DetailedTripPage = () => {
                     <DetailedTripInfo trip={trip} getTripCall={getTripCall}/>
                 </Route>
 
-                <Route exact path={"/trips/:tripId/requests"}>
+                
+                <ProtectedUserRoute exact path={"/trips/:tripId/requests"} trip={trip}>
                     <DetailedTripRequests trip={trip} />
-                </Route>
+                </ProtectedUserRoute>
 
                 <Route exact path={"/trips/:tripId/travelers"}>
                     <DetailedTripTravelers trip={trip} />

@@ -6,7 +6,6 @@ const NavBar = () => {
     const isOnTripsPage = () => window.location.pathname === "/trips";
     const isOnCreateTripsPage = () => window.location.pathname === "/trips/create";
 
-
     const displayCreateTrip = () => {
         if(isOnTripsPage() || isOnCreateTripsPage()) {
             return null
