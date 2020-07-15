@@ -74,12 +74,30 @@ const TripsPage = () => {
         getTripsCall();
     }, [])
 
+    const isTripExpired = ( trip ) => {
+        const currentDate = new Date();
+        const tripDateTo = new Date(trip.date_to);
+        const currentTime = currentDate.getTime();
+        const dateToTime = tripDateTo.getTime();
+        return currentTime > dateToTime;
+    }
+
     const getTripsList = ( tripsArr ) => {
-        return tripsArr.map(trip => {
-            return (
-                <TripCard trip={trip} deleteTripCall={deleteTripCall} completeTripCall={completeTripCall} key={trip.id} />
-            )
+        const validTrips = [];
+        const expiredTrips = [];
+        tripsArr.forEach(trip => {
+            if(trip.is_completed || isTripExpired(trip)) {
+                expiredTrips.push(
+                    <TripCard trip={trip} deleteTripCall={deleteTripCall} completeTripCall={completeTripCall} key={trip.id} />
+                )
+            } else {
+                validTrips.push(
+                    <TripCard trip={trip} deleteTripCall={deleteTripCall} completeTripCall={completeTripCall} key={trip.id} />
+                )
+            }
         })
+
+        return [...validTrips, ...expiredTrips]
     }
 
     let tripsList;
