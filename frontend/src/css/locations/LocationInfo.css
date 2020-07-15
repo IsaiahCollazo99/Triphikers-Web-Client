@@ -10,7 +10,7 @@
     grid-template-columns: 70% 30%;
     grid-template-rows: 50% 50%;
     width: 100vw;
-    height: 50%;
+    height: 40vh;
     background-color: #021F66;
     color: white;
 }
@@ -59,20 +59,33 @@
 }
 
 .details {
+    height: 100%;
     grid-row-start: 2;
     display: flex;
-    flex-direction: column;
-    align-items: center;
+    flex-direction: row;
     border: 1px solid black;
+    justify-content: space-around;
+}
+
+.detailsText{
+    align-items: center;
+    justify-content: center;
 }
 
 .emergencyServices{
     grid-row-start: 2;
+    display: flex;
+    flex-direction: column;
     align-items: center;
+    justify-content: center;
     text-align: center;
     border: 1px solid black;
 }
 
 .locationPageText{
-    font-size: 20px;
+    font-size: 110%;
+}
+
+.googleMaps {
+    padding-top: 3%;
 }

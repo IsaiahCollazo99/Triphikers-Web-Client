@@ -5,6 +5,7 @@ CREATE DATABASE triphikers_db;
 
 DROP TABLE IF EXISTS trips;
 DROP TABLE IF EXISTS locations;
+DROP TABLE IF EXISTS hotspots;
 DROP TABLE IF EXISTS users;
 
 CREATE TABLE users (
@@ -41,9 +42,19 @@ CREATE TABLE trips (
 CREATE TABLE locations (
     id SERIAL PRIMARY KEY,
     image VARCHAR,
-    latitude VARCHAR,
-    longitude VARCHAR,
+    lat VARCHAR,
+    lng VARCHAR,
     location_name VARCHAR,
     emergency_services VARCHAR,
+    poster_id VARCHAR REFERENCES users(id) ON DELETE CASCADE
+);
+
+CREATE TABLE hotspots (
+    id SERIAL PRIMARY KEY,
+    lat VARCHAR,
+    lng VARCHAR,
+    hotspot_title VARCHAR,
+    body VARCHAR,
+    image VARCHAR,
     poster_id VARCHAR REFERENCES users(id) ON DELETE CASCADE
 );

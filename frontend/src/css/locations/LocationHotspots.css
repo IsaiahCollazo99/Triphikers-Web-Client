@@ -1,0 +1,40 @@
+/* background main color
+    dark blue: #021F66
+    medium blue: #083DCC
+    light blue: #3370FF
+    yellow: #FDB21A
+*/
+
+.hotSpotContainer {
+    display: flex;
+    flex-direction: row;
+    background-color: #083DCC;
+    height: 57vh;
+    justify-content: space-evenly;
+}
+
+.mapTitle{
+    display: flex;
+    /* flex-shrink: inherit;
+    needs to be able to shrink when the aspect ratio is changed */
+}
+
+.hotSpotForm {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+}
+
+.formWithSelect {
+    display: flex;
+    flex-direction: column;
+}
+.disappear {
+    animation-name: hide;
+    animation-duration: 12s;
+}
+
+@keyframes hide {
+    from { opacity: 1; }
+    to { opacity: 0; }
+  }
