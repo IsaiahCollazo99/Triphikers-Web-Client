@@ -2,8 +2,6 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import "../../css/locations/LocationInfo.css";
 import InfoMap from "../helper/maps/InfoMap";
-// let apiKey ="AIzaSyCpINhVI_CTjIc8xOastGFa5-dHpE-oIgg";
-
 const LocationInfo = ({info}) => {
     const [currency, setCurrency] = useState([])
     //is information coming from backend, will have to change the child info

@@ -15,8 +15,10 @@ import {
     ComboboxOption
   } from "@reach/combobox";
   import "@reach/combobox/styles.css";
-
-let apiKey = "AIzaSyA0vq8MgHI_qpQ45Ug8ZyOPCoIEtk5MjjM";
+  
+const {
+    REACT_APP_GOOGLEAPIKEY
+} = process.env;
 const libraries = ["places"];
 
 const LocationAttractions = ({info}) => {
@@ -26,7 +28,7 @@ const LocationAttractions = ({info}) => {
     const [locateMe, setLocateMe] = useState(null);
 
     const {isLoaded, loadError} = useLoadScript({
-        googleMapsApiKey: apiKey,
+        googleMapsApiKey: REACT_APP_GOOGLEAPIKEY,
         libraries,
     });
 

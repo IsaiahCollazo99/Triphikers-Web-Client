@@ -1,7 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import { GoogleMap, useLoadScript, Marker } from '@react-google-maps/api';
-let apiKey = "AIzaSyA0vq8MgHI_qpQ45Ug8ZyOPCoIEtk5MjjM";
 
+const {
+    REACT_APP_GOOGLEAPIKEY
+} = process.env;
 const libraries = ["places"];
 const mapContainerStyle = {
     width: "50vw",
@@ -15,7 +17,7 @@ const HotspotMap = ({ location, fetchData, allMarkers }) => {
     const [zoom, setZoom] = useState(11);
 
     const {isLoaded, loadError} = useLoadScript({
-        googleMapsApiKey: apiKey,
+        googleMapsApiKey: REACT_APP_GOOGLEAPIKEY,
         libraries,
     });
 
