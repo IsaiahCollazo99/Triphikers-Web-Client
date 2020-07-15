@@ -3,6 +3,7 @@ import React from "react";
 
 const CreateSignUpForm1 = (props) => {
 	const { email, password, confirmPassword, handlePageChange } = props;
+	
 	const handleSubmit = (e) => {
 		e.preventDefault()
 		handlePageChange(2)
@@ -19,24 +20,12 @@ const CreateSignUpForm1 = (props) => {
 			<input type="email" {...email} name="email" autoComplete="on" required />
 
 			<label htmlFor="password">Password </label>
-			<input
-				type="password"
-				{...password}
-				name="password"
-				autoComplete="on"
-				required
-			/>
+			<input type="password" {...password} name="password" autoComplete="on" required />
 
 			<label htmlFor="confirm">Confirm password: </label>
-			<input
-				type="password"
-				{...confirmPassword}
-				name="confirm"
-				autoComplete="on"
-				required
-			/>
+			<input type="password" {...confirmPassword} name="confirm" autoComplete="on" required />
 
-			<input type="submit" value="NEXT PAGE" />
+			<input type="submit" value="continue" />
 		</form>
 		</>
 	);
