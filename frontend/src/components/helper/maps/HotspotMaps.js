@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react';
 import { GoogleMap, useLoadScript, Marker } from '@react-google-maps/api';
-import axios from "axios";
 let apiKey = "AIzaSyA0vq8MgHI_qpQ45Ug8ZyOPCoIEtk5MjjM";
 
 const libraries = ["places"];
@@ -19,8 +18,6 @@ const HotspotMap = ({ location, fetchData, allMarkers }) => {
         googleMapsApiKey: apiKey,
         libraries,
     });
-
-    
 
     useEffect(() => {
         if(markers.length === undefined || selected !== null ) {

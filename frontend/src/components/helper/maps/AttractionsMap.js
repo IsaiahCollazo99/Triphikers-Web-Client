@@ -11,7 +11,6 @@ const mapContainerStyle = {
 }
 
 const AttractionsMap = ({ location, zoom }) => {
-    // const [address, setAddress] = useState([]);
     const {isLoaded, loadError} = useLoadScript({
         googleMapsApiKey: apiKey,
         libraries,

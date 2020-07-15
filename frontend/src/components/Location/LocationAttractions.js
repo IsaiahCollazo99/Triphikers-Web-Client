@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import AttractionsMap from "../helper/maps/AttractionsMap";
 import "../../css/locations/LocationAttractions.css";
+import { useLoadScript } from '@react-google-maps/api';
 import usePlacesAutocomplete, {
     getGeocode,
     getLatLng,
@@ -14,16 +15,24 @@ import {
   } from "@reach/combobox";
   import "@reach/combobox/styles.css";
 
+let apiKey = "AIzaSyA0vq8MgHI_qpQ45Ug8ZyOPCoIEtk5MjjM";
+const libraries = ["places"];
+
 const LocationAttractions = ({info}) => {
     const [address, setAddress] = useState([]);
     const [coord, setCoord] = useState([]);
     const [zoom, setZoom] = useState(11);
 
+    const {isLoaded, loadError} = useLoadScript({
+        googleMapsApiKey: apiKey,
+        libraries,
+    });
+
     const Search = ({ coord, setAddress, setCoord, setZoom}) => {
         const {ready, value, suggestions: {status, data}, setValue, clearSuggestions} = usePlacesAutocomplete({
             requestOptions: {
-                location: { lat: () => coord.lat, lng: () => coord.lng },
-                radius:  10 * 1000,
+                location: { lat: () => parseFloat(coord.lat), lng: () => parseFloat(coord.lng) },
+                radius:  25 * 1000,
             }
         })
         return(
@@ -72,11 +81,14 @@ const LocationAttractions = ({info}) => {
         }
     }, [info])
 
+    if(loadError) return "Error loading maps";
+    if(!isLoaded) return "Loading maps";
+
     return (
         <div className="attractionsContainer">
             <div className="attractionMap">
                 <h1 className="mapTitle">Attractions <span role="img" aria-label="pin"> 📸</span></h1>
-                <Search coord={coord} setAddress={setAddress} setCoord={setCoord} setZoom={setZoom}/>
+                <Search coord={info} setAddress={setAddress} setCoord={setCoord} setZoom={setZoom}/>
                 {getMap(coord, zoom)}
             </div>
             <div className="selectedAttraction">

@@ -76,6 +76,7 @@ const LocationHotspots = ({info}) => {
 
     useEffect(() => {
         fetchMarkers();
+        
     }, [submitted])
 
     return (
