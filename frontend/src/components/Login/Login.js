@@ -14,9 +14,8 @@ export default function Login() {
 
 	const handleSignIn = async (e) => {
 		e.preventDefault();
-		
 		try {
-			await login(email, password);
+			await login(email.value, password.value);
       		history.push("/trips");
 		} catch (error) {
 			debugger;

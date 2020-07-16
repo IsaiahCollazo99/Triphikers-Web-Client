@@ -5,7 +5,6 @@ import { Switch, Route } from "react-router-dom";
 import CreateTripsContainer from "./components/CreateTrip/CreateTripContainer";
 import DetailedTripPage from "./components/DetaliedTripPage/DetailedTripPage";
 import LandingPage from "./components/LandingPage/LandingPage";
-// import LandingPageNav from "./components/LandingPage/LandingPageNav";
 import CreateSignUpContainer from "./components/Login/SignUpContainer";
 import LocationPage from "./components/Location/LocationPage"
 import Login	from "./components/Login/Login"
@@ -30,38 +29,45 @@ function App() {
 	
 	return (
 		<div className="App">
-			{displayMainNav()}
 			<Switch>
 				<AuthRoute exact path="/">
+					<LandingPageNav />
 					<LandingPage />
 				</AuthRoute>
 
-				<AuthRoute path="/signUp" >
+				<AuthRoute exact path="/signUp" >
+					<LandingPageNav />
 					<CreateSignUpContainer />
 				</AuthRoute>
 
-				<AuthRoute path="/signIn" >
+				<AuthRoute exact path="/signIn" >
+					<LandingPageNav />
 					<Login />
 				</AuthRoute>
 				
-				<ProtectedRoute path="/user" >
+				<ProtectedRoute exact path="/user" >
+					<NavBar />
 					<UserPage />
 				</ProtectedRoute>
 				
 				<ProtectedRoute exact path="/trips">
+					<NavBar />
 					<TripsPage />
 				</ProtectedRoute>
 
 				<ProtectedRoute path="/trips/create">
+					<NavBar />
 					<CreateTripsContainer />
 				</ProtectedRoute>
 
 				<ProtectedRoute path="/trips/:id">
+					<NavBar />
 					<DetailedTripPage />
 				</ProtectedRoute>
 				
 				<ProtectedRoute path="/location/:locationId">
-				<LocationPage/>
+					<NavBar />
+					<LocationPage/>
 				</ProtectedRoute>
 			</Switch>
 		</div>
