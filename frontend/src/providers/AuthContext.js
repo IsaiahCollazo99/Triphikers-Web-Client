@@ -39,11 +39,6 @@ const AuthProvider = ({ children }) => {
         return unsubscribe;
     }, [])
 
-    if(loading) {
-        return (
-            <div className="loading">Loading...</div>
-        )
-    }
     return (
         <AuthContext.Provider value={{currentUser, token, updateUser}}>
             {children}
