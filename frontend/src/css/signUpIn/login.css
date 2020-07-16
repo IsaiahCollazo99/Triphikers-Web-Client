@@ -1,0 +1,21 @@
+.loginContainer {
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.loginContainer form {
+    display: flex;
+    flex-direction: column;
+}
+
+.loginContainer label {
+    display: flex;
+    flex-direction: column;
+    margin-top: 1em;
+}
+
+.loginContainer button {
+    margin-top: 1em;
+}

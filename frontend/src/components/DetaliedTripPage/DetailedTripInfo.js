@@ -1,11 +1,13 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import '../../css/detailedTripPage/detailedTripInfo.css';
 import { deleteTrip } from '../../util/apiCalls/deleteRequests';
 import { useHistory } from 'react-router-dom';
 import { completeTrip } from '../../util/apiCalls/patchRequests';
 import { getTripById } from '../../util/apiCalls/getRequests';
+import { AuthContext } from '../../providers/AuthContext';
 
 const DetailedTripInfo = ({ trip = {}, getTripCall }) => {
+    const { currentUser } = useContext(AuthContext);
     const history = useHistory();
 
     const deleteTripCall = async () => {
@@ -17,20 +19,32 @@ const DetailedTripInfo = ({ trip = {}, getTripCall }) => {
         await completeTrip(trip.id);
         getTripCall();
     }
-
+    
     const displayExpired = () => {
         const currentDate = new Date();
-        if(currentDate.getTime() > new Date(trip.date_to).getTime() || trip.is_completed) {
-            return (
-                <p className="error">EXPIRED</p>
-            )
-        } else {
+        const currentTime = currentDate.getTime();
+        const dateToTime = new Date(trip.date_to).getTime();
+        if(currentTime > dateToTime || trip.is_completed) {
             return (
                 <>
-                    <button className="dt-req">Request</button>
-                    <button onClick={completeTripCall} className="dt-com">Complete</button>
+                <p className="error">EXPIRED</p>
+                <button onClick={deleteTripCall} className="dt-del">Delete</button>
                 </>
             )
+        } else {
+            if(currentUser.id === trip.planner_id) {
+                return (
+                    <>
+                    <button onClick={completeTripCall} className="dt-com">Complete</button>
+                    <button onClick={deleteTripCall} className="dt-del">Delete</button>
+                    </>
+                )
+            } else {
+                return (
+                    <button className="dt-req">Request</button>
+                )
+
+            }
         }
     }
     
@@ -48,7 +62,6 @@ const DetailedTripInfo = ({ trip = {}, getTripCall }) => {
 
                 <section className="dt-buttons">
                     {displayExpired()}
-                    <button onClick={deleteTripCall} className="dt-del">Delete</button>
                 </section>
             </header>
 
