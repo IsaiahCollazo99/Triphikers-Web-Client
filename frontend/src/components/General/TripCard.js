@@ -29,7 +29,6 @@ const TripCard = ({ trip, deleteTripCall, completeTripCall }) => {
             return (
                 <>
                 <p className="error">EXPIRED</p>
-                <button onClick={handleDeleteClick} className="tc-del tc-btn">Delete</button>
                 </>
             )
         } else {
