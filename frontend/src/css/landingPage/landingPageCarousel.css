@@ -29,4 +29,6 @@
 
 .lp-carousel .tripCard {
     margin: 0;
+    font-size: 1.25em;
+    width: 80%;
 }
