@@ -7,7 +7,7 @@
     color: #FF9E00;
     padding: 1em 0.75em;
     background-color: #272A33;
-    position: sticky;
+    position: fixed;
     top: 0;
     z-index: 2;
 }

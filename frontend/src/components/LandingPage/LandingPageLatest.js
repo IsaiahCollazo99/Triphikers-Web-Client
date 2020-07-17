@@ -49,13 +49,10 @@ const LandingPageLatest = () => {
     }
     
     return (
-        <section className="lp-latestTrips">
-            <h1>LATEST TRIPS</h1>
-            <div className="lp-carousel">
-                <button onClick={handlePrevTrip} className="lp-carouselBtn">{"<"}</button>
-                {displayedTrip()}
-                <button onClick={handleNextTrip} className="lp-carouselBtn">{">"}</button>
-            </div>
+        <section className="lp-carousel">
+            <button onClick={handlePrevTrip} className="lp-carouselBtn">{"<"}</button>
+            {displayedTrip()}
+            <button onClick={handleNextTrip} className="lp-carouselBtn">{">"}</button>
         </section>
     )
 }

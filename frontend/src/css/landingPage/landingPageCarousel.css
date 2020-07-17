@@ -1,35 +1,11 @@
-.lp-latestTrips {
-    width: 100%;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: space-evenly;
-    transition: 0.3s ease-in-out;
-    height: 90%;
-}
-
-.lp-bottom h1 {
-    font-size: 2em;
-    text-align: center;
-    font-family: 'Prompt';
-    background: linear-gradient(
-        to top,
-        #6334ff,
-        #0099ff
-    );
-    background-clip: text;
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    font-weight: 900;
-}
-
 .lp-carousel {
     width: 100%;
     display: flex;
     flex-direction: row;
-    justify-content: space-evenly;
     align-items: center;
-    height: 70%;
+    justify-content: space-evenly;
+    transition: 0.3s ease-in-out;
+    height: fit-content;
 }
 
 .lp-carouselBtn {
@@ -51,24 +27,6 @@
     cursor: pointer;
 }
 
-.lp-latestTrips .tripCard {
-    width: 80%;
-    font-size: 1.25em;
-    height: 90%;
+.lp-carousel .tripCard {
     margin: 0;
-}
-
-.lp-latestTrips img {
-    width: 150px;
-    height: 150px;
-}
-
-.lp-latestTrips .tripCardButtons {
-    width: 60%;
-}
-
-.lp-latestTrips .tripCard button {
-    padding: 0.5em 0.5em;
-    border-radius: 1.5em;
-    width: 25%;
 }
