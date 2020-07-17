@@ -1,4 +1,4 @@
-.lp-middle {
+.lp-why {
     width: 100%;
     height: fit-content;
     position: relative;
@@ -8,7 +8,7 @@
     padding: 2em 0;
 }
 
-.lp-middleBground {
+.lp-whyBground {
     background-color: #dec2ff;
     background-image: repeating-linear-gradient(45deg, transparent, transparent 17px, rgba(255,255,255,.5) 17px, rgba(255,255,255,.5) 34px);
     position: absolute;
@@ -20,7 +20,7 @@
     z-index: -2;
 }
 
-.lp-middle h1 {
+.lp-why h1 {
     font-size: 2em;
     margin-bottom: 1em;
     text-align: center;
@@ -36,7 +36,7 @@
     font-weight: 900;
 }
 
-.lp-middle section {
+.lp-why section {
     width: 80%;
     margin-bottom: 3em;
     display: flex;
@@ -44,15 +44,15 @@
     justify-content: space-evenly;
 }
 
-.lp-middle img {
+.lp-why img {
     width: 40%;
     object-fit: cover;
 }
 
-.lp-middle article {
+.lp-why article {
     width: 40%;
 }
 
-.lp-middle p {
+.lp-why p {
     font-size: 1.25em;
 }

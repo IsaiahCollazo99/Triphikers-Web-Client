@@ -46,7 +46,7 @@
 }
 
 .tripCardTitle {
-    font-weight: bold;
+    font-weight: 700;
     color: rgb(255, 157, 0);
     transition: 0.3s ease-in-out;
 }
@@ -103,7 +103,7 @@
 
 .tripCard span {
     font-weight: bold;
-    color: #6433FF;
+    color: #157CFF;
 }
 
 .tc-tl {

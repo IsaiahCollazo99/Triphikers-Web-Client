@@ -5,8 +5,8 @@ import '../../css/landingPage/landingPageWhy.css';
 
 const LandingPageWhy = ({ redirect }) => {
     return (
-        <section className="lp-middle"> 
-            <div className="lp-middleBground"></div>
+        <section className="lp-why"> 
+            <div className="lp-whyBground"></div>
             <h1>WHY TRIPHIKERS IS THE BEST PLACE TO FIND TRAVEL PARTNERS?</h1>
             <section>
                 <img src={whyTriphikersImg} alt="Friends Traveling" />
