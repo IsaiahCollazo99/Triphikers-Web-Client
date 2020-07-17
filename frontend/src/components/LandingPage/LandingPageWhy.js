@@ -1,6 +1,8 @@
 import React from 'react';
+import LandingPageCreateAccount from "./LandingPageCreateAccount";
+import whyTriphikersImg from '../../images/whyTriphikersImg.jpg';
 
-const LandingPageWhy = () => {
+const LandingPageWhy = ({ redirect }) => {
     return (
         <section className="lp-middle"> 
             <div className="lp-middleBground"></div>
@@ -19,6 +21,7 @@ const LandingPageWhy = () => {
                     </p>
                 </article>
             </section>
+            
             <LandingPageCreateAccount redirect={redirect} />
         </section>
     )

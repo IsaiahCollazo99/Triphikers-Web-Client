@@ -1,15 +1,8 @@
 import React from 'react';
-import { useHistory } from 'react-router-dom';
 import LandingPageLatest from "./LandingPageLatest";
 import '../../css/landingPage/landingPageAbout.css';
 
-const LandingPageAbout = () => {
-    const history = useHistory();
-
-    const redirect = () => {
-        history.push("/signUp");
-    }
-    
+const LandingPageAbout = ({ redirect }) => {
     return (
         <section className="lp-about">
 
