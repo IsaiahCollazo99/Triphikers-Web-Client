@@ -61,7 +61,6 @@ function App() {
 				</ProtectedRoute>
 				
 				<ProtectedRoute path="/location/:locationId">
-				<LocationPage/>
 				</ProtectedRoute>
 			</Switch>
 		</div>

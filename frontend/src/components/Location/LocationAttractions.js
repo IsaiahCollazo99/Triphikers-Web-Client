@@ -42,7 +42,7 @@ const LocationAttractions = ({info}) => {
         return(
             <div className="search">
                 <Combobox onSelect={async (address) => {
-                    setValue(address, false);
+                    // setValue(address, false);
                     clearSuggestions();
                         try {
                             const res = await getGeocode({address});
@@ -55,7 +55,6 @@ const LocationAttractions = ({info}) => {
                         }
                     }}>
                     <ComboboxInput className="searchInput" value={value} onChange={(e)=>{
-                        setValue(e.target.value)
                     }} disabled={!ready} placeholder="Search An Attraction"/>
                     <ComboboxPopover>
                         <ComboboxList>
