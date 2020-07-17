@@ -10,7 +10,7 @@ const LandingPageAbout = ({ redirect }) => {
 
             <LandingPageLatest />
 
-			<button onClick={redirect}>See More Trips</button>
+			<button onClick={redirect} className="lp-orange">See More Trips</button>
 
 		</section>
     )

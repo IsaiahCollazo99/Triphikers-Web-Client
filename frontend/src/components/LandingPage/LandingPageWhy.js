@@ -1,6 +1,7 @@
 import React from 'react';
 import LandingPageCreateAccount from "./LandingPageCreateAccount";
 import whyTriphikersImg from '../../images/whyTriphikersImg.jpg';
+import '../../css/landingPage/landingPageWhy.css';
 
 const LandingPageWhy = ({ redirect }) => {
     return (
@@ -21,7 +22,7 @@ const LandingPageWhy = ({ redirect }) => {
                     </p>
                 </article>
             </section>
-            
+
             <LandingPageCreateAccount redirect={redirect} />
         </section>
     )
