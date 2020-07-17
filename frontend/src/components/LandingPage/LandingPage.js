@@ -35,11 +35,7 @@ const LandingPage = () => {
 				</section>
 				<LandingPageCreateAccount redirect={redirect} />
 			</section>
-					
-			<section className="lp-bottom">
-				<div className="lp-bottomBground"></div>
-				
-			</section>
+
         </main>
     )
 }
