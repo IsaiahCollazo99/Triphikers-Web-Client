@@ -1,5 +1,4 @@
 import React from "react";
-import LandingPageIcons from "./LandingPageIcons";
 import LandingPageLatest from "./LandingPageLatest";
 import '../../css/landingPage/landingPage.css';
 import { useHistory } from "react-router-dom";
@@ -18,8 +17,6 @@ const LandingPageAbout = () => {
         <section className="lp-top">
 
             <h1>FIND YOUR TRAVEL PARTNERS FOR LIFE</h1>
-        
-            <LandingPageIcons redirect={redirect} />
 
             <section className="lp-buttons">
                 <LandingPageCreateAccount redirect={redirect} />
