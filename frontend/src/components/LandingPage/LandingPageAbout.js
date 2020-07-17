@@ -1,6 +1,6 @@
 import React from 'react';
 import { useHistory } from 'react-router-dom';
-import LandingPageCreateAccount from "./LandingPageCreateAccount";
+import LandingPageLatest from "./LandingPageLatest";
 
 const LandingPageAbout = () => {
     const history = useHistory();
@@ -12,15 +12,11 @@ const LandingPageAbout = () => {
     return (
         <section className="lp-top">
 
-            <h1>FIND YOUR TRAVEL PARTNERS FOR LIFE</h1>
+            <h1>FIND YOUR TRAVEL PARTNERS FOR LIFE. FOR FREE</h1>
 
-            <section className="lp-buttons">
-                <LandingPageCreateAccount redirect={redirect} />
+            <LandingPageLatest />
 
-                <button onClick={() => history.push("/signIn")}>
-                    LOGIN
-                </button>
-            </section>
+			<button onClick={redirect} className="lp-seeMore">See More Trips</button>
 
 		</section>
     )

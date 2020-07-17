@@ -1,5 +1,4 @@
 import React from "react";
-import LandingPageLatest from "./LandingPageLatest";
 import '../../css/landingPage/landingPage.css';
 import { useHistory } from "react-router-dom";
 import LandingPageCreateAccount from "./LandingPageCreateAccount";
@@ -39,9 +38,7 @@ const LandingPage = () => {
 					
 			<section className="lp-bottom">
 				<div className="lp-bottomBground"></div>
-				<LandingPageLatest />
-
-				<button onClick={redirect} className="lp-seeMore">See More Trips</button>
+				
 			</section>
         </main>
     )
