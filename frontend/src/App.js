@@ -5,62 +5,51 @@ import { Switch, Route } from "react-router-dom";
 import CreateTripsContainer from "./components/CreateTrip/CreateTripContainer";
 import DetailedTripPage from "./components/DetaliedTripPage/DetailedTripPage";
 import LandingPage from "./components/LandingPage/LandingPage";
-// import LandingPageNav from "./components/LandingPage/LandingPageNav";
 import CreateSignUpContainer from "./components/Login/SignUpContainer";
 import LocationPage from "./components/Location/LocationPage"
 import Login	from "./components/Login/Login"
 import UserPage from "./components/User/UserPage";
 import NavBar from "./components/General/NavBar";
-
+import { AuthRoute, ProtectedRoute } from "./util/routesUtil";
 
 function App() {
-	const displayMainNav = () => {
-		if(window.location.pathname.includes("/trips" ) || window.location.pathname === "/user" || window.location.pathname.includes("/signIn" )) {
-			return (
-				<NavBar />
-			)
-		} else {
-			return null;
-		}
-	}
-	
 	return (
 		<div className="App">
-			{displayMainNav()}
+			<NavBar />
 			<Switch>
-				<Route exact path="/">
+				<AuthRoute exact path="/">
 					<LandingPage />
-				</Route>
+				</AuthRoute>
 
-				<Route path="/signUp" >
+				<AuthRoute exact path="/signUp" >
 					<CreateSignUpContainer />
-				</Route>
+				</AuthRoute>
 
-				<Route path="/signIn" >
+				<AuthRoute exact path="/signIn" >
 					<Login />
-				</Route>
+				</AuthRoute>
 				
-				<Route path="/user" >
+				<ProtectedRoute exact path="/user" >
 					<UserPage />
-				</Route>
+				</ProtectedRoute>
 				
-				<Route exact path="/trips">
+				<ProtectedRoute exact path="/trips">	
 					<TripsPage />
-				</Route>
+				</ProtectedRoute>
 
-				<Route path="/trips/create">
+				<ProtectedRoute path="/trips/create">
 					<CreateTripsContainer />
-				</Route>
+				</ProtectedRoute>
 
-				<Route path="/trips/:id">
+				<ProtectedRoute path="/trips/:id">
 					<DetailedTripPage />
+				</ProtectedRoute>
+				
+				<Route path="/location/:locationId">
+					<LocationPage/>
 				</Route>
-			
-        <Route path="/location/:locationId">
-          <LocationPage/>
-        </Route>
-      </Switch>
-    </div>
+			</Switch>
+		</div>
 	);
 }
 

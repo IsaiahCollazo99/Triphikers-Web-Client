@@ -1,12 +1,14 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
 import { useHistory } from 'react-router-dom';
 import { useInput } from '../../util/customHooks';
 import CreateTripForm1 from './CreateTripForm1';
 import CreateTripForm2 from './CreateTripForm2';
 import { createTrip } from '../../util/apiCalls/postRequests';
 import '../../css/createTrip/createTripContainer.css';
+import { AuthContext } from '../../providers/AuthContext';
 
 const CreateTripsContainer = () => {
+    const { currentUser } = useContext(AuthContext);
     const history = useHistory();
     
     const [ page, setPage ] = useState(1);
@@ -49,7 +51,7 @@ const CreateTripsContainer = () => {
 
     const handleSubmit = async ( e ) => {
         e.preventDefault();
-        await createTrip({...pageOne, ...pageTwo});
+        await createTrip({...pageOne, ...pageTwo}, currentUser);
         history.push("/trips");
     }
 

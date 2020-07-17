@@ -1,61 +1,50 @@
 import React, { useState } from "react";
 import { useHistory } from "react-router-dom";
 import { login } from "../../util/firebaseFunction";
-
-
-
+import { useInput } from "../../util/customHooks";
+import '../../css/signUpIn/login.css';
 
 export default function Login() {
-	const [email, setEmail] = useState("");
-	const [password, setPassword] = useState("");
+	const email = useInput("");
+	const password = useInput("");
 	const [error, setError] = useState(false);
 	const history = useHistory();
 
 
 	const handleSignIn = async (e) => {
 		e.preventDefault();
-		
 		try {
-			 await login(email, password);
-      history.push("/user");
-      console.log(email, password)
+			await login(email.value, password.value);
+      		history.push("/trips");
 		} catch (error) {
 			debugger;
 			setError(error.message);
 		}
 	};
-  return (
-   <>
-    <div className="logInFormDiv">
-			
-				{error ? <p className="error">{error.message}</p> : null}
-		
+  	return (
+		<>
+		<div className="loginContainer">
+			{error ? <p className="error">{error.message}</p> : null}
 				
-      <form onSubmit={handleSignIn} className="signIn">
-        <label>Email :
-						<input
-							value={email}
-							onChange={(e) => setEmail(e.currentTarget.value)}
-							required
-							className="emailInput"
-          />
-        </label>
-        <label>Password :
-						<input
-							type="password"
-							value={password}
-							onChange={(e) => setPassword(e.currentTarget.value)}
-							autoComplete="on"
-							required
-							className="password"
-          />
-          </label>
-						<button type="submit" className="login">
-							Log in
-						</button>
-			</form>			
-			</div>
-			</>
+			<form onSubmit={handleSignIn} className="signIn">
+				<label>
+					Email :
+					<input {...email} type="email" autoComplete="on" required />
+				</label>
+	
+				<label>
+					Password :
+					<input {...password} type="password" autoComplete="on" required />
+	
+				</label>
+	
+				<button type="submit">
+					Log in
+				</button>
+			</form>	
+		</div>		
+				
+		</>
        
 	);
 }

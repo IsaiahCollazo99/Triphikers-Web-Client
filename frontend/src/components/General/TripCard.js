@@ -1,8 +1,10 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import '../../css/general/tripCard.css';
 import { useHistory } from 'react-router-dom';
+import { AuthContext } from '../../providers/AuthContext';
 
 const TripCard = ({ trip, deleteTripCall, completeTripCall }) => {
+    const { currentUser } = useContext(AuthContext);
     const history = useHistory();
     
     const redirect = (e) => {
@@ -21,32 +23,59 @@ const TripCard = ({ trip, deleteTripCall, completeTripCall }) => {
 
     const displayExpired = () => {
         const currentDate = new Date();
-        if(currentDate.getTime() > new Date(trip.date_to).getTime() || trip.is_completed) {
-            return (
-                <p className="error">EXPIRED</p>
-            )
-        } else {
+        const currentTime = currentDate.getTime();
+        const dateToTime = new Date(trip.date_to).getTime();
+        if(currentTime > dateToTime || trip.is_completed) {
             return (
                 <>
-                    <button className="tc-req tc-btn">Request</button>
-                    <button onClick={handleCompleteClick} className="tc-com tc-btn">Complete</button>
+                <p className="error">EXPIRED</p>
                 </>
+            )
+        } else {
+            if(currentUser) {
+                if(currentUser.id === trip.planner_id) {
+                    return (
+                        <>
+                        <button onClick={handleCompleteClick} className="tc-com tc-btn">Complete</button>
+                        <button onClick={handleDeleteClick} className="tc-del tc-btn">Delete</button>
+                        </>
+                    )
+                } else {
+                    return (
+                        <button className="tc-req tc-btn">Request</button>
+                    )
+    
+                }
+            } else {
+                return (
+                    <button className="tc-req tc-btn">Request</button>
+                )
+            }
+        }
+    }
+
+    const displayUserInfo = () => {
+        if(window.location.pathname === "/") {
+            return null
+        } else {
+            return (
+                <aside>
+                    <img src={trip.profile_picture} alt={trip.full_name}/>
+                    <div className="tc-userInfo">
+                        <p>{trip.full_name}</p>
+                        <p>{trip.country_of_origin}</p>
+                        <p>{trip.age}</p>
+                        <p>{trip.gender}</p>
+                    </div>
+                </aside>
             )
         }
     }
     
     return (
-        <div className="tripCard" onClick={redirect}>
-            <aside>
-                <img src={trip.profile_picture} alt={trip.full_name}/>
-                <div className="tc-userInfo">
-                    <p>{trip.full_name}</p>
-                    <p>{trip.country_of_origin}</p>
-                    <p>{trip.age}</p>
-                    <p>{trip.gender}</p>
-                </div>
-            </aside>
-
+        <article className="tripCard" onClick={redirect}>
+            {displayUserInfo()}
+            
             <header>
                 <div className="tripCardInfo">
                     <p className="tripCardTitle">{trip.trip_title}</p>
@@ -59,7 +88,6 @@ const TripCard = ({ trip, deleteTripCall, completeTripCall }) => {
                 
                 <div className="tripCardButtons">
                     {displayExpired()}
-                    <button onClick={handleDeleteClick} className="tc-del tc-btn">Delete</button>
                 </div>
             </header>
 
@@ -69,7 +97,7 @@ const TripCard = ({ trip, deleteTripCall, completeTripCall }) => {
                 <p className="tc-bl"><span>Split Costs: </span>{trip.split_costs}</p>
                 <p className="tc-br"><span>Group Type: </span>{trip.group_type}</p>
             </section>
-        </div>
+        </article>
     )
 }
 

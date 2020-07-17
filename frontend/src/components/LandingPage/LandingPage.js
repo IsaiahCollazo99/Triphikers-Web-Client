@@ -1,20 +1,22 @@
 import React from "react";
-
-import LandingPageNav from "./LandingPageNav";
-import { Switch, Route } from "react-router-dom";
+import '../../css/landingPage/landingPage.css';
+import { useHistory } from "react-router-dom";
 import LandingPageAbout from "./LandingPageAbout";
+import LandingPageWhy from "./LandingPageWhy";
 
 const LandingPage = () => {
-  return (
-		<main className="landingPage">
-      <LandingPageNav />
-     
-      <Switch>
-        <Route exact to="/">
-          <LandingPageAbout /> 
-        </Route>
-      </Switch>
-		</main>
-	);
- }
+	const history = useHistory();
+ 
+    const redirect = () => {
+      history.push("/signUp");
+    }
+    
+    return (
+        <main className="landingPage">
+			<LandingPageAbout redirect={redirect} />
+
+			<LandingPageWhy redirect={redirect} />
+        </main>
+    )
+}
  export default LandingPage
