@@ -46,8 +46,8 @@
 }
 
 .tripCardTitle {
-    font-weight: bold;
-    color: rgb(255, 157, 0);
+    font-weight: 700;
+    color: #c78100;
     transition: 0.3s ease-in-out;
 }
 
@@ -56,12 +56,12 @@
     justify-content: space-evenly;
     width: 40%;
     align-self: center;
-    align-items: center;
     height: 100%;
 }
 
 .tripCard button {
     width: 6em;
+    height: fit-content;
     background-color: #272A33;
     border-radius: 0.75em;
     padding: 0.25em 0;
@@ -103,7 +103,7 @@
 
 .tripCard span {
     font-weight: bold;
-    color: #6433FF;
+    color: #0062e2;
 }
 
 .tc-tl {

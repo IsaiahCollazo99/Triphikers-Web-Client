@@ -9,10 +9,29 @@ const LandingPageLatest = () => {
     const [ carouselPage, setCarouselPage ] = useState(0);
     const history = useHistory();
 
+    const isInvalid = ( trip ) => {
+        const dateToTime = new Date(trip.date_to).getTime();
+        const currentTime = new Date().getTime();
+        return dateToTime < currentTime || trip.is_completed;
+    }
+
+    const getValidTrips = ( tripSet ) => {
+        let validTrips = [];
+
+        tripSet.forEach(trip => {
+            if(!isInvalid(trip)) {
+                validTrips.push(trip);
+            }
+        })
+
+        return validTrips;
+    }
+
     const getTripsCall = async () => {
         let data = await getAllTrips();
         const { trips: allTrips } = data;
-        setTrips(allTrips.slice(0, 4));
+
+        setTrips(getValidTrips(allTrips));
     }
 
     const handlePrevTrip = () => {
@@ -49,13 +68,10 @@ const LandingPageLatest = () => {
     }
     
     return (
-        <section className="lp-latestTrips">
-            <h1>LATEST TRIPS</h1>
-            <div className="lp-carousel">
-                <button onClick={handlePrevTrip} className="lp-carouselBtn">{"<"}</button>
-                {displayedTrip()}
-                <button onClick={handleNextTrip} className="lp-carouselBtn">{">"}</button>
-            </div>
+        <section className="lp-carousel">
+            <button onClick={handlePrevTrip} className="lp-carouselBtn">{"<"}</button>
+            {displayedTrip()}
+            <button onClick={handleNextTrip} className="lp-carouselBtn">{">"}</button>
         </section>
     )
 }

@@ -4,11 +4,12 @@
     flex-direction: row;
     align-items: center;
     justify-content: space-between;
-    color: rgb(255, 157, 0);
+    color: #FF9E00;
     padding: 1em 0.75em;
     background-color: #272A33;
-    position: sticky;
+    position: fixed;
     top: 0;
+    z-index: 2;
 }
 
 .mainNav {
@@ -26,7 +27,7 @@
 }
 
 .mainNav-left a {
-    color: rgb(255, 157, 0);
+    color: #FF9E00;
     text-decoration: none;
 }
 
@@ -34,7 +35,7 @@
     display: flex;
     align-items: center;
     justify-content: space-evenly;
-    width: 30%;
+    width: 50%;
     font-size: 1.5em;
 }
 
@@ -45,10 +46,37 @@
     font-weight: 500;
 }
 
+.mainNav-right a:hover {
+    cursor: pointer;
+}
+
 .mainNav-right a:hover:not(.active) {
-    color: rgb(255, 157, 0);
+    color: #FF9E00;
 }
 
 .mainNav .active {
-    color: #6433FF;
+    color: #157CFF;
+}
+
+.lp-navRight {
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+    width: 50%;
+    font-size: 1.5em;
+}
+
+.lp-navRight a {
+    color: white;
+    text-decoration: none;
+    font-family: 'Roboto';
+    font-weight: 500;
+}
+
+.lp-navRight a:hover:not(.active) {
+    color: #FF9E00;
+}
+
+.lp-nav .active {
+    color: #157CFF;
 }
