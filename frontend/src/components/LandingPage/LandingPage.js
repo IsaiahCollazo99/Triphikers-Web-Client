@@ -4,6 +4,7 @@ import '../../css/landingPage/landingPage.css';
 import { useHistory } from "react-router-dom";
 import LandingPageCreateAccount from "./LandingPageCreateAccount";
 import whyTriphikersImg from '../../images/whyTriphikersImg.jpg';
+import LandingPageAbout from "./LandingPageAbout";
 
 const LandingPage = () => {
 	const history = useHistory();
@@ -14,19 +15,7 @@ const LandingPage = () => {
     
     return (
         <main className="landingPage">
-			<section className="lp-top">
-
-				<h1>FIND YOUR TRAVEL PARTNERS FOR LIFE</h1>
-
-				<section className="lp-buttons">
-					<LandingPageCreateAccount redirect={redirect} />
-
-					<button onClick={() => history.push("/signIn")}>
-						LOGIN
-					</button>
-				</section>
-
-			</section>
+			<LandingPageAbout />
 
 			<section className="lp-middle"> 
 				<div className="lp-middleBground"></div>
