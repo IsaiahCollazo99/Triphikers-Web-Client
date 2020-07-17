@@ -10,12 +10,7 @@ const LandingPageNav = () => {
                 <h1><Link to="/">TRIPHIKERS</Link></h1>
             </section>
 
-            <section className="lp-navRight">
-                <NavLink to="/">ABOUT</NavLink>
-                <NavLink to="/safety">SAFETY</NavLink>
-                <NavLink to="/signUp">CREATE ACCOUNT</NavLink>
-                <NavLink to="/signIn">LOG IN</NavLink>
-            </section>
+
         </nav>
     )
 }

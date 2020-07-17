@@ -15,60 +15,41 @@ import LandingPageNav from "./components/LandingPage/LandingPageNav";
 
 
 function App() {
-	const displayMainNav = () => {
-		if(window.location.pathname.includes("/trips" ) || window.location.pathname === "/user") {
-			return (
-				<NavBar />
-			)
-		} else {
-			return (
-				<LandingPageNav />
-			)
-		}
-	}
-	
 	return (
 		<div className="App">
+			<NavBar />
 			<Switch>
 				<AuthRoute exact path="/">
-					<LandingPageNav />
 					<LandingPage />
 				</AuthRoute>
 
 				<AuthRoute exact path="/signUp" >
-					<LandingPageNav />
 					<CreateSignUpContainer />
 				</AuthRoute>
 
 				<AuthRoute exact path="/signIn" >
-					<LandingPageNav />
 					<Login />
 				</AuthRoute>
 				
 				<ProtectedRoute exact path="/user" >
-					<NavBar />
 					<UserPage />
 				</ProtectedRoute>
 				
-				<ProtectedRoute exact path="/trips">
-					<NavBar />
+				<ProtectedRoute exact path="/trips">	
 					<TripsPage />
 				</ProtectedRoute>
 
 				<ProtectedRoute path="/trips/create">
-					<NavBar />
 					<CreateTripsContainer />
 				</ProtectedRoute>
 
 				<ProtectedRoute path="/trips/:id">
-					<NavBar />
 					<DetailedTripPage />
 				</ProtectedRoute>
 				
-				<ProtectedRoute path="/location/:locationId">
-					<NavBar />
+				<Route path="/location/:locationId">
 					<LocationPage/>
-				</ProtectedRoute>
+				</Route>
 			</Switch>
 		</div>
 	);

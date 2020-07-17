@@ -4,7 +4,7 @@
     flex-direction: row;
     align-items: center;
     justify-content: space-between;
-    color: rgb(255, 157, 0);
+    color: #FF9E00;
     padding: 1em 0.75em;
     background-color: black;
     opacity: 0.8;
@@ -24,7 +24,7 @@
 }
 
 .lp-navLeft a {
-    color: rgb(255, 157, 0);
+    color: #FF9E00;
     text-decoration: none;
 }
 
@@ -44,9 +44,9 @@
 }
 
 .lp-navRight a:hover:not(.active) {
-    color: rgb(255, 157, 0);
+    color: #FF9E00;
 }
 
 .lp-nav .active {
-    color: #6433FF;
+    color: #157CFF;
 }

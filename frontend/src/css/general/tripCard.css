@@ -56,12 +56,12 @@
     justify-content: space-evenly;
     width: 40%;
     align-self: center;
-    align-items: center;
     height: 100%;
 }
 
 .tripCard button {
     width: 6em;
+    height: fit-content;
     background-color: #272A33;
     border-radius: 0.75em;
     padding: 0.25em 0;

@@ -4,7 +4,7 @@
     flex-direction: row;
     align-items: center;
     justify-content: space-between;
-    color: rgb(255, 157, 0);
+    color: #FF9E00;
     padding: 1em 0.75em;
     background-color: #272A33;
     position: sticky;
@@ -26,7 +26,7 @@
 }
 
 .mainNav-left a {
-    color: rgb(255, 157, 0);
+    color: #FF9E00;
     text-decoration: none;
 }
 
@@ -46,9 +46,9 @@
 }
 
 .mainNav-right a:hover:not(.active) {
-    color: rgb(255, 157, 0);
+    color: #FF9E00;
 }
 
 .mainNav .active {
-    color: #6433FF;
+    color: #157CFF;
 }
