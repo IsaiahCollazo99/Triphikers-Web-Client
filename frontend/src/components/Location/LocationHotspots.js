@@ -1,10 +1,13 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
-// import { useInput } from "../../util/customHooks";
 import HotspotMap from "../helper/maps/HotspotMaps";
+import { uploadPicture } from "../../util/firebaseFunction";
 import "../../css/locations/LocationHotspots.css";
+import { useContext } from "react";
+import { AuthContext } from "../../providers/AuthContext";
 
 const LocationHotspots = ({info}) => {
+    const { currentUser } = useContext(AuthContext);
     const [submitCoordinates, setSubmitCoordinates] = useState([]);
     const [selectedHotspot, setSelectedHotspot] = useState(null);
     const [allMarkers, setAllMarkers] = useState([]);
@@ -12,9 +15,6 @@ const LocationHotspots = ({info}) => {
     const [imageFile, setImageFile] = useState(null);
     const [submitHotspotTitle, setSubmitHotspotTitle] = useState("");
     const [submitHotspotBody, setSubmitHotspotBody] = useState("");
-    // const submitHotspotTitle = useInput("");
-    //create an input state instead and handle change for title and body
-    // const submitHotspotBody = useInput("");
 
     const fetchData = (data) => {
         setSubmitCoordinates(data.coordinates);
@@ -42,30 +42,44 @@ const LocationHotspots = ({info}) => {
         }
     }
 
+    
+    const createSubmissionRequest = async (data) => {
+        debugger
+        const submission = {
+            lat: submitCoordinates.lat,
+            lng: submitCoordinates.lng,
+            hotspot_title: submitHotspotTitle,
+            body: submitHotspotBody,
+            image: data.url,
+            poster_id: 1
+        }
+        await axios.post(`http://localhost:3001/api/hotspots`, submission);
+        setSubmitted(true);
+        setSubmitCoordinates([]);
+        setSubmitHotspotTitle("");
+        setSubmitHotspotBody("");
+    }
+    
     const handleSubmit = async (e) => {
         e.preventDefault();
         try {
-            await axios.post(`http://localhost:3001/api/hotspots`, {
-                lat: submitCoordinates.lat,
-                lng: submitCoordinates.lng,
-                hotspot_title: submitHotspotTitle,
-                body: submitHotspotBody,
-                image: imageFile,
-                poster_id: 1
-            })
-            setSubmitCoordinates([]);
-            setSubmitHotspotTitle("");
-            setSubmitHotspotBody("");
-            setSubmitted(true);
+            // await axios.post(`http://localhost:3001/api/hotspots`, {
+            //     lat: submitCoordinates.lat,
+            //     lng: submitCoordinates.lng,
+            //     hotspot_title: submitHotspotTitle,
+            //     body: submitHotspotBody,
+            //     image: imageFile,
+            //     poster_id: 1
+            // })
+            uploadPicture(`hotspots/${submitHotspotTitle}/`, {id: currentUser.id, file: imageFile}, createSubmissionRequest);
         } catch (error) {
             console.log(error)
         }
     }
-
+    
     const handleFileChange = (e) => {
-        debugger
         e.preventDefault();
-        setImageFile({ selectedFile: e.target.files[0] })
+        setImageFile( e.target.files[0] )
     }
 
     const handleTitleChange = (e) => {
@@ -76,18 +90,8 @@ const LocationHotspots = ({info}) => {
         setSubmitHotspotBody(e.currentTarget.value);
     }
 
-    //coming back to this, may directly upload image without submission button
-    // const uploadHandler = async () => {
-    //     try {
-    //        await 
-    //     } catch (error) {
-    //         console.log(error)
-    //     }
-    // }
-
     useEffect(() => {
-        fetchMarkers();
-        
+        fetchMarkers();   
     }, [submitted])
 
     return (
@@ -102,8 +106,7 @@ const LocationHotspots = ({info}) => {
                     <p className="submitLng"><b>Longitude:</b> {submitCoordinates.lng}</p>
                     <input type="text" placeholder="Hotspot Title" value={submitHotspotTitle}  onChange={handleTitleChange}/>
                     <input type="text" placeholder="Type a Description" value={submitHotspotBody} onChange={handleBodyChange}/>
-                    {/* <input type="file" onChange={handleFileChange}/> */}
-                    {/* <button onClick={uploadHandler}>Upload!</button> */}
+                    <input type="file" onChange={handleFileChange}/>
                     <input type="submit"/>
                     {submitted ? (
                         <div className="disappear">
