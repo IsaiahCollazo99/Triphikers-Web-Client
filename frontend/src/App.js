@@ -11,10 +11,13 @@ import Login	from "./components/Login/Login"
 import UserPage from "./components/User/UserPage";
 import NavBar from "./components/General/NavBar";
 import { AuthRoute, ProtectedRoute } from "./util/routesUtil";
+import AuthProvider from "./providers/AuthContext";
 
 function App() {
+
 	return (
 		<div className="App">
+		<AuthProvider>
 			<NavBar />
 			<Switch>
 				<AuthRoute exact path="/">
@@ -49,6 +52,7 @@ function App() {
 					<LocationPage/>
 				</Route>
 			</Switch>
+			</AuthProvider>
 		</div>
 	);
 }

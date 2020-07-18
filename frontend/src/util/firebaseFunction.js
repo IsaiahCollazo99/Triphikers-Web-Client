@@ -48,18 +48,26 @@ export const getFirebaseIdToken = () => {
 	return firebase.auth().currentUser.getIdToken(false);
 }
 
-export const uploadPicture = async ( folderPath, data, callback ) => {
-    const now = new Date().toString();
-    let storageRef = storage().ref(folderPath + now);
-    let upload = storageRef.put(data.file);
+const handleSnapshot = ( snapshot ) => {
 
-    await upload.on('state_changed', snapshot => {
-		
-    }, error => {
-        console.log(error);
+}
+
+const handleError = ( error ) => {
+    console.log(error);
+    throw error;
+}
+
+export const uploadPicture = async ( folderPath, data, callback ) => {
+    try {
+        const now = new Date().toString();
+        let storageRef = storage().ref(folderPath + now);
+        let upload = storageRef.put(data.file);
+    
+        upload.on('state_changed', handleSnapshot, handleError , async () => {
+            const image = await upload.snapshot.ref.getDownloadURL();
+            await callback({id: data.id, url: image});
+        })
+    } catch (error) {
         throw error;
-    },async () => {
-        const image = await upload.snapshot.ref.getDownloadURL();
-        await callback({id: data.id, url: image});
-    })
+    }
 }
