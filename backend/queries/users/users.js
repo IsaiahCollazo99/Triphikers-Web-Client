@@ -19,6 +19,7 @@ module.exports = {
       VALUES ($1, $2, $3, $4, $5, $6, $7, $8) RETURNING *`,
 				[id, full_name, email, age, profile_picture, gender, bio, country_of_origin]
 			);
+			
 
 			res.status(200).json({
 				status: "OK",
@@ -47,8 +48,8 @@ module.exports = {
 	},
 
 	getUserById: async (req, res, next) => {
+		const { id } = req.params;
 		try {
-			const { id } = req.params;
 			let user = await db.one(
 				`SELECT * FROM users
             	WHERE id=$1`,
@@ -60,7 +61,11 @@ module.exports = {
 				message: "Retrieved user.",
 			});
 		} catch (error) {
-			next(error);
+			if(error.received === 0) {
+				next({status: 404, error: `User ${id} doesn't exist`})
+			} else {
+				next(error);
+			}
 		}
 	},
 

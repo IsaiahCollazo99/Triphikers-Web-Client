@@ -67,13 +67,13 @@ const CreateSignUpContainer = () => {
 		}
 
 		await createUser(fullUser);
-		history.push("/trips");
 	}
 
 	const handleSubmit = async (e) => {
 		e.preventDefault();
 		try {
 			let firebaseUser;
+
 			if(user) {
 				firebaseUser = user;
 			} else {
@@ -107,6 +107,7 @@ const CreateSignUpContainer = () => {
 			);
 		}
 	};
+
 	return (
 		<>
 		<div className="signUpContainer">

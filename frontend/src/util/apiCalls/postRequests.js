@@ -45,31 +45,36 @@ const getUserAge = ( birthday ) => {
 }
 
 export const createUser = async ( userObj ) => {
-    const {
-      userEmail: email,
-      firstName: { value: firstName },
-      lastName: { value: lastName },
-      birthday: { value: birthday },
-      gender: { value: gender},
-      bio: { value: bio },
-      language: { value: language },
-      country: { value: country_of_origin },
-      url: profile_picture,
-      id
-    } = userObj
-
-    const full_name = firstName + " " + lastName;
-
-    const age = getUserAge(birthday);
-
-    const res = await axios.post(API + "/api/users", {
-        id,
-        full_name,
-        email,
-        age,
-        profile_picture,
-        gender,
-        bio,
-        country_of_origin
-    })
+    try {
+        const {
+            userEmail: email,
+            firstName: { value: firstName },
+            lastName: { value: lastName },
+            birthday: { value: birthday },
+            gender: { value: gender},
+            bio: { value: bio },
+            language: { value: language },
+            country: { value: country_of_origin },
+            url: profile_picture,
+            id
+          } = userObj
+      
+          const full_name = firstName + " " + lastName;
+      
+          const age = getUserAge(birthday);
+      
+          const res = await axios.post(API + "/api/users", {
+              id,
+              full_name,
+              email,
+              age,
+              profile_picture,
+              gender,
+              bio,
+              country_of_origin
+          })
+    } catch (error) {
+        console.log(error);
+    }
+    
   }

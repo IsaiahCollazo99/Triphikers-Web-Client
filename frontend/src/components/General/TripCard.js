@@ -29,7 +29,6 @@ const TripCard = ({ trip, deleteTripCall, completeTripCall }) => {
             return (
                 <>
                 <p className="error">EXPIRED</p>
-                <button onClick={handleDeleteClick} className="tc-del tc-btn">Delete</button>
                 </>
             )
         } else {
@@ -54,19 +53,29 @@ const TripCard = ({ trip, deleteTripCall, completeTripCall }) => {
             }
         }
     }
+
+    const displayUserInfo = () => {
+        if(window.location.pathname === "/") {
+            return null
+        } else {
+            return (
+                <aside>
+                    <img src={trip.profile_picture} alt={trip.full_name}/>
+                    <div className="tc-userInfo">
+                        <p>{trip.full_name}</p>
+                        <p>{trip.country_of_origin}</p>
+                        <p>{trip.age}</p>
+                        <p>{trip.gender}</p>
+                    </div>
+                </aside>
+            )
+        }
+    }
     
     return (
-        <div className="tripCard" onClick={redirect}>
-            <aside>
-                <img src={trip.profile_picture} alt={trip.full_name}/>
-                <div className="tc-userInfo">
-                    <p>{trip.full_name}</p>
-                    <p>{trip.country_of_origin}</p>
-                    <p>{trip.age}</p>
-                    <p>{trip.gender}</p>
-                </div>
-            </aside>
-
+        <article className="tripCard" onClick={redirect}>
+            {displayUserInfo()}
+            
             <header>
                 <div className="tripCardInfo">
                     <p className="tripCardTitle">{trip.trip_title}</p>
@@ -88,7 +97,7 @@ const TripCard = ({ trip, deleteTripCall, completeTripCall }) => {
                 <p className="tc-bl"><span>Split Costs: </span>{trip.split_costs}</p>
                 <p className="tc-br"><span>Group Type: </span>{trip.group_type}</p>
             </section>
-        </div>
+        </article>
     )
 }
 
