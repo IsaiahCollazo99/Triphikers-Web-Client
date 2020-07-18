@@ -2,7 +2,6 @@ const db = require("../../db/db");
 
 module.exports = {
     getAllTrips: async ( req, res, next ) => {
-        console.log("Get All Trips");
         try {
             const trips = await db.any(`
                 SELECT users.full_name, users.age, users.profile_picture, 

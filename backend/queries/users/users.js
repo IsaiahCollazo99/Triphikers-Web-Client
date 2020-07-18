@@ -2,7 +2,6 @@ const db = require("../../db/db");
 
 module.exports = {
 	createUser: async (req, res, next) => {
-		console.log("Create User");
 		try {
 			const {
 				id,
@@ -49,7 +48,6 @@ module.exports = {
 	},
 
 	getUserById: async (req, res, next) => {
-		console.log("Get User By ID")
 		const { id } = req.params;
 		try {
 			let user = await db.one(
