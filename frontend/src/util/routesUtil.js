@@ -8,12 +8,13 @@ export const AuthRoute = ( { children, ...rest } ) => {
         <Route 
             {...rest}
             render={( { location } ) => {
-                return !currentUser ? children : <Redirect from={location} to="/trips" />
+                return !currentUser ? children : <Redirect to="/trips" />
             }}
         />
 
     )
 }
+
 
 export const ProtectedRoute = ( { children, ...rest } ) => {
     const { currentUser } = useContext(AuthContext);
@@ -21,7 +22,7 @@ export const ProtectedRoute = ( { children, ...rest } ) => {
         <Route 
             {...rest}
             render={( { location } ) => {
-                return currentUser ? children : <Redirect from={location} to="/signUp" />
+                return currentUser ? children : <Redirect to="/signUp" />
             }}
         />
 

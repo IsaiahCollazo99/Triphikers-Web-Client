@@ -69,7 +69,7 @@ module.exports = {
                 VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13, $14, $15)
                 RETURNING *
             `, [planner_id, destination, date_from, date_to, group_type, language,
-                before_trip_meetup, trip_type, trip_title, first_time, accommodation,
+                before_trip_meetup, trip_type, trip_title.toUpperCase(), first_time, accommodation,
                 budget, split_costs, itinerary, description]
             )
 

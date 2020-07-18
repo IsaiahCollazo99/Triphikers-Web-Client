@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import { useHistory } from "react-router-dom";
 import { login } from "../../util/firebaseFunction";
 import { useInput } from "../../util/customHooks";
 import '../../css/signUpIn/login.css';
@@ -8,16 +7,13 @@ export default function Login() {
 	const email = useInput("");
 	const password = useInput("");
 	const [error, setError] = useState(false);
-	const history = useHistory();
 
 
 	const handleSignIn = async (e) => {
 		e.preventDefault();
 		try {
 			await login(email.value, password.value);
-      		history.push("/trips");
 		} catch (error) {
-			debugger;
 			setError(error.message);
 		}
 	};

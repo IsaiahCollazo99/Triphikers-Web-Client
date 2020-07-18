@@ -10,7 +10,7 @@ const {
 
 users.post("/", createUser);
 users.get("/", getAllUsers);
-users.get("/:id", isUserExisting, getUserById);
+users.get("/:id", getUserById);
 users.get("/:id/posts", getUsersPosts);
 users.patch("/:id", isUserExisting, updateUser)
 

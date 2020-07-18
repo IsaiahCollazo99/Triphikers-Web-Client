@@ -9,7 +9,7 @@
 }
 
 .lp-whyBground {
-    background-color: #dec2ff;
+    background-color: rgb(255, 157, 0);
     background-image: repeating-linear-gradient(45deg, transparent, transparent 17px, rgba(255,255,255,.5) 17px, rgba(255,255,255,.5) 34px);
     position: absolute;
     top: 0px;
