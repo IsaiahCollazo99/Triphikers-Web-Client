@@ -1,5 +1,5 @@
 import React, { useContext } from 'react';
-import { Route, Redirect, useParams } from 'react-router-dom';
+import { Route, Redirect } from 'react-router-dom';
 import { AuthContext } from '../providers/AuthContext';
 
 export const AuthRoute = ( { children, ...rest } ) => {
