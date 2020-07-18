@@ -27,7 +27,7 @@ module.exports = {
                 lat, lng, hotspot_title, body, image, poster_id
             } = req.body;
             const hotspot = await db.one(`
-                INSERT INTO hotspots (lat, lng, hotspot_title, body, image, poster_id)
+                INSERT INTO hotspots (lat, lng, hotspot_title, body, image_url, poster_id)
                 VALUES ($1, $2, $3, $4, $5, $6)
                 RETURNING *
             `, [lat, lng, hotspot_title, body, image, poster_id]
