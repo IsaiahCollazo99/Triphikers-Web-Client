@@ -42,7 +42,7 @@ const LocationAttractions = ({info}) => {
         return(
             <div className="search">
                 <Combobox onSelect={async (address) => {
-                    // setValue(address, false);
+                    setValue(address, false);
                     clearSuggestions();
                         try {
                             const res = await getGeocode({address});

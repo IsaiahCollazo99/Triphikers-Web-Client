@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
-import { useInput } from "../../util/customHooks";
+// import { useInput } from "../../util/customHooks";
 import HotspotMap from "../helper/maps/HotspotMaps";
 import "../../css/locations/LocationHotspots.css";
 
@@ -10,8 +10,11 @@ const LocationHotspots = ({info}) => {
     const [allMarkers, setAllMarkers] = useState([]);
     const [submitted, setSubmitted] = useState(null);
     const [imageFile, setImageFile] = useState(null);
-    const submitHotspotTitle = useInput("");
-    const submitHotspotBody = useInput("");
+    const [submitHotspotTitle, setSubmitHotspotTitle] = useState("");
+    const [submitHotspotBody, setSubmitHotspotBody] = useState("");
+    // const submitHotspotTitle = useInput("");
+    //create an input state instead and handle change for title and body
+    // const submitHotspotBody = useInput("");
 
     const fetchData = (data) => {
         setSubmitCoordinates(data.coordinates);
@@ -45,14 +48,15 @@ const LocationHotspots = ({info}) => {
             await axios.post(`http://localhost:3001/api/hotspots`, {
                 lat: submitCoordinates.lat,
                 lng: submitCoordinates.lng,
-                hotspot_title: submitHotspotTitle.value,
-                body: submitHotspotBody.value,
+                hotspot_title: submitHotspotTitle,
+                body: submitHotspotBody,
                 image: imageFile,
                 poster_id: 1
             })
             setSubmitCoordinates([]);
-            submitHotspotTitle.setValue("");
-            submitHotspotBody.setValue("");
+            debugger
+            setSubmitHotspotTitle("");
+            setSubmitHotspotBody("");
             setSubmitted(true);
         } catch (error) {
             console.log(error)
@@ -63,6 +67,14 @@ const LocationHotspots = ({info}) => {
         debugger
         e.preventDefault();
         setImageFile({ selectedFile: e.target.files[0] })
+    }
+
+    const handleTitleChange = (e) => {
+        setSubmitHotspotTitle(e.currentTarget.value);
+    }
+
+    const handleBodyChange = (e) => {
+        setSubmitHotspotBody(e.currentTarget.value);
     }
 
     //coming back to this, may directly upload image without submission button
@@ -89,8 +101,8 @@ const LocationHotspots = ({info}) => {
                     <h1 className="hotSpotTitle">Hotspot Submission</h1>
                     <p className="submitLat"><b>Latitude:</b> {submitCoordinates.lat}</p>
                     <p className="submitLng"><b>Longitude:</b> {submitCoordinates.lng}</p>
-                    <input type="text" placeholder="Hotspot Title" {...submitHotspotTitle}/>
-                    <input type="text" placeholder="Type a Description" {...submitHotspotBody}/>
+                    <input type="text" placeholder="Hotspot Title" value={submitHotspotTitle}  onChange={handleTitleChange}/>
+                    <input type="text" placeholder="Type a Description" value={submitHotspotBody} onChange={handleBodyChange}/>
                     {/* <input type="file" onChange={handleFileChange}/> */}
                     {/* <button onClick={uploadHandler}>Upload!</button> */}
                     <input type="submit"/>

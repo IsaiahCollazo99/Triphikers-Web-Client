@@ -29,17 +29,17 @@ const LocationInfo = ({info}) => {
           return array
     }
 
-    const getMap = (lat, lng) => {
-        if(lat !== undefined){
-            let coordinates = {
-                lat: parseFloat(lat),
-                lng: parseFloat(lng)
-            }
-            return(
-                <InfoMap location={coordinates}/>
-            )
-        }
-    }
+    // const getMap = (lat, lng) => {
+    //     if(lat !== undefined){
+    //         let coordinates = {
+    //             lat: parseFloat(lat),
+    //             lng: parseFloat(lng)
+    //         }
+    //         return(
+    //             <InfoMap location={coordinates}/>
+    //         )
+    //     }
+    // }
 
     useEffect(() => {
         getAllInfo(info);
@@ -55,7 +55,7 @@ const LocationInfo = ({info}) => {
             </div>
             <div className="details">
                 <div className="detailsMap">
-                    {getMap(info.lat, info.lng)}
+                    {/* {getMap(info.lat, info.lng)} */}
                 </div>
                 <div className="detailsText">
                     <p className="locationPageText">{info.location_name}</p>
