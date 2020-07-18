@@ -54,7 +54,6 @@ const LocationHotspots = ({info}) => {
                 poster_id: 1
             })
             setSubmitCoordinates([]);
-            debugger
             setSubmitHotspotTitle("");
             setSubmitHotspotBody("");
             setSubmitted(true);
