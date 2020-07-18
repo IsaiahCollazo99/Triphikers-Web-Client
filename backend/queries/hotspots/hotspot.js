@@ -24,13 +24,13 @@ module.exports = {
     addHotspot: async ( req, res, next ) => {
         try {
             const {
-                lat, lng, hotspot_title, body, poster_id
+                lat, lng, hotspot_title, body, image, poster_id
             } = req.body;
             const hotspot = await db.one(`
-                INSERT INTO hotspots (lat, lng, hotspot_title, body, poster_id)
-                VALUES ($1, $2, $3, $4, $5)
+                INSERT INTO hotspots (lat, lng, hotspot_title, body, image, poster_id)
+                VALUES ($1, $2, $3, $4, $5, $6)
                 RETURNING *
-            `, [lat, lng, hotspot_title, body, poster_id]
+            `, [lat, lng, hotspot_title, body, image, poster_id]
             )
             res.status(200).json({
                 status: "OK",
