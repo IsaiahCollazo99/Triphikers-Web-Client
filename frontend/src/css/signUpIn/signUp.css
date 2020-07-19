@@ -3,7 +3,14 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: space-evenly;
+    justify-content: center;
+}
+
+.signUpContainer header {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
 }
 
 .signUpContainer form, .signUpMethod {
@@ -11,4 +18,25 @@
     flex-direction: column;
     justify-content: space-evenly;
     height: 40vh;
+    margin-top: 2em;
+}
+
+.signUpContainer label {
+    font-weight: bold;
+}
+
+.signUpContainer input:not([type="submit"]), .signUpContainer select, .signUpContainer textarea {
+    width: 85%;
+    background-color: #272A33;
+    color: white;
+    border: 3px solid rgb(255, 157, 0);
+    font-size: 1.25em
+}
+
+.signUpContainer input:not([type="submit"]):focus, .signUpContainer select:focus, .signUpContainer textarea:focus {
+    width: 85%;
+    background-color: rgb(255, 157, 0);
+    color: #272A33;
+    border: 3px solid #272A33;
+    font-size: 1.25em
 }
