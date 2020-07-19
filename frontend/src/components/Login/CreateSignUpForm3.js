@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
+import LanguageSelect from "../General/LanguageSelect";
 
 const CreateSignUpForm3 = (props) => {
 	const { 
@@ -42,7 +43,7 @@ const CreateSignUpForm3 = (props) => {
 			<textarea col="10" row="5" {...bio} name="bio" />
 
 			<label htmlFor="language">Language : </label>
-			<input type="text" {...language} name="language" required />
+			<LanguageSelect input={language} className="su-language" />
 
 			<label htmlFor="country">Country : </label>
 			<select {...country} name="country" required>
