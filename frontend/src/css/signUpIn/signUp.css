@@ -4,6 +4,8 @@
     flex-direction: column;
     align-items: center;
     justify-content: center;
+    width: 100%;
+    margin-top: 2em;
 }
 
 .signUpContainer header {
@@ -18,7 +20,16 @@
     flex-direction: column;
     justify-content: space-evenly;
     height: 40vh;
-    margin-top: 2em;
+}
+
+.signUpContainer form {
+    width: 35%;
+    height: 60%;
+}
+
+.signUpMethod {
+    width: 40%;
+    align-items: center;
 }
 
 .signUpContainer label {
@@ -26,17 +37,36 @@
 }
 
 .signUpContainer input:not([type="submit"]), .signUpContainer select, .signUpContainer textarea {
-    width: 85%;
+    width: 100%;
     background-color: #272A33;
     color: white;
     border: 3px solid rgb(255, 157, 0);
-    font-size: 1.25em
+    font-size: 1.25em;
 }
 
 .signUpContainer input:not([type="submit"]):focus, .signUpContainer select:focus, .signUpContainer textarea:focus {
-    width: 85%;
     background-color: rgb(255, 157, 0);
     color: #272A33;
     border: 3px solid #272A33;
-    font-size: 1.25em
+    font-size: 1.25em;
+}
+
+.signUpContainer input[type="submit"] {
+    background-color: rgb(255, 157, 0);
+    color: #272A33;
+    border: 3px solid #272A33;
+    font-size: 1.25em;
+    margin-top: 1em;
+    transition: 0.3s ease-in-out;
+    width: fit-content;
+    align-self: center;
+    padding: 0.25em 1em;
+}
+
+.signUpContainer input[type="submit"]:hover {
+    background-color: #272A33;
+    color: white;
+    border: 3px solid rgb(255, 157, 0);
+    font-size: 1.25em;
+    cursor: pointer;
 }
