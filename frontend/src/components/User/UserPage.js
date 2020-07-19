@@ -7,7 +7,6 @@ import { getTripById } from '../../util/apiCalls/getRequests';
 
 const UserPage = () => {
     const { id } = useParams();
-    console.log(id)
     const { currentUser } = useContext(AuthContext);
     console.log(currentUser)
     const [ loggedUser, setLoggedUser ] = useState({});
