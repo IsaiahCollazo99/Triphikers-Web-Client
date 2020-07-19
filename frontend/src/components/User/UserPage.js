@@ -46,10 +46,10 @@ const UserPage = () => {
             <DetailedTripPage /> 
             <img src={loggedUser.profile_picture} alt=""/>
             <h2>Hello, I am {loggedUser.full_name}</h2>
-            <p>{loggedUser.country_of_origin}</p>
             <p>{loggedUser.gender}</p>
-            <p>{loggedUser.age}</p>
-            <p>{userTrip.language}</p>
+            <p>Country Of Origin: {loggedUser.country_of_origin}</p>
+            <p>Age: {loggedUser.age} years old</p>
+            <p>Language: {userTrip.language}</p>
             <div>
                 <p>{userTrip.trip_title}</p>
                 <div>
