@@ -32,7 +32,7 @@ function App() {
 					<Login />
 				</AuthRoute>
 				
-				<ProtectedRoute exact path="/user" >
+				<ProtectedRoute exact path="/user/:id" >
 					<UserPage />
 				</ProtectedRoute>
 				
