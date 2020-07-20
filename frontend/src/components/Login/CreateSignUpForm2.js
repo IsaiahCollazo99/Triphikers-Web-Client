@@ -33,7 +33,7 @@ const CreateSignUpForm2 = (props) => {
 	const displayBackButton = () => {
 		if(!user) {
 			return (
-				<button onClick={()=> handlePageChange(1)} type="button">
+				<button onClick={()=> handlePageChange(1)} type="button" className="backButton">
 					BACK
 				</button>
 			)

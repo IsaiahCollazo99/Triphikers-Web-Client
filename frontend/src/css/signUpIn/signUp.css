@@ -55,7 +55,7 @@
     font-size: 1.25em;
 }
 
-.signUpContainer input[type="submit"] {
+.signUpContainer input[type="submit"], .backButton {
     background-color: rgb(255, 157, 0);
     color: #272A33;
     border: 3px solid #272A33;
@@ -67,10 +67,22 @@
     padding: 0.25em 1em;
 }
 
-.signUpContainer input[type="submit"]:hover {
+.signUpContainer input[type="submit"]:hover, .backButton:hover {
     background-color: #272A33;
     color: white;
     border: 3px solid rgb(255, 157, 0);
     font-size: 1.25em;
     cursor: pointer;
 }
+
+.signUpContainer .buttons {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.signUpContainer .buttons input[type="submit"], 
+.signUpContainer .buttons .backButton {
+    width: 45%;
+} 

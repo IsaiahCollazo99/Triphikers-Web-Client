@@ -55,7 +55,7 @@ const CreateSignUpForm3 = (props) => {
 			<input type="file" name="profilePic" accept=".png, .jpg, .jpeg" onChange={handleFileSelect} required />
 
 			<div className="buttons">
-				<button onClick={() => handlePageChange(2)} type="button">
+				<button onClick={() => handlePageChange(2)} type="button" className="backButton">
 					BACK
 				</button>
 				<input type="submit" value="SIGN UP" />
