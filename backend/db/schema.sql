@@ -3,6 +3,7 @@ CREATE DATABASE triphikers_db;
 
 \c triphikers_db;
 
+DROP TABLE IF EXISTS requests;
 DROP TABLE IF EXISTS trips;
 DROP TABLE IF EXISTS locations;
 DROP TABLE IF EXISTS hotspots;
@@ -57,4 +58,10 @@ CREATE TABLE hotspots (
     body VARCHAR,
     image VARCHAR,
     poster_id VARCHAR REFERENCES users(id) ON DELETE CASCADE
+);
+
+CREATE TABLE requests (
+    id SERIAL PRIMARY KEY,
+    requester_id VARCHAR REFERENCES users(id) ON DELETE CASCADE,
+    trip_id INT REFERENCES trips(id) ON DELETE CASCADE
 );
