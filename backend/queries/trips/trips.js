@@ -109,6 +109,26 @@ module.exports = {
         }
     },
 
+    createRequest: async ( req, res, next ) => {
+        const { id } = req.params;
+        const { requester_id } = req.body;
+        try {
+            const request = await db.one(`
+                INSERT INTO REQUESTS (requester_id, trip_id)
+                VALUES ($1, $2)
+                RETURNING *
+            `, [requester_id, id]);
+
+            res.status(200).json({
+                status: "OK",
+                message: "Created new request.",
+                request
+            })
+        } catch ( error ) {
+            next(error);
+        }
+    },
+
     completeTrip: async ( req, res, next) => {
         const { id } = req.params;
         try {
