@@ -11,7 +11,6 @@ import '../../css/signUpIn/signUp.css';
 
 const CreateSignUpContainer = () => {
 	const [ error, setError ] = useState(null);
-	const history = useHistory();
 	const [ page, setPage ] = useState(0);
 	const email = useInput("");
 	const password = useInput("");

@@ -52,7 +52,7 @@ const NavBar = () => {
         <nav className="mainNav">
             <section className="mainNav-left">
                 {/* Logo Here */}
-                <h1><Link to="/trips">TRIPHIKERS</Link></h1>
+                <h1><Link to={currentUser ? "/trips" : "/"}>TRIPHIKERS</Link></h1>
             </section>
 
             {displayNavBar()}

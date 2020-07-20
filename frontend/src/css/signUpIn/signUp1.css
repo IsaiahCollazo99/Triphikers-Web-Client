@@ -1,0 +1,8 @@
+.signUp1 label {
+    margin-bottom: -30px;
+}
+
+.signUp1 .error {
+    align-self: center;
+    font-size: 1.5em;
+}
