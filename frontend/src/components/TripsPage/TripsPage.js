@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useContext } from 'react';
 import { getAllTrips } from '../../util/apiCalls/getRequests';
 import { deleteTrip } from '../../util/apiCalls/deleteRequests';
 import TripCard from '../General/TripCard';
@@ -6,6 +6,8 @@ import '../../css/tripsPage/tripsPage.css';
 import { completeTrip } from '../../util/apiCalls/patchRequests';
 import TripsPageFilter from './TripsPageFilter';
 import { useHistory } from 'react-router-dom';
+import { createTripRequest } from '../../util/apiCalls/postRequests';
+import { AuthContext } from '../../providers/AuthContext';
 
 const TripsPage = () => {
     const [ trips, setTrips ] = useState([]);
@@ -13,6 +15,7 @@ const TripsPage = () => {
     const [ response, setResponse ] = useState(null);
 
     const history = useHistory();
+    const { currentUser } = useContext(AuthContext);
 
     const redirect = () => {
         history.push("/trips/create");
@@ -36,6 +39,17 @@ const TripsPage = () => {
             getTripsCall();
         } catch ( error ) {
             setResponse(<p className="error">There was a problem with the delete request.</p>)
+            console.log(error);
+        }
+    }
+
+    const requestCall = async ( id ) => {
+        try {
+            const requestResponse = await createTripRequest(id, currentUser.id)
+            setResponse(requestResponse);
+            getTripsCall();
+        } catch ( error ) {
+            setResponse(<p className="error">There was a problem with your request to join.</p>)
             console.log(error);
         }
     }
@@ -82,22 +96,23 @@ const TripsPage = () => {
         return currentTime > dateToTime;
     }
 
+    const tripCardFunctions = {
+        deleteTripCall,
+        completeTripCall,
+        requestCall
+    }
+
     const getTripsList = ( tripsArr ) => {
         const validTrips = [];
-        const expiredTrips = [];
         tripsArr.forEach(trip => {
-            if(trip.is_completed || isTripExpired(trip)) {
-                expiredTrips.push(
-                    <TripCard trip={trip} deleteTripCall={deleteTripCall} completeTripCall={completeTripCall} key={trip.id} />
-                )
-            } else {
+            if(!trip.is_completed && !isTripExpired(trip)) {
                 validTrips.push(
-                    <TripCard trip={trip} deleteTripCall={deleteTripCall} completeTripCall={completeTripCall} key={trip.id} />
+                    <TripCard trip={trip} {...tripCardFunctions} key={trip.id} />
                 )
             }
         })
 
-        return [...validTrips, ...expiredTrips]
+        return validTrips
     }
 
     let tripsList;

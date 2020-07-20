@@ -3,7 +3,7 @@ import '../../css/general/tripCard.css';
 import { useHistory } from 'react-router-dom';
 import { AuthContext } from '../../providers/AuthContext';
 
-const TripCard = ({ trip, deleteTripCall, completeTripCall }) => {
+const TripCard = ({ trip, deleteTripCall, completeTripCall, requestCall }) => {
     const { currentUser } = useContext(AuthContext);
     const history = useHistory();
     
@@ -19,6 +19,14 @@ const TripCard = ({ trip, deleteTripCall, completeTripCall }) => {
 
     const handleCompleteClick = () => {
         completeTripCall(trip.id);
+    }
+
+    const handleRequestClick = () => {
+        requestCall(trip.id);
+    }
+
+    const displayRequestButton = () => {
+         
     }
 
     const displayExpired = () => {
@@ -42,7 +50,7 @@ const TripCard = ({ trip, deleteTripCall, completeTripCall }) => {
                     )
                 } else {
                     return (
-                        <button className="tc-req tc-btn">Request</button>
+                        <button className="tc-req tc-btn" onClick={handleRequestClick}>Request</button>
                     )
     
                 }

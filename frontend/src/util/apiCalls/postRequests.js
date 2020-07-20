@@ -1,3 +1,4 @@
+import React from 'react';
 import axios from 'axios'
 import { apiURL } from '../../util/apiURL';
 
@@ -77,4 +78,13 @@ export const createUser = async ( userObj ) => {
         console.log(error);
     }
     
+  }
+
+  export const createTripRequest = async ( tripId, requester_id ) => {
+      try {
+        const res = await axios.post(API + `/api/trips/${tripId}/requests`, {requester_id});
+        return <p className="success">Request successfuly sent</p>
+      } catch ( error ) {
+          throw error;
+      }
   }
