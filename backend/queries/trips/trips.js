@@ -72,7 +72,10 @@ module.exports = {
                     requests: tripRequests
                 })
             } else {
-                throw { status: 404, error: `No requests found` }
+                res.status(200).json({
+                    status: "OK",
+                    message: `No requests found.`
+                })
             }
         } catch ( error ) {
             next(error);

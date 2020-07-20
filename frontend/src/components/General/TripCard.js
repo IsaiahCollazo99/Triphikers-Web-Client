@@ -1,11 +1,27 @@
-import React, { useContext } from 'react';
+import React, { useContext, useState, useEffect } from 'react';
 import '../../css/general/tripCard.css';
 import { useHistory } from 'react-router-dom';
 import { AuthContext } from '../../providers/AuthContext';
+import { getTripRequests } from '../../util/apiCalls/getRequests';
 
 const TripCard = ({ trip, deleteTripCall, completeTripCall, requestCall }) => {
+    const [ requests, setRequests ] = useState([]);
+    
     const { currentUser } = useContext(AuthContext);
     const history = useHistory();
+
+    const getRequestsCall = async () => {
+        const data = await getTripRequests(trip.id)
+        if(data.requests) {
+            setRequests(data.requests);
+        } else {
+            setRequests([]);
+        }
+    }
+
+    useEffect(() => {
+        getRequestsCall()
+    }, [])
     
     const redirect = (e) => {
         if(e.target.nodeName !== "BUTTON") {
@@ -26,7 +42,23 @@ const TripCard = ({ trip, deleteTripCall, completeTripCall, requestCall }) => {
     }
 
     const displayRequestButton = () => {
-         
+        let isUserRequestExisting = false;
+        for(let request of requests) {
+            if(request.requester_id === currentUser.id) {
+                isUserRequestExisting = true;
+                break;
+            }
+        }
+
+        if(isUserRequestExisting) {
+            return (
+                <p className="success requested">Requested</p>
+            )
+        } else {
+            return (
+                <button className="tc-req tc-btn" onClick={handleRequestClick}>Request</button>
+            )
+        }
     }
 
     const displayExpired = () => {
@@ -50,7 +82,9 @@ const TripCard = ({ trip, deleteTripCall, completeTripCall, requestCall }) => {
                     )
                 } else {
                     return (
-                        <button className="tc-req tc-btn" onClick={handleRequestClick}>Request</button>
+                        <>
+                        {displayRequestButton()}
+                        </>
                     )
     
                 }

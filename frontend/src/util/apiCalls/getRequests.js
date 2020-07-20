@@ -20,3 +20,13 @@ export const getTripById = async ( id ) => {
         throw error;
     }
 }
+
+export const getTripRequests = async ( id ) => {
+    try {
+        let res = await axios.get(API + `/api/trips/${id}/requests`);
+        return res.data;
+    } catch ( error ) {
+        console.log(error);
+        throw error;
+    }
+}
