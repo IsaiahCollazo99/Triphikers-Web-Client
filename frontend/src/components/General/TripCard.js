@@ -3,9 +3,11 @@ import '../../css/general/tripCard.css';
 import { useHistory } from 'react-router-dom';
 import { AuthContext } from '../../providers/AuthContext';
 import { getTripRequests } from '../../util/apiCalls/getRequests';
+import { createTripRequest } from '../../util/apiCalls/postRequests';
 
-const TripCard = ({ trip, deleteTripCall, completeTripCall, requestCall }) => {
+const TripCard = ({ trip, deleteTripCall, completeTripCall, refresh }) => {
     const [ requests, setRequests ] = useState([]);
+    const [ response, setResponse ] = useState(null);
     
     const { currentUser } = useContext(AuthContext);
     const history = useHistory();
@@ -37,8 +39,15 @@ const TripCard = ({ trip, deleteTripCall, completeTripCall, requestCall }) => {
         completeTripCall(trip.id);
     }
 
-    const handleRequestClick = () => {
-        requestCall(trip.id);
+    const requestCall = async () => {
+        try {
+            const requestResponse = await createTripRequest(trip.id, currentUser.id)
+            setResponse(requestResponse);
+            getRequestsCall();
+        } catch ( error ) {
+            setResponse(<p className="error">There was a problem with your request to join.</p>)
+            console.log(error);
+        }
     }
 
     const displayRequestButton = () => {
@@ -56,7 +65,7 @@ const TripCard = ({ trip, deleteTripCall, completeTripCall, requestCall }) => {
             )
         } else {
             return (
-                <button className="tc-req tc-btn" onClick={handleRequestClick}>Request</button>
+                <button className="tc-req tc-btn" onClick={requestCall}>Request</button>
             )
         }
     }

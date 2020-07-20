@@ -32,7 +32,6 @@ export const ProtectedRoute = ( { children, ...rest } ) => {
 export const ProtectedUserRoute = ( { children, ...rest } ) => {
     const { currentUser } = useContext(AuthContext);
     const { trip } = rest;
-    // console.log(trip);
 
     return (
         <Route 

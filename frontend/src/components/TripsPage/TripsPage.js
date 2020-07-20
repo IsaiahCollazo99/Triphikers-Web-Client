@@ -42,17 +42,6 @@ const TripsPage = () => {
             console.log(error);
         }
     }
-
-    const requestCall = async ( id ) => {
-        try {
-            const requestResponse = await createTripRequest(id, currentUser.id)
-            setResponse(requestResponse);
-            getTripsCall();
-        } catch ( error ) {
-            setResponse(<p className="error">There was a problem with your request to join.</p>)
-            console.log(error);
-        }
-    }
     
     const getTripsCall = async () => {
         try {
@@ -98,8 +87,7 @@ const TripsPage = () => {
 
     const tripCardFunctions = {
         deleteTripCall,
-        completeTripCall,
-        requestCall
+        completeTripCall
     }
 
     const getTripsList = ( tripsArr ) => {

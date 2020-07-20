@@ -121,7 +121,7 @@ module.exports = {
                 VALUES ($1, $2)
                 RETURNING *
             `, [requester_id, id]);
-
+            
             res.status(200).json({
                 status: "OK",
                 message: "Created new request.",
