@@ -40,7 +40,7 @@ const CreateSignUpForm3 = (props) => {
 
 		<form onSubmit={handleSubmit}>
 			<label htmlFor="bio">Bio : (OPTIONAL)</label>
-			<textarea col="10" row="5" {...bio} name="bio" />
+			<textarea col="10" row="5" {...bio} name="bio" maxLength={120}/>
 
 			<label htmlFor="language">Language : </label>
 			<LanguageSelect input={language} className="su-language" />
