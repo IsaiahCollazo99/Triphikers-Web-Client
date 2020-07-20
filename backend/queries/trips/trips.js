@@ -54,6 +54,31 @@ module.exports = {
         }
     },
 
+    getTripRequests: async ( req, res, next ) => {
+        const { id } = req.params;
+        try {
+            const tripRequests = await db.any(`
+                SELECT users.full_name, users.age, users.country_of_origin, users.gender, 
+                users.profile_picture, requests.*
+                FROM requests
+                LEFT JOIN users ON users.id=requests.requester_id
+                WHERE requests.trip_id=$1
+            `, id)
+
+            if(tripRequests.length) {
+                res.status(200).json({
+                    status: "OK",
+                    message: `Retrieved trip ${id} requests.`,
+                    requests: tripRequests
+                })
+            } else {
+                throw { status: 404, error: `No requests found` }
+            }
+        } catch ( error ) {
+            next(error);
+        }
+    },
+
     createTrip: async ( req, res, next ) => {
         try {
             const {
