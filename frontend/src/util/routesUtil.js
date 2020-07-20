@@ -32,16 +32,17 @@ export const ProtectedRoute = ( { children, ...rest } ) => {
 export const ProtectedUserRoute = ( { children, ...rest } ) => {
     const { currentUser } = useContext(AuthContext);
     const { trip } = rest;
+    // console.log(trip);
 
     return (
         <Route 
             {...rest}
             render={( { location } ) => {
-                if(currentUser.id === trip.id) {
+                if(currentUser.id === trip.planner_id) {
                     return children 
                 } else {
                     return (
-                        <Redirect from={location} to="/trips" />
+                        <Redirect to={`/trips/${trip.id}`} />
                     )
                 }
             }}
