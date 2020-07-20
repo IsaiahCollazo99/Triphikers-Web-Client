@@ -72,7 +72,12 @@ const CreateSignUpForm2 = (props) => {
 			<input type="date" name="birthday" {...birthday} max={today} min={"1900-01-01"} autoComplete="on"  required />
 
 			<label htmlFor="gender">Gender : </label>
-			<input type="text" name="gender" {...gender} required />
+			<select {...gender} name="gender" required>
+				<option disabled value="">Select your Gender</option>
+				<option value="Male">Male</option>
+				<option value="Female">Female</option>
+				<option value="Non-Binary">Non-Binary</option>
+			</select>
 
 			<div className="buttons">
 				{displayBackButton()}

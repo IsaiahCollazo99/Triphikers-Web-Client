@@ -24,13 +24,34 @@ const CreateSignUpForm1 = (props) => {
 			{error}
 		
 			<label htmlFor="email">Email: </label>
-			<input type="email" {...email} name="email" autoComplete="on" required />
+			<input 
+				type="email" 
+				{...email} 
+				name="email" 
+				placeholder="Email" 
+				autoComplete="on" 
+				required 
+			/>
 
 			<label htmlFor="password">Password: </label>
-			<input type="password" {...password} name="password" autoComplete="on" required />
+			<input 
+				type="password" 
+				{...password} 
+				name="password" 
+				placeholder="Password" 
+				autoComplete="on" 
+				required 
+			/>
 
 			<label htmlFor="confirm">Confirm password: </label>
-			<input type="password" {...confirmPassword} name="confirm" autoComplete="on" required />
+			<input 
+				type="password" 
+				{...confirmPassword} 
+				name="confirm" 
+				placeholder="Confirm Password" 
+				autoComplete="on" 
+				required 
+			/>
 
 			<input type="submit" value="Next Page" />
 		</form>

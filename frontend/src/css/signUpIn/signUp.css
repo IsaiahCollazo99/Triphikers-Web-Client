@@ -36,7 +36,9 @@
     font-weight: bold;
 }
 
-.signUpContainer input:not([type="submit"]), .signUpContainer select, .signUpContainer textarea {
+.signUpContainer input:not([type="submit"]):not([type="file"]), 
+.signUpContainer select, 
+.signUpContainer textarea {
     width: 100%;
     background-color: #272A33;
     color: white;
@@ -44,7 +46,9 @@
     font-size: 1.25em;
 }
 
-.signUpContainer input:not([type="submit"]):focus, .signUpContainer select:focus, .signUpContainer textarea:focus {
+.signUpContainer input:not([type="submit"]):not([type="file"]):focus, 
+.signUpContainer select:focus, 
+.signUpContainer textarea:focus {
     background-color: rgb(255, 157, 0);
     color: #272A33;
     border: 3px solid #272A33;
