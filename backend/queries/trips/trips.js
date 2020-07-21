@@ -169,8 +169,9 @@ module.exports = {
 
     deleteRequest: async ( req, res, next ) => {
         const { id } = req.params;
-        const { requester_id } = req.body;
+        const { requester_id } = req.query;
         try {
+            console.log(id, requester_id)
             await db.none(`
                 DELETE FROM requests
                 WHERE trip_id=$1 AND requester_id=$2

@@ -4,6 +4,7 @@ import { useHistory } from 'react-router-dom';
 import { AuthContext } from '../../providers/AuthContext';
 import { getTripRequests } from '../../util/apiCalls/getRequests';
 import { createTripRequest } from '../../util/apiCalls/postRequests';
+import { deleteTripRequest } from '../../util/apiCalls/deleteRequests';
 
 const TripCard = ({ trip, deleteTripCall, completeTripCall, refresh }) => {
     const [ requests, setRequests ] = useState([]);
@@ -39,6 +40,17 @@ const TripCard = ({ trip, deleteTripCall, completeTripCall, refresh }) => {
         completeTripCall(trip.id);
     }
 
+    const deleteReqCall = async () => {
+        try {
+            const deleteReqResponse = await deleteTripRequest(trip.id, currentUser.id);
+            setResponse(deleteReqResponse);
+            getRequestsCall();
+        } catch ( error ) {
+            setResponse(<p className="error">There was a problem with your delete request.</p>)
+            console.log(error);
+        }
+    }
+
     const requestCall = async () => {
         try {
             const requestResponse = await createTripRequest(trip.id, currentUser.id)
@@ -61,7 +73,7 @@ const TripCard = ({ trip, deleteTripCall, completeTripCall, refresh }) => {
 
         if(isUserRequestExisting) {
             return (
-                <button className="tc-requested tc-btn"><span>Requested</span></button>
+                <button className="tc-requested tc-btn" onClick={deleteReqCall}><span>Requested</span></button>
             )
         } else {
             return (
