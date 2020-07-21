@@ -7,12 +7,13 @@ const LocationInfo = ({info}) => {
     //is information coming from backend, will have to change the child info
 
     const getAllInfo = async (info) => {
-        let countryCode = "US"
+        let countryCode = "US";
+        //country code has been hard-coded for now
         try {
             let currency = await axios.get(`https://api.exchangeratesapi.io/latest?symbols=USD,GBP`);
             let travelAdvisory = await axios.get(`https://www.travel-advisory.info/api?countrycode=${countryCode}`);
             setCurrency(currency.data.rates);
-            setTravelAdv(travelAdvisory.data.data[countryCode]["advisory"]);
+            setTravelAdv(travelAdvisory.data.data[countryCode]);
             //currency doesnt exist in location db, needs to be dry coded
         } catch (error) {
             console.log(error)
@@ -33,12 +34,20 @@ const LocationInfo = ({info}) => {
     }
 
     const advisoryPrint = (country) => {
-        return (
-            <div>
-                    <p><b>Country Rating:</b> {country.score}</p>
-                    <p onClick={()=>window.open(country.source)}>Click here for Advisory Information</p>
-                </div>
-        )
+        let info = country.advisory;
+        debugger
+        if(info !== undefined){
+            return (
+                <div>
+                        <h1>Travel Advisory</h1>
+                        <h2>{country.name}</h2>
+                        <p><b>Continent:</b> {country.continent}</p>
+                        <p><b>Local Situation Rating:</b> {info.score}</p>
+                        <p onClick={()=>window.open(info.source)}>Click here for Advisory Information</p>
+                        <p>Information was updated on {info.updated}</p>
+                    </div>
+            )
+        }
     }
 
     useEffect(() => {
@@ -57,9 +66,8 @@ const LocationInfo = ({info}) => {
                 <div className="detailsAdvisory">
                     {advisoryPrint(travelAdv)}
                 </div>
-                <div className="detailsText">
-                    <p className="locationPageText">{info.location_name}</p>
-                    <p className="locationPageText">Currency Exchange</p>
+                <div className="detailsCurrency">
+                    <h1 className="locationPageText">Currency Exchange</h1>
                         {currencyPrint(currency)}
                 </div>
             </div>
