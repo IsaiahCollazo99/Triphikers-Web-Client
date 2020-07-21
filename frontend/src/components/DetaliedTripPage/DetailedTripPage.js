@@ -1,6 +1,6 @@
 import React, { useEffect, useState, useContext } from 'react';
 import { useParams, Route, Switch } from 'react-router-dom';
-import { getTripById } from '../../util/apiCalls/getRequests';
+import { getTripById, getTripRequests } from '../../util/apiCalls/getRequests';
 import DetailedTripNav from './DetailedTripNav';
 import DetailedTripInfo from './DetailedTripInfo';
 import DetailedTripRequests from './DetailedTripRequests';
@@ -13,6 +13,7 @@ const DetailedTripPage = () => {
     const { id } = useParams();
     const { currentUser } = useContext(AuthContext);
     const [ trip, setTrip ] = useState({});
+    const [ requests, setRequests ] = useState([]);
 
     const getTripCall = async () => {
         try {
@@ -21,7 +22,20 @@ const DetailedTripPage = () => {
         } catch (error) {
             console.log(error);
         }
-        
+    }
+
+    const getRequestsCall = async () => {
+        const data = await getTripRequests(trip.id)
+        if(data.requests) {
+            setRequests(data.requests);
+        } else {
+            setRequests([]);
+        }
+    }
+
+    const refreshFuncs = {
+        getRequestsCall,
+        getTripCall
     }
 
     useEffect(() => {
@@ -57,7 +71,7 @@ const DetailedTripPage = () => {
             <DetailedTripNav trip={trip}/>
             <Switch>
                 <Route exact path={"/trips/:tripId/"}>
-                    <DetailedTripInfo trip={trip} getTripCall={getTripCall}/>
+                    <DetailedTripInfo trip={trip} {...refreshFuncs} requests={requests}/>
                 </Route>
 
                 

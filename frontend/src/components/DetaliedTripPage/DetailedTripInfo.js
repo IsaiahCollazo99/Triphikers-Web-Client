@@ -1,12 +1,13 @@
 import React, { useState, useEffect, useContext } from 'react';
 import '../../css/detailedTripPage/detailedTripInfo.css';
-import { deleteTrip } from '../../util/apiCalls/deleteRequests';
+import { deleteTrip, deleteTripRequest } from '../../util/apiCalls/deleteRequests';
 import { useHistory } from 'react-router-dom';
 import { completeTrip } from '../../util/apiCalls/patchRequests';
-import { getTripById } from '../../util/apiCalls/getRequests';
 import { AuthContext } from '../../providers/AuthContext';
+import { createTripRequest } from '../../util/apiCalls/postRequests';
 
-const DetailedTripInfo = ({ trip = {}, getTripCall }) => {
+const DetailedTripInfo = ({ trip = {}, getTripCall, getRequestsCall, requests }) => {
+    const [ response, setResponse ] = useState(null)
     const { currentUser } = useContext(AuthContext);
     const history = useHistory();
 
@@ -18,6 +19,46 @@ const DetailedTripInfo = ({ trip = {}, getTripCall }) => {
     const completeTripCall = async () => {
         await completeTrip(trip.id);
         getTripCall();
+    }
+
+    const deleteReqCall = async () => {
+        try {
+            await deleteTripRequest(trip.id, currentUser.id);
+            getRequestsCall();
+        } catch ( error ) {
+            setResponse(<p className="error">There was a problem with your delete request.</p>)
+            console.log(error);
+        }
+    }
+
+    const requestCall = async () => {
+        try {
+            await createTripRequest(trip.id, currentUser.id)
+            getRequestsCall();
+        } catch ( error ) {
+            setResponse(<p className="error">There was a problem with your request to join.</p>)
+            console.log(error);
+        }
+    }
+
+    const displayRequestButton = () => {
+        let isUserRequestExisting = false;
+        for(let request of requests) {
+            if(request.requester_id === currentUser.id) {
+                isUserRequestExisting = true;
+                break;
+            }
+        }
+
+        if(isUserRequestExisting) {
+            return (
+                <button className="tc-requested tc-btn" onClick={deleteReqCall}><span>Requested</span></button>
+            )
+        } else {
+            return (
+                <button className="tc-req tc-btn" onClick={requestCall}>Request</button>
+            )
+        }
     }
     
     const displayExpired = () => {
@@ -41,7 +82,9 @@ const DetailedTripInfo = ({ trip = {}, getTripCall }) => {
                 )
             } else {
                 return (
-                    <button className="dt-req">Request</button>
+                    <>
+                    {displayRequestButton()}
+                    </>
                 )
 
             }

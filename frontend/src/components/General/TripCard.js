@@ -151,6 +151,8 @@ const TripCard = ({ trip, refresh }) => {
     }
     
     return (
+        <>
+        {response}
         <article className="tripCard" onClick={redirect}>
             {displayUserInfo()}
             
@@ -176,6 +178,7 @@ const TripCard = ({ trip, refresh }) => {
                 <p className="tc-br"><span>Group Type: </span>{trip.group_type}</p>
             </section>
         </article>
+        </>
     )
 }
 
