@@ -61,7 +61,7 @@ const TripCard = ({ trip, deleteTripCall, completeTripCall, refresh }) => {
 
         if(isUserRequestExisting) {
             return (
-                <p className="success requested">Requested</p>
+                <button className="tc-requested tc-btn"><span>Requested</span></button>
             )
         } else {
             return (

@@ -125,6 +125,17 @@
     grid-column: 2 / 3;
     grid-row: 2 / 3;
 }
-.requested {
-    color: green;
+
+.tc-requested span {
+    color: white;
+    font-weight: normal;
+}
+
+.tc-requested:hover span {
+    display: none;
+}
+
+.tc-requested:hover::before {
+    content: 'Del Req';
+    color: red;
 }
