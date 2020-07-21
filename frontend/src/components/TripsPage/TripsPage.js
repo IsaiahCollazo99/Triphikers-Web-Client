@@ -81,9 +81,9 @@ const TripsPage = () => {
     return (
         <div className="tripsPage">
             <button onClick={redirect} className="tp-createTrip">CREATE A TRIP</button>
-            <section className="tripsFeedManagement">
+            <section className="tp-feedManager">
                 <TripsPageFilter filterTrips={filterTrips}/>
-                <button onClick={getTripsCall}>Refresh</button>
+                <button onClick={getTripsCall} className="tp-refresh">Refresh</button>
             </section>
             <section className="tripsPageFeed">
                 {response}
