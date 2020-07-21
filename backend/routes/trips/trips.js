@@ -7,7 +7,8 @@ const {
     createTrip,
     createRequest,
     deleteTrip,
-    completeTrip
+    completeTrip,
+    deleteRequest
 } = require('../../queries/trips/trips');
 
 trips.get("/", getAllTrips);
@@ -17,5 +18,6 @@ trips.post("/", createTrip);
 trips.post("/:id/requests", createRequest);
 trips.patch("/:id", completeTrip);
 trips.delete("/:id", deleteTrip);
+trips.delete("/:id/requests", deleteRequest)
 
 module.exports = trips;
