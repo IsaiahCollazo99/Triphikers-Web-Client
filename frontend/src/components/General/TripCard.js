@@ -4,9 +4,9 @@ import { useHistory } from 'react-router-dom';
 import { AuthContext } from '../../providers/AuthContext';
 import { getTripRequests } from '../../util/apiCalls/getRequests';
 import { createTripRequest } from '../../util/apiCalls/postRequests';
-import { deleteTripRequest } from '../../util/apiCalls/deleteRequests';
+import { deleteTripRequest, deleteTrip } from '../../util/apiCalls/deleteRequests';
 
-const TripCard = ({ trip, deleteTripCall, completeTripCall, refresh }) => {
+const TripCard = ({ trip, completeTripCall, refresh }) => {
     const [ requests, setRequests ] = useState([]);
     const [ response, setResponse ] = useState(null);
     
@@ -32,8 +32,15 @@ const TripCard = ({ trip, deleteTripCall, completeTripCall, refresh }) => {
         }
     }
 
-    const handleDeleteClick = () => {
-        deleteTripCall(trip.id);
+    const deleteTripCall = async ( ) => {
+        try {
+            const deleteResponse = await deleteTrip(trip.id);
+            setResponse(deleteResponse);
+            refresh();
+        } catch ( error ) {
+            setResponse(<p className="error">There was a problem with the delete request.</p>)
+            console.log(error);
+        }
     }
 
     const handleCompleteClick = () => {
@@ -98,7 +105,7 @@ const TripCard = ({ trip, deleteTripCall, completeTripCall, refresh }) => {
                     return (
                         <>
                         <button onClick={handleCompleteClick} className="tc-com tc-btn">Complete</button>
-                        <button onClick={handleDeleteClick} className="tc-del tc-btn">Delete</button>
+                        <button onClick={deleteTripCall} className="tc-del tc-btn">Delete</button>
                         </>
                     )
                 } else {

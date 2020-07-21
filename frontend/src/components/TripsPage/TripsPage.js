@@ -31,17 +31,6 @@ const TripsPage = () => {
             console.log(error);
         }
     }
-
-    const deleteTripCall = async ( id ) => {
-        try {
-            const deleteResponse = await deleteTrip(id);
-            setResponse(deleteResponse);
-            getTripsCall();
-        } catch ( error ) {
-            setResponse(<p className="error">There was a problem with the delete request.</p>)
-            console.log(error);
-        }
-    }
     
     const getTripsCall = async () => {
         try {
@@ -86,7 +75,6 @@ const TripsPage = () => {
     }
 
     const tripCardFunctions = {
-        deleteTripCall,
         completeTripCall
     }
 
@@ -95,7 +83,7 @@ const TripsPage = () => {
         tripsArr.forEach(trip => {
             if(!trip.is_completed && !isTripExpired(trip)) {
                 validTrips.push(
-                    <TripCard trip={trip} {...tripCardFunctions} key={trip.id} />
+                    <TripCard trip={trip} {...tripCardFunctions} refresh={getTripsCall} key={trip.id} />
                 )
             }
         })
