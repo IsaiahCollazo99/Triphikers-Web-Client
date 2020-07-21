@@ -5,8 +5,9 @@ import { AuthContext } from '../../providers/AuthContext';
 import { getTripRequests } from '../../util/apiCalls/getRequests';
 import { createTripRequest } from '../../util/apiCalls/postRequests';
 import { deleteTripRequest, deleteTrip } from '../../util/apiCalls/deleteRequests';
+import { completeTrip } from '../../util/apiCalls/patchRequests';
 
-const TripCard = ({ trip, completeTripCall, refresh }) => {
+const TripCard = ({ trip, refresh }) => {
     const [ requests, setRequests ] = useState([]);
     const [ response, setResponse ] = useState(null);
     
@@ -43,8 +44,15 @@ const TripCard = ({ trip, completeTripCall, refresh }) => {
         }
     }
 
-    const handleCompleteClick = () => {
-        completeTripCall(trip.id);
+    const completeTripCall = async ( ) => {
+        try {
+            const completeTripResponse = await completeTrip(trip.id);
+            setResponse(completeTripResponse);
+            refresh();
+        } catch ( error ) {
+            setResponse(<p className="error">There was a problem with the complete request.</p>)
+            console.log(error);
+        }
     }
 
     const deleteReqCall = async () => {
@@ -104,7 +112,7 @@ const TripCard = ({ trip, completeTripCall, refresh }) => {
                 if(currentUser.id === trip.planner_id) {
                     return (
                         <>
-                        <button onClick={handleCompleteClick} className="tc-com tc-btn">Complete</button>
+                        <button onClick={completeTripCall} className="tc-com tc-btn">Complete</button>
                         <button onClick={deleteTripCall} className="tc-del tc-btn">Delete</button>
                         </>
                     )
