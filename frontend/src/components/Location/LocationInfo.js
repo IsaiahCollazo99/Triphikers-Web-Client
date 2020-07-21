@@ -1,15 +1,18 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import "../../css/locations/LocationInfo.css";
-import InfoMap from "../helper/maps/InfoMap";
 const LocationInfo = ({info}) => {
-    const [currency, setCurrency] = useState([])
+    const [currency, setCurrency] = useState([]);
+    const [travelAdv, setTravelAdv] = useState([]);
     //is information coming from backend, will have to change the child info
 
     const getAllInfo = async (info) => {
+        let countryCode = "US"
         try {
             let currency = await axios.get(`https://api.exchangeratesapi.io/latest?symbols=USD,GBP`);
+            let travelAdvisory = await axios.get(`https://www.travel-advisory.info/api?countrycode=${countryCode}`);
             setCurrency(currency.data.rates);
+            setTravelAdv(travelAdvisory.data.data[countryCode]["advisory"]);
             //currency doesnt exist in location db, needs to be dry coded
         } catch (error) {
             console.log(error)
@@ -29,17 +32,14 @@ const LocationInfo = ({info}) => {
           return array
     }
 
-    // const getMap = (lat, lng) => {
-    //     if(lat !== undefined){
-    //         let coordinates = {
-    //             lat: parseFloat(lat),
-    //             lng: parseFloat(lng)
-    //         }
-    //         return(
-    //             <InfoMap location={coordinates}/>
-    //         )
-    //     }
-    // }
+    const advisoryPrint = (country) => {
+        return (
+            <div>
+                    <p><b>Country Rating:</b> {country.score}</p>
+                    <p onClick={()=>window.open(country.source)}>Click here for Advisory Information</p>
+                </div>
+        )
+    }
 
     useEffect(() => {
         getAllInfo(info);
@@ -54,8 +54,8 @@ const LocationInfo = ({info}) => {
                 </div>
             </div>
             <div className="details">
-                <div className="detailsMap">
-                    {/* {getMap(info.lat, info.lng)} */}
+                <div className="detailsAdvisory">
+                    {advisoryPrint(travelAdv)}
                 </div>
                 <div className="detailsText">
                     <p className="locationPageText">{info.location_name}</p>
