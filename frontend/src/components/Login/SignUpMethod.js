@@ -1,5 +1,8 @@
 import React from "react";
 import { signUpWithGoogle, signUpWithFacebook, signUpWithTwitter } from "../../util/firebaseFunction";
+import googleLogo from '../../images/btn_google_light_normal_ios.svg'
+import fBookLogo from '../../images/f_logo_RGB-Blue_1024.png'
+import '../../css/signUpIn/brandButtons.css';
 
 const SignUpMethod = ({ handlePageChange, setUser }) => {
 
@@ -34,16 +37,20 @@ const SignUpMethod = ({ handlePageChange, setUser }) => {
         SIGN UP WITH TWITTER
       </button> */}
       <button className="facebookButton" onClick={handleFBookClick}>
-          SIGN UP WITH FACEBOOK
+          <img src={fBookLogo} alt="Facebook Logo" />
+          <p>Continue with Facebook</p>
       </button>
 
       <button className="googleButton" onClick={handleGoogleClick}>
+        <img src={googleLogo} alt="Google Logo" />
           SIGN UP WITH GOOGLE
       </button>
 
-      <button className="emailButton" onClick={handleEmailClick}>
+      <button className="triphikersButton" onClick={handleEmailClick}>
           SIGN UP WITH EMAIL
       </button>
+
+
     </section>
     </>
   )

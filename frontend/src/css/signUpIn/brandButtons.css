@@ -1,0 +1,59 @@
+.facebookButton {
+    display: grid;
+    grid-template-columns: 35px 1fr;
+    align-items: center;
+    width: 18em;
+    color: #1877F2;
+    border: 2px solid #1877F2;
+    padding: 10px 15px;
+    border-radius: 1em;
+    font-weight: 500;
+    font-size: 1.25em;
+}
+
+.facebookButton img {
+    width: 35px;
+}
+
+.facebookButton:hover {
+    background-color: #1877F2;
+    color: white;
+    cursor: pointer;
+}
+
+.googleButton {
+    display: grid;
+    grid-template-columns: 35px 1fr;
+    align-items: center;
+    width: 18em;
+    padding: 10px 15px;
+    border-radius: 1em;
+    font-weight: 500;
+    font-size: 1.25em;
+    border: 2px solid black;
+}
+
+.googleButton img {
+    width: 35px;
+}
+
+.googleButton:hover {
+    background-color: #4285F4;
+    cursor: pointer;
+}
+
+.triphikersButton {
+    align-items: center;
+    width: 18em;
+    color: #272A33;
+    border: 2px solid #FF9E00;
+    padding: 10px 15px;
+    border-radius: 1em;
+    font-weight: 500;
+    font-size: 1.25em;
+}
+
+.triphikersButton:hover {
+    background-color: #FF9E00;
+    cursor: pointer;
+}
