@@ -4,6 +4,9 @@ import { getUserById } from '../../util/apiCalls/getRequests'
 import DetailedTripPage from '../DetaliedTripPage/DetailedTripPage';
 import { AuthContext } from '../../providers/AuthContext';
 import { getTripById } from '../../util/apiCalls/getRequests';
+import TripCard from '../General/TripCard';
+import TripsPage from '../TripsPage/TripsPage';
+import UserPageNavBar from '../General/UserPageNavBar'
 
 const UserPage = () => {
     const { id } = useParams();
@@ -41,8 +44,8 @@ const UserPage = () => {
     return (
       
         <>
-            <div>NavBar</div>
-            <DetailedTripPage /> 
+            <div>UserPageNavBar</div>
+           
             <img src={loggedUser.profile_picture} alt=""/>
             <h2>Hello, I am {loggedUser.full_name}</h2>
             <p>{loggedUser.gender}</p>
@@ -56,6 +59,9 @@ const UserPage = () => {
                     <h4><strong>From:</strong> {userTrip.date_from} <span><strong> To: </strong>{userTrip.date_to}</span></h4>
                     <p>Description: {userTrip.description}</p>
                     <img src={userTrip.profile_picture} alt=""/>
+                </div>
+                <div>
+                    <TripsPage/>
                 </div>
                 
             </div>
