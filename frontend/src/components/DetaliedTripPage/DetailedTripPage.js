@@ -76,7 +76,7 @@ const DetailedTripPage = () => {
 
                 
                 <ProtectedUserRoute exact path={"/trips/:tripId/requests"} trip={trip}>
-                    <DetailedTripRequests trip={trip} />
+                    <DetailedTripRequests trip={trip} requests={requests} />
                 </ProtectedUserRoute>
 
                 <Route exact path={"/trips/:tripId/travelers"}>
