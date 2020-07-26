@@ -30,3 +30,13 @@ export const getUserById = async ( id ) => {
         throw error;
     }
 }
+
+export const aboutUserById = async ( id ) => {
+    try {
+        let res = await axios.get(API + `/api/users/${id}/about`);
+        return res.data;
+        debugger
+    } catch (error) {
+        throw error;
+    }
+}

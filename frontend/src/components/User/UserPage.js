@@ -6,9 +6,13 @@ import { AuthContext } from '../../providers/AuthContext';
 import { getTripById } from '../../util/apiCalls/getRequests';
 import TripCard from '../General/TripCard';
 import TripsPage from '../TripsPage/TripsPage';
-import UserPageNavBar from '../General/UserPageNavBar'
+import '../../css/userPage/UserPage.css'
+import albertaAttraction from '../../images/albertaAttraction.jpg';
+import NavUserPage from '../General/NavUserPage'
+
 
 const UserPage = () => {
+
     const { id } = useParams();
     const { currentUser } = useContext(AuthContext);
     console.log(currentUser)
@@ -43,11 +47,59 @@ const UserPage = () => {
     
     return (
       
-        <>
-            <div>UserPageNavBar</div>
+        <div className="userPageContainer">
            
-            <img src={loggedUser.profile_picture} alt=""/>
-            <h2>Hello, I am {loggedUser.full_name}</h2>
+            <hr  style={{
+                color: '#000000',
+                backgroundColor: '#000000',
+                height: 1.5,
+                borderColor: '#000000',
+                margin: 0,
+                border: 0,
+                }}
+            />
+            <div className="userPageCoverImage">
+                <img src={albertaAttraction} alt="user_cover_image" className="coverImage" />
+                <button className="editBtn" >Edit</button>
+            </div>
+            <hr  style={{
+                color: '#000000',
+                backgroundColor: '#000000',
+                height: 1.5,
+                borderColor: '#000000',
+                margin: 0,
+                border: 0,
+                }}
+            />
+            <div className="userProfile">
+                <div className="imageDiv">
+                    <img src={loggedUser.profile_picture} alt="profile_picture" className="userProfilePicture" />
+                </div>
+                <div className="greeting">
+                    <h2>Hello, I am {loggedUser.full_name}</h2>
+                </div>
+            </div>
+            <hr  style={{
+                color: '#000000',
+                backgroundColor: '#000000',
+                height: 1.5,
+                borderColor: '#000000',
+                margin: 0,
+                border: 0,
+                }}
+            />
+            <div className="navUserPage">
+            </div>
+                <NavUserPage/>
+            <hr  style={{
+                color: '#000000',
+                backgroundColor: '#000000',
+                height: 1.5,
+                borderColor: '#000000',
+                margin: 0,
+                border: 0,
+                }}
+            />
             <p>{loggedUser.gender}</p>
             <p>Country Of Origin: {loggedUser.country_of_origin}</p>
             <p>Age: {loggedUser.age} years old</p>
@@ -65,33 +117,10 @@ const UserPage = () => {
                 </div>
                 
             </div>
-        </>
+        </div>
     )
 }
 
+
 export default UserPage;
 
-// accommodation: "Hotel"
-// age: 20
-// before_trip_meetup: "Video Call"
-// bio: "Hello"
-// budget: 1000
-// country_of_origin: "USA"
-// date_from: "10/01/2020"
-// date_to: "10/10/2020"
-// description: "Just want to explore around cities with my friends and some new people"
-// destination: "England"
-// first_time: "Yes"
-// full_name: "Isaiah Collazo"
-// gender: "Male"
-// group_type: "Any"
-// id: 1
-// is_completed: false
-// itinerary: "None"
-// language: "English"
-// planner_id: "1"
-// profile_picture: "https://images.unsplash.com/photo-1494548162494-384bba4ab999?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=800&q=60"
-// split_costs: "Yes"
-// trip_title: "Exploring England"
-// trip_type: "Explore Cities"
-// user_id: "1"
