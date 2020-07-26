@@ -1,9 +1,37 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
+import { getTripTravelers } from '../../util/apiCalls/getRequests';
+import '../../css/detailedTripPage/detailedTripTravelers.css';
 
 const DetailedTripTravelers = ({ trip = {} }) => {
+    const [ travelers, setTravelers ] = useState([]);
+    
+    const getTravelersCall = async () => {
+        try {
+            const data = await getTripTravelers(trip.id);
+            setTravelers(data.travelers);
+        } catch ( error ) {
+            console.log(error);
+        }
+    }
+
+    useEffect(() => {
+        getTravelersCall();
+    }, [])
+
+    const travelersList = travelers.map((user) => {
+        return (
+            <article className="travelersCard" key={user.id}>
+                <section className="tc-info">
+                    <img src={user.profile_picture} alt={user.full_name} />
+                    <p>{user.full_name}</p>
+                </section>
+            </article>
+        )
+    })
+
     return (
-        <section className="detailedTripTravelers">
-            Detailed Trip Travelers
+        <section className="dt-travelers">
+            {travelersList}
         </section>
     )
 }

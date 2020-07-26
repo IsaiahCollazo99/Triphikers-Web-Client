@@ -30,3 +30,13 @@ export const getTripRequests = async ( id ) => {
         throw error;
     }
 }
+
+export const getTripTravelers = async ( id ) => {
+    try {
+        let res = await axios.get(API + `/api/trips/${id}/travelers`);
+        return res.data;
+    } catch ( error ) {
+        console.log(error);
+        throw error;
+    }
+}
