@@ -82,6 +82,35 @@ module.exports = {
         }
     },
 
+    getTripTravelers: async ( req, res, next ) => {
+        const { id } = req.params;
+        try {
+            const travelers = await db.any(`
+                SELECT users.full_name, users.age, users.country_of_origin, users.gender, 
+                users.profile_picture, travelers.*
+                FROM travelers
+                LEFT JOIN users ON users.id=travelers.traveler_id
+                WHERE travelers.trip_id=$1
+            `, id);
+
+            if(travelers.length) {
+                res.status(200).json({
+                    status: "OK",
+                    message: `Retrieved trip ${id} travelers.`,
+                    travelers
+                })
+            } else {
+                res.status(200).json({
+                    status: "OK",
+                    message: `No travelers found.`
+                })
+            }
+
+        } catch ( error ) {
+            next(error);
+        }
+    },
+
     createTrip: async ( req, res, next ) => {
         try {
             const {
@@ -132,6 +161,26 @@ module.exports = {
         }
     },
 
+    addTraveler: async ( req, res, next ) => {
+        const { id } = req.params;
+        const { traveler_id } = req.body;
+        try {
+            const traveler = await db.one(`
+                INSERT INTO TRAVELERS (traveler_id, trip_id)
+                VALUES ($1, $2)
+                RETURNING *
+            `, [traveler_id, id]);
+            
+            res.status(200).json({
+                status: "OK",
+                message: "Created new traveler.",
+                traveler
+            })
+        } catch ( error ) {
+            next(error);
+        }
+    },
+
     completeTrip: async ( req, res, next) => {
         const { id } = req.params;
         try {
@@ -171,11 +220,28 @@ module.exports = {
         const { id } = req.params;
         const { requester_id } = req.query;
         try {
-            console.log(id, requester_id)
             await db.none(`
                 DELETE FROM requests
                 WHERE trip_id=$1 AND requester_id=$2
             `, [id, requester_id]);
+
+            res.status(200).json({
+                status: "OK",
+                message: "Deleted Request"
+            })
+        } catch ( error ) {
+            next(error);
+        }
+    },
+
+    deleteTraveler: async ( req, res, next ) => {
+        const { id } = req.params;
+        const { traveler_id } = req.query;
+        try {
+            await db.none(`
+                DELETE FROM travelers
+                WHERE trip_id=$1 AND traveler_id=$2
+            `, [id, traveler_id]);
 
             res.status(200).json({
                 status: "OK",
