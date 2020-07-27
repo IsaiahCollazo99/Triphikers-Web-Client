@@ -35,7 +35,6 @@ const LocationInfo = ({info}) => {
 
     const advisoryPrint = (country) => {
         let info = country.advisory;
-        debugger
         if(info !== undefined){
             return (
                 <div>
