@@ -1,25 +1,11 @@
 import React, { useState, useEffect } from 'react';
 import { getTripRequests } from '../../util/apiCalls/getRequests';
 import '../../css/detailedTripPage/detailedTripRequest.css';
+import RequestCard from '../General/RequestCard';
 
 const DetailedTripRequests = ({ trip = {} }) => {
     const [ requests, setRequests ] = useState([]);
-    
-    const requestList = requests.map(user => {
-        return (
-            <article className="requestCard" key={user.id}>
-                <section className="rc-info">
-                    <img src={user.profile_picture} alt={user.full_name} />
-                    <p>{user.full_name}</p>
-                </section>
-
-                <section className="rc-buttons">
-                    <button className="rc-accept">Accept</button>
-                    <button className="rc-deny">Deny</button>
-                </section>
-            </article>
-        )
-    })
+    const [ response, setResponse ] = useState(null);
 
     const getRequests = async () => {
         const data = await getTripRequests(trip.id);
@@ -34,8 +20,15 @@ const DetailedTripRequests = ({ trip = {} }) => {
         getRequests();
     }, [])
 
+    const requestList = requests.map(user => {
+        return (
+            <RequestCard user={user} tripId={trip.id} key={user.id} setResponse={setResponse} refresh={getRequests}/>
+        )
+    })
+
     return (
         <section className="dt-requests">
+            {response}
             {requestList}
         </section>
     )

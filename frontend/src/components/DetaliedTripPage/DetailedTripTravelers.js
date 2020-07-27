@@ -8,8 +8,13 @@ const DetailedTripTravelers = ({ trip = {} }) => {
     const getTravelersCall = async () => {
         try {
             const data = await getTripTravelers(trip.id);
-            setTravelers(data.travelers);
+            if(data.travelers) {
+                setTravelers(data.travelers);
+            } else {
+                setTravelers([]);
+            }
         } catch ( error ) {
+            setTravelers([]);
             console.log(error);
         }
     }

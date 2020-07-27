@@ -88,3 +88,13 @@ export const createUser = async ( userObj ) => {
           throw error;
       }
   }
+
+  export const approveTraveler = async ( tripId, traveler_id ) => {
+      console.log(tripId, traveler_id);
+      try {
+        const res = await axios.post(API + `/api/trips/${tripId}/travelers`, {traveler_id});
+        return <p className="success">Successfuly approved request</p>
+      } catch ( error ) {
+        throw error;
+      }
+  }
