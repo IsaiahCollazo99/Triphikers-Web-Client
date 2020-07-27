@@ -16,7 +16,7 @@ export const deleteTrip = async ( id ) => {
 export const deleteTripRequest = async ( id, requester_id ) => {
     try {
         await axios.delete(API + `/api/trips/${id}/requests?requester_id=${requester_id}`);
-        return <p className="success">Request successfully removed</p>
+        return <p className="success">Request successfully denied</p>
     } catch ( error ) {
         throw error;
     }

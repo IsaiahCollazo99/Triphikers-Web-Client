@@ -5,12 +5,21 @@ import { deleteTripRequest } from '../../util/apiCalls/deleteRequests';
 const RequestCard = ({ user, tripId, setResponse, refresh }) => {
     const approveRequest = async () => {
         try {
-            console.log(user);
             const response = await approveTraveler(tripId, user.requester_id);
             await deleteTripRequest(tripId, user.requester_id);
             setResponse(response);
             refresh();
 
+        } catch ( error ) {
+            console.log(error);
+        }
+    }
+
+    const denyRequest = async () => {
+        try {
+            const response = await deleteTripRequest(tripId, user.requester_id);
+            setResponse(response);
+            refresh();
         } catch ( error ) {
             console.log(error);
         }
@@ -25,7 +34,7 @@ const RequestCard = ({ user, tripId, setResponse, refresh }) => {
 
             <section className="rc-buttons">
                 <button className="rc-accept" onClick={approveRequest}>Accept</button>
-                <button className="rc-deny">Deny</button>
+                <button className="rc-deny" onClick={denyRequest}>Deny</button>
             </section>
         </article>
     )
