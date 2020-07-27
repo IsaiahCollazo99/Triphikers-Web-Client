@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { GoogleMap, useLoadScript, Marker } from '@react-google-maps/api';
+import HotspotIcon from '../../../images/Fire.png';
 
 const {
     REACT_APP_GOOGLEAPIKEY
@@ -44,7 +45,7 @@ const HotspotMap = ({ location, fetchData, allMarkers }) => {
             })}}>
 
                 {allMarkers.map((marker) => (
-                    <Marker key={marker.id} position={{ lat: parseFloat(marker.lat), lng: parseFloat(marker.lng) }} onClick={() => {setSelected(marker); setEpicenter({lat: parseFloat(marker.lat), lng: parseFloat(marker.lng)}); setZoom(16)}}/>
+                    <Marker key={marker.id} position={{ lat: parseFloat(marker.lat), lng: parseFloat(marker.lng) }} icon={{url: `${HotspotIcon}`, scaledSize: new window.google.maps.Size(24, 24), origin: new window.google.maps.Point(0,0), anchor: new window.google.maps.Point(12,12)}} onClick={() => {setSelected(marker); setEpicenter({lat: parseFloat(marker.lat), lng: parseFloat(marker.lng)}); setZoom(16)}}/>
                 ))}
 
                 <Marker position={{ lat: parseFloat(markers.lat), lng: parseFloat(markers.lng) }}/>

@@ -25,6 +25,7 @@ const LocationReviews = (id) => {
     const [selectedCountry, setSelectedCountry] = useState('');
     const [address, setAddress] = useState([]);
     const [coord, setCoord] = useState([]);
+    // const [image, setImage] = useState([]);
 
     const {isLoaded, loadError} = useLoadScript({
         googleMapsApiKey: REACT_APP_GOOGLEAPIKEY,
@@ -34,6 +35,9 @@ const LocationReviews = (id) => {
     const fetchFilters = async () => {
         try {
             let countries = await axios.get(`https://restcountries.eu/rest/v2/all`);
+            // let images = await axios.get('http://localhost:3001/api/maps/Madrid');
+            // setImage(images.data.payload);
+            debugger
             setAllCountries(countries.data);
         } catch (error) {
             console.log(error);

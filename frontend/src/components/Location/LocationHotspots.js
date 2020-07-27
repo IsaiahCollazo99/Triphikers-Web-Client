@@ -62,14 +62,6 @@ const LocationHotspots = ({info}) => {
     const handleSubmit = async (e) => {
         e.preventDefault();
         try {
-            // await axios.post(`http://localhost:3001/api/hotspots`, {
-            //     lat: submitCoordinates.lat,
-            //     lng: submitCoordinates.lng,
-            //     hotspot_title: submitHotspotTitle,
-            //     body: submitHotspotBody,
-            //     image: imageFile,
-            //     poster_id: 1
-            // })
             uploadPicture(`hotspots/${submitHotspotTitle}/`, {id: currentUser.id, file: imageFile}, createSubmissionRequest);
         } catch (error) {
             console.log(error)
