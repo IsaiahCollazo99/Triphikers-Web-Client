@@ -16,7 +16,8 @@ CREATE TABLE users (
     profile_picture VARCHAR,
     gender VARCHAR,
     bio VARCHAR,
-    country_of_origin VARCHAR
+    country_of_origin VARCHAR,
+    language VARCHAR
 );
 
 CREATE TABLE trips (

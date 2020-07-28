@@ -12,12 +12,13 @@ module.exports = {
 				gender,
 				bio,
 				country_of_origin,
+				language,
 			} = req.body;
 			
 			let user = await db.one(
-				`INSERT INTO users(id, full_name, email, age, profile_picture, gender, bio, country_of_origin)
-      VALUES ($1, $2, $3, $4, $5, $6, $7, $8) RETURNING *`,
-				[id, full_name, email, age, profile_picture, gender, bio, country_of_origin]
+				`INSERT INTO users(id, full_name, email, age, profile_picture, gender, bio, country_of_origin, language)
+      VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9) RETURNING *`,
+				[id, full_name, email, age, profile_picture, gender, bio, country_of_origin, language]
 			);
 			
 

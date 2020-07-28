@@ -10,6 +10,7 @@ const {
 
 trips.get("/", getAllTrips);
 trips.get("/:id", getTripById);
+trips.get("/about", getTripById);
 trips.post("/", createTrip);
 trips.patch("/:id", completeTrip);
 trips.delete("/:id", deleteTrip);

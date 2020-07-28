@@ -11,6 +11,7 @@ const {
 users.post("/", createUser);
 users.get("/", getAllUsers);
 users.get("/:id", getUserById);
+users.get("/:id/about", getUserById);
 users.get("/:id/posts", getUsersPosts);
 users.patch("/:id", isUserExisting, updateUser)
 
