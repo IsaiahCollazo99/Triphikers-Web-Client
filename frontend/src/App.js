@@ -39,7 +39,7 @@ function App() {
 					<UserPage />
 				</ProtectedRoute>
 				
-				<ProtectedRoute exact path="user/:id/about">
+				<ProtectedRoute exact path="/user/:id/about">
 					<About />
 				</ProtectedRoute>
 				

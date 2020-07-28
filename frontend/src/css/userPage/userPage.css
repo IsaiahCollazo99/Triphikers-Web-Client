@@ -16,6 +16,9 @@
   right:100px;
   width: 100px;
   margin-top: 10px;
+  font-size: 1.5rem;
+  border-width: 0.5rem;
+  background-color: #FF9E00;
 }
 
 .userProfile {

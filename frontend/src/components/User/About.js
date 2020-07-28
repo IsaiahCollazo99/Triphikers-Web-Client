@@ -1,67 +1,39 @@
-import React, { useEffect, useState, useContext } from 'react';
-import { useParams } from 'react-router-dom'
-import { aboutUserById } from '../../util/apiCalls/getRequests'
-import { AuthContext } from '../../providers/AuthContext';
-import { getTripById } from '../../util/apiCalls/getRequests';
-import {userPage} from './UserPage'
+import React, { useState, useEffect } from 'react';
+import { useParams } from 'react-router-dom';
+import '../../css/userPage/About.css'
+import { getUserById } from '../../util/apiCalls/getRequests';
+
 const About = () => {
-  const { id } = useParams();
-  const { currentUser } = useContext(AuthContext);
-  // const [userTrip, setUserTrip] = useState({});
-  console.log(currentUser)
-  const [ loggedUser, setLoggedUser ] = useState({});
-  const getUser = async () => {
-         try {
-          // const data = await getUserById(id);
-          const data = await aboutUserById(id);
-           
-           
-           debugger
-             setLoggedUser(data.user)
-            
-       } catch (error) {
+    const { id } = useParams();
+    const [ aboutUser, setAboutUser ] = useState({})
+    const [ aboutLanguage, setAboutLanguage ] = useState({})
+    const getUserInfo = async () => {
+        try {
+            const data = await getUserById(id)
+            setAboutUser(data.user)
+        } catch (error) {
             console.log(error)
         }
-    }
-    
-    // const getTripOfUser = async() => {
-    //     try {
-    //         const data = await getTripById(id);
-    //         setUserTrip(data.trip)
+    };
 
-    //     } catch(error) {
-    //         console.log(error)
-    //     }
-        
-    // }
-        
     useEffect(() => {
-        getUser();
-        // getTripOfUser();
+        getUserInfo();
     }, []);
-    
-    
+
     return (
-   
-            <div className="aboutUser">
-                <div className="imageDiv">
-                    <img src={loggedUser.profile_picture} alt="profile_picture" className="userProfilePicture" />
+        <>
+        <div className="aboutPage">
+           
+                <img src={aboutUser.profile_picture} alt="profile_picture" className="aboutUserProfilePic" />
                 </div>
-            <hr  style={{
-                color: '#000000',
-                backgroundColor: '#000000',
-                height: 1.5,
-                borderColor: '#000000',
-                margin: 0,
-                border: 0,
-                }}
-            />
-            <p>{loggedUser.gender}</p>
-            <p>Country Of Origin: {loggedUser.country_of_origin}</p>
-            <p>Age: {loggedUser.age} years old</p>
-            {/* <p>Language: {userTrip.language}</p> */}
-          </div> 
-       
+                    <button className="aboutEditBtn">Edit</button>
+                <div className="aboutParagraph">
+                <p><span className="boldFont">Full Name: </span>{aboutUser.full_name}</p>
+                <p><span className="boldFont">Country Of Origin: </span> {aboutUser.country_of_origin}</p>
+                <p><span className="boldFont">Age: </span>{aboutUser.age} years old</p>
+                <p><span className="boldFont">Language: </span>{aboutUser.language}</p>
+            </div>
+        </>
     )
 }
 

@@ -28,7 +28,7 @@ const NavBar = () => {
                     {displayCreateTrip()}
                     <NavLink exact to="/trips">TRIPS</NavLink>
                     {/* When State management is added updated from /user to /user/:userId */}
-                    <NavLink to="/user">PROFILE</NavLink>
+                    <NavLink to={`/user/${currentUser.id}`}>PROFILE</NavLink>
                     <a onClick={redirect}>LOG OUT</a>
                 </section>
             )
