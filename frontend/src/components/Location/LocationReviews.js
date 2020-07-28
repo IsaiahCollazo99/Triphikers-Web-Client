@@ -14,6 +14,7 @@ import {
     ComboboxOption
   } from "@reach/combobox";
   import "@reach/combobox/styles.css";
+  require("dotenv").config()
 
   const {
     REACT_APP_GOOGLEAPIKEY
@@ -23,9 +24,9 @@ const libraries = ["places"];
 const LocationReviews = (id) => {
     const [allCountries, setAllCountries] = useState([]);
     const [selectedCountry, setSelectedCountry] = useState('');
-    const [address, setAddress] = useState([]);
+    const [city, setCity] = useState([]);
     const [coord, setCoord] = useState([]);
-    // const [image, setImage] = useState([]);
+    const [imageRef, setImageRef] = useState([]);
 
     const {isLoaded, loadError} = useLoadScript({
         googleMapsApiKey: REACT_APP_GOOGLEAPIKEY,
@@ -35,9 +36,6 @@ const LocationReviews = (id) => {
     const fetchFilters = async () => {
         try {
             let countries = await axios.get(`https://restcountries.eu/rest/v2/all`);
-            // let images = await axios.get('http://localhost:3001/api/maps/Madrid');
-            // setImage(images.data.payload);
-            debugger
             setAllCountries(countries.data);
         } catch (error) {
             console.log(error);
@@ -49,7 +47,7 @@ const LocationReviews = (id) => {
         setSelectedCountry(e.target.value);
     }
 
-    const Search = ({ setAddress, setCoord, selectedCountry }) => {
+    const Search = ({ setCity, setCoord, selectedCountry, setImageRef }) => {
         const {ready, value, suggestions: {status, data}, setValue, clearSuggestions} = usePlacesAutocomplete({
             requestOptions: {
                 types: ['(cities)'],
@@ -64,7 +62,14 @@ const LocationReviews = (id) => {
                         try {
                             const res = await getGeocode({address});
                             const { lat, lng } = await getLatLng(res[0]);
-                            setAddress(address);
+                            let getPlaceID = await axios.get(`http://localhost:3001/api/maps/${address}`);
+                            // setImageRef(placeID.data.placeID.candidates[1].photos[0].photo_reference);
+                            let placeID = (getPlaceID.data.placeID.candidates[1].photos[0].photo_reference);
+                            let images = await axios.get(`http://localhost:3001/api/place/${placeID}`);
+                            debugger
+                            setImageRef(images.data);
+                            debugger
+                            setCity(address);
                             setCoord({ lat, lng });
                         } catch(error) {
                             console.log(error)
@@ -96,7 +101,7 @@ const LocationReviews = (id) => {
                 <option hidden>Select A Country</option>
                 <PopulateLocationSelect list={allCountries}/>
             </select>
-            {selectedCountry !== '' ? <Search setAddress={setAddress} setCoord={setCoord} selectedCountry={selectedCountry}/> : null }
+            {selectedCountry !== '' ? <Search setCity={setCity} setCoord={setCoord} selectedCountry={selectedCountry} setImageRef={setImageRef}/> : null }
         </div>
     )
 }

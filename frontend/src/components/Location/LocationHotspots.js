@@ -112,7 +112,7 @@ const LocationHotspots = ({info}) => {
                         <p className="submitLat"><b>Longitude:</b> {selectedHotspot.lng}</p>
                         <h2><b>Title:</b> {selectedHotspot.hotspot_title}</h2>
                         <p><b>Description:</b> {selectedHotspot.body}</p>
-                        <img src={selectedHotspot.image_url} alt="hotspotImage"/>
+                        <img src={selectedHotspot.image} alt="hotspotImage"/>
                         <p><b>Submitted By:</b> {selectedHotspot.poster_id}</p>
                         <p className="directions" onClick={() => window.open( `https://www.google.com/maps/dir/?api=1&destination=${selectedHotspot.lat}/${selectedHotspot.lng}&travelmode=driving`)}><b>Click Here for Directions</b></p>
                     </div>
