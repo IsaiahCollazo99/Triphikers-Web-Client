@@ -15,7 +15,7 @@ const UserPage = () => {
     const { id } = useParams();
     const { currentUser } = useContext(AuthContext);
     const [ loggedUser, setLoggedUser ] = useState({});
-    const [userTrip, setUserTrip] = useState([]);
+    const [userTrip, setUserTrip] = useState({});
     const getUser = async () => {
          try {
            const data = await getUserById(id);
@@ -29,6 +29,7 @@ const UserPage = () => {
     const getTripOfUser = async() => {
         try {
             const data = await getTripById(id);
+            debugger
             setUserTrip(data.trip)
 
         } catch(error) {
@@ -98,30 +99,18 @@ const UserPage = () => {
                 border: 0,
                 }}
             />
-            {/* <p>{loggedUser.gender}</p>
-            <p>Country Of Origin: {loggedUser.country_of_origin}</p>
-            <p>Age: {loggedUser.age} years old</p>
-            <p>Language: {userTrip.language}</p> */}
+            
             <div>
-                {/* <p>{userTrip.trip_title}</p>
-                <div>
-                <p>Trip Date: </p>
-                    <h4><strong>From:</strong> {userTrip.date_from} <span><strong> To: </strong>{userTrip.date_to}</span></h4>
-                    <p>Description: {userTrip.description}</p>
-                    <img src={userTrip.profile_picture} alt=""/> */}
-                {/* </div> */}
+              
                 <div >
-                    {userTrip.map((user) => {
-                    debugger
-                return <div key={user.id}>
-                 <p>{user.username}</p>
-                <p>{user.profile_picture}</p>
+                    {/* {userTrip} */}
+              
                  </div> 
-        })}
+    
                     <TripsPage/>
                 </div>
                 
-            </div>
+            
         </div>
     )
 }

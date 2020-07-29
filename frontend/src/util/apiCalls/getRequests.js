@@ -12,11 +12,12 @@ export const getAllTrips = async () => {
     }
 }
 
-export const getTripById = async ( id ) => {
+export const getTripById = async (id) => {
+    
     try {
         let res = await axios.get(API + `/api/trips/${id}`);
-        debugger
         return res.data;
+        debugger
     } catch (error) {
         throw error;
     }
