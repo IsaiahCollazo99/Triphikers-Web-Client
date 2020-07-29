@@ -1,25 +1,27 @@
 import React, { useState, useEffect} from "react";
+import { createClient } from 'pexels';
 import PopulateLocationSelect from "../helper/populateLocationSelect";
 import axios from "axios";
 import { useLoadScript } from '@react-google-maps/api';
 import usePlacesAutocomplete, {
     getGeocode,
     getLatLng,
-  } from "use-places-autocomplete";
+} from "use-places-autocomplete";
 import {
     Combobox,
     ComboboxInput,
     ComboboxPopover,
     ComboboxList,
     ComboboxOption
-  } from "@reach/combobox";
-  import "@reach/combobox/styles.css";
-  require("dotenv").config()
+} from "@reach/combobox";
+import "@reach/combobox/styles.css";
+require("dotenv").config()
 
-  const {
+const {
     REACT_APP_GOOGLEAPIKEY
 } = process.env;
 const libraries = ["places"];
+const client = createClient('563492ad6f9170000100000153f28b06267f4b548fc99fbb457455db');
 
 const LocationReviews = (id) => {
     const [allCountries, setAllCountries] = useState([]);
@@ -27,11 +29,17 @@ const LocationReviews = (id) => {
     const [city, setCity] = useState([]);
     const [coord, setCoord] = useState([]);
     const [imageRef, setImageRef] = useState([]);
+    // const [query, setQuery] = useState([]);
 
     const {isLoaded, loadError} = useLoadScript({
         googleMapsApiKey: REACT_APP_GOOGLEAPIKEY,
         libraries,
     });
+
+    const getPhoto = () => {
+        const query = city;
+        client.photos.search({ query, per_page: 1 }).then(photos => setImageRef(photos.photos[0].src.original));
+    }
 
     const fetchFilters = async () => {
         try {
@@ -47,7 +55,7 @@ const LocationReviews = (id) => {
         setSelectedCountry(e.target.value);
     }
 
-    const Search = ({ setCity, setCoord, selectedCountry, setImageRef }) => {
+    const Search = ({ setCity, setCoord, selectedCountry}) => {
         const {ready, value, suggestions: {status, data}, setValue, clearSuggestions} = usePlacesAutocomplete({
             requestOptions: {
                 types: ['(cities)'],
@@ -62,13 +70,10 @@ const LocationReviews = (id) => {
                         try {
                             const res = await getGeocode({address});
                             const { lat, lng } = await getLatLng(res[0]);
-                            let getPlaceID = await axios.get(`http://localhost:3001/api/maps/${address}`);
-                            // setImageRef(placeID.data.placeID.candidates[1].photos[0].photo_reference);
-                            let placeID = (getPlaceID.data.placeID.candidates[1].photos[0].photo_reference);
-                            let images = await axios.get(`http://localhost:3001/api/place/${placeID}`);
-                            debugger
-                            setImageRef(images.data);
-                            debugger
+                            // let getPlaceID = await axios.get(`http://localhost:3001/api/maps/${address}`);
+                            // let placeID = (getPlaceID.data.placeID.candidates[1].photos[0].photo_reference);
+                            // let images = await axios.get(`http://localhost:3001/api/place/${placeID}`);
+                            // setImageRef(images.data.placeID);
                             setCity(address);
                             setCoord({ lat, lng });
                         } catch(error) {
@@ -88,8 +93,11 @@ const LocationReviews = (id) => {
     }
     
     useEffect(() => {
-        fetchFilters()
-    }, []);
+        fetchFilters();
+        if(city.length > 0) {
+            getPhoto();
+        }
+    }, [city]);
 
     if(loadError) return "Error loading maps";
     if(!isLoaded) return "Loading maps";
@@ -101,7 +109,8 @@ const LocationReviews = (id) => {
                 <option hidden>Select A Country</option>
                 <PopulateLocationSelect list={allCountries}/>
             </select>
-            {selectedCountry !== '' ? <Search setCity={setCity} setCoord={setCoord} selectedCountry={selectedCountry} setImageRef={setImageRef}/> : null }
+            {selectedCountry !== '' ? <Search setCity={setCity} setCoord={setCoord} selectedCountry={selectedCountry}/> : null }
+            {imageRef.length > 0 ? <img src={imageRef} alt="cityImage"/> : null }
         </div>
     )
 }
