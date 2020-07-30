@@ -33,18 +33,12 @@ const LocationSearch = (id) => {
         pathname: `/location/${country}/${city}`,
         state: { city: city, country: selectedCountry, coordinates: {lat: lat, lng: lng} }}
         );
-    // const [imageRef, setImageRef] = useState([]);
 
 
     const {isLoaded, loadError} = useLoadScript({
         googleMapsApiKey: REACT_APP_GOOGLEAPIKEY,
         libraries,
     });
-
-    // const getPhoto = () => {
-    //     const query = city;
-    //     client.photos.search({ query, per_page: 1 }).then(photos => setImageRef(photos.photos[0].src.original));
-    // }
 
     const fetchFilters = async () => {
         try {
@@ -75,7 +69,6 @@ const LocationSearch = (id) => {
                         try {
                             const res = await getGeocode({address});
                             const { lat, lng } = await getLatLng(res[0]);
-                            // setCoord({ lat, lng });
                             locationRedirect(selectedCountry, address, lat, lng)
                         } catch(error) {
                             console.log(error)
@@ -95,9 +88,6 @@ const LocationSearch = (id) => {
     
     useEffect(() => {
         fetchFilters();
-        // if(city.length > 0) {
-        //     getPhoto();
-        // }
     }, []);
 
     if(loadError) return "Error loading maps";

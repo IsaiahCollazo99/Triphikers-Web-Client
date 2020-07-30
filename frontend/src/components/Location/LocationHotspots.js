@@ -7,6 +7,7 @@ import { useContext } from "react";
 import { AuthContext } from "../../providers/AuthContext";
 
 const LocationHotspots = ({info}) => {
+    debugger
     const { currentUser } = useContext(AuthContext);
     const [submitCoordinates, setSubmitCoordinates] = useState([]);
     const [selectedHotspot, setSelectedHotspot] = useState(null);
