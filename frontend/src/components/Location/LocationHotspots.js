@@ -6,7 +6,7 @@ import "../../css/locations/LocationHotspots.css";
 import { useContext } from "react";
 import { AuthContext } from "../../providers/AuthContext";
 
-const LocationHotspots = ({info}) => {
+const LocationHotspots = ({ city, coord, country }) => {
     debugger
     const { currentUser } = useContext(AuthContext);
     const [submitCoordinates, setSubmitCoordinates] = useState([]);
@@ -51,7 +51,7 @@ const LocationHotspots = ({info}) => {
             hotspot_title: submitHotspotTitle,
             body: submitHotspotBody,
             image: data.url,
-            poster_id: 1
+            poster_id: currentUser
         }
         await axios.post(`http://localhost:3001/api/hotspots`, submission);
         setSubmitted(true);
@@ -89,7 +89,7 @@ const LocationHotspots = ({info}) => {
     return (
         <div className="hotSpotContainer">
             <div className="hotSpotMap">
-                {getMap(info.lat, info.lng)}
+                {getMap(coord.lat, coord.lng)}
             </div>
             <div className="formWithSelect">
                 <form className="hotSpotForm" onSubmit={handleSubmit}>

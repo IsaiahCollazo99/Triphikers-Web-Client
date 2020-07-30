@@ -25,10 +25,10 @@ const LocationPage = () => {
         <div className="container">
             <LocationInfo city={city} coord={coord} country={country}/>
             <div className="locationNavbar">
-                <LocationNavbar info={info}/>
+                <LocationNavbar city={city} country={country}/>
                 <Switch>
                     <Route exact path={`/location/${country}/${city}/hotspots`}>
-                        <LocationHotspots info={info}/>
+                        <LocationHotspots city={city} coord={coord} country={country}/>
                     </Route>
                     <Route exact path={`/location/${country}/${city}/attractions`}>
                         <LocationAttractions info={info}/>
