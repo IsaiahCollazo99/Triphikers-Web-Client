@@ -54,7 +54,7 @@ const LocationAttractions = ({info}) => {
                             console.log(error)
                         }
                     }}>
-                    <ComboboxInput className="searchInput" value={value} onChange={(e)=>{
+                    <ComboboxInput className="searchInput" value={value} onChange={(e)=>{setValue(e.target.value);
                     }} disabled={!ready} placeholder="Search An Attraction"/>
                     <ComboboxPopover>
                         <ComboboxList>
