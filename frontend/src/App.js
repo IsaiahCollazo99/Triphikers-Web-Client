@@ -14,6 +14,7 @@ import { AuthRoute, ProtectedRoute } from "./util/routesUtil";
 import AuthProvider from "./providers/AuthContext";
 import UserPageNavBar from "./components/General/UserPageNavBar";
 import About from "./components/User/About";
+import { updateUser } from "./components/User/UpdateUser";
 
 function App() {
 
@@ -41,6 +42,10 @@ function App() {
 				
 				<ProtectedRoute exact path="/user/:id/about">
 					<About />
+				</ProtectedRoute>
+					
+				<ProtectedRoute exact path="/updated/:id">
+					<updateUser />
 				</ProtectedRoute>
 				
 					
