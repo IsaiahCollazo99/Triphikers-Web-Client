@@ -28,6 +28,7 @@ const LocationHotspots = ({ city, coord, country }) => {
             let name = await axios.get(`http://localhost:3001/api/users/${id}`);
             let nameSplit = name.data.user.full_name.split(" ")[0]
             setUserName(nameSplit);
+            //want to redirect page when clicking on the usernames name that submitted a photo
         } catch (error) {
             console.log(error)
         }
