@@ -30,7 +30,7 @@ const LocationSearch = (id) => {
     const [selectedCountry, setSelectedCountry] = useState('');
     const history = useHistory();
     const locationRedirect = (country, city, lat, lng) => history.push({
-        pathname: `/location/${country}/${city}`,
+        pathname: `/location/${country}/${city}/hotspots`,
         state: { city: city, country: selectedCountry, coordinates: {lat: lat, lng: lng} }}
         );
 

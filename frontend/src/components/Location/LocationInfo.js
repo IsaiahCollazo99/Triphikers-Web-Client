@@ -9,7 +9,7 @@ import { createClient } from 'pexels';
 //not working and must do for weather API as well
 let weatherkey = '18d629f0d66c4d5e831121754202907';
 
-const LocationInfo = ({city, coord, country}) => {
+const LocationInfo = ({city, coord, country, title}) => {
     const client = createClient(`563492ad6f9170000100000153f28b06267f4b548fc99fbb457455db`);
     const [currency, setCurrency] = useState([]);
     const [travelAdv, setTravelAdv] = useState([]);
@@ -98,7 +98,7 @@ const LocationInfo = ({city, coord, country}) => {
             <div className="locationImageContainer">
                 <img className="cityImage" src={imageRef} alt="location"/>
                 <div className="overlay">
-                    <div className="locationName">{city}</div>
+                    <div className="locationName">{title}</div>
                 </div>
             </div>
             <div className="details">

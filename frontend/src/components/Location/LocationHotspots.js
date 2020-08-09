@@ -7,8 +7,8 @@ import { useContext } from "react";
 import { AuthContext } from "../../providers/AuthContext";
 
 const LocationHotspots = ({ city, coord, country }) => {
-    debugger
     const { currentUser } = useContext(AuthContext);
+    const [userName, setUserName] = useState([]);
     const [submitCoordinates, setSubmitCoordinates] = useState([]);
     const [selectedHotspot, setSelectedHotspot] = useState(null);
     const [allMarkers, setAllMarkers] = useState([]);
@@ -20,6 +20,17 @@ const LocationHotspots = ({ city, coord, country }) => {
     const fetchData = (data) => {
         setSubmitCoordinates(data.coordinates);
         setSelectedHotspot(data.selected);
+        fetchUserName(data.selected.poster_id);
+    }
+
+    const fetchUserName = async (id) =>{
+        try {
+            let name = await axios.get(`http://localhost:3001/api/users/${id}`);
+            let nameSplit = name.data.user.full_name.split(" ")[0]
+            setUserName(nameSplit);
+        } catch (error) {
+            console.log(error)
+        }
     }
 
     const fetchMarkers = async () => {
@@ -45,13 +56,14 @@ const LocationHotspots = ({ city, coord, country }) => {
 
     
     const createSubmissionRequest = async (data) => {
+        debugger
         const submission = {
             lat: submitCoordinates.lat,
             lng: submitCoordinates.lng,
             hotspot_title: submitHotspotTitle,
             body: submitHotspotBody,
             image: data.url,
-            poster_id: currentUser
+            poster_id: currentUser.id
         }
         await axios.post(`http://localhost:3001/api/hotspots`, submission);
         setSubmitted(true);
@@ -114,7 +126,7 @@ const LocationHotspots = ({ city, coord, country }) => {
                         <h2><b>Title:</b> {selectedHotspot.hotspot_title}</h2>
                         <p><b>Description:</b> {selectedHotspot.body}</p>
                         <img src={selectedHotspot.image} alt="hotspotImage"/>
-                        <p><b>Submitted By:</b> {selectedHotspot.poster_id}</p>
+                        <p><b>Submitted By:</b> {userName}</p>
                         <p className="directions" onClick={() => window.open( `https://www.google.com/maps/dir/?api=1&destination=${selectedHotspot.lat}/${selectedHotspot.lng}&travelmode=driving`)}><b>Click Here for Directions</b></p>
                     </div>
                 ) : null}

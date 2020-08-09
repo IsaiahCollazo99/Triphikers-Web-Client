@@ -12,10 +12,17 @@ const LocationPage = () => {
     const location = useLocation();
     let info = location.state;
     const [city, setCity] = useState([]);
+    const [cityTitle, setCityTitle] = useState([]);
     const [coord, setCoord] = useState([]);
     const [country, setCountry] = useState([]);
 
+    const getCityTitle = (str) => {
+        let title = str.split(",")[0];
+        setCityTitle(title);
+    }
+
     useEffect(() => {
+        getCityTitle(info.city);
         setCity(info.city);
         setCoord(info.coordinates);
         setCountry(info.country);
@@ -23,7 +30,7 @@ const LocationPage = () => {
 
     return(
         <div className="container">
-            <LocationInfo city={city} coord={coord} country={country}/>
+            <LocationInfo city={city} coord={coord} country={country} title={cityTitle}/>
             <div className="locationNavbar">
                 <LocationNavbar city={city} country={country}/>
                 <Switch>
