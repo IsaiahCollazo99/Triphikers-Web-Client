@@ -6,7 +6,7 @@ import { completeTrip } from '../../util/apiCalls/patchRequests';
 import { AuthContext } from '../../providers/AuthContext';
 import { createTripRequest } from '../../util/apiCalls/postRequests';
 
-const DetailedTripInfo = ({ trip = {}, getTripCall, getRequestsCall, requests }) => {
+const DetailedTripInfo = ({ trip = {}, getTripCall, getRequestsCall, requests, travelers }) => {
     const [ response, setResponse ] = useState(null)
     const { currentUser } = useContext(AuthContext);
     const history = useHistory();
@@ -41,16 +41,30 @@ const DetailedTripInfo = ({ trip = {}, getTripCall, getRequestsCall, requests })
         }
     }
 
-    const displayRequestButton = () => {
-        let isUserRequestExisting = false;
+    const isUserRequestExisting = () => {
+        let userRequestExisting = false;
         for(let request of requests) {
             if(request.requester_id === currentUser.id) {
-                isUserRequestExisting = true;
+                userRequestExisting = true;
                 break;
             }
         }
+    }
 
-        if(isUserRequestExisting) {
+    const isUserTraveler = () => {
+        let userTraveler = false;
+        for(let traveler of travelers) {
+            if(traveler.traveler_id === currentUser.id) {
+                userTraveler = true;
+                break;
+            }
+        }
+    }
+
+    const displayRequestButton = () => {
+        if(isUserTraveler) {
+            return null;
+        } else if(isUserRequestExisting()) {
             return (
                 <button className="tc-requested tc-btn" onClick={deleteReqCall}><span>Requested</span></button>
             )
