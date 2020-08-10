@@ -2,17 +2,27 @@ import React, { useContext, useState, useEffect } from 'react';
 import '../../css/general/tripCard.css';
 import { useHistory } from 'react-router-dom';
 import { AuthContext } from '../../providers/AuthContext';
-import { getTripRequests } from '../../util/apiCalls/getRequests';
+import { getTripRequests, getTripTravelers } from '../../util/apiCalls/getRequests';
 import { createTripRequest } from '../../util/apiCalls/postRequests';
 import { deleteTripRequest, deleteTrip } from '../../util/apiCalls/deleteRequests';
 import { completeTrip } from '../../util/apiCalls/patchRequests';
 
 const TripCard = ({ trip, refresh }) => {
     const [ requests, setRequests ] = useState([]);
+    const [ travelers, setTravelers ] = useState([]);
     const [ response, setResponse ] = useState(null);
     
     const { currentUser } = useContext(AuthContext);
     const history = useHistory();
+
+    const getTravelersCall = async () => {
+        const data = await getTripTravelers(trip.id);
+        if(data.travelers) {
+            setTravelers(data.travelers);
+        } else {
+            setTravelers([]);
+        }
+    }
 
     const getRequestsCall = async () => {
         const data = await getTripRequests(trip.id)
@@ -25,6 +35,7 @@ const TripCard = ({ trip, refresh }) => {
 
     useEffect(() => {
         getRequestsCall()
+        getTravelersCall();
     }, [])
     
     const redirect = (e) => {
@@ -77,16 +88,36 @@ const TripCard = ({ trip, refresh }) => {
         }
     }
 
-    const displayRequestButton = () => {
-        let isUserRequestExisting = false;
+    const isUserRequestExisting = () => {
+        let userRequestExisting = false;
+
         for(let request of requests) {
             if(request.requester_id === currentUser.id) {
-                isUserRequestExisting = true;
+                userRequestExisting = true;
                 break;
             }
         }
 
-        if(isUserRequestExisting) {
+        return userRequestExisting;
+    }
+
+    const isUserTraveler = () => {
+        let userTraveler = false;
+
+        for(let traveler of travelers) {
+            if(traveler.traveler_id === currentUser.id) {
+                userTraveler = true;
+                break;
+            }
+        }
+
+        return userTraveler;
+    }
+
+    const displayRequestButton = () => {
+        if(isUserTraveler()) {
+            return null;
+        } else if(isUserRequestExisting()) {
             return (
                 <button className="tc-requested tc-btn" onClick={deleteReqCall}><span>Requested</span></button>
             )
