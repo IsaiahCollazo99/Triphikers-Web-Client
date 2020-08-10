@@ -1,7 +1,9 @@
-import React from 'react';
+import React, { useState } from 'react';
 import '../../css/createTrip/createTripForms.css';
 
 const CreateTripForm1 = ( props ) => {
+    const [ error, setError ] = useState(null);
+
     const {
         destination, 
         dateFrom, 
@@ -13,13 +15,37 @@ const CreateTripForm1 = ( props ) => {
         handlePageChange
     } = props;
 
+    const isValidDate = () => {
+        const today = new Date();
+        const dateFromDate = new Date(dateFrom.value);
+        const dateToDate = new Date(dateTo.value);
+
+        if(today.getTime() >= dateToDate.getTime()) {
+            setError(<p className="error">Please enter a valid date to entry</p> )
+            return false;
+        } else if(dateToDate.getTime() <= dateFromDate.getTime()) {
+            setError(<p className="error">Please enter a valid date to entry</p> )
+            return false;
+        }
+
+        return true;
+    }
+
+    const handleSubmit = (e) => {
+        e.preventDefault();
+        if(isValidDate()) {
+            handlePageChange();
+        }
+    }
+
     return (
         <>
         <header>
             <h1>Create a Trip</h1>
             <h3>1/2</h3>
         </header>
-        <form onSubmit={handlePageChange} className="createTrip1">
+        {error}
+        <form onSubmit={handleSubmit} className="createTrip1">
             <label htmlFor="destination">
                 <p>Select a Destination: </p>
                 <select {...destination} name="destination" required>
