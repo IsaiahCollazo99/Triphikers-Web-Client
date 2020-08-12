@@ -19,8 +19,10 @@ const LocationHotspots = ({ city, coord, country }) => {
 
     const fetchData = (data) => {
         setSubmitCoordinates(data.coordinates);
-        setSelectedHotspot(data.selected);
-        fetchUserName(data.selected.poster_id);
+        if(data.selected !== null){
+            setSelectedHotspot(data.selected);
+            fetchUserName(data.selected.poster_id);
+        }
     }
 
     const fetchUserName = async (id) =>{
@@ -57,7 +59,6 @@ const LocationHotspots = ({ city, coord, country }) => {
 
     
     const createSubmissionRequest = async (data) => {
-        debugger
         const submission = {
             lat: submitCoordinates.lat,
             lng: submitCoordinates.lng,
