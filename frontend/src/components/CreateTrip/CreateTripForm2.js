@@ -12,6 +12,7 @@ const CreateTripForm2 = ( props ) => {
         handlePageChange,
         handleSubmit
     } = props
+
     
     return (
         <>
@@ -40,7 +41,7 @@ const CreateTripForm2 = ( props ) => {
 
             <label htmlFor="budget">
                 <p>Your Budget: </p>
-                <input type="number" name="budget" {...budget} required/>
+                <input type="number" name="budget" {...budget} min="0" required/>
             </label>
 
             <div className="tripForm2Bottom">
