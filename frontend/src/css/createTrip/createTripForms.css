@@ -48,7 +48,14 @@
     flex-direction: column;
 }
 
-.createTripDates input {
+.createTripDestination {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.createTripDates input, .createTripDestination input, .createTripDestination select {
     margin: 0.25em;
 }
 

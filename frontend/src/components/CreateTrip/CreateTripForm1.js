@@ -46,13 +46,21 @@ const CreateTripForm1 = ( props ) => {
         </header>
         {error}
         <form onSubmit={handleSubmit} className="createTrip1">
-            <label htmlFor="destination">
-                <p>Select a Destination: </p>
-                <select {...destination} name="destination" required>
-                    <option value="" disabled>Select a Destination</option>
-                    <option value="NY">New York</option>
-                </select>
-            </label>
+
+            <section className="createTripDestination">
+                <label htmlFor="destinationCountry">
+                    <p>Select a Country: </p>
+                    <select {...destination} name="destination" required>
+                        <option value="" disabled>Select a Country</option>
+                        <option value="NY">New York</option>
+                    </select>
+                </label>
+
+                <label htmlFor="destinationCity">
+                    <p>Select a City: </p>
+                    <input type="search" />
+                </label>
+            </section>
 
             <section className="createTripDates">
                 <label htmlFor="dateFrom">
