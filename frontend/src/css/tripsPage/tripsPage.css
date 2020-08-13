@@ -17,7 +17,7 @@
     background-color: rgb(255, 157, 0);
     border: 2px solid #272A33;
     transition: 0.3s ease-in-out;
-    margin: 2em 0;
+    margin-top: 32px;
 }
 
 .tp-createTrip:hover {
@@ -32,10 +32,20 @@
     flex-direction: row;
     width: 100%;
     justify-content: center;
+    align-items: center;
+    margin: 32px 0;
 }
 
 .tp-refresh {
     justify-self: flex-end;
+    color: rgb(255, 157, 0);
+    font-size: 2.25em;
+    align-self: center;
+}
+
+.tp-refresh:hover {
+    color: #272A33;
+    cursor: pointer;
 }
 
 .tripsPageFeed {

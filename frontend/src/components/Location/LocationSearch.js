@@ -62,7 +62,8 @@ const LocationSearch = (id) => {
             }
         })
         return(
-            <div className="search">
+            <div className="searchContainer">
+                <label htmlFor="searchInput">Select a City: </label>
                 <Combobox onSelect={async (address) => {
                     setValue(address, false);
                     clearSuggestions();
@@ -95,6 +96,7 @@ const LocationSearch = (id) => {
 
     return (
         <div className="searchCity">
+            <label htmlFor="selectedCountry">Select a Country: </label>
             <select className="selectedCountry" onChange={filterCity}>
                 <option hidden>Select A Country</option>
                 <PopulateLocationSelect list={allCountries}/>
