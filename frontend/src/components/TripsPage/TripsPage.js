@@ -18,7 +18,6 @@ const TripsPage = () => {
     }
     
     const getTripsCall = async () => {
-        console.log("test");
         try {
             const { trips: allTrips } = await getAllTrips();
             if(!allTrips.length) {
