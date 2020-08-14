@@ -11,6 +11,8 @@ import LocationInfo from "./LocationInfo";
 const LocationPage = () => {
     const location = useLocation();
     let info = location.state;
+    debugger
+    console.log(info)
     const [city, setCity] = useState([]);
     const [cityTitle, setCityTitle] = useState([]);
     const [coord, setCoord] = useState([]);
@@ -22,10 +24,12 @@ const LocationPage = () => {
     }
 
     useEffect(() => {
-        getCityTitle(info.city);
-        setCity(info.city);
-        setCoord(info.coordinates);
-        setCountry(info.country);
+        if(info !== null) {
+            getCityTitle(info.city);
+            setCity(info.city);
+            setCoord(info.coordinates);
+            setCountry(info.country);
+        }
         //all gets reset when switching the navbar
     }, [info])
 
