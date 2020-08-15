@@ -56,7 +56,7 @@ const CreateSignUpContainer = () => {
 		setProfilePicture
 	};
 
-	const createUserCall = async ( firebaseData ) => {
+	const createUserCall = async (firebaseData) => {
 		const userEmail = user ? user.email : email.value;
 		const fullUser = {
 			userEmail,

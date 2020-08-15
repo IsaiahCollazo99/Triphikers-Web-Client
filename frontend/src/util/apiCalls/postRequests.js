@@ -45,7 +45,8 @@ const getUserAge = ( birthday ) => {
     }
 }
 
-export const createUser = async ( userObj ) => {
+export const createUser = async (userObj) => {
+    debugger
     try {
         const {
             userEmail: email,
@@ -72,7 +73,9 @@ export const createUser = async ( userObj ) => {
               profile_picture,
               gender,
               bio,
-              country_of_origin
+              country_of_origin,
+              language,
+
           })
     } catch (error) {
         console.log(error);
