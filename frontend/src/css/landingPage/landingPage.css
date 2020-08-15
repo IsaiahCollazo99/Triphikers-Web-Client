@@ -15,14 +15,13 @@
 }
 
 .lp-orange {
-    background-color: rgb(255, 157, 0);
+    background-color: #FF9506;
     border: 2px solid #272A33;
+    color: #272A33;
     transition: 0.3s ease-in-out;
 }
 
 .lp-orange:hover {
-    background-color: #272A33;
-    border-color: rgb(255, 157, 0);
-    color: white;
+    background-color: #e08002;
     cursor: pointer;
 }

@@ -1,14 +1,9 @@
 .hotSpotContainer {
     display: flex;
     flex-direction: row;
-<<<<<<< HEAD
     background-color: #3b3c41;
     color: white;
     height: 57vh;
-=======
-    background-color: #083DCC;
-    height: 67vh;
->>>>>>> caabada49979ba6f7fc9567fc0dfdd4a82e56145
     justify-content: space-evenly;
     align-items: center;
 }

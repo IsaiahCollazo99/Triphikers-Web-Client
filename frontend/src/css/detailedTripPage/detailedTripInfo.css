@@ -4,6 +4,8 @@
     border: 2px solid #272A33;
     padding: 1em;
     background-color: white;
+    border-bottom-left-radius: 1em;
+    border-bottom-right-radius: 1em;
 }
 
 .dt-info header {
@@ -43,30 +45,24 @@
 
 .dt-buttons button {
     width: 6em;
-    background-color: rgb(255, 157, 0);
-    border-radius: 0.75em;
+    background-color: #272A33;
+    color: white;
+    border-radius: 0.5em;
     padding: 0.25em 0;
     transition: 0.3s ease-in-out;
+    border: 1px solid black;
 }
 
 .dt-buttons button:hover {
     cursor: pointer;
 }
 
-.dt-req, .dt-com {
-    color: #272A33;
-}
-
 .dt-req:hover, .dt-com:hover {
-    background-color: rgb(0, 228, 0);
-}
-
-.dt-del {
-    color: #272A33;
+    color: rgb(0, 202, 0);
 }
 
 .dt-del:hover {
-    background-color: red;
+    color: red;
 }
 
 .dt-info article {
@@ -100,5 +96,5 @@
 
 .dt-info span {
     font-weight: bold;
-    color: #6433FF;
+    color: #0062e2;
 }
