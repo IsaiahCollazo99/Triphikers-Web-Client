@@ -1,13 +1,11 @@
 import React, { useContext } from 'react';
 import { NavLink, Link, useLocation } from 'react-router-dom';
-import '../../css/general/navBar.css';
 import { logout } from '../../util/firebaseFunction';
 import { AuthContext } from '../../providers/AuthContext';
 
-const NavBar = () => {
+const UserPageNavBar = () => {
     const { currentUser } = useContext(AuthContext);
     const location = useLocation();
-    
     const isOnTripsPage = location.pathname === "/trips";
     const isOnCreateTripsPage = location.pathname === "/trips/create";
 
@@ -21,15 +19,15 @@ const NavBar = () => {
         }
     }
 
-    const displayNavBar = () => {
+    const displayUserPageNavBar = () => {
         if(currentUser) {
             return (
                 <section className="mainNav-right">
                     {displayCreateTrip()}
                     <NavLink exact to="/trips">TRIPS</NavLink>
                     {/* When State management is added updated from /user to /user/:userId */}
-                    <NavLink to={`/user/${currentUser.id}`}>PROFILE</NavLink>
-                    <NavLink to="/search">SEARCH A CITY</NavLink>
+                    <NavLink to="/user">PROFILE</NavLink>
+                    <NavLink to="/messages">MESSAGES</NavLink>
                     <a onClick={redirect}>LOG OUT</a>
                 </section>
             )
@@ -56,9 +54,9 @@ const NavBar = () => {
                 <h1><Link to={currentUser ? "/trips" : "/"}>TRIPHIKERS</Link></h1>
             </section>
 
-            {displayNavBar()}
+            {displayUserPageNavBar()}
         </nav>
     )
 }
 
-export default NavBar;
+export default UserPageNavBar;

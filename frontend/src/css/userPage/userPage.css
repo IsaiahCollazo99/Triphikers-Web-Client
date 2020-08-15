@@ -1,0 +1,58 @@
+.userPageContainer {
+  margin-top: 110px;
+}
+
+.userPageCoverImage {
+  display: flex;
+}
+
+.coverImage {
+  height: 200px;
+  width: 100%;
+}
+
+.editBtn {
+  position: absolute;
+  right:100px;
+  width: 100px;
+  margin-top: 10px;
+  font-size: 1.5rem;
+  border-width: 0.5rem;
+  background-color: #FF9E00;
+}
+
+.userProfile {
+  display: flex;
+  position: relative;
+  width: 100%;
+  height: 200px;
+}
+
+.userProfilePicture {
+  width: 150px;
+  height: 150px;
+  object-fit: cover;
+  border-radius: 5em;
+  position: absolute;
+  top: 50%; 
+  left: 25%;
+  transform: translate(-50%, -50%);
+}
+
+.imageDiv{
+  width: 50%;
+  border-right-style: solid;
+  border-color: black;
+  top: 50%; 
+  left: 25%;
+}
+
+.greeting{
+  width: 50%;
+  align-self: center;
+  text-align: center;
+  border-color: black;
+  text-align: center;
+  top: 50%; 
+  left: 25%;
+}

@@ -26,6 +26,7 @@ const LocationPage = () => {
         setCity(info.city);
         setCoord(info.coordinates);
         setCountry(info.country);
+        //all gets reset when switching the navbar
     }, [info])
 
     return(
@@ -38,7 +39,7 @@ const LocationPage = () => {
                         <LocationHotspots city={city} coord={coord} country={country}/>
                     </Route>
                     <Route exact path={`/location/${country}/${city}/attractions`}>
-                        <LocationAttractions info={info}/>
+                        <LocationAttractions city={city} coord={coord} country={country}/>
                     </Route>
                     <Route exact path={`/location/${country}/${city}/reviews`}>
                         <LocationReviews info={info}/>
