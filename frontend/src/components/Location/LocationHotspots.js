@@ -6,8 +6,9 @@ import "../../css/locations/LocationHotspots.css";
 import { useContext } from "react";
 import { AuthContext } from "../../providers/AuthContext";
 
-const LocationHotspots = ({info}) => {
+const LocationHotspots = ({ city, coord, country }) => {
     const { currentUser } = useContext(AuthContext);
+    const [userName, setUserName] = useState([]);
     const [submitCoordinates, setSubmitCoordinates] = useState([]);
     const [selectedHotspot, setSelectedHotspot] = useState(null);
     const [allMarkers, setAllMarkers] = useState([]);
@@ -18,7 +19,21 @@ const LocationHotspots = ({info}) => {
 
     const fetchData = (data) => {
         setSubmitCoordinates(data.coordinates);
-        setSelectedHotspot(data.selected);
+        if(data.selected !== null){
+            setSelectedHotspot(data.selected);
+            fetchUserName(data.selected.poster_id);
+        }
+    }
+
+    const fetchUserName = async (id) =>{
+        try {
+            let name = await axios.get(`http://localhost:3001/api/users/${id}`);
+            let nameSplit = name.data.user.full_name.split(" ")[0]
+            setUserName(nameSplit);
+            //want to redirect page when clicking on the usernames name that submitted a photo
+        } catch (error) {
+            console.log(error)
+        }
     }
 
     const fetchMarkers = async () => {
@@ -50,7 +65,7 @@ const LocationHotspots = ({info}) => {
             hotspot_title: submitHotspotTitle,
             body: submitHotspotBody,
             image: data.url,
-            poster_id: 1
+            poster_id: currentUser.id
         }
         await axios.post(`http://localhost:3001/api/hotspots`, submission);
         setSubmitted(true);
@@ -62,14 +77,6 @@ const LocationHotspots = ({info}) => {
     const handleSubmit = async (e) => {
         e.preventDefault();
         try {
-            // await axios.post(`http://localhost:3001/api/hotspots`, {
-            //     lat: submitCoordinates.lat,
-            //     lng: submitCoordinates.lng,
-            //     hotspot_title: submitHotspotTitle,
-            //     body: submitHotspotBody,
-            //     image: imageFile,
-            //     poster_id: 1
-            // })
             uploadPicture(`hotspots/${submitHotspotTitle}/`, {id: currentUser.id, file: imageFile}, createSubmissionRequest);
         } catch (error) {
             console.log(error)
@@ -96,7 +103,7 @@ const LocationHotspots = ({info}) => {
     return (
         <div className="hotSpotContainer">
             <div className="hotSpotMap">
-                {getMap(info.lat, info.lng)}
+                {getMap(coord.lat, coord.lng)}
             </div>
             <div className="formWithSelect">
                 <form className="hotSpotForm" onSubmit={handleSubmit}>
@@ -120,8 +127,8 @@ const LocationHotspots = ({info}) => {
                         <p className="submitLat"><b>Longitude:</b> {selectedHotspot.lng}</p>
                         <h2><b>Title:</b> {selectedHotspot.hotspot_title}</h2>
                         <p><b>Description:</b> {selectedHotspot.body}</p>
-                        <img src={selectedHotspot.image_url} alt="hotspotImage"/>
-                        <p><b>Submitted By:</b> {selectedHotspot.poster_id}</p>
+                        <img src={selectedHotspot.image} alt="hotspotImage"/>
+                        <p><b>Submitted By:</b> {userName}</p>
                         <p className="directions" onClick={() => window.open( `https://www.google.com/maps/dir/?api=1&destination=${selectedHotspot.lat}/${selectedHotspot.lng}&travelmode=driving`)}><b>Click Here for Directions</b></p>
                     </div>
                 ) : null}

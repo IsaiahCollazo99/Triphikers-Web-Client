@@ -1,11 +1,42 @@
-import React, { useContext } from 'react';
+import React, { useContext, useState, useEffect } from 'react';
 import '../../css/general/tripCard.css';
 import { useHistory } from 'react-router-dom';
 import { AuthContext } from '../../providers/AuthContext';
+import { getTripRequests, getTripTravelers } from '../../util/apiCalls/getRequests';
+import { createTripRequest } from '../../util/apiCalls/postRequests';
+import { deleteTripRequest, deleteTrip } from '../../util/apiCalls/deleteRequests';
+import { completeTrip } from '../../util/apiCalls/patchRequests';
 
-const TripCard = ({ trip, deleteTripCall, completeTripCall }) => {
+const TripCard = ({ trip, refresh }) => {
+    const [ requests, setRequests ] = useState([]);
+    const [ travelers, setTravelers ] = useState([]);
+    const [ response, setResponse ] = useState(null);
+    
     const { currentUser } = useContext(AuthContext);
     const history = useHistory();
+
+    const getTravelersCall = async () => {
+        const data = await getTripTravelers(trip.id);
+        if(data.travelers) {
+            setTravelers(data.travelers);
+        } else {
+            setTravelers([]);
+        }
+    }
+
+    const getRequestsCall = async () => {
+        const data = await getTripRequests(trip.id)
+        if(data.requests) {
+            setRequests(data.requests);
+        } else {
+            setRequests([]);
+        }
+    }
+
+    useEffect(() => {
+        getRequestsCall()
+        getTravelersCall();
+    }, [])
     
     const redirect = (e) => {
         if(e.target.nodeName !== "BUTTON") {
@@ -13,12 +44,88 @@ const TripCard = ({ trip, deleteTripCall, completeTripCall }) => {
         }
     }
 
-    const handleDeleteClick = () => {
-        deleteTripCall(trip.id);
+    const deleteTripCall = async ( ) => {
+        try {
+            const deleteResponse = await deleteTrip(trip.id);
+            setResponse(deleteResponse);
+            refresh();
+        } catch ( error ) {
+            setResponse(<p className="error">There was a problem with the delete request.</p>)
+            console.log(error);
+        }
     }
 
-    const handleCompleteClick = () => {
-        completeTripCall(trip.id);
+    const completeTripCall = async ( ) => {
+        try {
+            const completeTripResponse = await completeTrip(trip.id);
+            setResponse(completeTripResponse);
+            refresh();
+        } catch ( error ) {
+            setResponse(<p className="error">There was a problem with the complete request.</p>)
+            console.log(error);
+        }
+    }
+
+    const deleteReqCall = async () => {
+        try {
+            const deleteReqResponse = await deleteTripRequest(trip.id, currentUser.id);
+            setResponse(deleteReqResponse);
+            getRequestsCall();
+        } catch ( error ) {
+            setResponse(<p className="error">There was a problem with your delete request.</p>)
+            console.log(error);
+        }
+    }
+
+    const requestCall = async () => {
+        try {
+            const requestResponse = await createTripRequest(trip.id, currentUser.id)
+            setResponse(requestResponse);
+            getRequestsCall();
+        } catch ( error ) {
+            setResponse(<p className="error">There was a problem with your request to join.</p>)
+            console.log(error);
+        }
+    }
+
+    const isUserRequestExisting = () => {
+        let userRequestExisting = false;
+
+        for(let request of requests) {
+            if(request.requester_id === currentUser.id) {
+                userRequestExisting = true;
+                break;
+            }
+        }
+
+        return userRequestExisting;
+    }
+
+    const isUserTraveler = () => {
+        let userTraveler = false;
+
+        for(let traveler of travelers) {
+            if(traveler.traveler_id === currentUser.id) {
+                userTraveler = true;
+                break;
+            }
+        }
+
+        return userTraveler;
+    }
+
+    const displayRequestButton = () => {
+        if(isUserTraveler()) {
+            return null;
+        } else if(isUserRequestExisting()) {
+            return (
+                <button className="tc-requested tc-btn" onClick={deleteReqCall}><span>Requested</span></button>
+            )
+        } else {
+            return (
+                <button className="tc-req tc-btn" onClick={requestCall}>Request</button>
+            )
+        }
     }
 
     const displayExpired = () => {
@@ -36,13 +143,15 @@ const TripCard = ({ trip, deleteTripCall, completeTripCall }) => {
                 if(currentUser.id === trip.planner_id) {
                     return (
                         <>
-                        <button onClick={handleCompleteClick} className="tc-com tc-btn">Complete</button>
-                        <button onClick={handleDeleteClick} className="tc-del tc-btn">Delete</button>
+                        <button onClick={completeTripCall} className="tc-com tc-btn">Complete</button>
+                        <button onClick={deleteTripCall} className="tc-del tc-btn">Delete</button>
                         </>
                     )
                 } else {
                     return (
-                        <button className="tc-req tc-btn">Request</button>
+                        <>
+                        {displayRequestButton()}
+                        </>
                     )
     
                 }
@@ -73,6 +182,8 @@ const TripCard = ({ trip, deleteTripCall, completeTripCall }) => {
     }
     
     return (
+        <>
+        {response}
         <article className="tripCard" onClick={redirect}>
             {displayUserInfo()}
             
@@ -98,6 +209,7 @@ const TripCard = ({ trip, deleteTripCall, completeTripCall }) => {
                 <p className="tc-br"><span>Group Type: </span>{trip.group_type}</p>
             </section>
         </article>
+        </>
     )
 }
 

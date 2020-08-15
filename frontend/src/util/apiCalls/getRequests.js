@@ -28,6 +28,15 @@ export const getUserById = async ( id ) => {
         let res = await axios.get(API + `/api/users/${id}`);
         return res.data;
     } catch (error) {
+        console.log(error)
+    }
+}
+export const getTripRequests = async ( id ) => {
+    try {
+        let res = await axios.get(API + `/api/trips/${id}/requests`);
+        return res.data;
+    } catch ( error ) {
+        console.log(error);
         throw error;
     }
 }
@@ -42,3 +51,12 @@ export const updateUser = async (id, data) => {
     }
 }
 
+export const getTripTravelers = async ( id ) => {
+    try {
+        let res = await axios.get(API + `/api/trips/${id}/travelers`);
+        return res.data;
+    } catch ( error ) {
+        console.log(error);
+        throw error;
+    }
+}

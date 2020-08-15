@@ -1,9 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { getAllTrips } from '../../util/apiCalls/getRequests';
-import { deleteTrip } from '../../util/apiCalls/deleteRequests';
 import TripCard from '../General/TripCard';
 import '../../css/tripsPage/tripsPage.css';
-import { completeTrip } from '../../util/apiCalls/patchRequests';
 import TripsPageFilter from './TripsPageFilter';
 import { useHistory } from 'react-router-dom';
 
@@ -16,28 +14,6 @@ const TripsPage = () => {
 
     const redirect = () => {
         history.push("/trips/create");
-    }
-
-    const completeTripCall = async ( id ) => {
-        try {
-            const completeTripResponse = await completeTrip(id);
-            setResponse(completeTripResponse);
-            getTripsCall();
-        } catch ( error ) {
-            setResponse(<p className="error">There was a problem with the complete request.</p>)
-            console.log(error);
-        }
-    }
-
-    const deleteTripCall = async ( id ) => {
-        try {
-            const deleteResponse = await deleteTrip(id);
-            setResponse(deleteResponse);
-            getTripsCall();
-        } catch ( error ) {
-            setResponse(<p className="error">There was a problem with the delete request.</p>)
-            console.log(error);
-        }
     }
     
     const getTripsCall = async () => {
@@ -84,20 +60,15 @@ const TripsPage = () => {
 
     const getTripsList = ( tripsArr ) => {
         const validTrips = [];
-        const expiredTrips = [];
         tripsArr.forEach(trip => {
-            if(trip.is_completed || isTripExpired(trip)) {
-                expiredTrips.push(
-                    <TripCard trip={trip} deleteTripCall={deleteTripCall} completeTripCall={completeTripCall} key={trip.id} />
-                )
-            } else {
+            if(!trip.is_completed && !isTripExpired(trip)) {
                 validTrips.push(
-                    <TripCard trip={trip} deleteTripCall={deleteTripCall} completeTripCall={completeTripCall} key={trip.id} />
+                    <TripCard trip={trip} refresh={getTripsCall} key={trip.id} />
                 )
             }
         })
 
-        return [...validTrips, ...expiredTrips]
+        return validTrips
     }
 
     let tripsList;
@@ -110,11 +81,14 @@ const TripsPage = () => {
     return (
         <div className="tripsPage">
             <button onClick={redirect} className="tp-createTrip">CREATE A TRIP</button>
-            <TripsPageFilter filterTrips={filterTrips}/>
-            <div className="tripsPageFeed">
+            <section className="tp-feedManager">
+                <TripsPageFilter filterTrips={filterTrips}/>
+                <button onClick={getTripsCall} className="tp-refresh">Refresh</button>
+            </section>
+            <section className="tripsPageFeed">
                 {response}
                 {tripsList}
-            </div>
+            </section>
         </div>
     )
 }
