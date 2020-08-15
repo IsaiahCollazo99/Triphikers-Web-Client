@@ -66,12 +66,12 @@ const LocationAttractions = ({ city, coord, country }) => {
         )
     }
 
-    const Locate = ({ setCoord, setZoom, setLocateMe}) => {
+    const Locate = ({ setCoordinates, setZoom, setLocateMe}) => {
         return(
             <div className="findMe">
                 <p><b>Find Me:</b></p>
                 <img className="gpsIcon" src={gspIcon} alt="locate me" onClick={() => {
-                    navigator.geolocation.getCurrentPosition((position) => { setCoord({lat: position.coords.latitude, lng: position.coords.longitude}, setZoom(16), setLocateMe({lat: position.coords.latitude, lng: position.coords.longitude}))
+                    navigator.geolocation.getCurrentPosition((position) => { setCoordinates({lat: position.coords.latitude, lng: position.coords.longitude}, setZoom(16), setLocateMe({lat: position.coords.latitude, lng: position.coords.longitude}))
                     }, () => null)
                 }}/>
             </div>
@@ -104,11 +104,11 @@ const LocationAttractions = ({ city, coord, country }) => {
             <div className="attractionMapContainer">
                 <div className="attractionTitle">
                     <h1 className="mapTitle">Attractions <span role="img" aria-label="pin"> 📸</span></h1>
-                    <Locate className="findMeButton" setCoord={setCoordinates} setZoom={setZoom} setLocateMe={setLocateMe}/>
+                    <Locate className="findMeButton" setCoordinates={setCoordinates} setZoom={setZoom} setLocateMe={setLocateMe}/>
                 </div>
                 <div className="attractionMap">
-                    <Search coord={coordinates} setAddress={setAddress} setCoord={setCoordinates} setZoom={setZoom}/>
-                    {getMap(coord.lat, coord.lng, zoom)}
+                    <Search coordinates={coordinates} setAddress={setAddress} setCoordinates={setCoordinates} setZoom={setZoom}/>
+                    {getMap(coordinates.lat, coordinates.lng, zoom)}
                 </div>
             </div>
             <div className="attractionInfo">

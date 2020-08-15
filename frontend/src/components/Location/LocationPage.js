@@ -11,8 +11,6 @@ import LocationInfo from "./LocationInfo";
 const LocationPage = () => {
     const location = useLocation();
     let info = location.state;
-    debugger
-    console.log(info)
     const [city, setCity] = useState([]);
     const [cityTitle, setCityTitle] = useState([]);
     const [coord, setCoord] = useState([]);
