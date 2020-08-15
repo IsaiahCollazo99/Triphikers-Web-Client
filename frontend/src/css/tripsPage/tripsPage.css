@@ -3,27 +3,25 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    background-color: #3b3c41;
+    background-color: #f3f3f3;
     margin-top: 6.5em;
 }
 
 .tp-createTrip {
     padding: .5em .25em;
     width: 25%;
-    border-radius: 2em;
+    border-radius: 0.75em;
     font-weight: bold;
     font-family: 'Roboto';
     font-size: 1.25em;
-    background-color: rgb(255, 157, 0);
+    background-color: #FF9506;
     border: 2px solid #272A33;
     transition: 0.3s ease-in-out;
     margin-top: 32px;
 }
 
 .tp-createTrip:hover {
-    background-color: #272A33;
-    border-color: rgb(255, 157, 0);
-    color: white;
+    background-color: #e08002;
     cursor: pointer;
 }
 
@@ -38,13 +36,14 @@
 
 .tp-refresh {
     justify-self: flex-end;
-    color: rgb(255, 157, 0);
+    color: #272A33;
     font-size: 2.25em;
     align-self: center;
+    transition: 0.3s ease-in-out;
 }
 
 .tp-refresh:hover {
-    color: #272A33;
+    color: #FF9506;
     cursor: pointer;
 }
 

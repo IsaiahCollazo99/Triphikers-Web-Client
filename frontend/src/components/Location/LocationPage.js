@@ -29,7 +29,7 @@ const LocationPage = () => {
     }, [info])
 
     return(
-        <div className="container">
+        <div className="locationContainer">
             <LocationInfo city={city} coord={coord} country={country} title={cityTitle}/>
             <div className="locationNavbar">
                 <LocationNavbar city={city} country={country}/>

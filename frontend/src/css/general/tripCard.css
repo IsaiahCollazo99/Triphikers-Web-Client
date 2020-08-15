@@ -7,6 +7,7 @@
     margin: 1.5em 0;
     padding: 2em 0;
     transition: 0.3s ease-in-out;
+    border-radius: 1em;
 }
 
 .tripCard:hover {
@@ -43,8 +44,17 @@
 
 .tripCardTitle {
     font-weight: 700;
-    color: #c78100;
+    background-color: rgb(255,174,65);
+    background-image: radial-gradient(circle, rgba(255,174,65,1) 0%, rgba(255,94,1,1) 100%);
+    background-clip: text;
+    text-decoration: none;
+    background-size: 100%;
+    -webkit-background-clip: text;
+    -moz-background-clip: text;
+    -webkit-text-fill-color: transparent; 
+    -moz-text-fill-color: transparent;
     transition: 0.3s ease-in-out;
+    width: fit-content;
 }
 
 .tripCardButtons {
@@ -58,10 +68,11 @@
 .tripCard button {
     width: 6em;
     height: fit-content;
-    background-color: rgb(255, 157, 0);
+    background-color: #FF9506;
     border-radius: 0.75em;
     padding: 0.25em 0;
     transition: 0.3s ease-in-out;
+    border: 1px solid black;
 }
 
 .tripCard button:hover {

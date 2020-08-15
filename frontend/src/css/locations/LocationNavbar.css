@@ -1,22 +1,21 @@
-/* background main color
-    dark blue: #021F66
-    medium blue: #083DCC
-    light blue: #3370FF
-    yellow: #FDB21A
-*/
-
-.locationNavbarContainer{
-    border: 1px solid black;
-    background-color: #021F66;
+.locationNavbarContainer {
+    border-bottom: 1px solid black;
+    background-color: #272A33;
     display: flex;
     justify-content: space-evenly;
+    padding: 1em;
 }
 
 .Links {
     color: white;
-    text-decoration-style: none;
+    text-decoration: none;
 }
 
-.Links:hover{
+.locationNavbarContainer .active {
+    color: #82F0F2;
+}
+
+.Links:hover:not(.active) {
+    color: #FDBD59;
     cursor: pointer;
 }
