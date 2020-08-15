@@ -6,7 +6,7 @@ import { AuthContext } from '../../providers/AuthContext';
 import { getTripById } from '../../util/apiCalls/getRequests';
 import TripCard from '../General/TripCard';
 import TripsPage from '../TripsPage/TripsPage';
-import '../../css/userPage/UserPage.css'
+import '../../css/userPage/userPage.css'
 import albertaAttraction from '../../images/albertaAttraction.jpg';
 import NavUserPage from '../General/NavUserPage'
 
