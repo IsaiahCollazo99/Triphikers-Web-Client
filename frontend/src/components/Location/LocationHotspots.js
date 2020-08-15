@@ -19,8 +19,8 @@ const LocationHotspots = ({ city, coord, country }) => {
 
     const fetchData = (data) => {
         setSubmitCoordinates(data.coordinates);
+        setSelectedHotspot(data.selected);
         if(data.selected !== null){
-            setSelectedHotspot(data.selected);
             fetchUserName(data.selected.poster_id);
         }
     }

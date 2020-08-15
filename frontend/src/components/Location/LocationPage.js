@@ -22,10 +22,12 @@ const LocationPage = () => {
     }
 
     useEffect(() => {
-        getCityTitle(info.city);
-        setCity(info.city);
-        setCoord(info.coordinates);
-        setCountry(info.country);
+        if(info !== null) {
+            getCityTitle(info.city);
+            setCity(info.city);
+            setCoord(info.coordinates);
+            setCountry(info.country);
+        }
         //all gets reset when switching the navbar
     }, [info])
 
