@@ -30,6 +30,7 @@ const NavBar = () => {
                     {/* When State management is added updated from /user to /user/:userId */}
                     <NavLink to={`/user/${currentUser.id}`}>PROFILE</NavLink>
                     <NavLink to="/search">SEARCH A CITY</NavLink>
+                    <NavLink to="/messages">MESSAGES</NavLink>
                     <a onClick={redirect}>LOG OUT</a>
                 </section>
             )
