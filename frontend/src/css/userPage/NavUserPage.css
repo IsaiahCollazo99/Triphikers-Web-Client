@@ -1,0 +1,32 @@
+.navUser {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  color: #FF9E00;
+  padding: 1em 0.75em;
+  /* background-color: #272A33; */
+ 
+  z-index: 2;
+}
+.userNavTrip {
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+    width: 50%;
+    font-size: 1.75em;
+}
+
+.userNavAbout {
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+  width: 50%;
+  font-size: 1.75em;
+}
+
+.userNavTrip:hover, .userNavTrip:hover {
+  cursor: pointer;
+}
+
