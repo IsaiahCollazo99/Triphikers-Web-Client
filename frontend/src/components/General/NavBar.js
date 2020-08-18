@@ -27,7 +27,7 @@ const NavBar = () => {
                 <section className="mainNav-right">
                     {displayCreateTrip()}
                     <NavLink exact to="/trips">TRIPS</NavLink>
-                    <NavLink to={`/user/${currentUser.id}/trips`}>PROFILE</NavLink>
+                    <NavLink to={`/user/${currentUser.id}`}>PROFILE</NavLink>
                     <NavLink to="/search">CITY SEARCH</NavLink>
                     <NavLink to="/messages">MESSAGES</NavLink>
                     <a onClick={redirect}>LOG OUT</a>

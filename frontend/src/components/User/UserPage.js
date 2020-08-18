@@ -88,14 +88,17 @@ const UserPage = () => {
 
             <UserPageNav userId={profileUser.id} />
 
-            <Switch>
-                <Route exact to={`/user/${profileUser.id}/trips`}>
-                    {userTripsList}
-                </Route>
-                <Route exact to={`/user/${profileUser.id}/about`}>
-                    about
-                </Route>
-            </Switch>
+            <main className="up-main">
+                <Switch>
+                    <Route exact to={`/user/${profileUser.id}`}>
+                        {userTripsList}
+                    </Route>
+
+                    <Route exact to={`/user/${profileUser.id}/about`}>
+                        about
+                    </Route>
+                </Switch>
+            </main>
         
         </div>
     )

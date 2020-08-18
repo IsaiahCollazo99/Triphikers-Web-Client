@@ -6,7 +6,7 @@
   background-color: white;
 }
 
-.userPageContainer header {
+.userPageContainer > header {
   display: grid;
   grid-template-rows: 1fr 1fr;
   grid-template-columns: 1fr 1fr 1fr;
@@ -57,4 +57,16 @@
 
 .up-bio span {
   font-weight: 800;
+}
+
+.up-main {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-self: center;
+  align-items: center;
+}
+
+.up-main .tripCard {
+  width: 80%;
 }

@@ -1,0 +1,24 @@
+.up-nav {
+  border: 1px solid #272A33;
+  background-color: #f3f3f3;
+  display: flex;
+  justify-content: space-evenly;
+  padding: 1em;
+  margin: 2em 0;
+}
+
+.up-nav a {
+  color: #272A33;
+  text-decoration: none;
+  font-size: 1.25em;
+  font-weight: bold;
+}
+
+.up-nav .active {
+  color: #0062e2;
+}
+
+.up-nav a:hover:not(.active) {
+  color: #FF9506;
+  cursor: pointer;
+}
