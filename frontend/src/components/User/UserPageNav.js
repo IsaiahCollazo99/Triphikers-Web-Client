@@ -7,7 +7,7 @@ const UserPageNav = ({ userId }) => {
     return (
         <nav className="up-nav">
             <NavLink exact to={`/user/${userId}`}>Trips</NavLink>
-            <NavLink to={`/user/${userId}/about`}>About</NavLink>
+            <NavLink exact to={`/user/${userId}/about`}>About</NavLink>
         </nav>
     )
 }

@@ -1,17 +1,14 @@
-import React, { useEffect, useState, useContext } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useParams, Switch, Route } from 'react-router-dom'
 import { getUserById, getUserTrips } from '../../util/apiCalls/getRequests'
-import { AuthContext } from '../../providers/AuthContext';
-import { getTripById } from '../../util/apiCalls/getRequests';
 import '../../css/userPage/userPage.css'
 import UserPageNav from './UserPageNav';
 import TripCard from '../General/TripCard';
 
 const UserPage = () => {
     const { id } = useParams();
-    const { currentUser } = useContext(AuthContext);
     const [ profileUser, setProfileUser ] = useState({});
-    const [userTrips, setUserTrips] = useState([]);
+    const [ userTrips, setUserTrips ] = useState([]);
 
     const getUser = async () => {
         try {
@@ -26,7 +23,7 @@ const UserPage = () => {
     
     const getUserTripsCall = async () => {
         try {
-            const data = await getUserTrips(profileUser.id);
+            const data = await getUserTrips(id);
             setUserTrips(data.userTrips);
 
         } catch(error) {
@@ -37,18 +34,12 @@ const UserPage = () => {
         
     useEffect(() => {
         getUser();
+        getUserTripsCall();
 
         return () => {
             setProfileUser(null);
         }
     }, [id]);
-
-    useEffect(() => {
-        if(profileUser) {
-            getUserTripsCall()
-        }
-    }
-    , [profileUser])
     
     const userTripsList = userTrips.map((trip, i) => {
         return (
@@ -86,19 +77,19 @@ const UserPage = () => {
                 </section>
             </header>
 
-            <UserPageNav userId={profileUser.id} />
+            <UserPageNav userId={id} />
+            
+            <section className="up-main">
+            <Switch>
+                <Route exact path={"/user/:id/"}>
+                    {userTripsList}
+                </Route>
 
-            <main className="up-main">
-                <Switch>
-                    <Route exact to={`/user/${profileUser.id}`}>
-                        {userTripsList}
-                    </Route>
-
-                    <Route exact to={`/user/${profileUser.id}/about`}>
-                        about
-                    </Route>
-                </Switch>
-            </main>
+                <Route exact path={"/user/:id/about"}>
+                    about
+                </Route>
+            </Switch>
+            </section>
         
         </div>
     )

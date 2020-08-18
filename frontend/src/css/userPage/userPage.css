@@ -21,6 +21,9 @@
   display: flex;
   flex-direction: column;
   justify-content: center;
+  border-right: 1px solid #272A33;
+  padding-right: 8em;
+  padding-bottom: 2em;
 }
 
 .up-user img {
@@ -49,10 +52,17 @@
   display: flex;
   flex-direction: column;
   justify-content: space-evenly;
+  padding-right: 8em;
+  border-right: 1px solid #272A33;
+  padding-bottom: 2em;
 }
 
 .up-userInfo span {
   font-weight: 800;
+}
+
+.up-bio {
+  padding-bottom: 2em;
 }
 
 .up-bio span {

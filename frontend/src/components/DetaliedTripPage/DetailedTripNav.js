@@ -1,20 +1,24 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { NavLink } from 'react-router-dom';
 import '../../css/detailedTripPage/detailedTripNav.css';
+import { AuthContext } from '../../providers/AuthContext';
 
 const DetailedTripNav = ({ trip = {} }) => {
+    const { currentUser } = useContext(AuthContext);
+
     const displayRequests = () => {
-        // When Sign In is working
-        // Check If the current user is the trip planner
-        // return the requests Nav Link if they are
-        // If not return null
+        if(currentUser.id === trip.planner_id) {
+            return <NavLink exact to={`/trips/${trip.id}/requests`}>Requests</NavLink>
+        } else {
+            return null;
+        }
     }
     
     return (
         <nav className="dt-nav">
             <NavLink exact to={`/trips/${trip.id}`}>Trip</NavLink>
             <NavLink exact to={`/trips/${trip.id}/travelers`}>Travelers</NavLink>
-            <NavLink exact to={`/trips/${trip.id}/requests`}>Requests</NavLink>
+            {displayRequests()}
         </nav>
     )
 }

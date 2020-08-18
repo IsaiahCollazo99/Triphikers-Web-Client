@@ -85,14 +85,14 @@ const DetailedTripPage = () => {
                         <DetailedTripInfo trip={trip} {...refreshFuncs} requests={requests} travelers={travelers}/>
                     </Route>
     
+                    <Route exact path={"/trips/:tripId/travelers"}>
+                        <DetailedTripTravelers trip={trip} travelers={travelers}/>
+                    </Route>
                     
                     <ProtectedUserRoute exact path={"/trips/:tripId/requests"} trip={trip}>
                         <DetailedTripRequests trip={trip} />
                     </ProtectedUserRoute>
     
-                    <Route exact path={"/trips/:tripId/travelers"}>
-                        <DetailedTripTravelers trip={trip} travelers={travelers}/>
-                    </Route>
                 </Switch>
             </div>
         )
