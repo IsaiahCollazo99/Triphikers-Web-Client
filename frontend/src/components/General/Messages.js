@@ -6,6 +6,7 @@ import firebase from "../../firebase";
 import { useHistory } from "react-router-dom";
 import "../../css/chats/messages.css";
 import ChatView from "../../chatList/ChatView";
+import ChatTextBox from "../../chatList/ChatTextBox";
 
 const Messages = () => {
     const history = useHistory();
@@ -22,6 +23,16 @@ const Messages = () => {
 
     const selectChatButton = (chatIndex) => {
         setSelectedChatIndex(chatIndex);
+    }
+
+    const buildDocKey = (friend) => {
+        let users = [email, friend]
+        return users.sort().join(":")
+    }
+
+    const submitMessageToFirebase = (message) => {
+        let usersArr = chats[selectedChatIndex].users
+        const docKey = buildDocKey(usersArr.filter(user => user !== email)[0]);
     }
 
     useEffect(() => {
@@ -45,7 +56,12 @@ const Messages = () => {
     return(
         <div className="messagesContainer">
            <ChatList newChat = {newChatButtonClicked} selectChatButton={selectChatButton} chats={chats} email={email} selectedChatIndex={selectedChatIndex}/>
-           { newChatFormVisible ? null : <ChatView user={email} chat={chats[selectedChatIndex]}></ChatView> }
+           <div className="messagesContent">
+            { newChatFormVisible ? null : <ChatView user={email} chat={chats[selectedChatIndex]}></ChatView> }
+            {
+                selectedChatIndex !== null && !newChatFormVisible ? <ChatTextBox submitMessageToFirebase={submitMessageToFirebase}></ChatTextBox> : null
+            }
+           </div>
         </div>
     )
 }
