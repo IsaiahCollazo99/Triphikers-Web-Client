@@ -3,7 +3,7 @@ const {
   createUser,
   getAllUsers,
   getUserById,
-  getUsersPosts,
+  getUserTrips,
   updateUser,
   isUserExisting
 } = require("../../queries/users/users");
@@ -11,8 +11,7 @@ const {
 users.post("/", createUser);
 users.get("/", getAllUsers);
 users.get("/:id", getUserById);
-users.get("/:id/about", getUserById);
-users.get("/:id/posts", getUsersPosts);
+users.get("/:id/trips", getUserTrips);
 users.patch("/:id", isUserExisting, updateUser)
 
 module.exports = users;

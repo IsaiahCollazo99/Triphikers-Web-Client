@@ -135,28 +135,25 @@ module.exports = {
 		}
 	},
 
-  getUsersPosts: async (req, res, next) => {
+  getUserTrips: async (req, res, next) => {
     try {
-      // const { id } = req.params;
-      let userPost = await db.any(``)
-      if (userPost.length) {
+      const { id } = req.params;
+	  let userTrips = await db.any(`
+		SELECT users.full_name, users.age, users.profile_picture, 
+		users.country_of_origin, users.gender, users.bio, users.id AS user_id, 
+		trips.*
+		FROM trips
+		LEFT JOIN users on users.id = trips.planner_id
+		WHERE users.id=$1
+	  `, id)
+
         res.status(200).json({
           status: "OK",
-          userPost,
-          message:"Retrieve all post  "
+          userTrips,
+          message:"Retrieve all trips for user"
         })
-      } else {
-        throw { status: 404, error: "User has no [posts"}
-      }
     } catch (error) {
-      if (error.received === 0) {
-        res.status(404).json({
-          status: 404,
-          error:"User doesn't exist."
-        })
-      } else {
         next(error)
-      }
     }
   },
 
