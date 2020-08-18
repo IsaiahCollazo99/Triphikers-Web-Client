@@ -11,13 +11,64 @@ import Divider from '@material-ui/core/Divider';
 import Button from '@material-ui/core/Button';
 import ListItemIcon from '@material-ui/core/ListItemIcon';
 import NotificationImportant from '@material-ui/icons/NotificationImportant';
+import "../css/chats/chatList.css";
 
-const ChatList = () => {
-    return(
-        <div>
-            Hello from chats
-        </div>
-    )
+
+const ChatList = ({chats, email, selectedChatIndex}) => {
+
+    const newChat = () => {
+
+    }
+
+    const selectChat = (index) => {
+
+    }
+
+    if(chats.length > 0){
+        return(
+            <main className="chats">
+                <Button className="addNewChat" onClick={newChat}></Button>
+                <List>
+                    {
+                        chats.map((chat, index) => {
+                            return(
+                                <div key={index}>
+                                <ListItem onClick={() => selectChat(index)} selected={selectedChatIndex === index} alignItems='flex-start'>
+                                    <ListItemAvatar>
+                                        <Avatar alt="Remy Sharp">{chat.users.filter(user => user !== email)[0].split("")[0]}</Avatar>
+                                    </ListItemAvatar>
+                                    <ListItemText primary={chat.users.filter(user => user !== email)[0]} secondary={
+                                        <React.Fragment>
+                                            <Typography component='span' color='textPrimary'>
+                                                {
+                                                    chat.messages[chat.messages.length - 1].message.substring(0, 30)
+                                                }
+                                            </Typography>
+                                        </React.Fragment>
+                                    }>
+    
+                                    </ListItemText>
+                                </ListItem>
+                                <Divider></Divider>
+                                </div>
+                            )
+                        })
+                    }
+                </List>
+            </main>
+        )
+
+    } else {
+        return(
+            <main className="chats">
+                <Button color="primary" fullWidth onClick={newChat} className="addNewChat">
+                    New Message
+                </Button>
+                <List></List>
+            </main>
+        )
+    }
+
 }
 
 export default withStyles(styles)(ChatList);

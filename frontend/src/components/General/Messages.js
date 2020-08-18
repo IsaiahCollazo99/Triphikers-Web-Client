@@ -4,11 +4,12 @@ import ChatList from "../../chatList/ChatList";
 // import { AuthContext } from "../../providers/AuthContext";
 import firebase from "../../firebase";
 import { useHistory } from "react-router-dom";
+import "../../css/chats/messages.css";
 
 const Messages = () => {
     const history = useHistory();
     // const { currentUser } = useContext(AuthContext);
-    const [selectedChat, setSelectedChat] = useState(null);
+    const [selectedChatIndex, setSelectedChatIndex] = useState(null);
     const [newChatFormVisible, setNewChatFormVisible] = useState(false);
     const [email, setEmail] = useState(null);
     const [chats, setChats] = useState([]);
@@ -19,7 +20,7 @@ const Messages = () => {
 
     const selectChat = () => {
         setNewChatFormVisible(true);
-        setSelectedChat(null);
+        setSelectedChatIndex(null);
     }
 
     useEffect(() => {
@@ -41,9 +42,9 @@ const Messages = () => {
 }, [])
 
     return(
-        <div>
+        <div className="messagesContainer">
            Hello these are your messages
-           <ChatList newChat = {newChatButtonClicked} selectChat={selectChat} chats={chats} email={email} selectedChat={selectedChat}/>
+           <ChatList newChat = {newChatButtonClicked} selectChat={selectChat} chats={chats} email={email} selectedChatIndex={selectedChatIndex}/>
         </div>
     )
 }
