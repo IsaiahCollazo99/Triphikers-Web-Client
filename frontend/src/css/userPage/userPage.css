@@ -3,7 +3,7 @@
   width: 100%;
   display: flex;
   flex-direction: column;
-  background-color: white;
+  background-color: #f3f3f3;
 }
 
 .userPageContainer > header {
