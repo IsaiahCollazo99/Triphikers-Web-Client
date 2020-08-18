@@ -1,7 +1,5 @@
 import React, { useState, useEffect } from "react";
 import ChatList from "../../chatList/ChatList";
-// import { useContext } from "react";
-// import { AuthContext } from "../../providers/AuthContext";
 import firebase from "../../firebase";
 import { useHistory } from "react-router-dom";
 import "../../css/chats/messages.css";
@@ -10,7 +8,6 @@ import ChatTextBox from "../../chatList/ChatTextBox";
 
 const Messages = () => {
     const history = useHistory();
-    // const { currentUser } = useContext(AuthContext);
     const [selectedChatIndex, setSelectedChatIndex] = useState(null);
     const [newChatFormVisible, setNewChatFormVisible] = useState(false);
     const [email, setEmail] = useState(null);
@@ -33,6 +30,18 @@ const Messages = () => {
     const submitMessageToFirebase = (message) => {
         let usersArr = chats[selectedChatIndex].users
         const docKey = buildDocKey(usersArr.filter(user => user !== email)[0]);
+        firebase
+        .firestore()
+        .collection('chats')
+        .doc(docKey)
+        .update({
+            messages: firebase.firestore.FieldValue.arrayUnion({
+                sender: email,
+                message: message,
+                timestamp: Date.now()
+            }),
+            receiverHasRead: false
+        })
     }
 
     useEffect(() => {
