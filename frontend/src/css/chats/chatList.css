@@ -1,8 +1,3 @@
-.chats{
-    display: flex;
-    flex-direction: column;
-}
-
-.addNewChat{
-    color: blue;
+.chatPreview:hover{
+    cursor: pointer;
 }

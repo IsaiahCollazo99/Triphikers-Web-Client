@@ -5,6 +5,7 @@ import ChatList from "../../chatList/ChatList";
 import firebase from "../../firebase";
 import { useHistory } from "react-router-dom";
 import "../../css/chats/messages.css";
+import ChatView from "../../chatList/ChatView";
 
 const Messages = () => {
     const history = useHistory();
@@ -14,13 +15,14 @@ const Messages = () => {
     const [email, setEmail] = useState(null);
     const [chats, setChats] = useState([]);
 
-    const newChatButtonClicked = (chatIndex) => {
-        console.log(chatIndex);
-    }
-
-    const selectChat = () => {
+    const newChatButtonClicked = () => {
         setNewChatFormVisible(true);
         setSelectedChatIndex(null);
+    }
+
+    const selectChatButton = (chatIndex) => {
+        console.log('index:', chatIndex)
+        setSelectedChatIndex(chatIndex);
     }
 
     useEffect(() => {
@@ -44,7 +46,8 @@ const Messages = () => {
     return(
         <div className="messagesContainer">
            Hello these are your messages
-           <ChatList newChat = {newChatButtonClicked} selectChat={selectChat} chats={chats} email={email} selectedChatIndex={selectedChatIndex}/>
+           <ChatList newChat = {newChatButtonClicked} selectChatButton={selectChatButton} chats={chats} email={email} selectedChatIndex={selectedChatIndex}/>
+           { newChatFormVisible ? null : <ChatView user={email} chat={chats[selectedChatIndex]}></ChatView> }
         </div>
     )
 }

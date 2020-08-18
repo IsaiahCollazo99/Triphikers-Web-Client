@@ -14,26 +14,26 @@ import NotificationImportant from '@material-ui/icons/NotificationImportant';
 import "../css/chats/chatList.css";
 
 
-const ChatList = ({chats, email, selectedChatIndex}) => {
+const ChatList = ({chats, email, selectedChatIndex, selectChatButton}) => {
 
     const newChat = () => {
 
     }
 
     const selectChat = (index) => {
-
+        selectChatButton(index)
     }
 
     if(chats.length > 0){
         return(
             <main className="chats">
-                <Button className="addNewChat" onClick={newChat}></Button>
+                <Button variant="contained" fullWidth color="primary" className="addNewChat" onClick={newChat}>New Message</Button>
                 <List>
                     {
                         chats.map((chat, index) => {
                             return(
                                 <div key={index}>
-                                <ListItem onClick={() => selectChat(index)} selected={selectedChatIndex === index} alignItems='flex-start'>
+                                <ListItem onClick={() => selectChat(index)} className="chatPreview" selected={selectedChatIndex === index} alignItems="flex-start">
                                     <ListItemAvatar>
                                         <Avatar alt="Remy Sharp">{chat.users.filter(user => user !== email)[0].split("")[0]}</Avatar>
                                     </ListItemAvatar>
@@ -61,7 +61,7 @@ const ChatList = ({chats, email, selectedChatIndex}) => {
     } else {
         return(
             <main className="chats">
-                <Button color="primary" fullWidth onClick={newChat} className="addNewChat">
+                <Button variant="contained" color="primary" fullWidth onClick={newChat} className="addNewChat">
                     New Message
                 </Button>
                 <List></List>
