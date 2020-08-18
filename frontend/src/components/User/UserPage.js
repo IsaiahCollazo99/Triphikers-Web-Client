@@ -1,32 +1,33 @@
 import React, { useEffect, useState, useContext } from 'react';
-import { useParams } from 'react-router-dom'
-import { getUserById } from '../../util/apiCalls/getRequests'
+import { useParams, Switch, Route } from 'react-router-dom'
+import { getUserById, getUserTrips } from '../../util/apiCalls/getRequests'
 import { AuthContext } from '../../providers/AuthContext';
 import { getTripById } from '../../util/apiCalls/getRequests';
-import TripsPage from '../TripsPage/TripsPage';
 import '../../css/userPage/userPage.css'
+import UserPageNav from './UserPageNav';
+import TripCard from '../General/TripCard';
 
 const UserPage = () => {
     const { id } = useParams();
     const { currentUser } = useContext(AuthContext);
     const [ profileUser, setProfileUser ] = useState({});
     const [userTrips, setUserTrips] = useState([]);
+
     const getUser = async () => {
         try {
             const data = await getUserById(id);
             setProfileUser(data.user)
-            getUserTrips(data.user);
+            getUserTripsCall(data.user);
             
        } catch (error) {
             console.log(error)
         }
     }
     
-    const getUserTrips = async ( user ) => {
+    const getUserTripsCall = async () => {
         try {
-            const data = await getTripById(user.id);
-            debugger
-            setUserTrips(data.trip)
+            const data = await getUserTrips(profileUser.id);
+            setUserTrips(data.userTrips);
 
         } catch(error) {
             console.log(error)
@@ -36,9 +37,25 @@ const UserPage = () => {
         
     useEffect(() => {
         getUser();
+
+        return () => {
+            setProfileUser(null);
+        }
     }, []);
+
+    useEffect(() => {
+        if(profileUser) {
+            getUserTripsCall()
+        }
+    }
+    , [profileUser])
     
-    
+    const userTripsList = userTrips.map((trip, i) => {
+        return (
+            <TripCard trip={trip} refresh={getUserTripsCall} key={i} />
+        )
+    })
+
     return (
       
         <div className="userPageContainer">
@@ -70,9 +87,17 @@ const UserPage = () => {
                     </section>
                 </header>
             </section>
-            <section>
-                <TripsPage/>
-            </section>
+
+            <UserPageNav userId={profileUser.id} />
+
+            <Switch>
+                <Route exact to={`/user/${profileUser.id}/trips`}>
+                    {userTripsList}
+                </Route>
+                <Route exact to={`/user/${profileUser.id}/about`}>
+                    about
+                </Route>
+            </Switch>
         
         </div>
     )

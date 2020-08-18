@@ -34,7 +34,7 @@ function App() {
 					<Login />
 				</AuthRoute>
 				
-				<ProtectedRoute exact path="/user/:id" >
+				<ProtectedRoute path="/user/:id" >
 					<UserPage />
 				</ProtectedRoute>
 
