@@ -8,7 +8,7 @@ const {
 const libraries = ["places"];
 const mapContainerStyle = {
     width: "50vw",
-    height: "45vh",
+    height: "65vh",
 }
 
 const HotspotMap = ({ location, fetchData, allMarkers }) => {

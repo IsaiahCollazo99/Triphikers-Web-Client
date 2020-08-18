@@ -46,7 +46,7 @@
     align-items: center;
     width: 18em;
     color: #272A33;
-    border: 2px solid #FF9E00;
+    border: 2px solid #FF9506;
     padding: 10px 15px;
     border-radius: 1em;
     font-weight: 500;
@@ -54,6 +54,6 @@
 }
 
 .triphikersButton:hover {
-    background-color: #FF9E00;
+    background-color: #FF9506;
     cursor: pointer;
 }

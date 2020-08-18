@@ -1,21 +1,23 @@
 .locationNavbarContainer {
-    border-bottom: 1px solid black;
-    background-color: #272A33;
+    border-bottom: 1px solid #272A33;
+    background-color: #f3f3f3;
     display: flex;
     justify-content: space-evenly;
     padding: 1em;
 }
 
 .Links {
-    color: white;
+    color: #272A33;
     text-decoration: none;
+    font-size: 1.25em;
+    font-weight: bold;
 }
 
 .locationNavbarContainer .active {
-    color: #82F0F2;
+    color: #0062e2;
 }
 
 .Links:hover:not(.active) {
-    color: #FDBD59;
+    color: #FF9506;
     cursor: pointer;
 }

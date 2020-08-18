@@ -17,8 +17,6 @@
 
 .tp-filter input[type="search"]:focus {
     background-color: #FFAE41;
-    color: #272A33;
-    border: 3px solid #272A33;
     outline: none;
 }
 

@@ -25,12 +25,12 @@ export default function Login() {
 			<form onSubmit={handleSignIn} className="signIn">
 				<label>
 					Email :
-					<input {...email} type="email" autoComplete="on" required />
+					<input {...email} type="email" autoComplete="on" required placeholder="Email" />
 				</label>
 	
 				<label>
 					Password :
-					<input {...password} type="password" autoComplete="on" required />
+					<input {...password} type="password" autoComplete="on" required placeholder="Password" />
 	
 				</label>
 	
