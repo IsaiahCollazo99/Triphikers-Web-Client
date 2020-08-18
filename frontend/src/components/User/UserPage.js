@@ -4,6 +4,7 @@ import { getUserById, getUserTrips } from '../../util/apiCalls/getRequests'
 import '../../css/userPage/userPage.css'
 import UserPageNav from './UserPageNav';
 import TripCard from '../General/TripCard';
+import UserPageAbout from './UserPageAbout';
 
 const UserPage = () => {
     const { id } = useParams();
@@ -86,7 +87,7 @@ const UserPage = () => {
                 </Route>
 
                 <Route exact path={"/user/:id/about"}>
-                    about
+                    <UserPageAbout user={profileUser} />
                 </Route>
             </Switch>
             </section>
