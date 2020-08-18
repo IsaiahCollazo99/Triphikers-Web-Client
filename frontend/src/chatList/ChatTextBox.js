@@ -3,7 +3,7 @@ import TextField from '@material-ui/core/TextField';
 import Send from '@material-ui/icons/Send';
 import "../css/chats/chatTextBox.css";
 
-const ChatTextBox = ({ submitMessageToFirebase }) => {
+const ChatTextBox = ({ submitMessageToFirebase, messageRead, selectedChatIndex }) => {
     const [chatText, setchatText] = useState("");
 
     const userTyping = (e) => {
@@ -17,7 +17,7 @@ const ChatTextBox = ({ submitMessageToFirebase }) => {
     }
 
     const userClickedInput = () => {
-
+        messageRead(selectedChatIndex)
     }
 
     const submitMessage = () => {

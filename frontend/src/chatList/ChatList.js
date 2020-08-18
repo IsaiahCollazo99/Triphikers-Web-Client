@@ -1,12 +1,10 @@
 import React from 'react';
-import { withStyles } from '@material-ui/core/styles';
 import List from '@material-ui/core/List';
 import ListItem from '@material-ui/core/ListItem';
 import ListItemText from '@material-ui/core/ListItemText';
 import ListItemAvatar from '@material-ui/core/ListItemAvatar';
 import Avatar from '@material-ui/core/Avatar';
 import Typography from '@material-ui/core/Typography';
-import styles from './styles';
 import Divider from '@material-ui/core/Divider';
 import Button from '@material-ui/core/Button';
 import ListItemIcon from '@material-ui/core/ListItemIcon';
@@ -14,10 +12,19 @@ import NotificationImportant from '@material-ui/icons/NotificationImportant';
 import "../css/chats/chatList.css";
 
 
-const ChatList = ({chats, email, selectedChatIndex, selectChatButton}) => {
+const ChatList = ({ newChatButtonClicked, chats, email, selectedChatIndex, selectChatButton }) => {
 
     const newChat = () => {
+        newChatButtonClicked();
+    }
 
+    const userIsSender = (chat) => {
+        let lastMessage = chat.messages[chat.messages.length-1]
+        if(lastMessage.sender === email){
+            return true
+        } else {
+            return false
+        }
     }
 
     const selectChat = (index) => {
@@ -46,8 +53,13 @@ const ChatList = ({chats, email, selectedChatIndex, selectChatButton}) => {
                                             </Typography>
                                         </React.Fragment>
                                     }>
-    
                                     </ListItemText>
+                                    {
+                                        chat.receiverHasRead === false && !userIsSender(chat) ? <ListItemIcon>
+                                            <NotificationImportant className="unreadMessage">
+                                            </NotificationImportant>
+                                        </ListItemIcon> : null
+                                    }
                                 </ListItem>
                                 <Divider></Divider>
                                 </div>
@@ -71,4 +83,4 @@ const ChatList = ({chats, email, selectedChatIndex, selectChatButton}) => {
 
 }
 
-export default withStyles(styles)(ChatList);
+export default ChatList;

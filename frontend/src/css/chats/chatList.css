@@ -14,3 +14,10 @@
 .addNewChat{
     border-radius: 0px
 }
+
+.unreadMessage {
+    color: red;
+    position: absolute;
+    top: 0;
+    right: 5px
+  }

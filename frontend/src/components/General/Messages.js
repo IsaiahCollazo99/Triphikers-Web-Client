@@ -5,6 +5,7 @@ import { useHistory } from "react-router-dom";
 import "../../css/chats/messages.css";
 import ChatView from "../../chatList/ChatView";
 import ChatTextBox from "../../chatList/ChatTextBox";
+import NewChat from "../../chatList/NewChat";
 
 const Messages = () => {
     const history = useHistory();
@@ -18,8 +19,9 @@ const Messages = () => {
         setSelectedChatIndex(null);
     }
 
-    const selectChatButton = (chatIndex) => {
-        setSelectedChatIndex(chatIndex);
+    const selectChatButton = async (chatIndex) => {
+        await setSelectedChatIndex(chatIndex);
+        messageRead(chatIndex)
     }
 
     const buildDocKey = (friend) => {
@@ -44,6 +46,31 @@ const Messages = () => {
         })
     }
 
+    const otherUserClickedChat = (chatIndex) => {
+        let lastMessage = chats[chatIndex].messages[chats[chatIndex].messages.length-1]
+        if(lastMessage.sender !== email){
+            return true
+        } else {
+            return false
+        }
+    }
+
+    const messageRead = (chatIndex) => {
+        let usersArr = chats[chatIndex].users
+        const docKey = buildDocKey(usersArr.filter(user => user !== email)[0]);
+        if(otherUserClickedChat(chatIndex)){
+            firebase
+            .firestore()
+            .collection('chats')
+            .doc(docKey)
+            .update({
+                receiverHasRead: true
+            })
+        } else {
+            console.log("sender read")
+        }
+    }
+
     useEffect(() => {
        firebase.auth().onAuthStateChanged(async user => {
         if(!user){
@@ -64,11 +91,14 @@ const Messages = () => {
 
     return(
         <div className="messagesContainer">
-           <ChatList newChat = {newChatButtonClicked} selectChatButton={selectChatButton} chats={chats} email={email} selectedChatIndex={selectedChatIndex}/>
+           <ChatList newChatButtonClicked = {newChatButtonClicked} selectChatButton={selectChatButton} chats={chats} email={email} selectedChatIndex={selectedChatIndex}/>
            <div className="messagesContent">
             { newChatFormVisible ? null : <ChatView user={email} chat={chats[selectedChatIndex]}></ChatView> }
             {
-                selectedChatIndex !== null && !newChatFormVisible ? <ChatTextBox submitMessageToFirebase={submitMessageToFirebase}></ChatTextBox> : null
+                selectedChatIndex !== null && !newChatFormVisible ? <ChatTextBox submitMessageToFirebase={submitMessageToFirebase} messageRead={messageRead} selectedChatIndex={selectedChatIndex}></ChatTextBox> : null
+            }
+            {
+                newChatFormVisible ? <NewChat></NewChat> : null
             }
            </div>
         </div>
