@@ -13,7 +13,6 @@ import NavBar from "./components/General/NavBar";
 import { AuthRoute, ProtectedRoute } from "./util/routesUtil";
 import AuthProvider from "./providers/AuthContext";
 import About from "./components/User/About";
-import { updateUser } from "./components/User/UpdateUser";
 import LocationSearch from "./components/Location/LocationSearch";
 
 function App() {
