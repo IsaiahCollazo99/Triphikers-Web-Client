@@ -8,12 +8,13 @@
 
 .userPageContainer > header {
   display: grid;
-  grid-template-rows: 1fr 1fr;
+  grid-template-rows: 0.65fr 1fr;
   grid-template-columns: 1fr 1fr 1fr;
 }
 
 .up-coverImage {
   grid-column: 1 / 4;
+  border-bottom: 1px solid #272A33;
 } 
 
 .up-user {
@@ -22,8 +23,7 @@
   flex-direction: column;
   justify-content: center;
   border-right: 1px solid #272A33;
-  padding-right: 8em;
-  padding-bottom: 2em;
+  padding: 2em 8em 2em 0;
 }
 
 .up-user img {
@@ -54,7 +54,7 @@
   justify-content: space-evenly;
   padding-right: 8em;
   border-right: 1px solid #272A33;
-  padding-bottom: 2em;
+  padding: 2em 8em 2em 0;
 }
 
 .up-userInfo span {
@@ -62,7 +62,7 @@
 }
 
 .up-bio {
-  padding-bottom: 2em;
+  padding: 2em 0;
 }
 
 .up-bio span {
