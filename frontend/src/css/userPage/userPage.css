@@ -1,37 +1,60 @@
 .userPageContainer {
   margin-top: 110px;
-}
-
-.userProfile {
-  display: flex;
   width: 100%;
+  display: flex;
+  flex-direction: column;
+  background-color: white;
 }
 
-.userProfilePicture {
+.userPageContainer header {
+  display: grid;
+  grid-template-rows: 1fr 1fr;
+  grid-template-columns: 1fr 1fr 1fr;
+}
+
+.up-coverImage {
+  grid-column: 1 / 4;
+} 
+
+.up-user {
+  justify-self: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.up-user img {
   width: 150px;
   height: 150px;
   object-fit: cover;
   border-radius: 5em;
-  position: absolute;
-  top: 50%; 
-  left: 25%;
-  transform: translate(-50%, -50%);
+  margin-bottom: 25px;
 }
 
-.imageDiv{
-  width: 50%;
-  border-right-style: solid;
-  border-color: black;
-  top: 50%; 
-  left: 25%;
+.up-userInteraction {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
-.greeting{
-  width: 50%;
+.up-user p {
+  width: fit-content;
   align-self: center;
-  text-align: center;
-  border-color: black;
-  text-align: center;
-  top: 50%; 
-  left: 25%;
+}
+
+.up-userInfo {
+  align-self: center;
+  justify-self: center;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+}
+
+.up-userInfo span {
+  font-weight: 800;
+}
+
+.up-bio span {
+  font-weight: 800;
 }
