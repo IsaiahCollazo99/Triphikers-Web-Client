@@ -26,7 +26,7 @@ const ChatList = ({chats, email, selectedChatIndex, selectChatButton}) => {
 
     if(chats.length > 0){
         return(
-            <main className="chats">
+            <main className="chatListContainer">
                 <Button variant="contained" fullWidth color="primary" className="addNewChat" onClick={newChat}>New Message</Button>
                 <List>
                     {
@@ -41,7 +41,7 @@ const ChatList = ({chats, email, selectedChatIndex, selectChatButton}) => {
                                         <React.Fragment>
                                             <Typography component='span' color='textPrimary'>
                                                 {
-                                                    chat.messages[chat.messages.length - 1].message.substring(0, 30)
+                                                    chat.messages[chat.messages.length - 1].message.substring(0, 50)
                                                 }
                                             </Typography>
                                         </React.Fragment>
@@ -60,7 +60,7 @@ const ChatList = ({chats, email, selectedChatIndex, selectChatButton}) => {
 
     } else {
         return(
-            <main className="chats">
+            <main className="chatListContainer">
                 <Button variant="contained" color="primary" fullWidth onClick={newChat} className="addNewChat">
                     New Message
                 </Button>

@@ -21,7 +21,6 @@ const Messages = () => {
     }
 
     const selectChatButton = (chatIndex) => {
-        console.log('index:', chatIndex)
         setSelectedChatIndex(chatIndex);
     }
 
@@ -45,7 +44,6 @@ const Messages = () => {
 
     return(
         <div className="messagesContainer">
-           Hello these are your messages
            <ChatList newChat = {newChatButtonClicked} selectChatButton={selectChatButton} chats={chats} email={email} selectedChatIndex={selectedChatIndex}/>
            { newChatFormVisible ? null : <ChatView user={email} chat={chats[selectedChatIndex]}></ChatView> }
         </div>

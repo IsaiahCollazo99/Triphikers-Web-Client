@@ -1,3 +1,16 @@
 .chatPreview:hover{
     cursor: pointer;
 }
+
+.chatListContainer{
+    background-color: white;
+    height: calc(100% - 20%);
+    position: absolute;
+    left: 0;
+    width: 30%;
+    box-shadow: 0px 0px 2px black
+}
+
+.addNewChat{
+    border-radius: 0px
+}
