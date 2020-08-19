@@ -58,13 +58,18 @@ const LocationInfo = ({city, coord, country, title}) => {
         if(info !== undefined){
             return (
                 <div>
-                        <h1>Travel Advisory</h1>
-                        <h2>{country.name}</h2>
-                        <p><b>Continent:</b> {country.continent}</p>
-                        <p><b>Local Situation Rating:</b> {info.score}</p>
-                        <p className="linkAdv" onClick={()=>window.open(info.source)}>Click here for Advisory Information</p>
-                        <p>Information was updated on {info.updated}</p>
-                    </div>
+                    <h1>Travel Advisory</h1>
+                    <h2>{country.name}</h2>
+                    <section className="li-labels">
+                        <label>Continent: </label>
+                        <p>{country.continent}</p>
+
+                        <label>Local Situation Rating: </label>
+                        <p>{info.score}</p>
+                    </section>
+                    <p className="linkAdv" onClick={()=>window.open(info.source)}>Click here for Advisory Information</p>
+                    <p>Information was updated on {info.updated}</p>
+                </div>
             )
         }
     }
@@ -112,8 +117,11 @@ const LocationInfo = ({city, coord, country, title}) => {
                     </div>
                 </div>
             </div>
-            <div>
-                <p><b>Local Time Converted:</b> {convertTime(currentTime)}</p>
+            <div className="li-misc">
+                <div className="localTime">
+                    <label>Local Time: </label>
+                    <p>{convertTime(currentTime)}</p>
+                </div>  
             </div>
                 {/* <div className="detailsCurrency">
                     <h1 className="locationPageText">Currency Exchange</h1>

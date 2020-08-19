@@ -19,6 +19,8 @@
     border: 2px solid #272A33;
     background-color: white;
     font-size: 1.2em;
+    border-top-left-radius: 1em;
+    border-top-right-radius: 1em;
 }
 
 .dt-user {
@@ -63,7 +65,7 @@
 
 .dt-userInfo span {
     font-weight: bold;
-    color: #6433FF;
+    color: #0062e2;
 }
 
 
@@ -74,5 +76,5 @@
 
 .dt-bio span {
     font-weight: bold;
-    color: #6433FF;
+    color: #0062e2;
 }

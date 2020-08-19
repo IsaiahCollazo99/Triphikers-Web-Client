@@ -10,7 +10,7 @@
 
 .dt-nav a {
     color: #272A33;
-    font-weight: bold;
+    font-weight: bolder;
     text-decoration: none;
 }
 
@@ -19,5 +19,5 @@
 }
 
 .dt-nav .active {
-    color: #6433FF;
+    color: #0062e2;
 }

@@ -69,7 +69,7 @@ const LocationAttractions = ({ city, coord, country }) => {
     const Locate = ({ setCoordinates, setZoom, setLocateMe}) => {
         return(
             <div className="findMe">
-                <p><b>Find Me:</b></p>
+                <p><b>Locate Me:</b></p>
                 <img className="gpsIcon" src={gspIcon} alt="locate me" onClick={() => {
                     navigator.geolocation.getCurrentPosition((position) => { setCoordinates({lat: position.coords.latitude, lng: position.coords.longitude}, setZoom(16), setLocateMe({lat: position.coords.latitude, lng: position.coords.longitude}))
                     }, () => null)

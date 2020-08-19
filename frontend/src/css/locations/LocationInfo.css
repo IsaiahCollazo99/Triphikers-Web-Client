@@ -1,25 +1,22 @@
-/* background main color
-    dark blue: #021F66
-    medium blue: #083DCC
-    light blue: #3370FF
-    yellow: #FDB21A
-*/
+.locationContainer {
+    margin-top: 104px;
+}
 
 .locationInfoContainer {
     display: grid;
     grid-template-columns: 70% 30%;
     grid-template-rows: 50% 50%;
     width: 100vw;
-    height: 45vh;
-    background-color: #021F66;
-    color: white;
+    height: 55vh;
+    background-color: white;
+    color: #272A33;
 }
 
 .locationImageContainer {
     position: relative;
     width: 100%;
     height: 100%;
-    border: 1px solid black;
+    border: 1px solid #272A33;
     grid-row-start: 1;
     grid-column: 1/3;
 }
@@ -34,15 +31,15 @@
     width: 100%;
     opacity: 0%;
     transition: .5s ease;
-    background-color: #021F66;
-  }
+    background-color: #f3f3f3;
+}
 
 .locationImageContainer:hover .overlay {
     opacity: 1;
 }
 
 .locationName {
-    color: white;
+    color: #FF9506;
     font-size: 50px;
     position: absolute;
     top: 50%;
@@ -61,10 +58,12 @@
 .details {
     height: 100%;
     grid-row-start: 2;
-    display: flex;
-    flex-direction: row;
-    border: 1px solid black;
-    justify-content: space-around;
+    display: grid;
+    grid-template-columns: 1.75fr 2fr;
+    border: 1px solid #272A33;
+    justify-content: center;
+    padding: 5px;
+    align-items: center;
 }
 
 .detailsText{
@@ -72,37 +71,60 @@
     justify-content: center;
 }
 
-/* .emergencyServices{
-    grid-row-start: 2;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    text-align: center;
-    border: 1px solid black;
-} */
+.detailsAdvisory {
+    border-right: 1px solid #272A33;
+}
+
+.detailsAdvisory h1 {
+    font-size: 24px;
+    color: #FF9506;
+}
+
+.detailsAdvisory h2 {
+    font-size: 20px;
+}
 
 .locationPageText{
     font-size: 110%;
 }
 
+.li-labels {
+    display: grid;
+    grid-template-columns: 1fr 1.55fr;
+}
+
+.li-labels label {
+    grid-column: 1 / 2;
+    font-weight: bold;
+}
+
 .linkAdv {
     text-decoration: underline;
-    color: blue;
+    color: #FF9506;
+    width: fit-content;
 }
 
 .linkAdv:hover {
+    color: #0062e2;
     cursor: pointer;
 }
 
-.weatherContainer{
+.weatherContainer {
     display: flex;
     flex-direction: column;
+    padding-left: 10px;
+    align-self: baseline;
+}
+
+.weatherContainer h1 {
+    color: #FF9506;
+    font-size: 24px;
 }
 
 .weatherForecast{
     display: flex;
     flex-direction: row;
+    justify-content: space-evenly;
     width: 35vw;
     height: auto;
 }
@@ -110,4 +132,23 @@
 .weatherInfo{
     display: flex;
     flex-direction: row;
+}
+
+.li-misc {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 15px 10px;
+    border-top: 1px solid #272A33;
+    border-bottom: 1px solid #272A33;
+}
+
+.localTime {
+    display: flex;
+    flex-direction: column;
+}
+
+.localTime label {
+    font-size: 18px;
+    font-weight: bold;
 }

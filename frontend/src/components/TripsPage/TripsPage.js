@@ -4,6 +4,7 @@ import TripCard from '../General/TripCard';
 import '../../css/tripsPage/tripsPage.css';
 import TripsPageFilter from './TripsPageFilter';
 import { useHistory } from 'react-router-dom';
+import { FaSync } from 'react-icons/fa';
 
 const TripsPage = () => {
     const [ trips, setTrips ] = useState([]);
@@ -83,7 +84,7 @@ const TripsPage = () => {
             <button onClick={redirect} className="tp-createTrip">CREATE A TRIP</button>
             <section className="tp-feedManager">
                 <TripsPageFilter filterTrips={filterTrips}/>
-                <button onClick={getTripsCall} className="tp-refresh">Refresh</button>
+                <FaSync onClick={getTripsCall} className="tp-refresh" />
             </section>
             <section className="tripsPageFeed">
                 {response}
