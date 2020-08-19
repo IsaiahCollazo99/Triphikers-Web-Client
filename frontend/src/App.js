@@ -10,9 +10,10 @@ import LocationPage from "./components/Location/LocationPage"
 import Login	from "./components/Login/Login"
 import UserPage from "./components/User/UserPage";
 import NavBar from "./components/General/NavBar";
-import { AuthRoute, ProtectedRoute } from "./util/routesUtil";
+import { AuthRoute, ProtectedRoute, ProtectedUserRoute } from "./util/routesUtil";
 import AuthProvider from "./providers/AuthContext";
 import LocationSearch from "./components/Location/LocationSearch";
+import UserPageEdit from "./components/User/UserPageEdit";
 
 function App() {
 
@@ -32,6 +33,10 @@ function App() {
 				<AuthRoute exact path="/signIn" >
 					<Login />
 				</AuthRoute>
+
+				<ProtectedRoute path="/user/edit">
+					<UserPageEdit />
+				</ProtectedRoute>
 				
 				<ProtectedRoute path="/user/:id" >
 					<UserPage />

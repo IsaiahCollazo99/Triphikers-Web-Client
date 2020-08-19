@@ -6,7 +6,7 @@
   background-color: #f3f3f3;
 }
 
-.userPageContainer > header {
+.up-header {
   display: grid;
   grid-template-rows: 0.65fr 1fr;
   grid-template-columns: 1fr 1fr 1fr;

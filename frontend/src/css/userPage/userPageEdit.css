@@ -1,0 +1,152 @@
+.up-edit {
+    margin-top: 110px;
+    width: 100%;
+}
+
+.up-edit span, .up-edit label {
+    font-weight: 800;
+}
+
+.up-edit input, .up-edit select {
+    font-weight: normal;
+}
+
+.up-edit input:not([type="file"]), .up-edit select, .up-edit textarea {
+    width: 100%;
+    background-color: #e9e9e9;
+    color: #272A33;
+    border: 3px solid #272A33;
+    font-size: 1.25em;
+    transition: 0.3s ease-in-out;
+    border-radius: 0.5em;
+}
+
+.up-edit input:not([type="file"]):focus, .up-edit select:focus, .up-edit textarea:focus {
+    background-color: #FFAE41;
+    outline: none;
+}
+
+.up-edit button {
+    background-color: #FF9506;
+    border: 2px solid #272A33;
+    color: #272A33;
+    transition: 0.3s ease-in-out;
+    border-radius: 0.35em;
+    font-size: 1.25em;
+    margin-top: 1em;
+    width: fit-content;
+    align-self: center;
+    padding: 0.25em 1em;
+}
+
+.up-edit button:hover {
+    background-color: #e08002;
+    cursor: pointer;
+}
+
+.upe-header {
+    display: grid;
+    grid-template-rows: 0.65fr 1fr;
+    grid-template-columns: 1fr 1fr 1fr;
+}
+
+.upe-coverImage {
+    grid-column: 1 / 4;
+    border-bottom: 1px solid #272A33;
+}
+
+.upe-user {
+    justify-self: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    border-right: 1px solid #272A33;
+    grid-column: 1 / 2;
+    width: 100%;
+    align-items: center;
+    padding: 10px 0;
+}
+
+.upe-user input {
+    margin-bottom: 10px;
+}
+
+.upe-user img {
+    width: 150px;
+    height: 150px;
+    object-fit: cover;
+    border-radius: 5em;
+    margin-bottom: 25px;
+}
+
+.upe-userInteraction {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-evenly;
+    width: 100%;
+}
+
+.upe-user label {
+    display: flex;
+    flex-direction: column;
+    width: 60%;
+}
+
+.upe-user input {
+    margin-bottom: 10px;
+}
+
+.upe-user input[type="file"] {
+    width: fit-content;
+
+}
+
+.upe-user input[type="text"] {
+    width: 100%;
+}
+
+.upe-userInfo {
+    align-self: center;
+    justify-self: center;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    border-right: 1px solid #272A33;
+    justify-content: center;
+    width: 100%;
+    align-items: center;
+}
+
+.upe-userInfo label {
+    display: flex;
+    flex-direction: column;
+    width: 60%;
+}
+
+.upe-userInfo select {
+    margin-bottom: 30px;
+    width: 100%;
+}
+
+.upe-userInfo p {
+    margin-bottom: 30px;
+    width: 60%;
+}
+
+.upe-extras {
+    border-top: 1px solid #272A33;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding-top: 50px;
+}
+
+.upe-bio {
+    padding: 2em 0;
+    display: flex;
+    flex-direction: column;
+    align-self: center;
+    justify-self: center;
+}

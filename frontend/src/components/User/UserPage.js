@@ -51,7 +51,7 @@ const UserPage = () => {
     return (
       
         <div className="userPageContainer">
-            <header>
+            <header className="up-header">
                 <section className="up-coverImage">
                 </section>
 

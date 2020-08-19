@@ -28,8 +28,6 @@ const CreateSignUpForm3 = (props) => {
 	}, [])
 
 	const countryOptions = countries.map(country => {
-		debugger
-		// return <option value={country.alpha2Code} key={country.alpha2Code}>{country.name}</option>
 		return <option value={country.name} key={country.alpha2Code}>{country.name}</option>
 
 	})
