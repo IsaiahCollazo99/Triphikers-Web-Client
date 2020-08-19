@@ -44,7 +44,6 @@ const NewChat = ({ redirectToChat, newChatSubmit }) => {
         .collection("chats")
         .doc(docKey)
         .get();
-        console.log(chat.exists);
         return chat.exists
     }
 

@@ -29,8 +29,9 @@ const Messages = () => {
         return users.sort().join(":")
     }
 
-    const submitMessageToFirebase = (message) => {
-        let usersArr = chats[selectedChatIndex].users
+    const submitMessageToFirebase = (message, index = selectedChatIndex) => {
+        debugger
+        let usersArr = chats[index].users
         const docKey = buildDocKey(usersArr.filter(user => user !== email)[0]);
         firebase
         .firestore()
@@ -66,8 +67,6 @@ const Messages = () => {
             .update({
                 receiverHasRead: true
             })
-        } else {
-            console.log("sender read")
         }
     }
 
@@ -76,8 +75,9 @@ const Messages = () => {
         const usersInChat = docKey.split(":");
         const chat = chats.find(chatInfo => usersInChat.every(user => chatInfo.users.includes(user)));
         setNewChatFormVisible(false);
-        await selectChatButton(chats.indexOf(chat));
-        submitMessageToFirebase(message);
+        let index = chats.indexOf(chat);
+        debugger
+        submitMessageToFirebase(message, index);
     }
     
     const newChatSubmit = async(chatObj) => {
