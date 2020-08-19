@@ -71,6 +71,33 @@ const Messages = () => {
         }
     }
 
+    
+    const redirectToChat = async (docKey, message) => {
+        const usersInChat = docKey.split(":");
+        const chat = chats.find(chatInfo => usersInChat.every(user => chatInfo.users.includes(user)));
+        setNewChatFormVisible(false);
+        await selectChatButton(chats.indexOf(chat));
+        submitMessageToFirebase(message);
+    }
+    
+    const newChatSubmit = async(chatObj) => {
+        const docKey = buildDocKey(chatObj.sendTo);
+        await firebase
+        .firestore()
+        .collection("chats")
+        .doc(docKey)
+        .set({
+            receiverHasRead: false,
+            users: [email, chatObj.sendTo],
+            messages: [{
+                message:chatObj.message,
+                sender: email
+            }]
+        })
+        setNewChatFormVisible(false);
+        selectChatButton(chats.length-1)
+    }
+
     useEffect(() => {
        firebase.auth().onAuthStateChanged(async user => {
         if(!user){
@@ -84,11 +111,11 @@ const Messages = () => {
                 const convo = res.docs.map(doc => doc.data());
                 await setEmail(user.email) 
                 await setChats(convo)
-            })
-        }
-    })
-}, [])
-
+                })
+            }
+        })
+    }, [])
+    
     return(
         <div className="messagesContainer">
            <ChatList newChatButtonClicked = {newChatButtonClicked} selectChatButton={selectChatButton} chats={chats} email={email} selectedChatIndex={selectedChatIndex}/>
@@ -98,7 +125,7 @@ const Messages = () => {
                 selectedChatIndex !== null && !newChatFormVisible ? <ChatTextBox submitMessageToFirebase={submitMessageToFirebase} messageRead={messageRead} selectedChatIndex={selectedChatIndex}></ChatTextBox> : null
             }
             {
-                newChatFormVisible ? <NewChat></NewChat> : null
+                newChatFormVisible ? <NewChat redirectToChat={redirectToChat} newChatSubmit={newChatSubmit}></NewChat> : null
             }
            </div>
         </div>

@@ -1,10 +1,9 @@
 .chatTextBoxContainer {
     position: absolute;
-    bottom: 15px;
-    left: 315px;
+    bottom: 1%;
     box-sizing: border-box;
     overflow: auto;
-    width: calc(100% - 300px - 50px)
+    width: 100%
   }
 
   .chatTextBox {
