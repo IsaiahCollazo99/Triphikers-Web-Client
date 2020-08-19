@@ -30,7 +30,6 @@ const Messages = () => {
     }
 
     const submitMessageToFirebase = (message, index = selectedChatIndex) => {
-        debugger
         let usersArr = chats[index].users
         const docKey = buildDocKey(usersArr.filter(user => user !== email)[0]);
         firebase
@@ -76,11 +75,12 @@ const Messages = () => {
         const chat = chats.find(chatInfo => usersInChat.every(user => chatInfo.users.includes(user)));
         setNewChatFormVisible(false);
         let index = chats.indexOf(chat);
-        debugger
         submitMessageToFirebase(message, index);
+        //not redirecting
     }
     
     const newChatSubmit = async(chatObj) => {
+        debugger
         const docKey = buildDocKey(chatObj.sendTo);
         await firebase
         .firestore()
@@ -93,9 +93,10 @@ const Messages = () => {
                 message:chatObj.message,
                 sender: email
             }]
-        })
+        }) 
         setNewChatFormVisible(false);
         selectChatButton(chats.length-1)
+        //doesn't open up chat!
     }
 
     useEffect(() => {
