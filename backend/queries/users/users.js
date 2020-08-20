@@ -235,4 +235,22 @@ module.exports = {
 			next(error);
 		}
 	},
+
+	deleteFriendRequest: async ( req, res, next ) => {
+        const { id } = req.params;
+        const { requester_id } = req.query;
+        try {
+            await db.none(`
+                DELETE FROM friend_requests
+                WHERE requested_id=$1 AND requester_id=$2
+            `, [id, requester_id]);
+
+            res.status(200).json({
+                status: "OK",
+                message: "Deleted Request"
+            })
+        } catch ( error ) {
+            next(error);
+        }
+    },
 }
