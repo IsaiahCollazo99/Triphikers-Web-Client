@@ -55,6 +55,20 @@
     border-bottom: 1px solid #272A33;
 }
 
+.upe-closeEdit {
+    z-index: 2;
+    width: fit-content;
+    float: right;
+    font-size: 22px;
+    font-weight: bold;
+    margin-right: 40px;
+}
+
+.upe-closeEdit:hover {
+    cursor: pointer;
+    color: red;
+}
+
 .upe-user {
     justify-self: center;
     display: flex;

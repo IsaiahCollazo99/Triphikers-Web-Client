@@ -6,8 +6,10 @@ import '../../css/userPage/userPageEdit.css';
 import { useInput } from '../../util/customHooks';
 import axios from 'axios';
 import { uploadPicture } from '../../util/firebaseFunction';
+import { useHistory } from 'react-router-dom';
 
 const UserPageEdit = () => {
+    const history = useHistory();
     const { currentUser } = useContext(AuthContext);
     const [ user, setUser ] = useState({})
     const [ currentFirstName, setCurrentFirstName ] = useState("");
@@ -22,6 +24,8 @@ const UserPageEdit = () => {
 
     const getUserCall = async () => {
         const data = await getUserById(currentUser.id);
+        setCurrentFirstName(data.user.first_name);
+        setCurrentLastName(data.user.last_name);
         setUser(data.user);
     }
 
@@ -35,16 +39,30 @@ const UserPageEdit = () => {
         getCountries();
     }, [])
 
-    const updateUserCall = ( pictureData ) => {
+    const getFullName = () => {
+        if(firstName.value && lastName.value) {
+            return firstName.value + " " + lastName.value;
+        } else if(firstName.value && !lastName.value) {
+            return firstName.value + " " + currentLastName;
+        } else if(!firstName.value && lastName.value) {
+            return currentFirstName + " " + lastName.value;
+        } else {
+            return null;
+        }
+    }
+
+    const updateUserCall = async ( pictureData ) => {
         const userData = {
-            full_name: firstName.value + " " + lastName.value,
+            full_name: getFullName(),
+            first_name: firstName.value ? firstName.value : null,
+            last_name: lastName.value ? lastName.value : null,
             country_of_origin: country.value,
             gender: gender.value,
             bio: bio.value,
-            profile_picture: pictureData ? pictureData : null
+            profile_picture: pictureData ? pictureData.url : null
         }
 
-        const response = updateUser(currentUser.id, userData);
+        const response = await updateUser(currentUser.id, userData);
     }
 
     const handleUpdate = () => {
@@ -58,16 +76,20 @@ const UserPageEdit = () => {
     const handleFileSelect = ( e ) => {
 		setProfilePicture(e.target.files[0]);
     }
+
+    const returnToProfile = () => {
+        history.push(`/user/${currentUser.id}`);
+    }
     
     const countryOptions = countries.map(country => {
 		return <option value={country.name} key={country.alpha2Code}>{country.name}</option>
-
 	})
     
     return (
         <section className="up-edit">
             <header className="upe-header">
                 <section className="upe-coverImage">
+                    <p className="upe-closeEdit" onClick={returnToProfile}>X</p>
                 </section>
 
                 <section className="upe-user">
@@ -104,9 +126,9 @@ const UserPageEdit = () => {
                         <span>Gender: </span>
                         <select defaultValue="" {...gender}>
                             <option disabled value="">Select a gender</option>
-                            <option value="male">Male</option>
-                            <option value="female">Female</option>
-                            <option value="nonbinary">Non-Binary</option>
+                            <option value="Male">Male</option>
+                            <option value="Female">Female</option>
+                            <option value="Non-Binary">Non-Binary</option>
                         </select>
                     </label>
                 </section>

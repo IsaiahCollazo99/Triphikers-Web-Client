@@ -75,58 +75,91 @@ module.exports = {
 	},
 
 	updateUser: async (req, res, next) => {
+		console.log(req.body);
 		try {
-			const { bio, profile_picture, country_of_origin } = req.body;
+			const { 
+				full_name,
+				first_name,
+				last_name,
+				country_of_origin, 
+				gender,
+				bio, 
+				profile_picture
+			} = req.body;
 
 			const { id } = req.params;
+			
+			if(full_name) {
+				let updated = await db.one(`
+				UPDATE users
+				SET full_name=$1
+				WHERE id=$2 RETURNING *
+				`, [full_name, id]
+				);
 
-			let user = {};
+				user = updated;
+			}
+
+			if(first_name) {
+				let updated = await db.one(`
+				UPDATE users
+				SET first_name=$1
+				WHERE id=$2 RETURNING *
+				`, [first_name, id]
+				);
+
+				user = updated;
+			}
+
+			if(last_name) {
+				let updated = await db.one(`
+				UPDATE users
+				SET last_name=$1
+				WHERE id=$2 RETURNING *
+				`, [last_name, id]
+				);
+
+				user = updated;
+			}
+			
+			if (country_of_origin) {
+				let updated = await db.one(`
+				UPDATE users
+				SET country_of_origin=$1
+				WHERE id=$2 RETURNING *
+				`, [country_of_origin, id]
+				);
+				user = updated;
+			}
+
+			if (gender) {
+				let updated = await db.one(`
+				UPDATE users
+				SET gender=$1
+				WHERE id=$2 RETURNING *
+				`, [gender, id]
+				);
+				user = updated;
+			}
 
 			if (bio) {
 				let updated = await db.one(
 					`UPDATE users
-                SET bio=$1
-                WHERE id=$2 RETURNING *`,
+					SET bio=$1
+					WHERE id=$2 RETURNING *`,
 					[bio, id]
 				);
-				user = {
-					...updated,
-				};
+				user = updated;
 			}
-
+			
 			if (profile_picture) {
 				let updated = await db.one(
 					`UPDATE users
-                SET profile_picture=$1
-                WHERE id=$2 RETURNING *`,
+					SET profile_picture=$1
+					WHERE id=$2 RETURNING *`,
 					[profile_picture, id]
 				);
-				user = {
-					...updated,
-				};
-			}
-
-			if (gender) {
-				let updated = await db.one(
-					`UPDATE users
-                SET gender=$1
-                WHERE id=$2 RETURNING *`,
-					[gender, id]
-				);
-				user = {
-					...updated,
-				};
-			}
-			if (country_of_origin) {
-				let updated = await db.one(
-					`UPDATE users
-              SET country_of_origin=$1
-              WHERE id=$2 RETURNING *`,
-					[country_of_origin, id]
-				);
-				user = {
-					...updated,
-				};
+				user = updated;
 			}
 
 			res.status(200).json({
