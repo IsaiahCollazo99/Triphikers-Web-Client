@@ -75,7 +75,6 @@ module.exports = {
 	},
 
 	updateUser: async (req, res, next) => {
-		console.log(req.body);
 		try {
 			const { 
 				full_name,
