@@ -1,0 +1,10 @@
+.messagesContainer{
+    margin-top: 7.2%;
+    display: flex;
+    flex-direction: row;
+}
+
+/* .messagesContent {
+    display: flex;
+    flex-direction: column;
+} */
