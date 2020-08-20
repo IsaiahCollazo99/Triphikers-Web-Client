@@ -23,7 +23,9 @@
   flex-direction: column;
   justify-content: center;
   border-right: 1px solid #272A33;
-  padding: 2em 8em 2em 0;
+  align-items: center;
+  width: 100%;
+  padding: 2em 0;
 }
 
 .up-user img {
@@ -49,12 +51,12 @@
   align-self: center;
   justify-self: center;
   height: 100%;
+  width: 100%;
   display: flex;
   flex-direction: column;
   justify-content: space-evenly;
-  padding-right: 8em;
   border-right: 1px solid #272A33;
-  padding: 2em 8em 2em 0;
+  padding-left: 30px;
 }
 
 .up-userInfo span {
@@ -62,7 +64,8 @@
 }
 
 .up-bio {
-  padding: 2em 0;
+  width: 100%;
+  padding: 2em 30px;
 }
 
 .up-bio span {
