@@ -13,7 +13,7 @@ const UserPageAbout = ({ user }) => {
 
     const displayEdit = () => {
         if(currentUser.id === user.id) {
-            return <button onClick={redirect}>Edit</button>
+            return <button onClick={redirect}>Edit Profile</button>
         } else {
             return null;
         }
@@ -22,7 +22,9 @@ const UserPageAbout = ({ user }) => {
     return (
         <section className="up-about">
             {displayEdit()}
-            <p><span>Language: </span>{user.language}</p>
+            <section className="up-aboutList">
+                <p><span>Language: </span>{user.language}</p>
+            </section>
         </section>
 
     )
