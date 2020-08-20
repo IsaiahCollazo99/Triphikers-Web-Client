@@ -212,5 +212,27 @@ module.exports = {
         throw error;
       }
     }
-  }
+  },
+
+	getUserFriendRequests: async ( req, res, next ) => {
+		try {
+			const { id } = req.params;
+
+			const requests = await db.any(`
+				SELECT friend_requests.*, users.full_name, users.age, users.country_of_origin, 
+				users.gender, users.profile_picture
+				FROM friend_requests
+				LEFT JOIN users ON users.id=friend_requests.requester_id
+				WHERE requested_id=$1
+			`, [id]);
+
+			res.status(200).json({
+				status: "OK",
+				requests,
+				message: "Retrieved all user friend Requests"
+			})
+		} catch ( error ) {
+			next(error);
+		}
+	},
 }

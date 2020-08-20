@@ -5,3 +5,5 @@ const {
 } = require('../../queries/friendRequests/friendRequests');
 
 friendRequests.post("/", sendFriendRequest);
+
+module.exports = friendRequests;
