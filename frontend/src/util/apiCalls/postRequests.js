@@ -50,8 +50,8 @@ export const createUser = async (userObj) => {
     try {
         const {
             userEmail: email,
-            firstName: { value: firstName },
-            lastName: { value: lastName },
+            firstName: { value: first_name },
+            lastName: { value: last_name },
             birthday: { value: birthday },
             gender: { value: gender},
             bio: { value: bio },
@@ -61,13 +61,15 @@ export const createUser = async (userObj) => {
             id
           } = userObj
       
-          const full_name = firstName + " " + lastName;
+          const full_name = first_name + " " + last_name;
       
           const age = getUserAge(birthday);
       
           const res = await axios.post(API + "/api/users", {
               id,
               full_name,
+              first_name,
+              last_name,
               email,
               age,
               profile_picture,

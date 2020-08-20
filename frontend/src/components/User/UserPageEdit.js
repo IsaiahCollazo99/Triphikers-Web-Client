@@ -1,14 +1,17 @@
 import React, { useContext, useEffect, useState } from 'react';
 import { AuthContext } from '../../providers/AuthContext';
-import { getUserById } from '../../util/apiCalls/getRequests';
+import { getUserById, updateUser } from '../../util/apiCalls/getRequests';
 import '../../css/userPage/userPage.css';
 import '../../css/userPage/userPageEdit.css';
 import { useInput } from '../../util/customHooks';
 import axios from 'axios';
+import { uploadPicture } from '../../util/firebaseFunction';
 
 const UserPageEdit = () => {
     const { currentUser } = useContext(AuthContext);
     const [ user, setUser ] = useState({})
+    const [ currentFirstName, setCurrentFirstName ] = useState("");
+    const [ currentLastName, setCurrentLastName ] = useState("");
     const [ countries, setCountries ] = useState([]);
     const [ profilePicture, setProfilePicture ] = useState(null);
     const firstName = useInput("");
@@ -32,8 +35,24 @@ const UserPageEdit = () => {
         getCountries();
     }, [])
 
-    const updateUserCall = () => {
-        
+    const updateUserCall = ( pictureData ) => {
+        const userData = {
+            full_name: firstName.value + " " + lastName.value,
+            country_of_origin: country.value,
+            gender: gender.value,
+            bio: bio.value,
+            profile_picture: pictureData ? pictureData : null
+        }
+
+        const response = updateUser(currentUser.id, userData);
+    }
+
+    const handleUpdate = () => {
+        if(profilePicture) {
+            uploadPicture(`${currentUser.id}/profile_picture`, {id: currentUser.id, file: profilePicture}, updateUserCall)
+        } else {
+            updateUserCall();
+        }
     }
 
     const handleFileSelect = ( e ) => {
@@ -99,7 +118,7 @@ const UserPageEdit = () => {
             </header>
 
             <section className="upe-extras">
-                <button type="submit" onClick={updateUserCall}>Update</button>
+                <button type="submit" onClick={handleUpdate}>Update</button>
             </section>
         </section>
     )

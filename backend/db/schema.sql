@@ -13,6 +13,8 @@ DROP TABLE IF EXISTS users;
 CREATE TABLE users (
     id VARCHAR UNIQUE NOT NULL PRIMARY KEY,
     full_name VARCHAR,
+    first_name VARCHAR,
+    last_name VARCHAR,
     email VARCHAR,
     age INTEGER,
     profile_picture VARCHAR,

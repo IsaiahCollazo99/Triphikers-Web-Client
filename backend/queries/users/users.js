@@ -6,6 +6,8 @@ module.exports = {
 			const {
 				id,
 				full_name,
+				first_name,
+				last_name,
 				email,
 				age,
 				profile_picture,
@@ -16,9 +18,11 @@ module.exports = {
 			} = req.body;
 			
 			let user = await db.one(
-				`INSERT INTO users(id, full_name, email, age, profile_picture, gender, bio, country_of_origin, language)
-      VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9) RETURNING *`,
-				[id, full_name, email, age, profile_picture, gender, bio, country_of_origin, language]
+				`INSERT INTO users(id, full_name, first_name, last_name, email, age, profile_picture, 
+					gender, bio, country_of_origin, language)
+      			VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11) RETURNING *`,
+				[id, full_name, first_name, last_name, email, age, profile_picture, gender, bio, 
+				country_of_origin, language]
 			);
 			
 
