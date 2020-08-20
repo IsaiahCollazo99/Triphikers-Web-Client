@@ -8,7 +8,6 @@ import TripCard from '../General/TripCard';
 import TripsPage from '../TripsPage/TripsPage';
 import '../../css/userPage/userPage.css'
 import albertaAttraction from '../../images/albertaAttraction.jpg';
-import NavUserPage from '../General/NavUserPage'
 
 
 const UserPage = () => {
@@ -87,9 +86,6 @@ const UserPage = () => {
                 border: 0,
                 }}
             />
-            <div className="navUserPage">
-            </div>
-                <NavUserPage/>
             <hr  style={{
                 color: '#000000',
                 backgroundColor: '#000000',

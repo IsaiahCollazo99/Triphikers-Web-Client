@@ -5,6 +5,8 @@
     padding: 1em;
     background-color: white;
     align-items: center;
+    border-bottom-left-radius: 1em;
+    border-bottom-right-radius: 1em;
 }
 
 .travelersCard {

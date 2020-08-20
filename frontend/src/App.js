@@ -12,7 +12,6 @@ import UserPage from "./components/User/UserPage";
 import NavBar from "./components/General/NavBar";
 import { AuthRoute, ProtectedRoute } from "./util/routesUtil";
 import AuthProvider from "./providers/AuthContext";
-import UserPageNavBar from "./components/General/UserPageNavBar";
 import About from "./components/User/About";
 import { updateUser } from "./components/User/UpdateUser";
 import LocationSearch from "./components/Location/LocationSearch";
@@ -38,7 +37,6 @@ function App() {
 				</AuthRoute>
 				
 				<ProtectedRoute exact path="/user/:id" >
-					<UserPageNavBar />
 					<UserPage />
 				</ProtectedRoute>
 
