@@ -41,6 +41,16 @@
     margin-bottom: 20px;
 }
 
+.dt-user a {
+    color: #0062e2;
+    text-decoration: none;
+}
+
+.dt-user a:hover {
+    color: #FF9506;
+    cursor: pointer;
+}
+
 .dt-userInfo {
     width: 33%;
     display: flex;
@@ -65,7 +75,7 @@
 
 .dt-userInfo span {
     font-weight: bold;
-    color: #0062e2;
+    color: #FF9506;
 }
 
 
@@ -76,5 +86,5 @@
 
 .dt-bio span {
     font-weight: bold;
-    color: #0062e2;
+    color: #FF9506;
 }

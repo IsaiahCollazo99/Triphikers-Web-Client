@@ -14,7 +14,6 @@
     flex-direction: row;
     justify-content: space-between;
     width: 90%;
-    border: 1px solid #272A33;
     padding: 10px 20px;
 }
 
@@ -32,4 +31,14 @@
     margin-right: 15px;
     object-fit: cover;
     border-radius: 7em;
+}
+
+.tc-info a {
+    color: #0062e2;
+    font-weight: bold;
+}
+
+.tc-info a:hover {
+    color: #FF9506;
+    cursor: pointer;
 }
