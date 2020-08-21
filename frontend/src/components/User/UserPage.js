@@ -64,7 +64,7 @@ const UserPage = () => {
         getUserFriendsCall();
 
         return () => {
-            setProfileUser(null);
+            setProfileUser({});
         }
     }, [id]);
     

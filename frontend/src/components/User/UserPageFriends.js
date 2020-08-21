@@ -1,4 +1,6 @@
 import React from 'react';
+import '../../css/userPage/userPageFriends.css';
+import { Link } from 'react-router-dom';
 
 const UserPageFriends = ({ userFriends = [] }) => {
 
@@ -7,7 +9,7 @@ const UserPageFriends = ({ userFriends = [] }) => {
             <article className="friendCard" key={friend.id}>
                 <section className="fc-info">
                     <img src={friend.profile_picture} alt={friend.full_name} />
-                    <p>{friend.full_name}</p>
+                    <Link to={`/user/${friend.id}`}>{friend.full_name}</Link>
                 </section>
             </article>
         )

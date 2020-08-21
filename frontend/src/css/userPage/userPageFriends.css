@@ -1,0 +1,43 @@
+.up-friends {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    align-items: center;
+    margin-top: 30px;
+}
+
+.friendCard {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    width: 40%;
+    border: 1px solid #272A33;
+    padding: 10px 20px;
+    border-radius: 1.5em;
+    background-color: white;
+}
+
+.fc-info {
+    display: flex;
+    flex-direction: row;
+    width: 60%;
+    align-items: center;
+    font-size: 1.5em;
+}
+
+.fc-info img {
+    width: 100px;
+    height: 100px;
+    margin-right: 15px;
+    object-fit: cover;
+    border-radius: 7em;
+}
+
+.fc-info a {
+    color: #0062e2;
+    text-decoration: none;
+}
+
+.fc-info a:hover {
+    color: #FF9506;
+}
