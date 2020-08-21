@@ -169,7 +169,7 @@ const UserPage = () => {
                 </Route>
 
                 <Route exact path={"/user/:id/friends"}>
-                    <UserPageFriends userFriends={friends} />
+                    <UserPageFriends userFriends={friends} refresh={getUserFriendsCall} />
                 </Route>
 
                 <ProtectedUserRoute userId={id} exact path={"/user/:id/friendRequests"}>

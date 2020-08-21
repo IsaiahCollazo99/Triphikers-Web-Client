@@ -1,17 +1,12 @@
 import React from 'react';
 import '../../css/userPage/userPageFriends.css';
-import { Link } from 'react-router-dom';
+import FriendCard from './FriendCard';
 
-const UserPageFriends = ({ userFriends = [] }) => {
+const UserPageFriends = ({ userFriends = [], refresh }) => {
 
     const friendsList = userFriends.map(friend => {
         return (
-            <article className="friendCard" key={friend.id}>
-                <section className="fc-info">
-                    <img src={friend.profile_picture} alt={friend.full_name} />
-                    <Link to={`/user/${friend.id}`}>{friend.full_name}</Link>
-                </section>
-            </article>
+            <FriendCard friend={friend} refresh={refresh} key={friend.id}/>
         )
     });
     
