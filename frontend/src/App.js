@@ -14,6 +14,7 @@ import { AuthRoute, ProtectedRoute, ProtectedUserRoute } from "./util/routesUtil
 import AuthProvider from "./providers/AuthContext";
 import LocationSearch from "./components/Location/LocationSearch";
 import UserPageEdit from "./components/User/UserPageEdit";
+import Messages from "./components/General/Messages";
 
 function App() {
 
@@ -44,6 +45,14 @@ function App() {
 
 				<ProtectedRoute exact path="/search" >
 					<LocationSearch/>
+				</ProtectedRoute>
+
+				<ProtectedRoute exact path="/messages" >
+					<Messages/>
+				</ProtectedRoute>
+					
+				<ProtectedRoute exact path="/updated/:id">
+					<updateUser />
 				</ProtectedRoute>
 					
 				<ProtectedRoute exact path="/trips">	
