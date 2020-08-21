@@ -1,9 +1,11 @@
 const friendRequests = require('express').Router();
 
 const {
-    sendFriendRequest
+    sendFriendRequest,
+    acceptFriendRequest
 } = require('../../queries/friendRequests/friendRequests');
 
 friendRequests.post("/", sendFriendRequest);
+friendRequests.post("/accept", acceptFriendRequest);
 
 module.exports = friendRequests;

@@ -252,5 +252,18 @@ module.exports = {
         } catch ( error ) {
             next(error);
         }
-    },
+	},
+	
+	getUsersFriends: async ( req, res, next ) => {
+		const { id } = req.params;
+		try {
+			const friends = await db.any(`
+				SELECT * FROM friends_lists
+				LEFT JOIN users on users.id=friends_lists.user_2
+				WHERE friends_lists.user_1=$1
+			`, id)
+		} catch ( error ) {
+
+		}
+	}
 }

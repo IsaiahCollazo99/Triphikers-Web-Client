@@ -3,6 +3,7 @@ CREATE DATABASE triphikers_db;
 
 \c triphikers_db;
 
+DROP TABLE IF EXISTS friends_lists;
 DROP TABLE IF EXISTS friend_requests;
 DROP TABLE IF EXISTS requests;
 DROP TABLE IF EXISTS travelers;
@@ -81,4 +82,10 @@ CREATE TABLE friend_requests (
     id SERIAL PRIMARY KEY,
     requester_id VARCHAR REFERENCES users(id) ON DELETE CASCADE,
     requested_id VARCHAR REFERENCES users(id) ON DELETE CASCADE
+);
+
+CREATE TABLE friends_lists (
+    id SERIAL PRIMARY KEY,
+    user_1 VARCHAR REFERENCES users(id) ON DELETE CASCADE,
+    user_2 VARCHAR REFERENCES users(id) ON DELETE CASCADE
 );

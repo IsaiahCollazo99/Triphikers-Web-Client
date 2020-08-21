@@ -17,5 +17,23 @@ module.exports = {
         } catch ( error ) {
             next(error);
         }
+    },
+
+    acceptFriendRequest: async ( req, res, next ) => {
+        const { requester_id, requested_id } = req.body;
+        try {
+            const accepted = await db.one(`
+                INSERT INTO friends_lists (user_1, user_2)
+                VALUES ($1, $2) RETURNING *
+            `, [requested_id, requester_id]);
+
+            res.status(200).json({
+                status: "OK",
+                accepted,
+                message: "Friend Request accepted."
+            })
+        } catch ( error ) {
+            next(error);
+        }
     }
 }
