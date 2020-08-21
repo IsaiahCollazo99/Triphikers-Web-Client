@@ -45,11 +45,20 @@ const UserPage = () => {
             console.log(error);
         }
     }
+
+    const getUserFriendsCall = async () => {
+        try {
+
+        } catch ( error ) {
+            console.log(error);
+        }
+    }
         
     useEffect(() => {
         getUser();
         getUserTripsCall();
         getUserFriendRequestsCall();
+        getUserFriendsCall();
 
         return () => {
             setProfileUser(null);
