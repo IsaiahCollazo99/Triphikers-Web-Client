@@ -70,3 +70,12 @@ export const getTripTravelers = async ( id ) => {
         throw error;
     }
 }
+
+export const getUserFriendRequests = async ( id ) => {
+    try { 
+        const res = await axios.get(API + `/api/users/${id}/friendRequests`);
+        return res.data;
+    } catch ( error ) {
+        throw error;
+    }
+}

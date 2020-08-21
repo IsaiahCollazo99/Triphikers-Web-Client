@@ -1,6 +1,6 @@
 import React, { useEffect, useState, useContext } from 'react';
 import { useParams, Switch, Route } from 'react-router-dom'
-import { getUserById, getUserTrips } from '../../util/apiCalls/getRequests'
+import { getUserById, getUserTrips, getUserFriendRequests } from '../../util/apiCalls/getRequests'
 import '../../css/userPage/userPage.css'
 import UserPageNav from './UserPageNav';
 import TripCard from '../General/TripCard';
@@ -13,6 +13,7 @@ const UserPage = () => {
     const { currentUser } = useContext(AuthContext);
     const [ profileUser, setProfileUser ] = useState({});
     const [ userTrips, setUserTrips ] = useState([]);
+    const [ friendRequests, setFriendRequests ] = useState([]);
 
     const getUser = async () => {
         try {
@@ -33,12 +34,21 @@ const UserPage = () => {
         } catch(error) {
             console.log(error)
         }
-        
+    }
+
+    const getUserFriendRequestsCall = async () => {
+        try {
+            const data = await getUserFriendRequests(id);
+            setFriendRequests(data.requests);
+        } catch ( error ) {
+            console.log(error);
+        }
     }
         
     useEffect(() => {
         getUser();
         getUserTripsCall();
+        getUserFriendRequestsCall();
 
         return () => {
             setProfileUser(null);
@@ -47,15 +57,38 @@ const UserPage = () => {
     
     const sendFriendRequestCall = async () => {
         try {
-            await sendFriendRequest(currentUser.id, id);  
+            await sendFriendRequest(currentUser.id, id);
         } catch ( error ) {
             console.log(error);
         }
     }
 
+    const currentUserSentRequest = () => {
+        let userSentRequest = false;
+
+        for(let request of friendRequests) {
+            if(request.requester_id === currentUser.id) {
+                userSentRequest = true;
+                break;
+            }
+        }
+
+        return userSentRequest;
+    }
+
+    const removeFriendRequest = () => {
+        console.log("remove");
+    }
+
     const displayFriendRequest = () => {
         if(currentUser.id === id) {
             return null;
+        } else if(currentUserSentRequest()) {
+            return (
+                <button className="up-requestSent" onClick={sendFriendRequestCall}>
+                    <span>Friend Request Sent</span>
+                </button>
+            )
         } else {
             return (
                 <button className="up-friendRequest" onClick={sendFriendRequestCall}>
