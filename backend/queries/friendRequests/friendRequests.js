@@ -32,6 +32,11 @@ module.exports = {
                 VALUES ($1, $2);
             `, [requester_id, requested_id]); 
 
+            await db.none(`
+                DELETE FROM friend_requests
+                WHERE requester_id=$1
+            `, requester_id)
+
             res.status(200).json({
                 status: "OK",
                 accepted,

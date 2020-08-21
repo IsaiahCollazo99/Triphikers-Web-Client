@@ -5,7 +5,7 @@ import { AuthContext } from '../../providers/AuthContext';
 
 const UserPageNav = ({ userId }) => {
 
-    const currentUser = useContext(AuthContext);
+    const { currentUser } = useContext(AuthContext);
 
     const displayFriendRequests = () => {
         if(currentUser.id === userId) {

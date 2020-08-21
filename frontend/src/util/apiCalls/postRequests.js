@@ -46,7 +46,6 @@ const getUserAge = ( birthday ) => {
 }
 
 export const createUser = async (userObj) => {
-    debugger
     try {
         const {
             userEmail: email,
@@ -83,30 +82,39 @@ export const createUser = async (userObj) => {
         console.log(error);
     }
     
-  }
+}
 
-  export const createTripRequest = async ( tripId, requester_id ) => {
-      try {
+export const createTripRequest = async ( tripId, requester_id ) => {
+    try {
         const res = await axios.post(API + `/api/trips/${tripId}/requests`, {requester_id});
         return <p className="success">Request successfuly sent</p>
-      } catch ( error ) {
-          throw error;
-      }
-  }
+    } catch ( error ) {
+        throw error;
+    }
+}
 
-  export const approveTraveler = async ( tripId, traveler_id ) => {
-      try {
+export const approveTraveler = async ( tripId, traveler_id ) => {
+    try {
         const res = await axios.post(API + `/api/trips/${tripId}/travelers`, {traveler_id});
         return <p className="success">Successfuly approved request</p>
-      } catch ( error ) {
+    } catch ( error ) {
         throw error;
-      }
-  }
+    }
+}
 
-  export const sendFriendRequest = async ( requester_id, requested_id ) => {
+export const sendFriendRequest = async ( requester_id, requested_id ) => {
     try {
         const res = await axios.post(API + `/api/friendRequests`, {requester_id, requested_id});
     } catch ( error ) {
         throw error;
     }
-  }
+}
+
+export const acceptFriendRequest = async ( requester_id, requested_id ) => {
+    try {
+        const res = await axios.post(API + `/api/friendRequests/accept`, {requester_id, requested_id});
+        return res.data;
+    } catch ( error ) {
+        throw error;
+    }
+}

@@ -1,11 +1,17 @@
 import React from 'react';
+import FriendRequestCard from './FriendRequestCard';
 
-const UserPageRequests = ( friendRequests ) => {
-    
+const UserPageRequests = ({ friendRequests = [], refresh }) => {
+
+    const requestsList = friendRequests.map(request => {
+        return (
+            <FriendRequestCard user={request} refresh={refresh} />
+        )
+    })
     
     return (
         <section className="up-requests">
-            Requests
+            {requestsList}
         </section>
     )
 }

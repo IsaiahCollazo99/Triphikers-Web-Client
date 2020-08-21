@@ -5,7 +5,7 @@ const {
     acceptFriendRequest
 } = require('../../queries/friendRequests/friendRequests');
 
-friendRequests.post("/", sendFriendRequest);
 friendRequests.post("/accept", acceptFriendRequest);
+friendRequests.post("/", sendFriendRequest);
 
 module.exports = friendRequests;

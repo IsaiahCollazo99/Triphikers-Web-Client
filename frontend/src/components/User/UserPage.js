@@ -9,6 +9,8 @@ import { AuthContext } from '../../providers/AuthContext';
 import { sendFriendRequest } from '../../util/apiCalls/postRequests';
 import { deleteFriendRequest } from '../../util/apiCalls/deleteRequests';
 import UserPageFriends from './UserPageFriends';
+import { ProtectedUserRoute } from '../../util/routesUtil';
+import UserPageRequests from './UserPageRequests';
 
 const UserPage = () => {
     const { id } = useParams();
@@ -39,19 +41,20 @@ const UserPage = () => {
         }
     }
 
-    const getUserFriendRequestsCall = async () => {
+    const getUserFriendsCall = async () => {
         try {
-            const data = await getUserFriendRequests(id);
-            setFriendRequests(data.requests);
+            const data = await getUserFriends(id);
+            setFriends(data.friends);
         } catch ( error ) {
             console.log(error);
         }
     }
 
-    const getUserFriendsCall = async () => {
+    const getUserFriendRequestsCall = async () => {
         try {
-            const data = await getUserFriends(id);
-            setFriends(data.friends);
+            const data = await getUserFriendRequests(id);
+            setFriendRequests(data.requests);
+            getUserFriendsCall();
         } catch ( error ) {
             console.log(error);
         }
@@ -61,7 +64,6 @@ const UserPage = () => {
         getUser();
         getUserTripsCall();
         getUserFriendRequestsCall();
-        getUserFriendsCall();
 
         return () => {
             setProfileUser({});
@@ -169,6 +171,10 @@ const UserPage = () => {
                 <Route exact path={"/user/:id/friends"}>
                     <UserPageFriends userFriends={friends} />
                 </Route>
+
+                <ProtectedUserRoute userId={id} exact path={"/user/:id/friendRequests"}>
+                    <UserPageRequests friendRequests={friendRequests} refresh={getUserFriendRequestsCall} />
+                </ProtectedUserRoute>
             </Switch>
             </section>
         
