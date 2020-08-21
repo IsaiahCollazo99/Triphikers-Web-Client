@@ -6,6 +6,7 @@ import UserPageNav from './UserPageNav';
 import TripCard from '../General/TripCard';
 import UserPageAbout from './UserPageAbout';
 import { AuthContext } from '../../providers/AuthContext';
+import { sendFriendRequest } from '../../util/apiCalls/postRequests';
 
 const UserPage = () => {
     const { id } = useParams();
@@ -43,12 +44,24 @@ const UserPage = () => {
             setProfileUser(null);
         }
     }, [id]);
+    
+    const sendFriendRequestCall = async () => {
+        try {
+            await sendFriendRequest(currentUser.id, id);  
+        } catch ( error ) {
+            console.log(error);
+        }
+    }
 
     const displayFriendRequest = () => {
         if(currentUser.id === id) {
             return null;
         } else {
-            return <button className="up-friendRequest">Send Friend Request</button>
+            return (
+                <button className="up-friendRequest" onClick={sendFriendRequestCall}>
+                    Send Friend Request
+                </button>
+            )
         }
     }
     
