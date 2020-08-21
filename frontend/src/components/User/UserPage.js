@@ -1,6 +1,6 @@
 import React, { useEffect, useState, useContext } from 'react';
 import { useParams, Switch, Route } from 'react-router-dom'
-import { getUserById, getUserTrips, getUserFriendRequests } from '../../util/apiCalls/getRequests'
+import { getUserById, getUserTrips, getUserFriendRequests, getUserFriends } from '../../util/apiCalls/getRequests'
 import '../../css/userPage/userPage.css'
 import UserPageNav from './UserPageNav';
 import TripCard from '../General/TripCard';
@@ -8,6 +8,7 @@ import UserPageAbout from './UserPageAbout';
 import { AuthContext } from '../../providers/AuthContext';
 import { sendFriendRequest } from '../../util/apiCalls/postRequests';
 import { deleteFriendRequest } from '../../util/apiCalls/deleteRequests';
+import UserPageFriends from './UserPageFriends';
 
 const UserPage = () => {
     const { id } = useParams();
@@ -15,6 +16,7 @@ const UserPage = () => {
     const [ profileUser, setProfileUser ] = useState({});
     const [ userTrips, setUserTrips ] = useState([]);
     const [ friendRequests, setFriendRequests ] = useState([]);
+    const [ friends, setFriends ] = useState([]);
 
     const getUser = async () => {
         try {
@@ -48,7 +50,8 @@ const UserPage = () => {
 
     const getUserFriendsCall = async () => {
         try {
-
+            const data = await getUserFriends(id);
+            setFriends(data.friends);
         } catch ( error ) {
             console.log(error);
         }
@@ -161,6 +164,10 @@ const UserPage = () => {
 
                 <Route exact path={"/user/:id/about"}>
                     <UserPageAbout user={profileUser} />
+                </Route>
+
+                <Route exact path={"/user/:id/friends"}>
+                    <UserPageFriends userFriends={friends} />
                 </Route>
             </Switch>
             </section>

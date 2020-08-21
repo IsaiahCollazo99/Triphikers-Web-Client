@@ -27,6 +27,11 @@ module.exports = {
                 VALUES ($1, $2) RETURNING *
             `, [requested_id, requester_id]);
 
+            await db.none(`
+                INSERT INTO friends_lists (user_1, user_2)
+                VALUES ($1, $2);
+            `, [requester_id, requested_id]); 
+
             res.status(200).json({
                 status: "OK",
                 accepted,

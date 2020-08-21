@@ -79,3 +79,13 @@ export const getUserFriendRequests = async ( id ) => {
         throw error;
     }
 }
+
+export const getUserFriends = async ( id ) => {
+    try {  
+        const res = await axios.get(API + `/api/users/${id}/friends`);
+        return res.data;
+    } catch ( error ) {
+        console.log(error);
+        throw error;
+    }
+}

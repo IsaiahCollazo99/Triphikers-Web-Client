@@ -262,6 +262,12 @@ module.exports = {
 				LEFT JOIN users on users.id=friends_lists.user_2
 				WHERE friends_lists.user_1=$1
 			`, id)
+
+			res.status(200).json({
+				status: "OK",
+				friends,
+				message: "Retrieved friends"
+			})
 		} catch ( error ) {
 
 		}
