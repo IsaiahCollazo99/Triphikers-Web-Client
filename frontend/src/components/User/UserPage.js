@@ -7,6 +7,7 @@ import TripCard from '../General/TripCard';
 import UserPageAbout from './UserPageAbout';
 import { AuthContext } from '../../providers/AuthContext';
 import { sendFriendRequest } from '../../util/apiCalls/postRequests';
+import { deleteFriendRequest } from '../../util/apiCalls/deleteRequests';
 
 const UserPage = () => {
     const { id } = useParams();
@@ -58,6 +59,7 @@ const UserPage = () => {
     const sendFriendRequestCall = async () => {
         try {
             await sendFriendRequest(currentUser.id, id);
+            await getUserFriendRequestsCall();
         } catch ( error ) {
             console.log(error);
         }
@@ -76,8 +78,13 @@ const UserPage = () => {
         return userSentRequest;
     }
 
-    const removeFriendRequest = () => {
-        console.log("remove");
+    const removeFriendRequest = async () => {
+        try {
+            await deleteFriendRequest(currentUser.id, id);
+            await getUserFriendRequestsCall();
+        } catch ( error ) {
+            console.log(error);
+        }
     }
 
     const displayFriendRequest = () => {
@@ -85,7 +92,7 @@ const UserPage = () => {
             return null;
         } else if(currentUserSentRequest()) {
             return (
-                <button className="up-requestSent" onClick={sendFriendRequestCall}>
+                <button className="up-requestSent" onClick={removeFriendRequest}>
                     <span>Friend Request Sent</span>
                 </button>
             )

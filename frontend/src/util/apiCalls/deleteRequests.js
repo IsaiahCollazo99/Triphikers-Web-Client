@@ -21,3 +21,11 @@ export const deleteTripRequest = async ( id, requester_id ) => {
         throw error;
     }
 }
+
+export const deleteFriendRequest = async ( requester_id, requested_id ) => {
+    try {
+        await axios.delete(API + `/api/users/${requested_id}/friendRequests?requester_id=${requester_id}`);
+    } catch ( error ) {
+        throw error;
+    }
+}
