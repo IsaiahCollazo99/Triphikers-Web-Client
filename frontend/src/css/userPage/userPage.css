@@ -12,6 +12,45 @@
   grid-template-columns: 1fr 1fr 1fr;
 }
 
+.up-friendRequest, .up-requestSent {
+  z-index: 2;
+  float: right;
+  margin-right: 30px;
+  margin-top: 20px;
+  background-color: #272A33;
+  color: white;
+  border-radius: 0.5em;
+  padding: 0.25em 0.5em;
+  transition: 0.3s ease-in-out;
+  border: 1px solid black;
+}
+
+.up-friendRequest:hover {
+  color: rgb(0, 202, 0);
+  cursor: pointer;
+}
+
+.up-header span {
+  color: #FF9506;
+}
+
+.up-requestSent span {
+  color: white;
+}
+
+.up-requestSent:hover span {
+  display: none;
+}
+
+.up-requestSent:hover {
+  cursor: pointer;
+}
+
+.up-requestSent:hover::before {
+  content: 'Delete Request';
+  color: red;
+}
+
 .up-coverImage {
   grid-column: 1 / 4;
   border-bottom: 1px solid #272A33;
@@ -45,6 +84,7 @@
 .up-user p {
   width: fit-content;
   align-self: center;
+  font-weight: bold;
 }
 
 .up-userInfo {
