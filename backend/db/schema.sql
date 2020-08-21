@@ -89,3 +89,8 @@ CREATE TABLE friends_lists (
     user_1 VARCHAR REFERENCES users(id) ON DELETE CASCADE,
     user_2 VARCHAR REFERENCES users(id) ON DELETE CASCADE
 );
+
+ALTER TABLE users
+ADD COLUMN facebook_link VARCHAR,
+ADD COLUMN twitter_username VARCHAR,
+ADD COLUMN instagram_username VARCHAR;
