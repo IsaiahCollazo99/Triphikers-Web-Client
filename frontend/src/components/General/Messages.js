@@ -73,10 +73,10 @@ const Messages = () => {
     const redirectToChat = async (docKey, message) => {
         const usersInChat = docKey.split(":");
         const chat = chats.find(chatInfo => usersInChat.every(user => chatInfo.users.includes(user)));
-        setNewChatFormVisible(false);
         let index = chats.indexOf(chat);
         submitMessageToFirebase(message, index);
-        //not redirecting
+        setNewChatFormVisible(false);
+        setSelectedChatIndex(index);
     }
     
     const newChatSubmit = async(chatObj) => {
