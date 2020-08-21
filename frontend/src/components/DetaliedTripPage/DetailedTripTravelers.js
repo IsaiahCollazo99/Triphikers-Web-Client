@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { getTripTravelers } from '../../util/apiCalls/getRequests';
 import '../../css/detailedTripPage/detailedTripTravelers.css';
+import { Link } from 'react-router-dom';
 
 const DetailedTripTravelers = ({ trip = {} }) => {
     const [ travelers, setTravelers ] = useState([]);
@@ -28,7 +29,7 @@ const DetailedTripTravelers = ({ trip = {} }) => {
             <article className="travelersCard" key={user.id}>
                 <section className="tc-info">
                     <img src={user.profile_picture} alt={user.full_name} />
-                    <p>{user.full_name}</p>
+                    <Link to={`/user/${user.id}`}>{user.full_name}</Link>
                 </section>
             </article>
         )

@@ -12,3 +12,12 @@ export const completeTrip = async ( id ) => {
         throw error;
     }
 }
+
+export const updateUser = async ( id, userData ) => { 
+    try {
+        await axios.patch(API + `/api/users/${id}`, userData);
+        return <p className="success">Succesfully updated profile</p>
+    } catch ( error ) {
+        throw error;
+    }
+}
