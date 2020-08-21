@@ -28,11 +28,6 @@ module.exports = {
             `, [requested_id, requester_id]);
 
             await db.none(`
-                INSERT INTO friends_lists (user_1, user_2)
-                VALUES ($1, $2);
-            `, [requester_id, requested_id]); 
-
-            await db.none(`
                 DELETE FROM friend_requests
                 WHERE requester_id=$1
             `, requester_id)

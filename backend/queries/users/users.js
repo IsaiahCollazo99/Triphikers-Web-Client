@@ -271,5 +271,29 @@ module.exports = {
 		} catch ( error ) {
 
 		}
+	},
+
+	deleteFriend: async ( req, res, next ) => {
+		const { id } = req.params;
+		try {
+			const { friend_id } = req.query;
+
+			await db.none(`
+				DELETE FROM friends_lists
+				WHERE user_1=$1 AND user_2=$2
+			`, [id, friend_id]);
+
+			await db.none(`
+				DELETE FROM friends_lists
+				WHERE user_1=$1 AND user_2=$2
+			`, [friend_id, id]);
+
+			res.status(200).json({
+				status: "OK",
+				message: "Removed friend"
+			})
+		} catch ( error ) {
+			next(error);
+		}
 	}
 }

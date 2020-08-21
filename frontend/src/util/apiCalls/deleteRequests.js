@@ -29,3 +29,11 @@ export const deleteFriendRequest = async ( requester_id, requested_id ) => {
         throw error;
     }
 }
+
+export const removeFriend = async ( currentUserId, friend_id ) => {
+    try {
+        await axios.delete(API + `/api/users/${currentUserId}/friends?friend_id=${friend_id}`);
+    } catch ( error ) {
+        throw error;
+    }
+}

@@ -2,12 +2,28 @@ import React, { useContext } from 'react';
 import { AuthContext } from '../../providers/AuthContext';
 import { Link } from 'react-router-dom';
 import '../../css/userPage/userPageFriends.css';
+import { removeFriend } from '../../util/apiCalls/deleteRequests';
 
 const FriendCard = ({ friend, refresh }) => {
     const { currentUser } = useContext(AuthContext);
 
-    const deleteFriendCall = () => {
+    const deleteFriendCall = async () => {
+        try { 
+            await removeFriend(currentUser.id, friend.user_2);
+            refresh();
+        } catch ( error ) {
+            console.log(error);
+        }
+    }
 
+    const displayRemove = () => {
+        if(currentUser.id === friend.user_1) {
+            return (
+                <button className="frc-deny" onClick={deleteFriendCall}>Remove</button>   
+            )
+        } else {
+            return null
+        }
     }
     
     return (
@@ -18,7 +34,7 @@ const FriendCard = ({ friend, refresh }) => {
             </section>
 
             <section className="frc-buttons">
-                <button className="frc-deny" onClick={deleteFriendCall}>Deny</button>
+                {displayRemove()}
             </section>
         </article>
     )

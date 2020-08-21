@@ -5,10 +5,10 @@ const {
   getUserById,
   getUserTrips,
   updateUser,
-  isUserExisting,
   getUserFriendRequests,
   deleteFriendRequest,
-  getUsersFriends
+  getUsersFriends,
+  deleteFriend
 } = require("../../queries/users/users");
 
 users.post("/", createUser);
@@ -17,7 +17,8 @@ users.get("/:id", getUserById);
 users.get("/:id/trips", getUserTrips);
 users.get("/:id/friendRequests", getUserFriendRequests);
 users.get("/:id/friends", getUsersFriends);
-users.patch("/:id", isUserExisting, updateUser);
+users.patch("/:id", updateUser);
 users.delete("/:id/friendRequests", deleteFriendRequest);
+users.delete("/:id/friends", deleteFriend);
 
 module.exports = users;
