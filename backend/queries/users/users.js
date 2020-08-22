@@ -6,6 +6,8 @@ module.exports = {
 			const {
 				id,
 				full_name,
+				first_name,
+				last_name,
 				email,
 				age,
 				profile_picture,
@@ -16,9 +18,11 @@ module.exports = {
 			} = req.body;
 			
 			let user = await db.one(
-				`INSERT INTO users(id, full_name, email, age, profile_picture, gender, bio, country_of_origin, language)
-      VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9) RETURNING *`,
-				[id, full_name, email, age, profile_picture, gender, bio, country_of_origin, language]
+				`INSERT INTO users(id, full_name, first_name, last_name, email, age, profile_picture, 
+					gender, bio, country_of_origin, language)
+      			VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11) RETURNING *`,
+				[id, full_name, first_name, last_name, email, age, profile_picture, gender, bio, 
+				country_of_origin, language]
 			);
 			
 
@@ -72,57 +76,89 @@ module.exports = {
 
 	updateUser: async (req, res, next) => {
 		try {
-			const { bio, profile_picture, country_of_origin } = req.body;
+			const { 
+				full_name,
+				first_name,
+				last_name,
+				country_of_origin, 
+				gender,
+				bio, 
+				profile_picture
+			} = req.body;
 
 			const { id } = req.params;
+			
+			if(full_name) {
+				let updated = await db.one(`
+				UPDATE users
+				SET full_name=$1
+				WHERE id=$2 RETURNING *
+				`, [full_name, id]
+				);
 
-			let user = {};
+				user = updated;
+			}
+
+			if(first_name) {
+				let updated = await db.one(`
+				UPDATE users
+				SET first_name=$1
+				WHERE id=$2 RETURNING *
+				`, [first_name, id]
+				);
+
+				user = updated;
+			}
+
+			if(last_name) {
+				let updated = await db.one(`
+				UPDATE users
+				SET last_name=$1
+				WHERE id=$2 RETURNING *
+				`, [last_name, id]
+				);
+
+				user = updated;
+			}
+			
+			if (country_of_origin) {
+				let updated = await db.one(`
+				UPDATE users
+				SET country_of_origin=$1
+				WHERE id=$2 RETURNING *
+				`, [country_of_origin, id]
+				);
+				user = updated;
+			}
+
+			if (gender) {
+				let updated = await db.one(`
+				UPDATE users
+				SET gender=$1
+				WHERE id=$2 RETURNING *
+				`, [gender, id]
+				);
+				user = updated;
+			}
 
 			if (bio) {
 				let updated = await db.one(
 					`UPDATE users
-                SET bio=$1
-                WHERE id=$2 RETURNING *`,
+					SET bio=$1
+					WHERE id=$2 RETURNING *`,
 					[bio, id]
 				);
-				user = {
-					...updated,
-				};
+				user = updated;
 			}
-
+			
 			if (profile_picture) {
 				let updated = await db.one(
 					`UPDATE users
-                SET profile_picture=$1
-                WHERE id=$2 RETURNING *`,
+					SET profile_picture=$1
+					WHERE id=$2 RETURNING *`,
 					[profile_picture, id]
 				);
-				user = {
-					...updated,
-				};
-			}
-
-			if (gender) {
-				let updated = await db.one(
-					`UPDATE users
-                SET gender=$1
-                WHERE id=$2 RETURNING *`,
-					[gender, id]
-				);
-				user = {
-					...updated,
-				};
-			}
-			if (country_of_origin) {
-				let updated = await db.one(
-					`UPDATE users
-              SET country_of_origin=$1
-              WHERE id=$2 RETURNING *`,
-					[country_of_origin, id]
-				);
-				user = {
-					...updated,
-				};
+				user = updated;
 			}
 
 			res.status(200).json({
@@ -135,28 +171,25 @@ module.exports = {
 		}
 	},
 
-  getUsersPosts: async (req, res, next) => {
+  getUserTrips: async (req, res, next) => {
     try {
-      // const { id } = req.params;
-      let userPost = await db.any(``)
-      if (userPost.length) {
+      const { id } = req.params;
+	  let userTrips = await db.any(`
+		SELECT users.full_name, users.age, users.profile_picture, 
+		users.country_of_origin, users.gender, users.bio, users.id AS user_id, 
+		trips.*
+		FROM trips
+		LEFT JOIN users on users.id = trips.planner_id
+		WHERE users.id=$1
+	  `, id)
+
         res.status(200).json({
           status: "OK",
-          userPost,
-          message:"Retrieve all post  "
+          userTrips,
+          message:"Retrieve all trips for user"
         })
-      } else {
-        throw { status: 404, error: "User has no [posts"}
-      }
     } catch (error) {
-      if (error.received === 0) {
-        res.status(404).json({
-          status: 404,
-          error:"User doesn't exist."
-        })
-      } else {
         next(error)
-      }
     }
   },
 
@@ -179,5 +212,88 @@ module.exports = {
         throw error;
       }
     }
-  }
+  },
+
+	getUserFriendRequests: async ( req, res, next ) => {
+		try {
+			const { id } = req.params;
+
+			const requests = await db.any(`
+				SELECT friend_requests.*, users.full_name, users.age, users.country_of_origin, 
+				users.gender, users.profile_picture
+				FROM friend_requests
+				LEFT JOIN users ON users.id=friend_requests.requester_id
+				WHERE requested_id=$1
+			`, [id]);
+
+			res.status(200).json({
+				status: "OK",
+				requests,
+				message: "Retrieved all user friend Requests"
+			})
+		} catch ( error ) {
+			next(error);
+		}
+	},
+
+	deleteFriendRequest: async ( req, res, next ) => {
+        const { id } = req.params;
+        const { requester_id } = req.query;
+        try {
+            await db.none(`
+                DELETE FROM friend_requests
+                WHERE requested_id=$1 AND requester_id=$2
+            `, [id, requester_id]);
+
+            res.status(200).json({
+                status: "OK",
+                message: "Deleted Request"
+            })
+        } catch ( error ) {
+            next(error);
+        }
+	},
+	
+	getUsersFriends: async ( req, res, next ) => {
+		const { id } = req.params;
+		try {
+			const friends = await db.any(`
+				SELECT * FROM friends_lists
+				LEFT JOIN users on users.id=friends_lists.user_2
+				WHERE friends_lists.user_1=$1
+			`, id)
+
+			res.status(200).json({
+				status: "OK",
+				friends,
+				message: "Retrieved friends"
+			})
+		} catch ( error ) {
+
+		}
+	},
+
+	deleteFriend: async ( req, res, next ) => {
+		const { id } = req.params;
+		try {
+			const { friend_id } = req.query;
+
+			await db.none(`
+				DELETE FROM friends_lists
+				WHERE user_1=$1 AND user_2=$2
+			`, [id, friend_id]);
+
+			await db.none(`
+				DELETE FROM friends_lists
+				WHERE user_1=$1 AND user_2=$2
+			`, [friend_id, id]);
+
+			res.status(200).json({
+				status: "OK",
+				message: "Removed friend"
+			})
+		} catch ( error ) {
+			next(error);
+		}
+	}
 }

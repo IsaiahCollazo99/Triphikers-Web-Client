@@ -15,7 +15,7 @@
 }
 
 .dt-nav a:hover:not(.active){
-    color: rgb(255, 157, 0);
+    color: #FF9506;
 }
 
 .dt-nav .active {

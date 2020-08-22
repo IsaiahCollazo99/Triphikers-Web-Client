@@ -1,5 +1,5 @@
 import React, { useEffect, useState, useContext } from 'react';
-import { useParams, Route, Switch } from 'react-router-dom';
+import { useParams, Route, Switch, Link } from 'react-router-dom';
 import { getTripById, getTripRequests, getTripTravelers } from '../../util/apiCalls/getRequests';
 import DetailedTripNav from './DetailedTripNav';
 import DetailedTripInfo from './DetailedTripInfo';
@@ -60,7 +60,7 @@ const DetailedTripPage = () => {
                         <img src={trip.profile_picture} alt={trip.full_name} />
                         <div className="dt-userInteraction">
                             {/* The user's rating goes in the span */}
-                            <p>{trip.full_name}<span></span></p> 
+                            <Link to={`/user/${trip.planner_id}`}>{trip.full_name}<span></span></Link> 
                             <section>
                                 {/* Social Media Here */}
                             </section>
@@ -85,14 +85,14 @@ const DetailedTripPage = () => {
                         <DetailedTripInfo trip={trip} {...refreshFuncs} requests={requests} travelers={travelers}/>
                     </Route>
     
+                    <Route exact path={"/trips/:tripId/travelers"}>
+                        <DetailedTripTravelers trip={trip} travelers={travelers}/>
+                    </Route>
                     
                     <ProtectedUserRoute exact path={"/trips/:tripId/requests"} trip={trip}>
                         <DetailedTripRequests trip={trip} />
                     </ProtectedUserRoute>
     
-                    <Route exact path={"/trips/:tripId/travelers"}>
-                        <DetailedTripTravelers trip={trip} travelers={travelers}/>
-                    </Route>
                 </Switch>
             </div>
         )

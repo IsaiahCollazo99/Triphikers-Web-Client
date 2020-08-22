@@ -1,23 +1,22 @@
-.dt-travelers {
+.up-friends {
     display: flex;
     flex-direction: column;
-    border: 2px solid #272A33;
-    padding: 1em;
-    background-color: white;
+    width: 100%;
     align-items: center;
-    border-bottom-left-radius: 1em;
-    border-bottom-right-radius: 1em;
+    margin-top: 30px;
 }
 
-.travelersCard {
+.friendCard {
     display: flex;
     flex-direction: row;
     justify-content: space-between;
-    width: 90%;
+    width: 40%;
     padding: 10px 20px;
+    border-radius: 1.5em;
+    background-color: white;
 }
 
-.tc-info {
+.fc-info {
     display: flex;
     flex-direction: row;
     width: 60%;
@@ -25,7 +24,7 @@
     font-size: 1.5em;
 }
 
-.tc-info img {
+.fc-info img {
     width: 100px;
     height: 100px;
     margin-right: 15px;
@@ -33,12 +32,12 @@
     border-radius: 7em;
 }
 
-.tc-info a {
+.fc-info a {
     color: #0062e2;
+    text-decoration: none;
     font-weight: bold;
 }
 
-.tc-info a:hover {
+.fc-info a:hover {
     color: #FF9506;
-    cursor: pointer;
 }

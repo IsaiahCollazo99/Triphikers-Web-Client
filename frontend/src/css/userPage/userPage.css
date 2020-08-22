@@ -1,58 +1,125 @@
 .userPageContainer {
   margin-top: 110px;
-}
-
-.userPageCoverImage {
-  display: flex;
-}
-
-.coverImage {
-  height: 200px;
   width: 100%;
-}
-
-.editBtn {
-  position: absolute;
-  right:100px;
-  width: 100px;
-  margin-top: 10px;
-  font-size: 1.5rem;
-  border-width: 0.5rem;
-  background-color: #FF9E00;
-}
-
-.userProfile {
   display: flex;
-  position: relative;
-  width: 100%;
-  height: 200px;
+  flex-direction: column;
+  background-color: #f3f3f3;
 }
 
-.userProfilePicture {
+.up-header {
+  display: grid;
+  grid-template-rows: 0.65fr 1fr;
+  grid-template-columns: 1fr 1fr 1fr;
+}
+
+.up-friendRequest, .up-requestSent {
+  z-index: 2;
+  float: right;
+  margin-right: 30px;
+  margin-top: 20px;
+  background-color: #272A33;
+  color: white;
+  border-radius: 0.5em;
+  padding: 0.25em 0.5em;
+  transition: 0.3s ease-in-out;
+  border: 1px solid black;
+}
+
+.up-friendRequest:hover {
+  color: rgb(0, 202, 0);
+  cursor: pointer;
+}
+
+.up-header span {
+  color: #da5300;
+}
+
+.up-requestSent span {
+  color: white;
+}
+
+.up-requestSent:hover span {
+  display: none;
+}
+
+.up-requestSent:hover {
+  cursor: pointer;
+}
+
+.up-requestSent:hover::before {
+  content: 'Delete Request';
+  color: red;
+}
+
+.up-coverImage {
+  grid-column: 1 / 4;
+  border-bottom: 1px solid #272A33;
+} 
+
+.up-user {
+  justify-self: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  border-right: 1px solid #272A33;
+  align-items: center;
+  width: 100%;
+  padding: 2em 0;
+}
+
+.up-user img {
   width: 150px;
   height: 150px;
   object-fit: cover;
   border-radius: 5em;
-  position: absolute;
-  top: 50%; 
-  left: 25%;
-  transform: translate(-50%, -50%);
+  margin-bottom: 25px;
 }
 
-.imageDiv{
-  width: 50%;
-  border-right-style: solid;
-  border-color: black;
-  top: 50%; 
-  left: 25%;
+.up-userInteraction {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
-.greeting{
-  width: 50%;
+.up-user p {
+  width: fit-content;
   align-self: center;
-  text-align: center;
-  border-color: black;
-  text-align: center;
-  top: 50%; 
-  left: 25%;
+  font-weight: bold;
+}
+
+.up-userInfo {
+  align-self: center;
+  justify-self: center;
+  height: 100%;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  border-right: 1px solid #272A33;
+  padding-left: 30px;
+}
+
+.up-userInfo span {
+  font-weight: 800;
+}
+
+.up-bio {
+  width: 100%;
+  padding: 2em 30px;
+}
+
+.up-bio span {
+  font-weight: 800;
+}
+
+.up-main {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-self: center;
+  align-items: center;
+}
+
+.up-main .tripCard {
+  width: 80%;
 }

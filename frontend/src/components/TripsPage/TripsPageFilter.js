@@ -19,7 +19,7 @@ const TripsPageFilter = ({ filterTrips }) => {
     
     return (
         <form className="tp-filter" onSubmit={handleSubmit}>
-            <input type="search" {...search} />
+            <input type="search" {...search} placeholder="Search a Destination" />
             <button type="submit"><FaSearch /></button>
         </form>
     )
