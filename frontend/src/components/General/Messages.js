@@ -80,8 +80,8 @@ const Messages = () => {
     }
     
     const newChatSubmit = async(chatObj) => {
-        debugger
         const docKey = buildDocKey(chatObj.sendTo);
+        // const chatRef = firebase.firestore().collection("chats").doc(docKey)
         await firebase
         .firestore()
         .collection("chats")
@@ -93,9 +93,15 @@ const Messages = () => {
                 message:chatObj.message,
                 sender: email
             }]
-        }) 
+        }, ((error) => {
+            if(error){
+                console.log(error)
+            }
+        })
+        )
+        // const allChats = await chatRef.get()
         setNewChatFormVisible(false);
-        selectChatButton(chats.length-1)
+        setSelectedChatIndex(chats.length-1)
         //doesn't open up chat!
     }
 
