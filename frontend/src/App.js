@@ -15,14 +15,19 @@ import AuthProvider from "./providers/AuthContext";
 import UserPageNavBar from "./components/General/UserPageNavBar";
 import About from "./components/User/About";
 import { updateUser } from "./components/User/UpdateUser";
+import DisplayNavbar from "./components/Navbar/DisplayNavbar ";
 
 function App() {
 
 	return (
 		<div className="App">
 		<AuthProvider>
-			<NavBar />
-			<Switch>
+				<NavBar />
+				
+				{/* <DisplayNavbar/> */}
+				<Switch>
+					
+
 				<AuthRoute exact path="/">
 					<LandingPage />
 				</AuthRoute>
