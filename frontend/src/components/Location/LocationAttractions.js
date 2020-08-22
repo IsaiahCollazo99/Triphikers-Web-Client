@@ -21,9 +21,9 @@ const {
 } = process.env;
 const libraries = ["places"];
 
-const LocationAttractions = ({info}) => {
+const LocationAttractions = ({ city, coord, country }) => {
     const [address, setAddress] = useState([]);
-    const [coord, setCoord] = useState([]);
+    const [coordinates, setCoordinates] = useState([]);
     const [zoom, setZoom] = useState(11);
     const [locateMe, setLocateMe] = useState(null);
 
@@ -32,10 +32,10 @@ const LocationAttractions = ({info}) => {
         libraries,
     });
 
-    const Search = ({ coord, setAddress, setCoord, setZoom}) => {
+    const Search = ({ coordinates, setAddress, setCoordinates, setZoom}) => {
         const {ready, value, suggestions: {status, data}, setValue, clearSuggestions} = usePlacesAutocomplete({
             requestOptions: {
-                location: { lat: () => parseFloat(coord.lat), lng: () => parseFloat(coord.lng) },
+                location: { lat: () => parseFloat(coordinates.lat), lng: () => parseFloat(coordinates.lng) },
                 radius:  25 * 1000,
             }
         })
@@ -48,13 +48,13 @@ const LocationAttractions = ({info}) => {
                             const res = await getGeocode({address});
                             const { lat, lng } = await getLatLng(res[0]);
                             setAddress(address);
-                            setCoord({ lat, lng });
+                            setCoordinates({ lat, lng });
                             setZoom(16)
                         } catch(error) {
                             console.log(error)
                         }
                     }}>
-                    <ComboboxInput className="searchInput" value={value} onChange={(e)=>{
+                    <ComboboxInput className="searchInput" value={value} onChange={(e)=>{setValue(e.target.value);
                     }} disabled={!ready} placeholder="Search An Attraction"/>
                     <ComboboxPopover>
                         <ComboboxList>
@@ -66,23 +66,23 @@ const LocationAttractions = ({info}) => {
         )
     }
 
-    const Locate = ({ setCoord, setZoom, setLocateMe}) => {
+    const Locate = ({ setCoordinates, setZoom, setLocateMe}) => {
         return(
             <div className="findMe">
-                <p><b>Find Me:</b></p>
+                <p><b>Locate Me:</b></p>
                 <img className="gpsIcon" src={gspIcon} alt="locate me" onClick={() => {
-                    navigator.geolocation.getCurrentPosition((position) => { setCoord({lat: position.coords.latitude, lng: position.coords.longitude}, setZoom(16), setLocateMe({lat: position.coords.latitude, lng: position.coords.longitude}))
+                    navigator.geolocation.getCurrentPosition((position) => { setCoordinates({lat: position.coords.latitude, lng: position.coords.longitude}, setZoom(16), setLocateMe({lat: position.coords.latitude, lng: position.coords.longitude}))
                     }, () => null)
                 }}/>
             </div>
         )
     }
 
-    const getMap = (coord, zoom) => {
-        if(coord.lat !== undefined){
+    const getMap = (lat, lng, zoom = 11) => {
+        if(lat !== undefined){
             let coordinates = {
-                lat: parseFloat(coord.lat),
-                lng: parseFloat(coord.lng)
+                lat: parseFloat(lat),
+                lng: parseFloat(lng)
             }
             return(
                 <AttractionsMap location={coordinates} zoom ={zoom}/>
@@ -91,10 +91,10 @@ const LocationAttractions = ({info}) => {
     }
 
     useEffect(() => {
-        if(info !== undefined){
-            setCoord({lat: info.lat, lng: info.lng})
+        if(coord !== undefined){
+            setCoordinates({lat: coord.lat, lng: coord.lng})
         }
-    }, [info])
+    }, [coord])
 
     if(loadError) return "Error loading maps";
     if(!isLoaded) return "Loading maps";
@@ -104,11 +104,11 @@ const LocationAttractions = ({info}) => {
             <div className="attractionMapContainer">
                 <div className="attractionTitle">
                     <h1 className="mapTitle">Attractions <span role="img" aria-label="pin"> 📸</span></h1>
-                    <Locate className="findMeButton" setCoord={setCoord} setZoom={setZoom} setLocateMe={setLocateMe}/>
+                    <Locate className="findMeButton" setCoordinates={setCoordinates} setZoom={setZoom} setLocateMe={setLocateMe}/>
                 </div>
                 <div className="attractionMap">
-                    <Search coord={info} setAddress={setAddress} setCoord={setCoord} setZoom={setZoom}/>
-                    {getMap(coord, zoom)}
+                    <Search coordinates={coordinates} setAddress={setAddress} setCoordinates={setCoordinates} setZoom={setZoom}/>
+                    {getMap(coordinates.lat, coordinates.lng, zoom)}
                 </div>
             </div>
             <div className="attractionInfo">

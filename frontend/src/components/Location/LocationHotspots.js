@@ -6,8 +6,11 @@ import "../../css/locations/LocationHotspots.css";
 import { useContext } from "react";
 import { AuthContext } from "../../providers/AuthContext";
 
-const LocationHotspots = ({info}) => {
+let mapReset = 0;
+
+const LocationHotspots = ({ city, coord, country }) => {
     const { currentUser } = useContext(AuthContext);
+    const [userName, setUserName] = useState([]);
     const [submitCoordinates, setSubmitCoordinates] = useState([]);
     const [selectedHotspot, setSelectedHotspot] = useState(null);
     const [allMarkers, setAllMarkers] = useState([]);
@@ -15,10 +18,25 @@ const LocationHotspots = ({info}) => {
     const [imageFile, setImageFile] = useState(null);
     const [submitHotspotTitle, setSubmitHotspotTitle] = useState("");
     const [submitHotspotBody, setSubmitHotspotBody] = useState("");
+    const [charCount, setCharCount] = useState(170);
 
     const fetchData = (data) => {
         setSubmitCoordinates(data.coordinates);
         setSelectedHotspot(data.selected);
+        if(data.selected !== null){
+            fetchUserName(data.selected.poster_id);
+        }
+    }
+
+    const fetchUserName = async (id) =>{
+        try {
+            let name = await axios.get(`http://localhost:3001/api/users/${id}`);
+            let nameSplit = name.data.user.full_name.split(" ")[0]
+            setUserName(nameSplit);
+            //want to redirect page when clicking on the usernames name that submitted a photo
+        } catch (error) {
+            console.log(error)
+        }
     }
 
     const fetchMarkers = async () => {
@@ -37,7 +55,7 @@ const LocationHotspots = ({info}) => {
                 lng: parseFloat(lng)
             }
             return(
-                <HotspotMap location={coordinates} fetchData={fetchData} allMarkers={allMarkers}/>
+                <HotspotMap location={coordinates} fetchData={fetchData} allMarkers={allMarkers} key={mapReset}/>
             )
         }
     }
@@ -50,7 +68,7 @@ const LocationHotspots = ({info}) => {
             hotspot_title: submitHotspotTitle,
             body: submitHotspotBody,
             image: data.url,
-            poster_id: 1
+            poster_id: currentUser.id
         }
         await axios.post(`http://localhost:3001/api/hotspots`, submission);
         setSubmitted(true);
@@ -62,14 +80,6 @@ const LocationHotspots = ({info}) => {
     const handleSubmit = async (e) => {
         e.preventDefault();
         try {
-            // await axios.post(`http://localhost:3001/api/hotspots`, {
-            //     lat: submitCoordinates.lat,
-            //     lng: submitCoordinates.lng,
-            //     hotspot_title: submitHotspotTitle,
-            //     body: submitHotspotBody,
-            //     image: imageFile,
-            //     poster_id: 1
-            // })
             uploadPicture(`hotspots/${submitHotspotTitle}/`, {id: currentUser.id, file: imageFile}, createSubmissionRequest);
         } catch (error) {
             console.log(error)
@@ -86,46 +96,80 @@ const LocationHotspots = ({info}) => {
     }
 
     const handleBodyChange = (e) => {
-        setSubmitHotspotBody(e.currentTarget.value);
+        const description = e.currentTarget.value;
+        const deletedLength = submitHotspotBody.length - description.length;
+        const addedLength = description.length - submitHotspotBody.length;
+
+        if(description.length < submitHotspotBody.length) {
+            setCharCount(charCount + deletedLength);
+        } else if(description.length > submitHotspotBody.length) {
+            setCharCount(charCount - addedLength);
+        }
+
+        setSubmitHotspotBody(description);
     }
 
     useEffect(() => {
         fetchMarkers();   
     }, [submitted])
 
+    const getFormDisplay = selectedHotspot ? {display: "none"} : {display: "flex"};
+
+    const resetSelected = () => {
+        setSelectedHotspot(null);
+        mapReset++;
+    }
+
     return (
         <div className="hotSpotContainer">
             <div className="hotSpotMap">
-                {getMap(info.lat, info.lng)}
+                {getMap(coord.lat, coord.lng)}
             </div>
-            <div className="formWithSelect">
-                <form className="hotSpotForm" onSubmit={handleSubmit}>
-                    <h1 className="hotSpotTitle">Hotspot Submission</h1>
-                    <p className="submitLat"><b>Latitude:</b> {submitCoordinates.lat}</p>
-                    <p className="submitLng"><b>Longitude:</b> {submitCoordinates.lng}</p>
-                    <input type="text" placeholder="Hotspot Title" value={submitHotspotTitle}  onChange={handleTitleChange}/>
-                    <input type="text" placeholder="Type a Description" value={submitHotspotBody} onChange={handleBodyChange}/>
-                    <input type="file" onChange={handleFileChange}/>
-                    <input type="submit"/>
-                    {submitted ? (
-                        <div className="disappear">
-                            <p className="success">Submission Complete</p>
-                        </div>
-                    ): null}
-                </form>
-                {selectedHotspot ? (
-                    <div className="Selected">
-                        <h1 className="hotSpotSelectedTitle">Selected Hotspot</h1>
-                        <p className="submitLat"><b>Latitude:</b> {selectedHotspot.lat}</p>
-                        <p className="submitLat"><b>Longitude:</b> {selectedHotspot.lng}</p>
-                        <h2><b>Title:</b> {selectedHotspot.hotspot_title}</h2>
-                        <p><b>Description:</b> {selectedHotspot.body}</p>
-                        <img src={selectedHotspot.image_url} alt="hotspotImage"/>
-                        <p><b>Submitted By:</b> {selectedHotspot.poster_id}</p>
-                        <p className="directions" onClick={() => window.open( `https://www.google.com/maps/dir/?api=1&destination=${selectedHotspot.lat}/${selectedHotspot.lng}&travelmode=driving`)}><b>Click Here for Directions</b></p>
+
+            <form className="hotSpotForm" onSubmit={handleSubmit} style={getFormDisplay}>
+                <h1>Hotspot Submission</h1>
+
+                <div className="submitCoords">
+                    <p><b>Latitude:</b> {submitCoordinates.lat}</p>
+                    <p><b>Longitude:</b> {submitCoordinates.lng}</p>
+                </div>
+
+                <label htmlFor="title">Hotspot Name: </label>
+                <input type="text" placeholder="Hotspot Name" value={submitHotspotTitle}  onChange={handleTitleChange} name="title" required />
+
+                <label htmlFor="desc">Description: ({charCount} remaining) </label>
+                <textarea placeholder="Type a Description" value={submitHotspotBody} onChange={handleBodyChange} name="desc" required cols="25" rows="5" maxLength="170" />
+
+                <label htmlFor="pic">Picture: (optional) </label>
+                <input type="file" onChange={handleFileChange} name="pic" />
+
+                <input type="submit"/>
+                {submitted ? (
+                    <div className="disappear">
+                        <p className="success">Submission Complete</p>
                     </div>
-                ) : null}
-            </div>
+                ): null}
+            </form>
+
+            {selectedHotspot ? (
+                <div className="selected">
+                    <p className="removeSelectedHotSpot" onClick={resetSelected}>X</p>
+                    <h1>Selected Hotspot</h1>
+
+                    <p className="selectedTitle"><b>Name:</b> {selectedHotspot.hotspot_title}</p>
+
+                    <div className="selectedDesc">
+                        <label>Description:</label>
+                        <p>{selectedHotspot.body}</p>
+                    </div>
+
+                    <img src={selectedHotspot.image} alt="hotspotImage"/>
+
+
+                    <p><b>Submitted By:</b> {userName}</p>
+                    <p className="directions" onClick={() => window.open( `https://www.google.com/maps/dir/?api=1&destination=${selectedHotspot.lat}/${selectedHotspot.lng}&travelmode=driving`)}><b>Click Here for Directions</b></p>
+                </div>
+            ) : null}
         </div>
     )
 }

@@ -2,13 +2,13 @@ import React from "react";
 import { NavLink } from "react-router-dom";
 import "../../css/locations/LocationNavbar.css";
 
-const LocationNavbar = ({id}) => {
+const LocationNavbar = ({ city, country }) => {
 
     return(
         <nav className="locationNavbarContainer">
-            <NavLink className="Links" to={`/location/${id}/hotspots`}>Hotspots</NavLink>
-            <NavLink className="Links" to={`/location/${id}/attractions`}>Attractions</NavLink>
-            <NavLink className="Links" to={`/location/${id}/reviews`}>Reviews</NavLink>
+            <NavLink className="Links" to={`/location/${country}/${city}/hotspots`}>Hotspots</NavLink>
+            <NavLink className="Links" to={`/location/${country}/${city}/attractions`}>Attractions</NavLink>
+            <NavLink className="Links" to={`/location/${country}/${city}/reviews`}>Reviews</NavLink>
         </nav>
     )
 }

@@ -40,38 +40,37 @@
 .signUpContainer select, 
 .signUpContainer textarea {
     width: 100%;
-    background-color: #272A33;
-    color: white;
-    border: 3px solid rgb(255, 157, 0);
+    background-color: #e9e9e9;
+    color: #272A33;
+    border: 3px solid #272A33;
     font-size: 1.25em;
+    transition: 0.3s ease-in-out;
+    border-radius: 0.5em;
+    margin-right: 15px;
 }
 
 .signUpContainer input:not([type="submit"]):not([type="file"]):focus, 
 .signUpContainer select:focus, 
 .signUpContainer textarea:focus {
-    background-color: rgb(255, 157, 0);
-    color: #272A33;
-    border: 3px solid #272A33;
-    font-size: 1.25em;
+    background-color: #FFAE41;
+    outline: none;
 }
 
 .signUpContainer input[type="submit"], .backButton {
-    background-color: rgb(255, 157, 0);
+    background-color: #FF9506;
+    border: 2px solid #272A33;
     color: #272A33;
-    border: 3px solid #272A33;
+    transition: 0.3s ease-in-out;
+    border-radius: 0.35em;
     font-size: 1.25em;
     margin-top: 1em;
-    transition: 0.3s ease-in-out;
     width: fit-content;
     align-self: center;
     padding: 0.25em 1em;
 }
 
 .signUpContainer input[type="submit"]:hover, .backButton:hover {
-    background-color: #272A33;
-    color: white;
-    border: 3px solid rgb(255, 157, 0);
-    font-size: 1.25em;
+    background-color: #e08002;
     cursor: pointer;
 }
 

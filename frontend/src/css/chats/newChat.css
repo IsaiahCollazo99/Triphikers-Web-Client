@@ -1,0 +1,15 @@
+.newChatMain {
+    width: auto;
+    display: block;
+}
+
+.paper {
+    position: absolute;
+    width: 350px;
+    top: 50px;
+    left: calc(50% + 150px - 175px)
+}
+
+.form {
+    width: 100%
+}

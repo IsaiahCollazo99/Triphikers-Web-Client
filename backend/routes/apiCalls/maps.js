@@ -16,6 +16,6 @@ const getImages = async (req, res, next) => {
     }
 }
 
-maps.get("/", getImages)
+maps.get("/:city", getImages)
 
 module.exports = maps;

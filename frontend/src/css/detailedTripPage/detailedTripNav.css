@@ -10,14 +10,14 @@
 
 .dt-nav a {
     color: #272A33;
-    font-weight: bold;
+    font-weight: bolder;
     text-decoration: none;
 }
 
 .dt-nav a:hover:not(.active){
-    color: rgb(255, 157, 0);
+    color: #FF9506;
 }
 
 .dt-nav .active {
-    color: #6433FF;
+    color: #0062e2;
 }

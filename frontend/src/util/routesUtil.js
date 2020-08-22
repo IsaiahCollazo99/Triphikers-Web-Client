@@ -31,17 +31,25 @@ export const ProtectedRoute = ( { children, ...rest } ) => {
 
 export const ProtectedUserRoute = ( { children, ...rest } ) => {
     const { currentUser } = useContext(AuthContext);
-    const { trip } = rest;
+    const { trip, userId } = rest;
 
+    let idCheck;
+    if(trip) idCheck = trip.planner_id;
+    else if(userId) idCheck = userId;
+
+    let redirect;
+    if(trip) redirect = `/trips/${trip.id}`;
+    else if(userId) redirect = `/user/${userId}`;
+    
     return (
         <Route 
             {...rest}
             render={( { location } ) => {
-                if(currentUser.id === trip.id) {
+                if(currentUser.id === idCheck) {
                     return children 
                 } else {
                     return (
-                        <Redirect from={location} to="/trips" />
+                        <Redirect to={redirect} />
                     )
                 }
             }}

@@ -10,12 +10,15 @@ import LocationPage from "./components/Location/LocationPage"
 import Login	from "./components/Login/Login"
 import UserPage from "./components/User/UserPage";
 import NavBar from "./components/General/NavBar";
-import { AuthRoute, ProtectedRoute } from "./util/routesUtil";
+import { AuthRoute, ProtectedRoute, ProtectedUserRoute } from "./util/routesUtil";
 import AuthProvider from "./providers/AuthContext";
 import UserPageNavBar from "./components/General/UserPageNavBar";
 import About from "./components/User/About";
 import { updateUser } from "./components/User/UpdateUser";
 import DisplayNavbar from "./components/Navbar/DisplayNavbar ";
+import LocationSearch from "./components/Location/LocationSearch";
+import UserPageEdit from "./components/User/UserPageEdit";
+import Messages from "./components/General/Messages";
 
 function App() {
 
@@ -39,20 +42,26 @@ function App() {
 				<AuthRoute exact path="/signIn" >
 					<Login />
 				</AuthRoute>
-				
-				<ProtectedRoute exact path="/user/:id" >
-					<UserPageNavBar />
-					<UserPage />
+
+				<ProtectedRoute path="/user/edit">
+					<UserPageEdit />
 				</ProtectedRoute>
 				
-				<ProtectedRoute exact path="/user/:id/about">
-					<About />
+				<ProtectedRoute path="/user/:id" >
+					<UserPage />
+				</ProtectedRoute>
+
+				<ProtectedRoute exact path="/search" >
+					<LocationSearch/>
+				</ProtectedRoute>
+
+				<ProtectedRoute exact path="/messages" >
+					<Messages/>
 				</ProtectedRoute>
 					
 				<ProtectedRoute exact path="/updated/:id">
 					<updateUser />
 				</ProtectedRoute>
-				
 					
 				<ProtectedRoute exact path="/trips">	
 					<TripsPage />
@@ -66,7 +75,7 @@ function App() {
 					<DetailedTripPage />
 				</ProtectedRoute>
 				
-				<Route path="/location/:locationId">
+				<Route path="/location/:country/:city">
 					<LocationPage/>
 				</Route>
 			</Switch>

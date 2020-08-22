@@ -1,6 +1,7 @@
 .detailedTripContainer {
     width: 70%;
-    margin: 10em 0;
+    margin-top: 150px;
+    margin-bottom: 30px;
 }
 
 .detailedTripContainer p {
@@ -18,6 +19,8 @@
     border: 2px solid #272A33;
     background-color: white;
     font-size: 1.2em;
+    border-top-left-radius: 1em;
+    border-top-right-radius: 1em;
 }
 
 .dt-user {
@@ -36,6 +39,16 @@
     object-fit: cover;
     border-radius: 7em;
     margin-bottom: 20px;
+}
+
+.dt-user a {
+    color: #0062e2;
+    text-decoration: none;
+}
+
+.dt-user a:hover {
+    color: #FF9506;
+    cursor: pointer;
 }
 
 .dt-userInfo {
@@ -62,7 +75,7 @@
 
 .dt-userInfo span {
     font-weight: bold;
-    color: #6433FF;
+    color: #da5300;
 }
 
 
@@ -73,5 +86,5 @@
 
 .dt-bio span {
     font-weight: bold;
-    color: #6433FF;
+    color: #da5300;
 }

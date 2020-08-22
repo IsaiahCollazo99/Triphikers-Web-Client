@@ -10,18 +10,22 @@ const usersRouter = require("./routes/users/users");
 const tripsRouter = require("./routes/trips/trips");
 const locationsRouter = require("./routes/locations/location");
 const mapsRouter = require("./routes/apiCalls/maps");
+const placeRouter = require("./routes/apiCalls/PlaceIDImage");
 const hotspotsRouter = require("./routes/hotspots/hotspot");
+const friendRequestsRouter = require("./routes/friendRequests/friendRequests");
 
-app.use("/api/maps", mapsRouter);
 
 app.use(cors());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 
+app.use("/api/maps", mapsRouter);
+app.use("/api/place", placeRouter);
 app.use("/api/users", usersRouter);
 app.use("/api/trips", tripsRouter);
 app.use("/api/locations", locationsRouter);
 app.use("/api/hotspots", hotspotsRouter);
+app.use("/api/friendRequests", friendRequestsRouter);
 
 app.use((error, req, res, next) => {
     console.log(error);

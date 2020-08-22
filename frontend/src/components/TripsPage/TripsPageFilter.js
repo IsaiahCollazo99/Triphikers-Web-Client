@@ -1,5 +1,6 @@
 import React, { useEffect } from 'react';
 import { useInput } from '../../util/customHooks';
+import { FaSearch } from 'react-icons/fa';
 import '../../css/tripsPage/tripsPageFilter.css';
 
 const TripsPageFilter = ({ filterTrips }) => {
@@ -18,8 +19,8 @@ const TripsPageFilter = ({ filterTrips }) => {
     
     return (
         <form className="tp-filter" onSubmit={handleSubmit}>
-            <input type="search" {...search} />
-            <input type="submit" value="Search" />  
+            <input type="search" {...search} placeholder="Search a Destination" />
+            <button type="submit"><FaSearch /></button>
         </form>
     )
 }
