@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import '../../css/createTrip/createTripForms.css';
+import CreateTripDestination from './CreateTripDestination';
 
 const CreateTripForm1 = ( props ) => {
     const [ error, setError ] = useState(null);
@@ -47,20 +48,7 @@ const CreateTripForm1 = ( props ) => {
         {error}
         <form onSubmit={handleSubmit} className="createTrip1">
 
-            <section className="createTripDestination">
-                <label htmlFor="destinationCountry">
-                    <p>Select a Country: </p>
-                    <select {...destination} name="destination" required>
-                        <option value="" disabled>Select a Country</option>
-                        <option value="NY">New York</option>
-                    </select>
-                </label>
-
-                <label htmlFor="destinationCity">
-                    <p>Select a City: </p>
-                    <input type="search" />
-                </label>
-            </section>
+            <CreateTripDestination destination={destination} />
 
             <section className="createTripDates">
                 <label htmlFor="dateFrom">
