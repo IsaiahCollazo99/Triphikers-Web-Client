@@ -11,6 +11,9 @@ import { deleteFriendRequest } from '../../util/apiCalls/deleteRequests';
 import UserPageFriends from './UserPageFriends';
 import { ProtectedUserRoute } from '../../util/routesUtil';
 import UserPageRequests from './UserPageRequests';
+import FacebookLogo from '../../images/f_logo_RGB-Blue_1024.png';
+import InstagramLogo from '../../images/glyph-logo_May2016.png';
+import TwitterLogo from '../../images/Twitter_Social_Icon_Circle_Color.png'
 
 const UserPage = () => {
     const { id } = useParams();
@@ -92,6 +95,19 @@ const UserPage = () => {
         return userSentRequest;
     }
 
+    const currentUserIsFriend = () => {
+        let userIsFriend = false;
+
+        for(let friendship of friends) {
+            if(friendship.user_2 === currentUser.id) {
+                userIsFriend = true;
+                break;
+            }
+        }
+
+        return userIsFriend;
+    }
+
     const removeFriendRequest = async () => {
         try {
             await deleteFriendRequest(currentUser.id, id);
@@ -110,13 +126,53 @@ const UserPage = () => {
                     <span>Friend Request Sent</span>
                 </button>
             )
-        } else {
+        } else if(currentUserIsFriend()) {
+            return null;
+        }{
             return (
                 <button className="up-friendRequest" onClick={sendFriendRequestCall}>
                     Send Friend Request
                 </button>
             )
         }
+    }
+
+    const redirect = ( link ) => {
+        window.open(`https://www.${link}`, "_blank");
+    }
+
+    const displaySocialMedia = () => {
+        const {
+            facebook_link,
+            twitter_username,
+            instagram_username
+        } = profileUser;
+
+        const facebookLink = facebook_link ? (
+            <a href={`https://www.${facebook_link}`} target="_blank">
+                <img src={FacebookLogo} alt="facebook" />
+            </a>
+        ) : null;
+
+        const instagramLink = instagram_username ? (
+            <a href={`https://www.${instagram_username}`} target="_blank">
+                <img src={InstagramLogo} alt="instagram" />
+            </a>
+        ) : null;
+
+        const twitterLink = twitter_username ? (
+            <a href={`https://www.${twitter_username}`} target="_blank">
+                <img src={TwitterLogo} alt="instagram" />
+            </a>
+        ) : null;
+
+        return (
+            <>
+                {facebookLink}
+                {instagramLink}
+                {twitterLink}
+            </>
+        )
     }
     
     const userTripsList = userTrips.map((trip, i) => {
@@ -138,8 +194,8 @@ const UserPage = () => {
                     <div className="up-userInteraction">
                         {/* rating goes in the span */}
                         <p>{profileUser.full_name}<span></span></p>
-                        <section>
-                            {/* Social Media goes here */}
+                        <section className="up-socialMedia">
+                            {displaySocialMedia()}
                         </section>
                     </div>
                 </section>

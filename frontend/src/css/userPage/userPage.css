@@ -85,6 +85,20 @@
   width: fit-content;
   align-self: center;
   font-weight: bold;
+  font-size: 24px;
+}
+
+.up-socialMedia {
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+}
+
+.up-socialMedia img {
+  width: 45px;
+  height: 45px;
+  margin: 22.5px;
+  border-radius: 0;
 }
 
 .up-userInfo {

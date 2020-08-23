@@ -12,13 +12,16 @@
 }
 
 .up-edit input:not([type="file"]), .up-edit select, .up-edit textarea {
-    width: 100%;
     background-color: #e9e9e9;
     color: #272A33;
     border: 3px solid #272A33;
     font-size: 1.25em;
     transition: 0.3s ease-in-out;
     border-radius: 0.5em;
+}
+
+.upe-header input:not([type="file"]) {
+    width: 100%;
 }
 
 .up-edit input:not([type="file"]):focus, .up-edit select:focus, .up-edit textarea:focus {
@@ -167,4 +170,28 @@
     flex-direction: column;
     align-items: center;
     padding-top: 50px;
+}
+
+.upe-socialMedia {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    margin-top: 30px;
+}
+
+.upe-socialMedia label {
+    width: 30%;
+    margin-bottom: 30px;
+}
+
+.upe-socialMedia span {
+    font-weight: normal;
+    width: 30%;
+    display: inline-block
+
+}
+
+.upe-socialMedia input {
+    width: 70%;
 }
