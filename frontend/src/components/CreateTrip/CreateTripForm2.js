@@ -39,9 +39,12 @@ const CreateTripForm2 = ( props ) => {
                 </select>
             </label>
 
-            <label htmlFor="budget">
+            <label htmlFor="budget" className="ct-budget">
                 <p>Your Budget: </p>
-                <input type="number" name="budget" {...budget} min="0" required/>
+                <span>
+                    <p>$</p>
+                    <input type="number" name="budget" {...budget} min="0" required placeholder="Input Trip Budget (In dollars)" />
+                </span>
             </label>
 
             <div className="tripForm2Bottom">

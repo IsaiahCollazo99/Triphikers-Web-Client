@@ -1,9 +1,14 @@
-import React, { useState } from 'react';
+import React, { useState, useContext, useEffect } from 'react';
 import '../../css/createTrip/createTripForms.css';
 import CreateTripDestination from './CreateTripDestination';
+import LanguageSelect from '../General/LanguageSelect';
+import { AuthContext } from '../../providers/AuthContext';
+import { getUserById } from '../../util/apiCalls/getRequests';
 
 const CreateTripForm1 = ( props ) => {
     const [ error, setError ] = useState(null);
+    const { currentUser } = useContext(AuthContext);
+    const [ userGender, setUserGender ] = useState(null);
 
     const {
         destination, 
@@ -15,6 +20,19 @@ const CreateTripForm1 = ( props ) => {
         tripType,
         handlePageChange
     } = props;
+
+    const getUserGender = async () => {
+        try {
+            const data = await getUserById(currentUser.id);
+            setUserGender(data.user.gender);
+        } catch ( error ) {
+            console.log(error);
+        }
+    }
+
+    useEffect(() => {
+        getUserGender();
+    })
 
     const isValidDate = () => {
         const today = new Date();
@@ -36,6 +54,18 @@ const CreateTripForm1 = ( props ) => {
         e.preventDefault();
         if(isValidDate()) {
             handlePageChange();
+        }
+    }
+
+    const getGroupTypeOptions = () => {
+        if(userGender === 'Male') {
+            return <option value="Only Men">Men Only</option>
+        } else if(userGender === 'Female') {
+            return <option value="Only Women">Women Only</option>
+        } else if (userGender === 'Non-Binary') {
+            return <option value="Only Women">Non-Binary Only</option>
+        } else {
+            return null;
         }
     }
 
@@ -68,18 +98,14 @@ const CreateTripForm1 = ( props ) => {
                     <option value="" disabled>Select a Group Type</option>
                     <option value="Male">Male</option>
                     <option value="Female">Female</option>
-                    <option value="Only Women">Women Only</option>
-                    <option value="Only Men">Men Only</option>
+                    {getGroupTypeOptions()}
                     <option value="Any">Any</option>
                 </select>
             </label>
 
             <label htmlFor="language">
                 <p>Language: </p>
-                <select {...language} name="language" required>
-                    <option value="" disabled>Select a Language</option>
-                    <option value="English">English</option>
-                </select>
+                <LanguageSelect input={language} />
             </label>
 
             <label htmlFor="meetup">
