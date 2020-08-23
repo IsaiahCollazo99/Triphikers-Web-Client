@@ -14,13 +14,20 @@ export default function Login() {
 		try {
 			await login(email.value, password.value);
 		} catch (error) {
-			setError(error.message);
+			setError('That email/password combination does not exist.');
 		}
 	};
+
+
+	
   	return (
 		<>
 		<div className="loginContainer">
-			{error ? <p className="error">{error.message}</p> : null}
+			<header>
+				<h1>LOG IN</h1>
+			</header>
+
+			{error ? <p className="error">{error}</p> : null}
 				
 			<form onSubmit={handleSignIn} className="signIn">
 				<label>

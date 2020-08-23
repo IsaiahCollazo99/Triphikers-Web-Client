@@ -14,6 +14,8 @@ const TripsPageFilter = ({ filterTrips }) => {
     useEffect(() => {
         if(!search.value) {
             filterTrips(null);
+        } else {
+            filterTrips(search.value);
         }
     }, [search.value])
     
