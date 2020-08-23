@@ -1,5 +1,4 @@
 import React from 'react';
-import { useLoadScript } from '@react-google-maps/api';
 import usePlacesAutocomplete from "use-places-autocomplete";
 import {
     Combobox,
@@ -28,16 +27,13 @@ const CreateTripCitySearch = ({ selectedCountry, setDestination }) => {
         setValue(val, false);
         setDestination(val);
     }
-
-    useEffect(() => {
-        if(value !== "") debugger;
-    }, [value])
     
     return(
         <label htmlFor="ct-city">
+            <p>City: </p>
             <Combobox onSelect={handleSelect}>
                 <ComboboxInput value={value} onChange={handleInput} disabled={!ready}
-                placeholder="Input A City" name="ct-city"/>
+                placeholder="Input A City" name="ct-city" autoComplete="off" required/>
                 <ComboboxPopover>
                     <ComboboxList>
                         {status === "OK" && 

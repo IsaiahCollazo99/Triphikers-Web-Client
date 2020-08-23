@@ -15,7 +15,7 @@ const CreateTripDestination = ({ destination }) => {
     const [allCountries, setAllCountries] = useState([]);
     const [selectedCountry, setSelectedCountry] = useState('');
     
-    useLoadScript({
+    const { isLoaded } = useLoadScript({
         googleMapsApiKey: REACT_APP_GOOGLEAPIKEY,
         libraries,
     });
@@ -44,15 +44,18 @@ const CreateTripDestination = ({ destination }) => {
 
     return (
         <section className="ct-destination">
-            <label htmlFor="destinationCountry">
-                <p>Select a Country: </p>
-                <select onChange={filterCity} name="destination" required defaultValue="">
+            <label>
+                <p>Select a Country: (optional filter) </p>
+                <select onChange={filterCity} defaultValue="">
                     <option value="" disabled>Select a Country</option>
                     <PopulateLocationSelect list={allCountries}/>
                 </select>
             </label>
 
-            {selectedCountry !== '' ? <CreateTripCitySearch selectedCountry={selectedCountry} setDestination={setDestination} /> : null }
+            { isLoaded ? 
+                <CreateTripCitySearch selectedCountry={selectedCountry} setDestination={setDestination} /> :
+                null
+            }
         </section>
     )
 }
