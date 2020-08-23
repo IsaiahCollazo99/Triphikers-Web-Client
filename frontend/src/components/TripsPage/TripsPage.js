@@ -39,7 +39,7 @@ const TripsPage = () => {
         if(filter) {
             let filterResult = trips.filter(trip => {
                 const { destination } = trip;
-                return destination.toLowerCase() === filter.toLowerCase();
+                return destination.toLowerCase().includes(filter.toLowerCase()); 
             })
             setFilteredTrips(filterResult);
         } else {

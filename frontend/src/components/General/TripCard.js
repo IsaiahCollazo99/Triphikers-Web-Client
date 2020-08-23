@@ -205,7 +205,7 @@ const TripCard = ({ trip, refresh }) => {
             </header>
 
             <section>
-                <p className="tc-tl"><span>Budget: </span>{trip.budget}</p>
+                <p className="tc-tl"><span>Budget: </span>${trip.budget}</p>
                 <p className="tc-tr"><span>Trip Type: </span>{trip.trip_type}</p>
                 <p className="tc-bl"><span>Split Costs: </span>{trip.split_costs}</p>
                 <p className="tc-br"><span>Group Type: </span>{trip.group_type}</p>
