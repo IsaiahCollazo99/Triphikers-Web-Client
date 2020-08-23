@@ -83,7 +83,10 @@ module.exports = {
 				country_of_origin, 
 				gender,
 				bio, 
-				profile_picture
+				profile_picture,
+				facebook_link,
+				twitter_username,
+				instagram_username
 			} = req.body;
 
 			const { id } = req.params;
@@ -157,6 +160,36 @@ module.exports = {
 					SET profile_picture=$1
 					WHERE id=$2 RETURNING *`,
 					[profile_picture, id]
+				);
+				user = updated;
+			}
+
+			if(facebook_link) {
+				let updated = await db.one(
+					`UPDATE users
+					SET facebook_link=$1
+					WHERE id=$2 RETURNING *`,
+					[facebook_link, id]
+				);
+				user = updated;
+			}
+
+			if(twitter_username) {
+				let updated = await db.one(
+					`UPDATE users
+					SET twitter_username=$1
+					WHERE id=$2 RETURNING *`,
+					[twitter_username, id]
+				);
+				user = updated;
+			}
+
+			if(instagram_username) {
+				let updated = await db.one(
+					`UPDATE users
+					SET instagram_username=$1
+					WHERE id=$2 RETURNING *`,
+					[instagram_username, id]
 				);
 				user = updated;
 			}

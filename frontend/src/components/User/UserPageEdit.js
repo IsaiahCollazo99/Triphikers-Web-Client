@@ -21,6 +21,9 @@ const UserPageEdit = () => {
     const country = useInput("");
     const gender = useInput("");
     const bio = useInput("");
+    const facebook = useInput("");
+    const twitter = useInput("");
+    const instagram = useInput("");
 
     const getUserCall = async () => {
         const data = await getUserById(currentUser.id);
@@ -59,7 +62,10 @@ const UserPageEdit = () => {
             country_of_origin: country.value,
             gender: gender.value,
             bio: bio.value,
-            profile_picture: pictureData ? pictureData.url : null
+            profile_picture: pictureData ? pictureData.url : null,
+            facebook_link: facebook.value ? `facebook.com/${facebook.value}` : null,
+            twitter_username: twitter.value ? `twitter.com/${twitter.value}` : null,
+            instagram_username: instagram.value ? `instagram.com/${instagram.value}` : null
         }
 
         const response = await updateUser(currentUser.id, userData);
@@ -141,6 +147,29 @@ const UserPageEdit = () => {
 
             <section className="upe-extras">
                 <button type="submit" onClick={handleUpdate}>Update</button>
+
+                <section className="upe-socialMedia">
+                    <label htmlFor="facebook">
+                        <p>Facebook Link: </p>
+
+                        <span>Facebook.com/</span>
+                        <input type="text" placeholder="Facebook Username" {...facebook} />
+                    </label>
+                    
+                    <label htmlFor="instagram">
+                        <p>Instagram Username: </p>
+
+                        <span>Instagram.com/</span>
+                        <input type="text" placeholder="Instagram Username" {...instagram} />
+                    </label>
+
+                    <label>
+                        <p>Twitter Username: </p>
+
+                        <span>Twitter.com/</span>
+                        <input type="text" placeholder="Twitter Username" {...twitter} />
+                    </label>
+                </section>
             </section>
         </section>
     )
