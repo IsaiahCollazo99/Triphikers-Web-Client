@@ -54,7 +54,6 @@ export const getTripRequests = async ( id ) => {
 export const updateUser = async (id, data) => {
     try {
         let res = await axios.patch(API + "/api/users/" + id, data)
-        debugger
         return(res.data.user)
     } catch(error) {
         console.log(error);
