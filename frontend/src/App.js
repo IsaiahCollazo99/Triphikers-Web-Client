@@ -1,3 +1,10 @@
+
+// import UserPageNav from "./component/User/UserPageNav";
+// // import About from "./components/User/About";
+
+
+
+
 import React from "react";
 import "./App.css";
 import TripsPage from "./components/TripsPage/TripsPage";
@@ -12,10 +19,6 @@ import UserPage from "./components/User/UserPage";
 import NavBar from "./components/General/NavBar";
 import { AuthRoute, ProtectedRoute, ProtectedUserRoute } from "./util/routesUtil";
 import AuthProvider from "./providers/AuthContext";
-import UserPageNavBar from "./components/General/UserPageNavBar";
-import About from "./components/User/About";
-import { updateUser } from "./components/User/UpdateUser";
-import DisplayNavbar from "./components/Navbar/DisplayNavbar ";
 import LocationSearch from "./components/Location/LocationSearch";
 import UserPageEdit from "./components/User/UserPageEdit";
 import Messages from "./components/General/Messages";

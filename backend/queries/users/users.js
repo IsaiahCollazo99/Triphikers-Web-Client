@@ -32,6 +32,7 @@ module.exports = {
 				message: "Create user.",
 			});
 		} catch (error) {
+			console.log(error)
 			next(error);
 		}
 	},
@@ -56,9 +57,7 @@ module.exports = {
 		const { id } = req.params;
 		try {
 			let user = await db.one(
-				`SELECT * FROM users
-            	WHERE id=$1`,
-				id
+				"SELECT * FROM users WHERE id=$1", id
 			);
 			res.status(200).json({
 				status: "OK",
@@ -66,7 +65,8 @@ module.exports = {
 				message: "Retrieved user.",
 			});
 		} catch (error) {
-			if(error.received === 0) {
+			console.log(error)
+			if (error.received === 0) {
 				next({status: 404, error: `User ${id} doesn't exist`})
 			} else {
 				next(error);

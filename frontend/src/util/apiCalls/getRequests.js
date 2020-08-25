@@ -17,7 +17,6 @@ export const getTripById = async (id) => {
     try {
         let res = await axios.get(API + `/api/trips/${id}`);
         return res.data;
-        debugger
     } catch (error) {
         throw error;
     }
