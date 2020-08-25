@@ -87,3 +87,7 @@
 .lp-nav .active {
     color: #157CFF;
 }
+.dropdown-menu.show {
+    display: block;
+    background: #272A33;
+}
