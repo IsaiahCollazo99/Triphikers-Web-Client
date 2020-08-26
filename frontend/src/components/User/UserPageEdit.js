@@ -95,7 +95,7 @@ const UserPageEdit = () => {
         <section className="up-edit">
             <header className="upe-header">
                 <section className="upe-coverImage">
-                    <p className="upe-closeEdit" onClick={returnToProfile}>X</p>
+                    <button className="upe-closeEdit" onClick={returnToProfile}>Return To Profile</button>
                 </section>
 
                 <section className="upe-user">
@@ -146,8 +146,6 @@ const UserPageEdit = () => {
             </header>
 
             <section className="upe-extras">
-                <button type="submit" onClick={handleUpdate}>Update</button>
-
                 <section className="upe-socialMedia">
                     <label htmlFor="facebook">
                         <p>Facebook Link: </p>
@@ -170,6 +168,8 @@ const UserPageEdit = () => {
                         <input type="text" placeholder="Twitter Username" {...twitter} />
                     </label>
                 </section>
+
+                <button type="submit" onClick={handleUpdate}>Update</button>
             </section>
         </section>
     )
