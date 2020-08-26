@@ -9,29 +9,55 @@
 
 .searchContainer {
     width: 25%;
+    display: flex;
+    flex-direction: column;
+    margin-top: 3em;
 }
 
 .searchContainer input {
     width: 100%;
 }
 
-.searchCity select {
-    width: 25%;
-}
-
 .searchContainer input, .searchCity select {
-    background-color: #272A33;
-    color: white;
-    border: 3px solid rgb(255, 157, 0);
-    font-size: 1.25em
+    background-color: #dfdfdf;
+    color: #272A33;
+    border: 3px solid #272A33;
+    font-size: 1.25em;
+    transition: 0.3s ease-in-out;
+    border-radius: 0.5em;
+    font-weight: normal;
 }
 
 .searchContainer input:focus, .searchCity select:focus {
-    background-color: rgb(255, 157, 0);
+    background-color: #FFAE41;
     color: #272A33;
-    border: 3px solid #272A33;
+    outline: none;
 }
 
 .selectedCountry {
-    margin-bottom: 5em;
+    display: flex;
+    flex-direction: column;
+    width: 25%;
+    height: fit-content;
+}
+
+.selectedCountry select {
+    width: 100%;
+}
+
+.searchContainer button {
+    background-color: #FF9506;
+    border: 2px solid #272A33;
+    color: #272A33;
+    transition: 0.3s ease-in-out;
+    border-radius: 0.5em;
+    align-self: center;
+    font-size: 20px;
+    margin-top: 2em;
+    padding: 10px 15px;
+}
+
+.searchContainer button:hover {
+    background-color: #e08002;
+    cursor: pointer;
 }

@@ -12,7 +12,7 @@ const CreateTripsContainer = () => {
     const history = useHistory();
     
     const [ page, setPage ] = useState(1);
-    const destination = useInput("");
+    const [ destination, setDestination ] = useState("");
     const dateFrom = useInput("");
     const dateTo = useInput("");
     const groupType = useInput("");
@@ -31,7 +31,7 @@ const CreateTripsContainer = () => {
     }
 
     const pageOne = {
-        destination,
+        destination: { destination, setDestination },
         dateFrom,
         dateTo,
         groupType,

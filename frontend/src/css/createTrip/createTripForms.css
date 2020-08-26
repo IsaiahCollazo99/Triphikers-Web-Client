@@ -2,6 +2,7 @@
     display: flex;
     flex-direction: row;
     align-items: center;
+    margin-bottom: 25px;
 }
 
 .createTripsContainer .error {
@@ -28,16 +29,6 @@
     font-weight: bold;
 }
 
-.createTripsContainer input, .createTripsContainer select, .createTripsContainer textarea {
-    width: 85%;
-    background-color: #dfdfdf;
-    color: #272A33;
-    border: 3px solid #272A33;
-    font-size: 1.25em;
-    transition: 0.3s ease-in-out;
-    border-radius: 0.5em;
-}
-
 .createTripsContainer select:focus, .createTripsContainer input:focus, .createTripsContainer textarea:focus {
     background-color: #FFAE41;
     color: #272A33;
@@ -50,7 +41,7 @@
     flex-direction: column;
 }
 
-.createTripDestination {
+.ct-destination {
     width: 100%;
     display: flex;
     flex-direction: column;
@@ -59,6 +50,17 @@
 
 .createTripDates input, .createTripDestination input, .createTripDestination select {
     margin: 0.25em;
+}
+
+.ct-budget span {
+    display: inline-block;
+}
+
+.ct-budget span > p {
+    display: inline;
+    font-size: 1.25em;
+    font-weight: bold;
+    margin-right: 5px;
 }
 
 .tripForm2Bottom {
@@ -139,4 +141,15 @@
 .createTrip1 input[type="submit"]:hover {
     background-color: #e08002;
     cursor: pointer;
+}
+
+.createTripsContainer input, .createTripsContainer select, .createTripsContainer textarea {
+    width: 85%;
+    background-color: #dfdfdf;
+    color: #272A33;
+    border: 3px solid #272A33;
+    font-size: 1.25em;
+    transition: 0.3s ease-in-out;
+    border-radius: 0.5em;
+    font-weight: normal;
 }
