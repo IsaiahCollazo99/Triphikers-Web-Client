@@ -16,6 +16,7 @@ import FacebookLogo from '../../images/f_logo_RGB-Blue_1024.png';
 import InstagramLogo from '../../images/glyph-logo_May2016.png';
 import TwitterLogo from '../../images/Twitter_Social_Icon_Circle_Color.png'
 import NewChat from '../../chatList/NewChat';
+import firebase from "../../firebase";
 
 const UserPage = () => {
     const { id } = useParams();
@@ -111,10 +112,6 @@ const UserPage = () => {
         return userIsFriend;
     }
 
-    const newChat = () => {
-        setNewChatFormVisible(true);
-    }
-
     const removeFriendRequest = async () => {
         try {
             await deleteFriendRequest(currentUser.id, id);
@@ -141,7 +138,7 @@ const UserPage = () => {
                     <button className="up-friendRequest" onClick={sendFriendRequestCall}>
                         Send Friend Request
                     </button>
-                    <Button variant="contained" fullWidth color="primary" className="addNewChat" onClick={newChat}>New Message</Button>
+                    {/* <Button variant="contained" fullWidth color="primary" className="addNewChat" onClick={newChat}>New Message</Button> */}
                 </div>
             )
         }
@@ -191,27 +188,33 @@ const UserPage = () => {
         )
     })
 
-    const buildDocKey = (friend) => {
-        let users = [email, friend]
-        return users.sort().join(":")
+    const newChat = () => {
+        setNewChatFormVisible(true);
     }
 
-    const newChatSubmit = async (chatObj) => {
-        const docKey = buildDocKey(chatObj.sendTo);
-        await firebase
-        .firestore()
-        .collection("chats")
-        .doc(docKey)
-        .set({
-            receiverHasRead: false,
-            users: [email, chatObj.sendTo],
-            messages: [{
-                message:chatObj.message,
-                sender: email
-            }]
-        })
-        setNewChatFormVisible(false);
-    }
+    // const buildDocKey = (friend) => {
+    //     let users = [email, friend]
+    //     return users.sort().join(":")
+    // }
+    console.log(currentUser);
+    console.log(profileUser)
+
+    // const newChatSubmit = async (chatObj) => {
+    //     const docKey = buildDocKey(chatObj.sendTo);
+    //     await firebase
+    //     .firestore()
+    //     .collection("chats")
+    //     .doc(docKey)
+    //     .set({
+    //         receiverHasRead: false,
+    //         users: [email, chatObj.sendTo],
+    //         messages: [{
+    //             message:chatObj.message,
+    //             sender: email
+    //         }]
+    //     })
+    //     setNewChatFormVisible(false);
+    // }
 
     return (
       
@@ -219,9 +222,9 @@ const UserPage = () => {
             <header className="up-header">
                 <section className="up-coverImage">
                     {displayFriendRequest()}
-                    {
+                    {/* {
                         newChatFormVisible ? <NewChat newChatSubmit={newChatSubmit}></NewChat> : null
-                    }
+                    } */}
                 </section>
 
                 <section className="up-user">
