@@ -1,3 +1,10 @@
+
+// import UserPageNav from "./component/User/UserPageNav";
+// // import About from "./components/User/About";
+
+
+
+
 import React from "react";
 import "./App.css";
 import TripsPage from "./components/TripsPage/TripsPage";
@@ -21,8 +28,12 @@ function App() {
 	return (
 		<div className="App">
 		<AuthProvider>
-			<NavBar />
-			<Switch>
+				<NavBar />
+				
+				{/* <DisplayNavbar/> */}
+				<Switch>
+					
+
 				<AuthRoute exact path="/">
 					<LandingPage />
 				</AuthRoute>
