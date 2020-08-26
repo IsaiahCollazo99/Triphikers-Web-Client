@@ -79,9 +79,8 @@ const Messages = () => {
         setSelectedChatIndex(index);
     }
     
-    const newChatSubmit = async(chatObj) => {
+    const newChatSubmit = async (chatObj) => {
         const docKey = buildDocKey(chatObj.sendTo);
-        // const chatRef = firebase.firestore().collection("chats").doc(docKey)
         await firebase
         .firestore()
         .collection("chats")
@@ -97,18 +96,19 @@ const Messages = () => {
             if(error){
                 console.log(error)
             }
-        })
-        )
-        // const allChats = await chatRef.get()
-        setNewChatFormVisible(false);
-        setSelectedChatIndex(chats.length-1)
+        }))
+        debugger
+        // const chatRef = firebase.firestore().collection("chats").doc(docKey).get();
+        // const allChats = await chatRef.map(doc => doc.data().email)
+        // setNewChatFormVisible(false);
+        // setSelectedChatIndex(chats.length-1)
         //doesn't open up chat!
     }
 
     useEffect(() => {
        firebase.auth().onAuthStateChanged(async user => {
         if(!user){
-            history.push("/login");
+            history.push("/signUp");
         } else {
             await firebase
             .firestore()
