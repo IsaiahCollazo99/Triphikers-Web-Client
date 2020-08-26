@@ -23,8 +23,10 @@ const NavBar = () => {
 	};
 
 	const getFirstName = async () => {
-		const data = await getUserById(currentUser.id);
-		setFirstName(data.user.first_name);
+		if (currentUser) {
+			const data = await getUserById(currentUser.id);
+			setFirstName(data.user.first_name);
+		}
 	};
 
 	const displayNavBar = () => {
@@ -35,9 +37,9 @@ const NavBar = () => {
 					<NavLink exact to="/trips">
 						TRIPS
 					</NavLink>
-					<NavLink to={`/user/${currentUser.id}`}>PROFILE</NavLink>
+					{/* <NavLink to={`/user/${currentUser.id}`}>PROFILE</NavLink> */}
 					<NavLink to="/search">CITY SEARCH</NavLink>
-					<NavLink to="/messages">MESSAGES</NavLink>
+					{/* <NavLink to="/messages">MESSAGES</NavLink> */}
 					<a
 						className="nav-link dropdown-toggle"
 						data-toggle="dropdown"
@@ -48,7 +50,7 @@ const NavBar = () => {
 						Hi, {firstName}
 					</a>
 					<div className="dropdown-menu">
-						<a className="dropdown-item" href="/user/${currentUser.id}">
+						<a className="dropdown-item" href={`/user/${currentUser.id}`}>
 							PROFILE
 						</a>
 						<div className="dropdown-divider"></div>
@@ -83,7 +85,7 @@ const NavBar = () => {
 
 	useEffect(() => {
 		getFirstName();
-	}, []);
+	}, [currentUser]);
 
 	return (
 		<nav className="mainNav">
