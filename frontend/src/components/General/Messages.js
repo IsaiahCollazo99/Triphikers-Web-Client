@@ -94,7 +94,7 @@ const Messages = () => {
             }]
         })
         setNewChatFormVisible(false);
-        setSelectedChatIndex(chats.length-1)
+        // setSelectedChatIndex(chats.length-1)
         console.log(chats)
         //doesn't open up chat!
     }
