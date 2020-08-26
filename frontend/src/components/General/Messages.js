@@ -92,16 +92,10 @@ const Messages = () => {
                 message:chatObj.message,
                 sender: email
             }]
-        }, ((error) => {
-            if(error){
-                console.log(error)
-            }
-        }))
-        debugger
-        // const chatRef = firebase.firestore().collection("chats").doc(docKey).get();
-        // const allChats = await chatRef.map(doc => doc.data().email)
-        // setNewChatFormVisible(false);
-        // setSelectedChatIndex(chats.length-1)
+        })
+        setNewChatFormVisible(false);
+        setSelectedChatIndex(chats.length-1)
+        console.log(chats)
         //doesn't open up chat!
     }
 

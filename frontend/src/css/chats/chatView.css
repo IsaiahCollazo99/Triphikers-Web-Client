@@ -10,6 +10,7 @@
 }
 
 .userSent{
+    text-align: right;
     float: right;
     clear: both;
     padding: 3%;
@@ -46,4 +47,9 @@
     color: white;
     padding-top: 10px;
     box-sizing: border-box
+  }
+
+  .chatTimestamp {
+      font-size: 80%;
+      margin-top: 10%;
   }

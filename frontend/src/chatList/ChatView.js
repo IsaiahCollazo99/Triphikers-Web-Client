@@ -3,6 +3,11 @@ import "../css/chats/chatView.css"
 
 const ChatView = ({user, chat}) => {
 
+    const convertTime = (timestamp) => {
+        let localTime = new Date(timestamp).toLocaleTimeString();
+        return localTime
+    }
+
     useEffect(() => {
         const container = document.getElementById("chatview-context");
         if(container) {
@@ -26,6 +31,7 @@ const ChatView = ({user, chat}) => {
                             return(
                                 <div key={index} className={message.sender === user ? "userSent" : "friendSent"}>
                                     {message.message}
+                                    <p className="chatTimestamp">{message.timestamp ? convertTime(message.timestamp) : null}</p>
                                 </div>
                             )
                         })
