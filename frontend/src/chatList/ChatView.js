@@ -3,12 +3,18 @@ import "../css/chats/chatView.css"
 
 const ChatView = ({user, chat}) => {
 
+    const autoTranslate = (str) => {
+        let natLang= navigator.languages[1]
+        debugger
+    }
+
     const convertTime = (timestamp) => {
         let localTime = new Date(timestamp).toLocaleTimeString();
         return localTime
     }
 
     useEffect(() => {
+        autoTranslate("hola")
         const container = document.getElementById("chatview-context");
         if(container) {
             container.scrollTo(0, container.scrollHeight);
