@@ -6,7 +6,7 @@ const API = apiURL();
 
 export const createTrip = async ( tripObj, user ) => {
     const {
-        destination: { value: destination },
+        destination: { destination: destination },
         dateFrom: { value: date_from },
         dateTo: { value: date_to },
         groupType: { value: group_type },
@@ -20,6 +20,8 @@ export const createTrip = async ( tripObj, user ) => {
         itinerary: { value: itinerary },
         description: { value: description }
     } = tripObj;
+
+    console.log(destination);
 
     const planner_id = user.id;
 

@@ -10,15 +10,13 @@ const AuthProvider = ({ children }) => {
     const [currentUser, setCurrentUser] = useState(null);
     const [token, setToken] = useState(null);
     const [ loading, setLoading ] = useState(true);
-    
-    const API = apiURL();
 
     const updateUser = async ( user ) => {
         try {
             if(user) {
                 // Add a time checker. Throw an error if it's taking too long
-                const { uid } = user;
-                setCurrentUser({id: uid});
+                const { uid, email } = user;
+                setCurrentUser({id: uid, email});
                 const token = await getFirebaseIdToken()
                 setToken(token);
                 setLoading(false);

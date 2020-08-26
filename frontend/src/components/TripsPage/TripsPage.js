@@ -39,7 +39,7 @@ const TripsPage = () => {
         if(filter) {
             let filterResult = trips.filter(trip => {
                 const { destination } = trip;
-                return destination.toLowerCase() === filter.toLowerCase();
+                return destination.toLowerCase().includes(filter.toLowerCase()); 
             })
             setFilteredTrips(filterResult);
         } else {
@@ -84,7 +84,7 @@ const TripsPage = () => {
             <button onClick={redirect} className="tp-createTrip">CREATE A TRIP</button>
             <section className="tp-feedManager">
                 <TripsPageFilter filterTrips={filterTrips}/>
-                <FaSync onClick={getTripsCall} className="tp-refresh" />
+                <FaSync onClick={getTripsCall} className="tp-refresh" title="Refresh trips"/>
             </section>
             <section className="tripsPageFeed">
                 {response}
