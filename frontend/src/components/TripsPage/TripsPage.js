@@ -23,11 +23,18 @@ const TripsPage = () => {
     const getTripsCall = async () => {
         try {
             const { trips: allTrips } = await getAllTrips();
+
             if(!allTrips.length) {
-                setResponse(<p className="error">No Trips Found</p>)
+                setResponse(<p className="error">No Trips Found</p>);
+
+            } else if(filteredTrips.length) {
+                setFilteredTrips([]);
+                setTrips(allTrips);
+
             } else {
                 setTrips(allTrips);
             }
+
         } catch (error) {
             setTrips([]);
             if(error.response) {
@@ -38,15 +45,32 @@ const TripsPage = () => {
         }
     }
 
-    const filterTrips = ( filter ) => {
-        if(filter) {
-            let filterResult = trips.filter(trip => {
-                const { destination } = trip;
-                return destination.toLowerCase().includes(filter.toLowerCase()); 
-            })
+    const filterArr = ( arr, filterValue, key ) => {
+        return arr.filter(el => {
+            const tripValue = el[key];
+            return tripValue.toLowerCase().includes(filterValue.toLowerCase()) && isValidTrip(el);
+        })
+    }
+
+    const filterTrips = ( filter = {}, userFilter ) => {
+        let filterResult = [...trips];
+
+        for(let key in filter) {
+            const filterValue = filter[key];
+            if(filterValue && filterValue !== "none") {
+                filterResult = filterArr(filterResult, filterValue, key);
+            }
+        }
+        
+        if(filterResult.length) {
+            setResponse(<p className="success">Filtered Trips.</p>);
             setFilteredTrips(filterResult);
+        } else if(userFilter) {
+            setResponse(<p className="error">No Trips Found.</p>);
+            setFilteredTrips([]);
         } else {
             setFilteredTrips([]);
+            setResponse(null);
         }
     }
 

@@ -7,17 +7,37 @@ import TripsPageAdvanced from './TripsPageAdvanced';
 const TripsPageFilter = ({ filterTrips }) => {
     const [ showAdvanced, setShowAdvanced ] = useState(false);
     const search = useInput("");
+    const dateFrom = useInput("");
+    const dateTo = useInput("");
+    const budget = useInput("");
+    const tripType = useInput("");
+    const splitCosts = useInput("");
+    const groupType = useInput("");
+
+    const filters = {
+        search, dateFrom, dateTo, budget, tripType, splitCosts, groupType
+    }
+
+    const filterValues = {
+        destination: search.value,
+        date_from: dateFrom.value, 
+        date_to: dateTo.value, 
+        budget: budget.value, 
+        trip_type: tripType.value, 
+        split_costs: splitCosts.value, 
+        group_type: groupType.value
+    }
     
     const handleSubmit = ( e ) => {
         e.preventDefault();
-        filterTrips(search.value);
+        filterTrips(filterValues, true);
     }
 
     useEffect(() => {
         if(!search.value) {
             filterTrips(null);
         } else {
-            filterTrips(search.value);
+            filterTrips(filterValues, false);
         }
     }, [search.value])
 
@@ -38,7 +58,7 @@ const TripsPageFilter = ({ filterTrips }) => {
 
             <button className="tpf-show" onClick={showFilters}>Show Filters</button>
 
-            <TripsPageAdvanced filterTrips={filterTrips} isHidden={isHidden} />
+            <TripsPageAdvanced filterTrips={filterTrips} isHidden={isHidden} filters={filters} />
         </section>
     )
 }
