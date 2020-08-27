@@ -2,7 +2,7 @@ import React, { useState } from "react";
 
 
 const CreateSignUpForm2 = (props) => {
-	const { firstName, lastName, birthday, gender, handlePageChange, user } = props;
+	const { firstName, lastName, birthday, gender, handlePageChange, username, user } = props;
 	const [ error, setError ] = useState(null);
 	
 	const isValidAge = () => {
@@ -62,16 +62,19 @@ const CreateSignUpForm2 = (props) => {
 		<form onSubmit={handleSubmit}>
 			{error}
 
-			<label htmlFor="firstName">First Name : </label>
+			<label htmlFor="firstName">First Name: </label>
 			<input type="text" name="firstName" autoComplete="on" placeholder="First Name" {...firstName} required />
 
-			<label htmlFor="lastName">Last Name : </label>
+			<label htmlFor="lastName">Last Name: </label>
 			<input type="text" {...lastName} name="lastName" autoComplete="on" placeholder="Last Name"  required />
 
-			<label htmlFor="birthday">Birthday : </label>
+			<label htmlFor="birthday">Birthday: </label>
 			<input type="date" name="birthday" {...birthday} max={today} min={"1900-01-01"} autoComplete="on"  required />
 
-			<label htmlFor="gender">Gender : </label>
+			<label htmlFor="username">Username: </label>
+			<input type="text" name="username" {...username} placeholder="Username" required pattern="[a-z0-9._%+-]" />
+
+			<label htmlFor="gender">Gender: </label>
 			<select {...gender} name="gender" required>
 				<option disabled value="">Select your Gender</option>
 				<option value="Male">Male</option>

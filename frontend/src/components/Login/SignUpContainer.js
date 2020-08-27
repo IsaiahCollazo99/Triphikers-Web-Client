@@ -17,6 +17,7 @@ const CreateSignUpContainer = () => {
 	const confirmPassword = useInput("");
 	const firstName = useInput("");
 	const lastName = useInput("");
+	const username = useInput("");
 	const birthday = useInput("");
 	const gender = useInput("");
 	const bio = useInput("");
@@ -44,6 +45,7 @@ const CreateSignUpContainer = () => {
 	const pageTwo = {
 		firstName,
 		lastName,
+		username,
 		birthday,
 		gender,
 		user

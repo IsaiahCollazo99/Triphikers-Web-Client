@@ -8,7 +8,8 @@ const {
   getUserFriendRequests,
   deleteFriendRequest,
   getUsersFriends,
-  deleteFriend
+  deleteFriend,
+  getUserByUsername
 } = require("../../queries/users/users");
 
 users.post("/", createUser);
@@ -17,6 +18,7 @@ users.get("/:id", getUserById);
 users.get("/:id/trips", getUserTrips);
 users.get("/:id/friendRequests", getUserFriendRequests);
 users.get("/:id/friends", getUsersFriends);
+users.get("/username/:username", getUserByUsername);
 users.patch("/:id", updateUser);
 users.delete("/:id/friendRequests", deleteFriendRequest);
 users.delete("/:id/friends", deleteFriend);

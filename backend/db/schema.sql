@@ -93,4 +93,5 @@ CREATE TABLE friends_lists (
 ALTER TABLE users
 ADD COLUMN facebook_link VARCHAR,
 ADD COLUMN twitter_username VARCHAR,
-ADD COLUMN instagram_username VARCHAR;
+ADD COLUMN instagram_username VARCHAR,
+ADD COLUMN username VARCHAR
