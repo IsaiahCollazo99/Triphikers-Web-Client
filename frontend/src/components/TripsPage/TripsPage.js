@@ -1,15 +1,18 @@
-import React, { useEffect, useState } from 'react';
-import { getAllTrips } from '../../util/apiCalls/getRequests';
+import React, { useEffect, useState, useContext } from 'react';
+import { getAllTrips, getUserById } from '../../util/apiCalls/getRequests';
 import TripCard from '../General/TripCard';
 import '../../css/tripsPage/tripsPage.css';
 import TripsPageFilter from './TripsPageFilter';
 import { useHistory } from 'react-router-dom';
 import { FaSync } from 'react-icons/fa';
+import { AuthContext } from '../../providers/AuthContext';
 
 const TripsPage = () => {
     const [ trips, setTrips ] = useState([]);
     const [ filteredTrips, setFilteredTrips ] = useState([]);
     const [ response, setResponse ] = useState(null);
+    const [ user, setUser ] = useState({});
+    const { currentUser } = useContext(AuthContext);
 
     const history = useHistory();
 
@@ -46,9 +49,22 @@ const TripsPage = () => {
             setFilteredTrips([]);
         }
     }
+
+    const getCurrentUser = async () => {
+        try {
+            let data = await getUserById(currentUser.id);
+            while(!data) {
+                data = await getUserById(currentUser.id);
+            }
+            setUser(data.user);
+        } catch ( error ) {
+            console.log(error);
+        }
+    }
     
     useEffect(() => {
         getTripsCall();
+        getCurrentUser();
     }, [])
 
     const isTripExpired = ( trip ) => {
@@ -59,10 +75,28 @@ const TripsPage = () => {
         return currentTime > dateToTime;
     }
 
+    const isUserMale = () => user.gender === "Male";
+    const isUserFemale = () => user.gender === "Female";
+    const isUserNonBinary = () => user.gender === "Non-Binary";
+
+    const isValidGroupType = ( trip ) => {
+        if(isUserMale()) {
+            return trip.group_type !== "Only Women" && trip.group_type !== "Only Non-Binary";
+        } else if(isUserFemale()) {
+            return trip.group_type !== "Only Men" && trip.group_type !== "Only Non-Binary";
+        } else if(isUserNonBinary()) {
+            return trip.group_type !== "Only Men" && trip.group_type !== "Only Women";
+        }
+    }
+
+    const isValidTrip = ( trip ) => {
+        return !trip.is_completed && !isTripExpired(trip) && isValidGroupType(trip)
+    }
+
     const getTripsList = ( tripsArr ) => {
         const validTrips = [];
         tripsArr.forEach(trip => {
-            if(!trip.is_completed && !isTripExpired(trip)) {
+            if(isValidTrip(trip)) {
                 validTrips.push(
                     <TripCard trip={trip} refresh={getTripsCall} key={trip.id} />
                 )

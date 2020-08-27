@@ -63,7 +63,7 @@ const CreateTripForm1 = ( props ) => {
         } else if(userGender === 'Female') {
             return <option value="Only Women">Women Only</option>
         } else if (userGender === 'Non-Binary') {
-            return <option value="Only Women">Non-Binary Only</option>
+            return <option value="Only Non-Binary">Non-Binary Only</option>
         } else {
             return null;
         }

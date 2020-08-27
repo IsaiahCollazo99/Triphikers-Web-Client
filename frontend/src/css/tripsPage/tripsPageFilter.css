@@ -1,5 +1,10 @@
-.tp-filter {
+.tp-filterContainer {
     width: 50%;
+    display: flex;
+    flex-direction: column;
+}
+
+.tp-filter {
     display: flex;
     justify-content: center;
 }
@@ -35,6 +40,27 @@
 }
 
 .tp-filter button[type="submit"]:hover {
+    background-color: #e08002;
+    cursor: pointer;
+}
+
+.tpf-show {
+    width: 20%;
+    background-color: #FF9506;
+    border: 2px solid #272A33;
+    color: #272A33;
+    transition: 0.3s ease-in-out;
+    border-radius: 0.35em;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 18px;
+    padding: 10px;
+    align-self: center;
+    margin-top: 15px;
+}
+
+.tpf-show:hover {
     background-color: #e08002;
     cursor: pointer;
 }
