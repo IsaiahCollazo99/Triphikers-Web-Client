@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { useInput } from '../../util/customHooks';
 import { FaSearch } from 'react-icons/fa';
 import '../../css/tripsPage/tripsPageFilter.css';
+import TripsPageAdvanced from './TripsPageAdvanced';
 
 const TripsPageFilter = ({ filterTrips }) => {
     const [ showAdvanced, setShowAdvanced ] = useState(false);
@@ -37,47 +38,7 @@ const TripsPageFilter = ({ filterTrips }) => {
 
             <button className="tpf-show" onClick={showFilters}>Show Filters</button>
 
-            <section className={`tpf-advanced ${isHidden}`}>
-                <section className="tpf-dates">
-                    <label>
-                        <p>Date From: </p>
-                        <input type="date" />
-                    </label>
-
-                    <label>
-                        <p>Date To: </p>
-                        <input type="date" />
-                    </label>
-                </section>
-
-                <label>
-                    <p>Budget: </p>
-                    <select>
-
-                    </select>
-                </label>
-
-                <label>
-                    <p>Trip Type: </p>
-                    <select>
-
-                    </select>
-                </label>
-
-                <label>
-                    <p>Split Costs: </p>
-                    <select>
-
-                    </select>
-                </label>
-
-                <label>
-                    <p>Group Type: </p>
-                    <select>
-                        
-                    </select>
-                </label>
-            </section>
+            <TripsPageAdvanced filterTrips={filterTrips} isHidden={isHidden} />
         </section>
     )
 }
