@@ -64,3 +64,11 @@
     background-color: #e08002;
     cursor: pointer;
 }
+
+.tpf-shown {
+    display: inline-block;
+}
+
+.tpf-hidden {
+    display: none;
+}

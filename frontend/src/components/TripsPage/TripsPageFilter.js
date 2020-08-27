@@ -1,9 +1,10 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useInput } from '../../util/customHooks';
 import { FaSearch } from 'react-icons/fa';
 import '../../css/tripsPage/tripsPageFilter.css';
 
 const TripsPageFilter = ({ filterTrips }) => {
+    const [ showAdvanced, setShowAdvanced ] = useState(false);
     const search = useInput("");
     
     const handleSubmit = ( e ) => {
@@ -18,6 +19,14 @@ const TripsPageFilter = ({ filterTrips }) => {
             filterTrips(search.value);
         }
     }, [search.value])
+
+    const showFilters = () => {
+        setShowAdvanced((prevState) => {
+            return !prevState;
+        });
+    }
+
+    const isHidden = showAdvanced ? "tpf-shown" : "tpf-hidden";
     
     return (
         <section className="tp-filterContainer">
@@ -26,9 +35,9 @@ const TripsPageFilter = ({ filterTrips }) => {
                 <button type="submit"><FaSearch /></button>
             </form>
 
-            <button className="tpf-show">Show Filters</button>
+            <button className="tpf-show" onClick={showFilters}>Show Filters</button>
 
-            <section className="tpf-advanced">
+            <section className={`tpf-advanced ${isHidden}`}>
                 <section className="tpf-dates">
                     <label>
                         <p>Date From: </p>
