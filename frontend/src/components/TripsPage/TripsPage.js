@@ -54,21 +54,20 @@ const TripsPage = () => {
 
     const filterTrips = ( filter = {}, userFilter ) => {
         let filterResult = [...trips];
+        let filtered = false;
 
         for(let key in filter) {
             const filterValue = filter[key];
             if(filterValue && filterValue !== "none") {
                 filterResult = filterArr(filterResult, filterValue, key);
+                filtered = true;
             }
         }
         
         if(filterResult.length) {
             setResponse(<p className="success">Filtered Trips.</p>);
             setFilteredTrips(filterResult);
-        } else if(userFilter) {
-            setResponse(<p className="error">No Trips Found.</p>);
-            setFilteredTrips([]);
-        } else {
+        } else if(!filtered) {
             setFilteredTrips([]);
             setResponse(null);
         }
@@ -135,6 +134,8 @@ const TripsPage = () => {
         tripsList = getTripsList(filteredTrips);
     } else if(trips.length) {
         tripsList = getTripsList(trips);
+    } else {
+        tripsList = <p className="error">No Trips Found</p>
     }
     
     return (
