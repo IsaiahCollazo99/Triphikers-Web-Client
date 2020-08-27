@@ -16,7 +16,8 @@ const CreateTripForm1 = ( props ) => {
         dateTo, 
         groupType, 
         language, 
-        meetup, 
+        budget,
+        split,
         tripType,
         handlePageChange
     } = props;
@@ -92,6 +93,27 @@ const CreateTripForm1 = ( props ) => {
                 </label>
             </section>
 
+            <section className="ct-budgets">
+                <label htmlFor="budget" className="ct-budget">
+                    <p>Your Budget: </p>
+                    <select {...budget} name="budget" required>
+                        <option value="" disabled>Select Your Budget</option>
+                        <option value="Budget ($0 - $999)">Budget ($0 - $999)</option>
+                        <option value="Average ($1000 - $1999)">Average ($1000 - $1999)</option>
+                        <option value="Luxury ($2000+)">Luxury ($2000+)</option>
+                    </select>
+                </label>
+
+                <label htmlFor="split">
+                    <p>Split Costs: </p>
+                    <select {...split} name="split" required>
+                        <option value="" disabled>Split Costs?</option>
+                        <option value="Yes">Yes</option>
+                        <option value="No">No</option>
+                    </select>
+                </label>
+            </section>
+
             <label htmlFor="groupType">
                 <p>Group Type: </p>
                 <select {...groupType} name="groupType" required>
@@ -108,14 +130,6 @@ const CreateTripForm1 = ( props ) => {
                 <LanguageSelect input={language} />
             </label>
 
-            <label htmlFor="meetup">
-                <p>Before Trip Meetup: </p>
-                <select {...meetup} name="meetup" required>
-                    <option value="" disabled>Select a Before Trip Meetup</option>
-                    <option value="In Person">In Person</option>
-                    <option value="Video Call">Video Call</option>
-                </select>
-            </label>
 
             <label htmlFor="tripType">
                 <p>Trip Type: </p>
