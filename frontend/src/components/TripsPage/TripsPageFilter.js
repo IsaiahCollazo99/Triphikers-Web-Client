@@ -48,6 +48,7 @@ const TripsPageFilter = ({ filterTrips }) => {
     }
 
     const isHidden = showAdvanced ? "tpf-shown" : "tpf-hidden";
+    const isShown = showAdvanced ? "Hide Filters" : "Show Filters";
     
     return (
         <section className="tp-filterContainer">
@@ -56,7 +57,7 @@ const TripsPageFilter = ({ filterTrips }) => {
                 <button type="submit"><FaSearch /></button>
             </form>
 
-            <button className="tpf-show" onClick={showFilters}>Show Filters</button>
+            <button className="tpf-show" onClick={showFilters}>{isShown}</button>
 
             <TripsPageAdvanced filterTrips={filterTrips} isHidden={isHidden} filters={filters} />
         </section>

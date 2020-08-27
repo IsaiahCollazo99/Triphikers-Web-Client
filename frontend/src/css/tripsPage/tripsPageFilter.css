@@ -66,9 +66,42 @@
 }
 
 .tpf-shown {
-    display: inline-block;
+    display: grid;
 }
 
 .tpf-hidden {
     display: none;
+}
+
+.tpf-advanced {
+    width: 150%;
+    grid-template-columns: 1fr 1fr 1fr;
+    align-items: center;
+    margin-top: 25px;
+    align-self: center;
+}
+
+.tpf-advanced section {
+    grid-column: 1 / 3;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+}
+
+.tpf-advanced label {
+    margin-top: 10px;
+}
+
+.tpf-advanced p {
+    margin-bottom: 5px;
+}
+
+.tpf-advanced select, .tpf-advanced input {
+    width: 90%;
+    background-color: #e9e9e9;
+    color: #272A33;
+    border: 3px solid #272A33;
+    font-size: 1.25em;
+    transition: 0.3s ease-in-out;
+    border-radius: 0.5em;
+    margin-right: 15px;
 }
