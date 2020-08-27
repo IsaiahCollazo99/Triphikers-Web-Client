@@ -35,13 +35,14 @@ const TripsPageFilter = ({ filterTrips }) => {
 
     useEffect(() => {
         if(!search.value) {
-            filterTrips(null);
-        } else {
-            filterTrips(filterValues, false);
+            filterTrips(null, false);
         }
     }, [search.value])
 
     const showFilters = () => {
+        if(showAdvanced === true) {
+            filterTrips(null, false);
+        }
         setShowAdvanced((prevState) => {
             return !prevState;
         });

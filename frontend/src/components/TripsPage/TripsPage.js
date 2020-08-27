@@ -53,21 +53,22 @@ const TripsPage = () => {
     }
 
     const filterTrips = ( filter = {}, userFilter ) => {
-        let filterResult = [...trips];
-        let filtered = false;
+        let filterResult = [];
 
         for(let key in filter) {
             const filterValue = filter[key];
             if(filterValue && filterValue !== "none") {
-                filterResult = filterArr(filterResult, filterValue, key);
-                filtered = true;
+                filterResult = filterArr(trips, filterValue, key);
             }
         }
         
-        if(filterResult.length) {
+        if(filterResult.length && userFilter) {
             setResponse(<p className="success">Filtered Trips.</p>);
             setFilteredTrips(filterResult);
-        } else if(!filtered) {
+        } else if(!filterResult.length && userFilter) {
+            setFilteredTrips([]);
+            setResponse(<p className="error">No Trips Found</p>);
+        } else {
             setFilteredTrips([]);
             setResponse(null);
         }
@@ -140,11 +141,15 @@ const TripsPage = () => {
     
     return (
         <div className="tripsPage">
-            <button onClick={redirect} className="tp-createTrip">CREATE A TRIP</button>
-            <section className="tp-feedManager">
-                <TripsPageFilter filterTrips={filterTrips}/>
+            <section className="tp-buttons">
+                <button onClick={redirect} className="tp-createTrip">CREATE A TRIP</button>
                 <FaSync onClick={getTripsCall} className="tp-refresh" title="Refresh trips"/>
             </section>
+
+            <section className="tp-feedManager">
+                <TripsPageFilter filterTrips={filterTrips}/>
+            </section>
+
             <section className="tripsPageFeed">
                 {response}
                 {tripsList}
