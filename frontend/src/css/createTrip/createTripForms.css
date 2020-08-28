@@ -16,7 +16,11 @@
 .createTripsContainer form {
     display: grid;
     grid-template-columns: 1fr 1fr 1fr;
-    grid-template-rows: 1fr 1fr 1fr 1fr;
+}
+
+.createTrip1 {
+    grid-template-rows: 1fr 0.75fr 0.5fr;
+    padding: 25px;
 }
 
 .createTripsContainer label {
@@ -45,45 +49,37 @@
     width: 100%;
     display: flex;
     flex-direction: column;
-    justify-content: space-between;
+    justify-content: space-evenly;
+}
+
+.ct-budgets {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+}
+
+.createTrip2 {
+    grid-template-rows: 0.65fr 1fr 0.65fr;
+    height: 100%;
 }
 
 .createTripDates input, .createTripDestination input, .createTripDestination select {
     margin: 0.25em;
 }
 
-.ct-budget span {
-    display: inline-block;
-}
-
-.ct-budget span > p {
-    display: inline;
-    font-size: 1.25em;
-    font-weight: bold;
-    margin-right: 5px;
-}
-
-.tripForm2Bottom {
+.createTripDesc {
     grid-column: 1 / 4;
-    display: flex;
-    justify-content: space-evenly;
+    width: 60%;
     justify-self: center;
-    width: 100%;
 }
 
-.tripForm2Bottom label {
-    width: 40%;
-}
-
-.createTripDesc{
-    grid-column: 1 / 4;
-    width: 65%;
-    justify-self: center;
+.createTripDesc p {
+    width: fit-content
 }
 
 .createTripsContainer .buttons {
     grid-column: 1 / 4;
-    grid-row: 4 / 5;
     align-self: center;
     justify-self: center;
     display: flex;
@@ -152,4 +148,9 @@
     transition: 0.3s ease-in-out;
     border-radius: 0.5em;
     font-weight: normal;
+}
+
+.createTripDesc textarea {
+    resize: none;
+    width: 100%;
 }

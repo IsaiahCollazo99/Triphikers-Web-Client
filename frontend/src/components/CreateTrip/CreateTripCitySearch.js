@@ -10,7 +10,7 @@ import {
 import "@reach/combobox/styles.css";
 import { useEffect } from 'react';
 
-const CreateTripCitySearch = ({ selectedCountry, setDestination }) => {
+const CreateTripCitySearch = ({ selectedCountry, destination, setDestination }) => {
 
     const { ready, value, suggestions: {status, data}, setValue } = usePlacesAutocomplete({
         requestOptions: {
@@ -32,7 +32,7 @@ const CreateTripCitySearch = ({ selectedCountry, setDestination }) => {
         <label htmlFor="ct-city">
             <p>City: </p>
             <Combobox onSelect={handleSelect}>
-                <ComboboxInput value={value} onChange={handleInput} disabled={!ready}
+                <ComboboxInput value={destination ? destination : value} onChange={handleInput} disabled={!ready}
                 placeholder="Input A City" name="ct-city" autoComplete="off" required/>
                 <ComboboxPopover>
                     <ComboboxList>

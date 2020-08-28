@@ -4,10 +4,9 @@
     justify-content: center;
     flex-direction: column;
     background-color: white;
-    margin-top: 200px;
+    margin-top: 150px;
     padding: 60px 50px;
     border-radius: 1.5em;
-    border: 1px solid black;
     width: 40%;
 }
 
