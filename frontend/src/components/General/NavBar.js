@@ -25,6 +25,9 @@ const NavBar = () => {
 	const getFirstName = async () => {
 		if (currentUser) {
 			const data = await getUserById(currentUser.id);
+			while(!data) {
+				data = await getUserById(currentUser.id);
+			}
 			setFirstName(data.user.first_name);
 		}
 	};

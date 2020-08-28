@@ -23,6 +23,7 @@ export const getTripById = async (id) => {
 }
 
 export const getUserById = async ( id ) => {
+    debugger
     try {
         let res = await axios.get(API + `/api/users/${id}`);
         return res.data;
