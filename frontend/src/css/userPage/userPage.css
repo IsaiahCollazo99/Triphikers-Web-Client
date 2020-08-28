@@ -1,5 +1,5 @@
 .userPageContainer {
-  margin-top: 110px;
+  margin-top: 95px;
   width: 100%;
   display: flex;
   flex-direction: column;
@@ -12,17 +12,30 @@
   grid-template-columns: 1fr 1fr 1fr;
 }
 
-.up-friendRequest, .up-requestSent {
-  z-index: 2;
+.up-coverButtons {
   float: right;
   margin-right: 30px;
-  margin-top: 20px;
+  z-index: 2;
+  min-width: fit-content;
+  max-width: 30%;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+  margin-top: 25px;
+}
+
+.up-coverButtons button {
   background-color: #272A33;
   color: white;
   border-radius: 0.5em;
   padding: 0.25em 0.5em;
   transition: 0.3s ease-in-out;
   border: 1px solid black;
+}
+
+.up-editButton:hover {
+  color: rgb(0, 202, 0);
+  cursor: pointer;
 }
 
 .up-friendRequest:hover {

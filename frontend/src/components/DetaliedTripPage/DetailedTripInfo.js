@@ -129,15 +129,18 @@ const DetailedTripInfo = ({ trip = {}, getTripCall, getRequestsCall, requests, t
 
             <main>
                 <p><span>Group Type: </span>{trip.group_type}</p>
-                <p><span>Language: </span>{trip.language}</p>
-                <p><span>Before Trip Meetup: </span>{trip.before_trip_meetup}</p>
+                <p className="dt-span2"><span>Language: </span>{trip.language}</p>
                 <p><span>Accommodation: </span>{trip.accommodation}</p>
-                <p><span>Planner's Budget: </span>{trip.budget}</p>
-                <p><span>Split Costs: </span>{trip.split_costs}</p>
-                <div className="dt-ib">
+
+                <section className="dt-il">
+                    <p><span>Planner's Budget: </span>{trip.budget}</p>
                     <p><span>Itinerary: </span>{trip.itinerary}</p>
+                </section>
+
+                <section className="dt-ir"> 
+                    <p><span>Split Costs: </span>{trip.split_costs}</p>
                     <p><span>Trip Type: </span>{trip.trip_type}</p>
-                </div>
+                </section>
             </main>
         </section>
     )

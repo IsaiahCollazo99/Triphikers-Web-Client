@@ -1,11 +1,21 @@
-.tp-filter {
-    width: 50%;
+.tp-filterContainer {
+    width: 100%;
     display: flex;
-    justify-content: center;
+    flex-direction: column;
+    align-self: center;
+    justify-self: center;
+    align-items: center;
+}
+
+.tp-filter {
+    width: 60%;
+    display: flex;
+    justify-content: space-evenly;
+
 }
 
 .tp-filter input[type="search"] {
-    width: 70%;
+    width: 80%;
     background-color: #e9e9e9;
     color: #272A33;
     border: 3px solid #272A33;
@@ -37,4 +47,70 @@
 .tp-filter button[type="submit"]:hover {
     background-color: #e08002;
     cursor: pointer;
+}
+
+.tpf-show {
+    width: 10%;
+    background-color: #FF9506;
+    border: 2px solid #272A33;
+    color: #272A33;
+    transition: 0.3s ease-in-out;
+    border-radius: 0.5em;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 18px;
+    padding: 10px;
+    align-self: center;
+    margin-top: 15px;
+}
+
+.tpf-show:hover {
+    background-color: #e08002;
+    cursor: pointer;
+}
+
+.tpf-shown {
+    display: grid;
+}
+
+.tpf-hidden {
+    display: none;
+}
+
+.tpf-advanced {
+    width: 70%;
+    grid-template-columns: 1fr 1fr 1fr;
+    align-items: center;
+    margin-top: 25px;
+    align-self: center;
+    justify-items: center;
+}
+
+.tpf-advanced section {
+    grid-column: 1 / 3;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    width: 100%;
+    justify-items: center;
+}
+
+.tpf-advanced label {
+    margin-top: 10px;
+    width: 90%;
+}
+
+.tpf-advanced p {
+    margin-bottom: 5px;
+}
+
+.tpf-advanced select, .tpf-advanced input {
+    width: 100%;
+    background-color: #e9e9e9;
+    color: #272A33;
+    border: 3px solid #272A33;
+    font-size: 1.25em;
+    transition: 0.3s ease-in-out;
+    border-radius: 0.5em;
+    justify-self: center;
 }

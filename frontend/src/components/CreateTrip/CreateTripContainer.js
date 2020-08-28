@@ -17,7 +17,6 @@ const CreateTripsContainer = () => {
     const dateTo = useInput("");
     const groupType = useInput("");
     const language = useInput("");
-    const meetup = useInput("");
     const tripType = useInput("");
     const title = useInput("");
     const accommodation = useInput("");
@@ -36,15 +35,14 @@ const CreateTripsContainer = () => {
         dateTo,
         groupType,
         language,
-        meetup,
+        budget,
+        split,
         tripType
     }
 
     const pageTwo = {
         title,
         accommodation,
-        budget,
-        split,
         itinerary,
         description,
     }

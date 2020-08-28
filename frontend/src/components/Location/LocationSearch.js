@@ -29,10 +29,12 @@ const LocationSearch = (id) => {
     const [allCountries, setAllCountries] = useState([]);
     const [selectedCountry, setSelectedCountry] = useState('');
     const history = useHistory();
-    const locationRedirect = (country, city, lat, lng) => history.push({
-        pathname: `/location/${country}/${city}/hotspots`,
-        state: { city: city, country: selectedCountry, coordinates: {lat: lat, lng: lng} }}
+    const locationRedirect = (country, city, lat, lng) => {
+        history.push({
+            pathname: `/location/${country}/${city}/hotspots`,
+            state: { city: city, country: selectedCountry, coordinates: {lat: lat, lng: lng} }}
         );
+    }
 
 
     const {isLoaded, loadError} = useLoadScript({
@@ -78,7 +80,17 @@ const LocationSearch = (id) => {
                 try {
                     const res = await getGeocode({ address: value });
                     const { lat, lng } = await getLatLng(res[0]);
-                    locationRedirect(selectedCountry, value, lat, lng)
+
+                    let resultCountry = selectedCountry;
+
+                    if(!selectedCountry) {
+                        const splitLocation = value.split(" ");
+                        resultCountry = splitLocation[value.length - 1];
+                    }
+
+                    debugger;
+
+                    locationRedirect(resultCountry, value, lat, lng)
                 } catch(error) {
                     console.log(error)
                 }

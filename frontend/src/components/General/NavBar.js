@@ -24,7 +24,11 @@ const NavBar = () => {
 
 	const getFirstName = async () => {
 		if (currentUser) {
+<<<<<<< HEAD
 			const data = await getUserById(currentUser.id);
+=======
+			let data = await getUserById(currentUser.id);
+>>>>>>> 2aacc5a8c84b431a495889683d9d0ab46b16bb2f
 			while(!data) {
 				data = await getUserById(currentUser.id);
 			}
@@ -40,9 +44,7 @@ const NavBar = () => {
 					<NavLink exact to="/trips">
 						TRIPS
 					</NavLink>
-					{/* <NavLink to={`/user/${currentUser.id}`}>PROFILE</NavLink> */}
 					<NavLink to="/search">CITY SEARCH</NavLink>
-					{/* <NavLink to="/messages">MESSAGES</NavLink> */}
 					<a
 						className="nav-link dropdown-toggle"
 						data-toggle="dropdown"
@@ -53,19 +55,18 @@ const NavBar = () => {
 						Hi, {firstName}
 					</a>
 					<div className="dropdown-menu">
-						<a className="dropdown-item" href={`/user/${currentUser.id}`}>
+						<Link className="dropdown-item" to={`/user/${currentUser.id}`}>
 							PROFILE
-						</a>
+						</Link>
 						<div className="dropdown-divider"></div>
-						<a className="dropdown-item" href="/messages">
+						<Link className="dropdown-item" to="/messages">
 							MESSAGES
-						</a>
+						</Link>
 						<div className="dropdown-divider"></div>
-						<a className="dropdown-item" onClick={redirect}>
+						<Link className="dropdown-item" onClick={redirect}>
 							LOG OUT
-						</a>
+						</Link>
 					</div>
-					<a onClick={redirect}>LOG OUT</a>
 				</section>
 			);
 		} else {

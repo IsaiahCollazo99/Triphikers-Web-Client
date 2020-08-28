@@ -53,7 +53,7 @@ const CreateTripDestination = ({ destination }) => {
             </label>
 
             { isLoaded ? 
-                <CreateTripCitySearch selectedCountry={selectedCountry} setDestination={setDestination} /> :
+                <CreateTripCitySearch selectedCountry={selectedCountry} destinatoin={destination.destination} setDestination={setDestination} /> :
                 null
             }
         </section>

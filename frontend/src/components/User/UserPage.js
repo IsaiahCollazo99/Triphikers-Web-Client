@@ -1,6 +1,10 @@
 import React, { useEffect, useState, useContext } from 'react';
+<<<<<<< HEAD
 import { useParams, Switch, Route } from 'react-router-dom';
 import Button from '@material-ui/core/Button';
+=======
+import { useParams, Switch, Route, useHistory } from 'react-router-dom'
+>>>>>>> 2aacc5a8c84b431a495889683d9d0ab46b16bb2f
 import { getUserById, getUserTrips, getUserFriendRequests, getUserFriends } from '../../util/apiCalls/getRequests'
 import '../../css/userPage/userPage.css'
 import UserPageNav from './UserPageNav';
@@ -12,11 +16,14 @@ import { deleteFriendRequest } from '../../util/apiCalls/deleteRequests';
 import UserPageFriends from './UserPageFriends';
 import { ProtectedUserRoute } from '../../util/routesUtil';
 import UserPageRequests from './UserPageRequests';
+<<<<<<< HEAD
 import FacebookLogo from '../../images/f_logo_RGB-Blue_1024.png';
 import InstagramLogo from '../../images/glyph-logo_May2016.png';
 import TwitterLogo from '../../images/Twitter_Social_Icon_Circle_Color.png'
 import NewChat from '../../chatList/NewChat';
 import firebase from "../../firebase";
+=======
+>>>>>>> 2aacc5a8c84b431a495889683d9d0ab46b16bb2f
 
 const UserPage = () => {
     const { id } = useParams();
@@ -25,7 +32,15 @@ const UserPage = () => {
     const [ userTrips, setUserTrips ] = useState([]);
     const [ friendRequests, setFriendRequests ] = useState([]);
     const [ friends, setFriends ] = useState([]);
+<<<<<<< HEAD
     const [newChatFormVisible, setNewChatFormVisible] = useState(false);
+=======
+    const history = useHistory();
+
+    const redirect = () => {
+        history.push("/user/edit");
+    }
+>>>>>>> 2aacc5a8c84b431a495889683d9d0ab46b16bb2f
 
     const getUser = async () => {
         try {
@@ -123,7 +138,9 @@ const UserPage = () => {
 
     const displayFriendRequest = () => {
         if(currentUser.id === id) {
-            return null;
+            return (
+                <button className="up-editButton" onClick={redirect}>Edit Profile</button>
+            );
         } else if(currentUserSentRequest()) {
             return (
                 <button className="up-requestSent" onClick={removeFriendRequest}>
@@ -144,43 +161,7 @@ const UserPage = () => {
         }
     }
 
-    const redirect = ( link ) => {
-        window.open(`https://www.${link}`, "_blank");
-    }
 
-    const displaySocialMedia = () => {
-        const {
-            facebook_link,
-            twitter_username,
-            instagram_username
-        } = profileUser;
-
-        const facebookLink = facebook_link ? (
-            <a href={`https://www.${facebook_link}`} target="_blank">
-                <img src={FacebookLogo} alt="facebook" />
-            </a>
-        ) : null;
-
-        const instagramLink = instagram_username ? (
-            <a href={`https://www.${instagram_username}`} target="_blank">
-                <img src={InstagramLogo} alt="instagram" />
-            </a>
-        ) : null;
-
-        const twitterLink = twitter_username ? (
-            <a href={`https://www.${twitter_username}`} target="_blank">
-                <img src={TwitterLogo} alt="instagram" />
-            </a>
-        ) : null;
-
-        return (
-            <>
-                {facebookLink}
-                {instagramLink}
-                {twitterLink}
-            </>
-        )
-    }
     
     const userTripsList = userTrips.map((trip, i) => {
         return (
@@ -221,10 +202,9 @@ const UserPage = () => {
         <div className="userPageContainer">
             <header className="up-header">
                 <section className="up-coverImage">
-                    {displayFriendRequest()}
-                    {/* {
-                        newChatFormVisible ? <NewChat newChatSubmit={newChatSubmit}></NewChat> : null
-                    } */}
+                    <section className="up-coverButtons">
+                        {displayFriendRequest()}
+                    </section>
                 </section>
 
                 <section className="up-user">
@@ -232,9 +212,6 @@ const UserPage = () => {
                     <div className="up-userInteraction">
                         {/* rating goes in the span */}
                         <p>{profileUser.full_name}<span></span></p>
-                        <section className="up-socialMedia">
-                            {displaySocialMedia()}
-                        </section>
                     </div>
                 </section>
 
