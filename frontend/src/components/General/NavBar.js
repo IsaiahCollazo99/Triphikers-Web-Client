@@ -24,11 +24,7 @@ const NavBar = () => {
 
 	const getFirstName = async () => {
 		if (currentUser) {
-<<<<<<< HEAD
-			const data = await getUserById(currentUser.id);
-=======
 			let data = await getUserById(currentUser.id);
->>>>>>> 2aacc5a8c84b431a495889683d9d0ab46b16bb2f
 			while(!data) {
 				data = await getUserById(currentUser.id);
 			}
