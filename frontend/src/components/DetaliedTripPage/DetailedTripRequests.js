@@ -20,11 +20,15 @@ const DetailedTripRequests = ({ trip = {} }) => {
         getRequests();
     }, [])
 
-    const requestList = requests.map(user => {
+    let requestList = requests.map(user => {
         return (
             <RequestCard user={user} tripId={trip.id} key={user.id} setResponse={setResponse} refresh={getRequests}/>
         )
     })
+
+    if(!requestList.length) {
+        requestList = <p className="error">There are no requests at this time.</p>
+    }
 
     return (
         <section className="dt-requests">

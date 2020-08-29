@@ -40,6 +40,7 @@ const CreateSignUpForm1 = (props) => {
 				name="password" 
 				placeholder="Password" 
 				autoComplete="on" 
+				minLength="6"
 				required 
 			/>
 

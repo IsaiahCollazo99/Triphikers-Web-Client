@@ -2,7 +2,9 @@ import React, { useState } from "react";
 
 
 const CreateSignUpForm2 = (props) => {
-	const { firstName, lastName, birthday, gender, handlePageChange, username, user } = props;
+	const { firstName, lastName, birthday, gender, handlePageChange, username, user,
+	validUsername, setValidUsername } = props;
+	const [ isValidUsername, setIsValidUsername ] = useState(true);
 	const [ error, setError ] = useState(null);
 	
 	const isValidAge = () => {
@@ -30,6 +32,18 @@ const CreateSignUpForm2 = (props) => {
 		}
 	}
 
+	const onInputChange = ( e ) => {
+		const inputValue = e.target.value;
+		const pattern = "[^a-z0-9._%+-]";
+
+		if(inputValue.match(pattern)) {
+			setIsValidUsername(false);
+		} else {
+			setIsValidUsername(true);
+		}
+		setValidUsername(inputValue);
+	}
+
 	const displayBackButton = () => {
 		if(!user) {
 			return (
@@ -52,6 +66,8 @@ const CreateSignUpForm2 = (props) => {
 
 	const today = `${yyyy}-${mm}-${dd}`;
 
+	const displayError = isValidUsername ? "none" : "inline-block";
+
 	return (
 		<>
 		<header>
@@ -72,7 +88,17 @@ const CreateSignUpForm2 = (props) => {
 			<input type="date" name="birthday" {...birthday} max={today} min={"1900-01-01"} autoComplete="on"  required />
 
 			<label htmlFor="username">Username: </label>
-			<input type="text" name="username" {...username} placeholder="Username" required pattern="[a-z0-9._%+-]" />
+			<p style={{display: displayError}} className="error">Username contains an invalid character</p>
+			<input 
+				type="text" 
+				name="username" 
+				value={validUsername} 
+				onChange={onInputChange} 
+				placeholder="Username" 
+				pattern="[a-z0-9._%+-]" 
+				required 
+				
+				/>
 
 			<label htmlFor="gender">Gender: </label>
 			<select {...gender} name="gender" required>

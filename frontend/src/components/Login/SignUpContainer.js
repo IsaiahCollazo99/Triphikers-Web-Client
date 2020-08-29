@@ -12,6 +12,7 @@ import '../../css/signUpIn/signUp.css';
 const CreateSignUpContainer = () => {
 	const [ error, setError ] = useState(null);
 	const [ page, setPage ] = useState(1);
+	const [ validUsername, setValidUsername ] = useState("");
 	const email = useInput("");
 	const password = useInput("");
 	const confirmPassword = useInput("");
@@ -46,6 +47,8 @@ const CreateSignUpContainer = () => {
 		firstName,
 		lastName,
 		username,
+		validUsername,
+		setValidUsername,
 		birthday,
 		gender,
 		user
