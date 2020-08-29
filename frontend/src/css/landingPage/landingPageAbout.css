@@ -10,7 +10,7 @@
 
 .lp-about::before {
     content: "";
-    background-image: url(../../images/landingPageBground2.jpg);
+    background-image: url(../../images/friendsTravelCliffs.webp);
     background-position: center;
     background-size: cover;
     position: absolute;
@@ -18,7 +18,7 @@
     left: 0px;
     right: 0px;
     bottom: 0px;
-    opacity: 0.5;
+    opacity: 0.7;
     z-index: -1;
 }
 

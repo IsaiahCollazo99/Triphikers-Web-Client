@@ -82,11 +82,6 @@ const LocationSearch = (id) => {
                 try {
                     const res = await getGeocode({ address: value });
                     const { lat, lng } = await getLatLng(res[0]);
-                    // let resultCountry = selectedCountry;
-                    // if(!selectedCountry) {
-                    //     const splitLocation = value.split(" ");
-                    //     resultCountry = splitLocation[value.length - 1];
-                    // }
                     locationRedirect(selectedCountry, value, lat, lng)
                 } catch(error) {
                     console.log(error)
