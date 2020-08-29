@@ -79,7 +79,7 @@ const CreateSignUpContainer = () => {
 			if(user) {
 				firebaseUser = user;
 			} else {
-				const { user: signUpRes } = await signUp(email.value, password.value);
+				const signUpRes = await signUp(email.value, password.value, username);
 				firebaseUser = signUpRes;
 			}
 
