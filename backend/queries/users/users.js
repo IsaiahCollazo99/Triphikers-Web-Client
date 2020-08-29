@@ -354,5 +354,31 @@ module.exports = {
 		} catch ( error ) {
 			next(error);
 		}
+	},
+
+	getUserByEmail: async ( req, res, next ) => {
+		const { email } = req.params;
+		try {
+			const user = db.any(`
+				SELECT * FROM users
+				WHERE email=$1
+			`, email);
+
+			if(user.length) {
+				res.status(200).json({
+					status: "OK",
+					user,
+					message: "Retrieved User."
+				})
+			} else {
+				res.status(200).json({
+					status: "OK",
+					message: "No user found."
+				})
+			};
+
+		} catch ( error ) {
+			next (error);
+		}
 	}
 }
