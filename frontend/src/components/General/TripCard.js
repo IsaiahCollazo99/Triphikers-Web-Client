@@ -36,6 +36,7 @@ const TripCard = ({ trip, refresh }) => {
     useEffect(() => {
         getRequestsCall()
         getTravelersCall();
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [])
     
     const redirect = (e) => {
@@ -115,7 +116,7 @@ const TripCard = ({ trip, refresh }) => {
     }
 
     const displayRequestButton = () => {
-        if(isUserTraveler()) {
+        if(isUserTraveler() || !currentUser) {
             return null;
         } else if(isUserRequestExisting()) {
             return (

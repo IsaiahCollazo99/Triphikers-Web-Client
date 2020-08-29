@@ -18,6 +18,7 @@ const TripsPageAdvanced = ({ isHidden, filters }) => {
 
     useEffect(() => {
         getUserGender();
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [])
 
     const getGroupTypeOptions = () => {

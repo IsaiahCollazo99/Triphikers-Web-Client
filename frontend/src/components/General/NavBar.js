@@ -89,6 +89,7 @@ const NavBar = () => {
 
 	useEffect(() => {
 		getFirstName();
+		// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, [currentUser]);
 
 	return (

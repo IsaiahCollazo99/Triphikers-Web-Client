@@ -40,6 +40,7 @@ const UserPageEdit = () => {
     useEffect(() => {
         getUserCall();
         getCountries();
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [])
 
     const getFullName = () => {
@@ -68,7 +69,7 @@ const UserPageEdit = () => {
             instagram_username: instagram.value ? `instagram.com/${instagram.value}` : null
         }
 
-        const response = await updateUser(currentUser.id, userData);
+        await updateUser(currentUser.id, userData);
     }
 
     const handleUpdate = () => {
@@ -122,7 +123,7 @@ const UserPageEdit = () => {
 
                     <label>
                         <span>Country of Origin: </span> 
-                        <select defaultValue="" {...country}>
+                        <select {...country}>
                             <option disabled value="">Select a country</option>
                             {countryOptions}
                         </select>
@@ -130,7 +131,7 @@ const UserPageEdit = () => {
 
                     <label>
                         <span>Gender: </span>
-                        <select defaultValue="" {...gender}>
+                        <select {...gender}>
                             <option disabled value="">Select a gender</option>
                             <option value="Male">Male</option>
                             <option value="Female">Female</option>

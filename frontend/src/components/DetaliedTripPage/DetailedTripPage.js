@@ -1,4 +1,4 @@
-import React, { useEffect, useState, useContext } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useParams, Route, Switch, Link } from 'react-router-dom';
 import { getTripById, getTripRequests, getTripTravelers } from '../../util/apiCalls/getRequests';
 import DetailedTripNav from './DetailedTripNav';
@@ -6,12 +6,10 @@ import DetailedTripInfo from './DetailedTripInfo';
 import DetailedTripRequests from './DetailedTripRequests';
 import DetailedTripTravelers from './DetailedTripTravelers';
 import '../../css/detailedTripPage/detailedTripPage.css';
-import { AuthContext } from '../../providers/AuthContext';
 import { ProtectedUserRoute } from '../../util/routesUtil';
 
 const DetailedTripPage = () => {
     const { id } = useParams();
-    const { currentUser } = useContext(AuthContext);
     const [ trip, setTrip ] = useState({});
     const [ requests, setRequests ] = useState([]);
     const [ travelers, setTravelers ] = useState([]);
@@ -45,11 +43,13 @@ const DetailedTripPage = () => {
 
     const refreshFuncs = {
         getRequestsCall,
+        getTravelersCall,
         getTripCall
     }
 
     useEffect(() => {
         getTripCall();
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [])
 
     if(trip.full_name) {
@@ -59,7 +59,6 @@ const DetailedTripPage = () => {
                     <section className="dt-user">
                         <img src={trip.profile_picture} alt={trip.full_name} />
                         <div className="dt-userInteraction">
-                            {/* The user's rating goes in the span */}
                             <Link to={`/user/${trip.planner_id}`}>{trip.full_name}<span></span></Link> 
                             <section>
                                 {/* Social Media Here */}

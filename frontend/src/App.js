@@ -1,10 +1,3 @@
-
-// import UserPageNav from "./component/User/UserPageNav";
-// // import About from "./components/User/About";
-
-
-
-
 import React from "react";
 import "./App.css";
 import TripsPage from "./components/TripsPage/TripsPage";
@@ -17,7 +10,7 @@ import LocationPage from "./components/Location/LocationPage"
 import Login	from "./components/Login/Login"
 import UserPage from "./components/User/UserPage";
 import NavBar from "./components/General/NavBar";
-import { AuthRoute, ProtectedRoute, ProtectedUserRoute } from "./util/routesUtil";
+import { AuthRoute, ProtectedRoute } from "./util/routesUtil";
 import AuthProvider from "./providers/AuthContext";
 import LocationSearch from "./components/Location/LocationSearch";
 import UserPageEdit from "./components/User/UserPageEdit";
@@ -30,7 +23,6 @@ function App() {
 		<AuthProvider>
 				<NavBar />
 				
-				{/* <DisplayNavbar/> */}
 				<Switch>
 					
 

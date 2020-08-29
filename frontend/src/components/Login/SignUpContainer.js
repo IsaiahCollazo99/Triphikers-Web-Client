@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from "react";
-import { useHistory } from "react-router-dom";
 import { useInput } from "../../util/customHooks";
 import CreateSignUpForm1 from "./CreateSignUpForm1";
 import CreateSignUpForm2 from "./CreateSignUpForm2";
@@ -113,6 +112,7 @@ const CreateSignUpContainer = () => {
 	return (
 		<>
 		<div className="signUpContainer">
+			{error}
 			{getFormDisplay()}
 		</div>
 		</>

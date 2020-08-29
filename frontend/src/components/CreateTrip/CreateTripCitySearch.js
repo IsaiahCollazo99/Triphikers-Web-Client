@@ -8,7 +8,6 @@ import {
     ComboboxOption
 } from "@reach/combobox";
 import "@reach/combobox/styles.css";
-import { useEffect } from 'react';
 
 const CreateTripCitySearch = ({ selectedCountry, destination, setDestination }) => {
 

@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useContext } from 'react';
+import React, { useState, useContext } from 'react';
 import '../../css/detailedTripPage/detailedTripInfo.css';
 import { deleteTrip, deleteTripRequest } from '../../util/apiCalls/deleteRequests';
 import { useHistory } from 'react-router-dom';
@@ -49,6 +49,7 @@ const DetailedTripInfo = ({ trip = {}, getTripCall, getRequestsCall, requests, t
                 break;
             }
         }
+        return userRequestExisting;
     }
 
     const isUserTraveler = () => {
@@ -59,6 +60,7 @@ const DetailedTripInfo = ({ trip = {}, getTripCall, getRequestsCall, requests, t
                 break;
             }
         }
+        return userTraveler;
     }
 
     const displayRequestButton = () => {
@@ -107,6 +109,7 @@ const DetailedTripInfo = ({ trip = {}, getTripCall, getRequestsCall, requests, t
     
     return (
         <section className="dt-info">
+            {response}
             <header>
                 <section className="dt-hi">
                     <p className="dt-title"><span>Title: </span>{trip.trip_title}</p>
