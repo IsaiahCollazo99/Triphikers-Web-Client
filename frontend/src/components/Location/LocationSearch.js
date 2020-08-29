@@ -78,24 +78,21 @@ const LocationSearch = (id) => {
         }
 
         const handleSubmit = async  () => {
-            debugger
-            if(value) {
+            if(value && selectedCountry) {
                 try {
                     const res = await getGeocode({ address: value });
                     const { lat, lng } = await getLatLng(res[0]);
-
-                    let resultCountry = selectedCountry;
-
-                    if(!selectedCountry) {
-                        const splitLocation = value.split(" ");
-                        resultCountry = splitLocation[value.length - 1];
-                    }
-                    locationRedirect(resultCountry, value, lat, lng)
+                    // let resultCountry = selectedCountry;
+                    // if(!selectedCountry) {
+                    //     const splitLocation = value.split(" ");
+                    //     resultCountry = splitLocation[value.length - 1];
+                    // }
+                    locationRedirect(selectedCountry, value, lat, lng)
                 } catch(error) {
                     console.log(error)
                 }
             } else {
-                setError("You must select a city.");
+                setError("You Must Choose a Country and City");
             }
         }
         
@@ -103,9 +100,9 @@ const LocationSearch = (id) => {
             <div className="searchContainer">
                 {error ? <p className="error">{error}</p> : null}
                 <label htmlFor="searchInput"><b>Select a City: </b></label>
-                <Combobox onSelect={handleSelect}>
+                <Combobox onSelect={handleSelect} >
                     <ComboboxInput className="searchInput" value={value} onChange={handleInput} 
-                    disabled={!ready} placeholder="Search A City"/>
+                    disabled={!ready} disabled={selectedCountry === ''} placeholder="Search A City"/>
                     <ComboboxPopover>
                         <ComboboxList>
                             {status === "OK" && data.map(({description}, index) => <ComboboxOption key={index} value={description.split(",")[0]} className="searchResults"/> )}
@@ -133,7 +130,6 @@ const LocationSearch = (id) => {
                     <PopulateLocationSelect list={allCountries}/>
                 </select>
             </label>
-
             {isLoaded !== '' ? <Search selectedCountry={selectedCountry} locationRedirect={locationRedirect}/> : null }
         </div>
     )
