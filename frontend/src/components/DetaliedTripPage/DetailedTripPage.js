@@ -7,6 +7,9 @@ import DetailedTripRequests from './DetailedTripRequests';
 import DetailedTripTravelers from './DetailedTripTravelers';
 import '../../css/detailedTripPage/detailedTripPage.css';
 import { ProtectedUserRoute } from '../../util/routesUtil';
+import FacebookLogo from '../../images/f_logo_RGB-Blue_1024.png';
+import InstagramLogo from '../../images/glyph-logo_May2016.png';
+import TwitterLogo from '../../images/Twitter_Social_Icon_Circle_Color.png'
 
 const DetailedTripPage = () => {
     const { id } = useParams();
@@ -52,6 +55,41 @@ const DetailedTripPage = () => {
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [])
 
+    
+    const displaySocialMedia = () => {
+        const {
+            facebook_link,
+            twitter_username,
+            instagram_username
+        } = trip;
+
+        const facebookLink = facebook_link ? (
+            <a href={`https://www.${facebook_link}`} target="_blank" rel="noopener noreferrer">
+                <img src={FacebookLogo} alt="facebook" />
+            </a>
+        ) : null;
+
+        const instagramLink = instagram_username ? (
+            <a href={`https://www.${instagram_username}`} target="_blank" rel="noopener noreferrer">
+                <img src={InstagramLogo} alt="instagram" />
+            </a>
+        ) : null;
+
+        const twitterLink = twitter_username ? (
+            <a href={`https://www.${twitter_username}`} target="_blank" rel="noopener noreferrer">
+                <img src={TwitterLogo} alt="instagram" />
+            </a>
+        ) : null;
+
+        return (
+            <>
+                {facebookLink}
+                {instagramLink}
+                {twitterLink}
+            </>
+        )
+    }
+
     if(trip.full_name) {
         return (
             <div className="detailedTripContainer">
@@ -60,8 +98,8 @@ const DetailedTripPage = () => {
                         <img src={trip.profile_picture} alt={trip.full_name} />
                         <div className="dt-userInteraction">
                             <Link to={`/user/${trip.planner_id}`}>{trip.full_name}<span></span></Link> 
-                            <section>
-                                {/* Social Media Here */}
+                            <section className="dt-socialMedia">
+                                {displaySocialMedia()}
                             </section>
     
                         </div>

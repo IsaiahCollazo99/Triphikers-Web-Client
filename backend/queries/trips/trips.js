@@ -32,6 +32,7 @@ module.exports = {
             const trip = await db.one(`
                 SELECT users.full_name, users.age, users.profile_picture, 
                 users.country_of_origin, users.gender, users.bio, users.id AS user_id, 
+                users.facebook_link, users.instagram_username, users.twitter_username,
                 trips.*
                 FROM trips
                 LEFT JOIN users on users.id = trips.planner_id
