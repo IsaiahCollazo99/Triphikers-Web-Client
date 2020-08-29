@@ -17,23 +17,6 @@
     margin-top: 32px;
 }
 
-.tp-createTrip {
-    padding: .5em .25em;
-    width: 60%;
-    border-radius: 0.75em;
-    font-weight: bold;
-    font-family: 'Roboto';
-    font-size: 1.25em;
-    background-color: #FF9506;
-    border: 2px solid #272A33;
-    transition: 0.3s ease-in-out;
-}
-
-.tp-createTrip:hover {
-    background-color: #e08002;
-    cursor: pointer;
-}
-
 .tp-feedManager {
     display: flex;
     flex-direction: row;

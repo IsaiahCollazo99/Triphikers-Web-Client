@@ -1,5 +1,5 @@
 import React, { useContext, useState, useEffect } from "react";
-import { NavLink, Link, useLocation } from "react-router-dom";
+import { NavLink, Link, useHistory } from "react-router-dom";
 import "../../css/general/navBar.css";
 import { logout } from "../../util/firebaseFunction";
 import { AuthContext } from "../../providers/AuthContext";
@@ -7,20 +7,9 @@ import { getUserById } from "../../util/apiCalls/getRequests";
 import "bootstrap/dist/css/bootstrap.min.css";
 const NavBar = () => {
 	const { currentUser } = useContext(AuthContext);
+	const history = useHistory();
 
 	const [firstName, setFirstName] = useState("");
-	const location = useLocation();
-
-	const isOnTripsPage = location.pathname === "/trips";
-	const isOnCreateTripsPage = location.pathname === "/trips/create";
-
-	const displayCreateTrip = () => {
-		if (isOnTripsPage || isOnCreateTripsPage) {
-			return null;
-		} else {
-			return <NavLink to="/trips/create">CREATE A TRIP</NavLink>;
-		}
-	};
 
 	const getFirstName = async ( backOffTime = 1 ) => {
 		try {
@@ -36,11 +25,15 @@ const NavBar = () => {
 
 	};
 
+	const redirectCaT = () => {
+		history.push("/trips/create");
+	}
+
 	const displayNavBar = () => {
 		if (currentUser) {
 			return (
 				<section className="mainNav-right">
-					{displayCreateTrip()}
+					<button onClick={redirectCaT} className="nb-createTrip">CREATE A TRIP</button>
 					<NavLink exact to="/trips">
 						TRIPS
 					</NavLink>

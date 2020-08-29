@@ -42,7 +42,7 @@
     display: flex;
     align-items: center;
     justify-content: space-evenly;
-    width: 70%;
+    width: 60%;
     font-size: 1.5em;
 }
 
@@ -87,6 +87,24 @@
 .lp-nav .active {
     color: #157CFF;
 }
+
+.nb-createTrip {
+    padding: .5em .25em;
+    width: 23%;
+    border-radius: 0.75em;
+    font-weight: bold;
+    font-family: 'Roboto';
+    font-size: 0.75em;
+    background-color: #FF9506;
+    border: 2px solid #272A33;
+    transition: 0.3s ease-in-out;
+}
+
+.nb-createTrip:hover {
+    background-color: #e08002;
+    cursor: pointer;
+}
+
 .dropdown-menu.show {
     display: block;
     background: #272A33;

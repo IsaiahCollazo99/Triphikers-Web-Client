@@ -3,7 +3,6 @@ import { getAllTrips, getUserById } from '../../util/apiCalls/getRequests';
 import TripCard from '../General/TripCard';
 import '../../css/tripsPage/tripsPage.css';
 import TripsPageFilter from './TripsPageFilter';
-import { useHistory } from 'react-router-dom';
 import { FaSync } from 'react-icons/fa';
 import { AuthContext } from '../../providers/AuthContext';
 
@@ -13,12 +12,6 @@ const TripsPage = () => {
     const [ response, setResponse ] = useState(null);
     const [ user, setUser ] = useState({});
     const { currentUser } = useContext(AuthContext);
-
-    const history = useHistory();
-
-    const redirect = () => {
-        history.push("/trips/create");
-    }
     
     const getTripsCall = async () => {
         try {
@@ -143,7 +136,7 @@ const TripsPage = () => {
     return (
         <div className="tripsPage">
             <section className="tp-buttons">
-                <button onClick={redirect} className="tp-createTrip">CREATE A TRIP</button>
+                
                 <FaSync onClick={getTripsCall} className="tp-refresh" title="Refresh trips"/>
             </section>
 
