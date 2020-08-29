@@ -359,7 +359,7 @@ module.exports = {
 	getUserByEmail: async ( req, res, next ) => {
 		const { email } = req.params;
 		try {
-			const user = db.any(`
+			const user = await db.any(`
 				SELECT * FROM users
 				WHERE email=$1
 			`, email);

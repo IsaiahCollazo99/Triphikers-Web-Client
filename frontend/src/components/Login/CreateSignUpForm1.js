@@ -1,16 +1,29 @@
 import React, { useState } from "react";
 import '../../css/signUpIn/signUp1.css';
+import { getUserByEmail } from "../../util/apiCalls/getRequests";
 
 const CreateSignUpForm1 = (props) => {
 	const { email, password, confirmPassword, handlePageChange } = props;
 	const [ error, setError ] = useState(null);
+
+	const isEmailExisting = async () => {
+		try {
+			const data = await getUserByEmail(email.value);
+			return data.user;
+		} catch ( error ) {
+			console.log(error);
+		}
+	}
 	
-	const handleSubmit = (e) => {
+	const handleSubmit = async (e) => {
 		e.preventDefault()
 		if(password.value !== confirmPassword.value) {
-			setError(<p className="error">The passwords don't match</p>)
+			setError(<p className="error">The passwords don't match</p>);
+		} else if(await isEmailExisting()) {
+			setError(<p className="error">A user with that email exists.</p>);
 		} else {
-			handlePageChange(2)
+			console.log("here");
+			handlePageChange(2);
 		}
 	}
 	return (
