@@ -35,13 +35,13 @@ const CreateSignUpForm2 = (props) => {
 
 	const handleSubmit = async (e) => {
 		e.preventDefault();
-		if(isValidAge() && isValidUsername) {
+		if(await isUsernameExisting()) {
+			setError(<p className="error">User with that username exists.</p>);
+		} else if(isValidAge() && isValidUsername) {
 			handlePageChange(3)
-		} else if(await isUsernameExisting()) {
-
 		} else {
 			if(!isValidAge()) {
-				setError(<p className="error">Must be 18 years or older to sign up.</p>)
+				setError(<p className="error">Must be 18 years or older to sign up.</p>);
 			}
 		}
 	}
@@ -111,7 +111,6 @@ const CreateSignUpForm2 = (props) => {
 				value={username} 
 				onChange={onInputChange} 
 				placeholder="Username" 
-				pattern="[a-z0-9._%+-]" 
 				required 
 				
 				/>
