@@ -3,7 +3,7 @@ import { createClient } from 'pexels';
 import PopulateLocationSelect from "../helper/populateLocationSelect";
 import { useHistory } from "react-router-dom";
 import axios from "axios";
-import "../../css/LocationSearch.css";
+import "../../css/locations/LocationSearch.css";
 import { useLoadScript } from '@react-google-maps/api';
 import usePlacesAutocomplete, {
     getGeocode,
@@ -28,6 +28,7 @@ const client = createClient('563492ad6f9170000100000153f28b06267f4b548fc99fbb457
 const LocationSearch = (id) => {
     const [allCountries, setAllCountries] = useState([]);
     const [selectedCountry, setSelectedCountry] = useState('');
+    const [loadCityFilter, setLoadCityFilter] = useState(false);
     const history = useHistory();
     const locationRedirect = (country, city, lat, lng) => {
         history.push({
@@ -54,6 +55,7 @@ const LocationSearch = (id) => {
     const filterCity = (e) => {
         e.preventDefault();
         setSelectedCountry(e.target.value);
+        setLoadCityFilter(true);
     }
 
     const Search = ({ selectedCountry, locationRedirect}) => {
@@ -76,6 +78,7 @@ const LocationSearch = (id) => {
         }
 
         const handleSubmit = async  () => {
+            debugger
             if(value) {
                 try {
                     const res = await getGeocode({ address: value });
@@ -87,9 +90,6 @@ const LocationSearch = (id) => {
                         const splitLocation = value.split(" ");
                         resultCountry = splitLocation[value.length - 1];
                     }
-
-                    debugger;
-
                     locationRedirect(resultCountry, value, lat, lng)
                 } catch(error) {
                     console.log(error)
@@ -108,11 +108,10 @@ const LocationSearch = (id) => {
                     disabled={!ready} placeholder="Search A City"/>
                     <ComboboxPopover>
                         <ComboboxList>
-                            {status === "OK" && data.map(({description }, index) => <ComboboxOption key={index} value={description} className="searchResults"/>)}
+                            {status === "OK" && data.map(({description}, index) => <ComboboxOption key={index} value={description.split(",")[0]} className="searchResults"/> )}
                         </ComboboxList>
                     </ComboboxPopover>
                 </Combobox>
-
                 <button onClick={handleSubmit}>Go There</button>
             </div>
         )
@@ -128,9 +127,9 @@ const LocationSearch = (id) => {
     return (
         <div className="searchCity">
             <label className="selectedCountry">
-                <b>Select a Country: (optional filter)</b>
+                <b>Select a Country:</b>
                 <select className="selectedCountry" onChange={filterCity}>
-                    <option   ion hidden>Select A Country</option>
+                    <option ion="true" hidden>Select A Country</option>
                     <PopulateLocationSelect list={allCountries}/>
                 </select>
             </label>

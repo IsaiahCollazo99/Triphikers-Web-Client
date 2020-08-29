@@ -1,10 +1,6 @@
 import React, { useEffect, useState, useContext } from 'react';
-<<<<<<< HEAD
-import { useParams, Switch, Route } from 'react-router-dom';
 import Button from '@material-ui/core/Button';
-=======
 import { useParams, Switch, Route, useHistory } from 'react-router-dom'
->>>>>>> 2aacc5a8c84b431a495889683d9d0ab46b16bb2f
 import { getUserById, getUserTrips, getUserFriendRequests, getUserFriends } from '../../util/apiCalls/getRequests'
 import '../../css/userPage/userPage.css'
 import UserPageNav from './UserPageNav';
@@ -16,14 +12,11 @@ import { deleteFriendRequest } from '../../util/apiCalls/deleteRequests';
 import UserPageFriends from './UserPageFriends';
 import { ProtectedUserRoute } from '../../util/routesUtil';
 import UserPageRequests from './UserPageRequests';
-<<<<<<< HEAD
 import FacebookLogo from '../../images/f_logo_RGB-Blue_1024.png';
 import InstagramLogo from '../../images/glyph-logo_May2016.png';
 import TwitterLogo from '../../images/Twitter_Social_Icon_Circle_Color.png'
 import NewChat from '../../chatList/NewChat';
 import firebase from "../../firebase";
-=======
->>>>>>> 2aacc5a8c84b431a495889683d9d0ab46b16bb2f
 
 const UserPage = () => {
     const { id } = useParams();
@@ -32,15 +25,12 @@ const UserPage = () => {
     const [ userTrips, setUserTrips ] = useState([]);
     const [ friendRequests, setFriendRequests ] = useState([]);
     const [ friends, setFriends ] = useState([]);
-<<<<<<< HEAD
     const [newChatFormVisible, setNewChatFormVisible] = useState(false);
-=======
     const history = useHistory();
 
     const redirect = () => {
         history.push("/user/edit");
     }
->>>>>>> 2aacc5a8c84b431a495889683d9d0ab46b16bb2f
 
     const getUser = async () => {
         try {
