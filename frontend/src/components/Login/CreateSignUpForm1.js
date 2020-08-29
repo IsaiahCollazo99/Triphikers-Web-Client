@@ -22,7 +22,6 @@ const CreateSignUpForm1 = (props) => {
 		} else if(await isEmailExisting()) {
 			setError(<p className="error">A user with that email exists.</p>);
 		} else {
-			console.log("here");
 			handlePageChange(2);
 		}
 	}

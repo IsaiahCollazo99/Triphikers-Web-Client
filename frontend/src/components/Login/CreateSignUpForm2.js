@@ -1,9 +1,10 @@
 import React, { useState } from "react";
+import { getUserByUsername } from "../../util/apiCalls/getRequests";
 
 
 const CreateSignUpForm2 = (props) => {
-	const { firstName, lastName, birthday, gender, handlePageChange, username, user,
-	validUsername, setValidUsername } = props;
+	const { firstName, lastName, birthday, gender, handlePageChange, user,
+	username, setUsername } = props;
 	const [ isValidUsername, setIsValidUsername ] = useState(true);
 	const [ error, setError ] = useState(null);
 	
@@ -23,12 +24,25 @@ const CreateSignUpForm2 = (props) => {
 		}
 	}
 
-	const handleSubmit = (e) => {
+	const isUsernameExisting = async () => {
+		try {
+			const data = await getUserByUsername(username);
+			return data.user;
+		} catch ( error ) {
+			console.log(error);
+		}
+	}
+
+	const handleSubmit = async (e) => {
 		e.preventDefault();
-		if(isValidAge()) {
+		if(isValidAge() && isValidUsername) {
 			handlePageChange(3)
+		} else if(await isUsernameExisting()) {
+
 		} else {
-			setError(<p className="error">Must be 18 years or older to sign up.</p>)
+			if(!isValidAge()) {
+				setError(<p className="error">Must be 18 years or older to sign up.</p>)
+			}
 		}
 	}
 
@@ -41,7 +55,7 @@ const CreateSignUpForm2 = (props) => {
 		} else {
 			setIsValidUsername(true);
 		}
-		setValidUsername(inputValue);
+		setUsername(inputValue);
 	}
 
 	const displayBackButton = () => {
@@ -66,7 +80,7 @@ const CreateSignUpForm2 = (props) => {
 
 	const today = `${yyyy}-${mm}-${dd}`;
 
-	const displayError = isValidUsername ? "none" : "inline-block";
+	const displayUsernameError = isValidUsername ? "none" : "inline-block";
 
 	return (
 		<>
@@ -88,11 +102,13 @@ const CreateSignUpForm2 = (props) => {
 			<input type="date" name="birthday" {...birthday} max={today} min={"1900-01-01"} autoComplete="on"  required />
 
 			<label htmlFor="username">Username: </label>
-			<p style={{display: displayError}} className="error">Username contains an invalid character</p>
+			<p style={{display: displayUsernameError}} className="error">
+				Username contains an invalid character
+			</p>
 			<input 
 				type="text" 
 				name="username" 
-				value={validUsername} 
+				value={username} 
 				onChange={onInputChange} 
 				placeholder="Username" 
 				pattern="[a-z0-9._%+-]" 
