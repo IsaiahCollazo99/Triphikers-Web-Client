@@ -98,17 +98,19 @@ const LocationSearch = (id) => {
         
         return(
             <div className="searchContainer">
-                {error ? <p className="error">{error}</p> : null}
-                <label htmlFor="searchInput"><b>Select a City: </b></label>
-                <Combobox onSelect={handleSelect} >
-                    <ComboboxInput className="searchInput" value={value} onChange={handleInput} 
-                    disabled={!ready} disabled={selectedCountry === ''} placeholder="Search A City"/>
-                    <ComboboxPopover>
-                        <ComboboxList>
-                            {status === "OK" && data.map(({description}, index) => <ComboboxOption key={index} value={description.split(",")[0]} className="searchResults"/> )}
-                        </ComboboxList>
-                    </ComboboxPopover>
-                </Combobox>
+                <div className="searchResults">
+                    {error ? <p className="error">{error}</p> : null}
+                    <label htmlFor="searchInput"><b>Select a City: </b></label>
+                    <Combobox onSelect={handleSelect} >
+                        <ComboboxInput className="searchInput" value={value} onChange={handleInput} 
+                        disabled={!ready} disabled={selectedCountry === ''} placeholder="Search A City"/>
+                        <ComboboxPopover>
+                            <ComboboxList>
+                                {status === "OK" && data.map(({description}, index) => <ComboboxOption key={index} value={description.split(",")[0]} className="searchResults"/> )}
+                            </ComboboxList>
+                        </ComboboxPopover>
+                    </Combobox>
+                </div>
                 <button onClick={handleSubmit}>Go There</button>
             </div>
         )
