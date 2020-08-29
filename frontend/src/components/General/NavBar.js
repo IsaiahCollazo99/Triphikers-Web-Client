@@ -22,14 +22,18 @@ const NavBar = () => {
 		}
 	};
 
-	const getFirstName = async () => {
-		if (currentUser) {
-			let data = await getUserById(currentUser.id);
-			while(!data) {
-				data = await getUserById(currentUser.id);
+	const getFirstName = async ( backOffTime = 1 ) => {
+		try {
+			if (currentUser) {
+				let data = await getUserById(currentUser.id);
+				setFirstName(data.user.first_name);
 			}
-			setFirstName(data.user.first_name);
+		} catch ( error ) {
+			setTimeout(() => {
+				getFirstName(backOffTime * 2);
+			}, backOffTime * 1000);
 		}
+
 	};
 
 	const displayNavBar = () => {

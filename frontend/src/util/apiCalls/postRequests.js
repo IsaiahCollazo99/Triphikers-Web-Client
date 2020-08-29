@@ -54,11 +54,12 @@ export const createUser = async (userObj) => {
             firstName: { value: first_name },
             lastName: { value: last_name },
             birthday: { value: birthday },
-            gender: { value: gender},
+            gender: { value: gender },
             bio: { value: bio },
             language: { value: language },
             country: { value: country_of_origin },
             url: profile_picture,
+            username,
             id
           } = userObj
       
@@ -75,6 +76,7 @@ export const createUser = async (userObj) => {
               age,
               profile_picture,
               gender,
+              username,
               bio,
               country_of_origin,
               language,

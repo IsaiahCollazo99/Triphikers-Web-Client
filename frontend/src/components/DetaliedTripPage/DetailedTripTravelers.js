@@ -24,7 +24,7 @@ const DetailedTripTravelers = ({ trip = {} }) => {
         getTravelersCall();
     }, [])
 
-    const travelersList = travelers.map((user) => {
+    let travelersList = travelers.map((user) => {
         return (
             <article className="travelersCard" key={user.id}>
                 <section className="tc-info">
@@ -34,6 +34,10 @@ const DetailedTripTravelers = ({ trip = {} }) => {
             </article>
         )
     })
+
+    if(!travelersList.length) {
+        travelersList = <p className="error">There are no travelers at this time.</p>
+    }
 
     return (
         <section className="dt-travelers">

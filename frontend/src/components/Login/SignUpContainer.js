@@ -12,6 +12,7 @@ import '../../css/signUpIn/signUp.css';
 const CreateSignUpContainer = () => {
 	const [ error, setError ] = useState(null);
 	const [ page, setPage ] = useState(1);
+	const [ username, setUsername ] = useState("");
 	const email = useInput("");
 	const password = useInput("");
 	const confirmPassword = useInput("");
@@ -44,6 +45,8 @@ const CreateSignUpContainer = () => {
 	const pageTwo = {
 		firstName,
 		lastName,
+		username,
+		setUsername,
 		birthday,
 		gender,
 		user
@@ -76,7 +79,7 @@ const CreateSignUpContainer = () => {
 			if(user) {
 				firebaseUser = user;
 			} else {
-				const { user: signUpRes } = await signUp(email.value, password.value);
+				const signUpRes = await signUp(email.value, password.value, username);
 				firebaseUser = signUpRes;
 			}
 
