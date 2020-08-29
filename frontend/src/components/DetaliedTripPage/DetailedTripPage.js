@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useParams, Route, Switch, Link } from 'react-router-dom';
-import { getTripById, getTripRequests, getTripTravelers } from '../../util/apiCalls/getRequests';
+import { getTripById } from '../../util/apiCalls/getRequests';
 import DetailedTripNav from './DetailedTripNav';
 import DetailedTripInfo from './DetailedTripInfo';
 import DetailedTripRequests from './DetailedTripRequests';
@@ -14,8 +14,6 @@ import TwitterLogo from '../../images/Twitter_Social_Icon_Circle_Color.png'
 const DetailedTripPage = () => {
     const { id } = useParams();
     const [ trip, setTrip ] = useState({});
-    const [ requests, setRequests ] = useState([]);
-    const [ travelers, setTravelers ] = useState([]);
 
     const getTripCall = async () => {
         try {
@@ -24,30 +22,6 @@ const DetailedTripPage = () => {
         } catch (error) {
             console.log(error);
         }
-    }
-
-    const getRequestsCall = async () => {
-        const data = await getTripRequests(trip.id)
-        if(data.requests) {
-            setRequests(data.requests);
-        } else {
-            setRequests([]);
-        }
-    }
-
-    const getTravelersCall = async () => {
-        const data = await getTripTravelers(trip.id);
-        if(data.travelers) {
-            setTravelers(data.travelers);
-        } else {
-            setTravelers([]);
-        }
-    }
-
-    const refreshFuncs = {
-        getRequestsCall,
-        getTravelersCall,
-        getTripCall
     }
 
     useEffect(() => {
@@ -119,11 +93,11 @@ const DetailedTripPage = () => {
                 <DetailedTripNav trip={trip}/>
                 <Switch>
                     <Route exact path={"/trips/:tripId/"}>
-                        <DetailedTripInfo trip={trip} {...refreshFuncs} requests={requests} travelers={travelers}/>
+                        <DetailedTripInfo trip={trip} getTripCall={getTripCall} />
                     </Route>
     
                     <Route exact path={"/trips/:tripId/travelers"}>
-                        <DetailedTripTravelers trip={trip} travelers={travelers}/>
+                        <DetailedTripTravelers trip={trip} />
                     </Route>
                     
                     <ProtectedUserRoute exact path={"/trips/:tripId/requests"} trip={trip}>
