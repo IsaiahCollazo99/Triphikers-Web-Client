@@ -38,7 +38,7 @@ const TripsPageAdvanced = ({ isHidden, filters }) => {
         <section className={`tpf-advanced ${isHidden}`}>
             <FormControl>
                 <InputLabel shrink id="tpf-budget">Budget</InputLabel>
-                <Select labelId="tpf-budget" {...budget}>
+                <Select labelId="tpf-budget" {...budget} color="secondary" displayEmpty>
                     <MenuItem value="" disabled>Select a Budget</MenuItem>
                     <MenuItem value="none"><em>No preference</em></MenuItem>
                     <MenuItem value="Budget ($0 - $999)">Budget ($0 - $999)</MenuItem>
@@ -49,7 +49,7 @@ const TripsPageAdvanced = ({ isHidden, filters }) => {
 
             <FormControl>
                 <InputLabel shrink id="tpf-tripType">Trip Type</InputLabel>
-                <Select labelId="tpf-tripType" {...tripType}>
+                <Select labelId="tpf-tripType" {...tripType} displayEmpty>
                     <MenuItem value="" disabled>Select a Trip Type</MenuItem>
                     <MenuItem value="none"><em>No preference</em></MenuItem>
                     <MenuItem value="Explore Cities">Explore Cities</MenuItem>
@@ -62,7 +62,7 @@ const TripsPageAdvanced = ({ isHidden, filters }) => {
 
             <FormControl>
                 <InputLabel shrink id="tpf-splitCosts">Split Costs</InputLabel>
-                <Select labelId="tpf-splitCosts" {...splitCosts}>
+                <Select labelId="tpf-splitCosts" {...splitCosts} displayEmpty>
                     <MenuItem value="" disabled>Split Costs?</MenuItem>
                     <MenuItem value="none"><em>No preference</em></MenuItem>
                     <MenuItem value="Yes">Yes</MenuItem>
@@ -72,7 +72,7 @@ const TripsPageAdvanced = ({ isHidden, filters }) => {
 
             <FormControl>
                 <InputLabel shrink id="tpf-groupType">Group Type</InputLabel>
-                <Select labelId="tpf-groupType" {...groupType}>
+                <Select labelId="tpf-groupType" {...groupType} displayEmpty>
                     <MenuItem value="" disabled>Select a Group Type</MenuItem>
                     <MenuItem value="none"><em>No preference</em></MenuItem>
                     <MenuItem value="Male">Male</MenuItem>
@@ -84,7 +84,7 @@ const TripsPageAdvanced = ({ isHidden, filters }) => {
 
             <FormControl>
                 <InputLabel shrink id="tpf-Itinerary">Itinerary</InputLabel>
-                <Select labelId="tpf-Itinerary" {...itinerary}>
+                <Select labelId="tpf-Itinerary" {...itinerary} displayEmpty>
                     <MenuItem value="" disabled>Itinerary</MenuItem>
                     <MenuItem value="none"><em>No preference</em></MenuItem>
                     <MenuItem value="Set">Set</MenuItem>
@@ -95,7 +95,7 @@ const TripsPageAdvanced = ({ isHidden, filters }) => {
 
             <FormControl>
                 <InputLabel shrink id="tpf-accommodation">Accommodation</InputLabel>
-                <Select {...accommodation} labelId="tpf-accommodation">
+                <Select {...accommodation} labelId="tpf-accommodation" displayEmpty>
                     <MenuItem value="" disabled>Select an Accommodation</MenuItem>
                     <MenuItem value="none"><em>No Preference</em></MenuItem>
                     <MenuItem value="Camping">Camping</MenuItem>

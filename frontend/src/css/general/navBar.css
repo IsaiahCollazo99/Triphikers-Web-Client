@@ -4,12 +4,9 @@
     flex-direction: row;
     align-items: center;
     justify-content: space-between;
-    color: #FF9506;
+    color: #FD6A02;
     padding: 1em 0.75em;
     background-color: #272A33;
-    position: fixed;
-    top: 0;
-    z-index: 3;
 }
 
 .mainHeader {
@@ -35,11 +32,11 @@
 }
 
 .mainNav-left a {
-    color: #ff8f00;
+    color: #e45f00;
 }
 
 .mainNav-left a:hover {
-    color: #ff8f00;
+    color: #e45f00;
 }
 
 .mh-right {
@@ -71,31 +68,18 @@
     text-decoration: none;
 }
 
-.mhp-right a:hover:not(.active) {
+.mh-right a:hover:not(.active) {
     background-color: #d4D4d4;
+    color: #0091ea;
+}
+
+.mainHeader .active {
     color: black;
     text-decoration: underline;
 }
 
-.mainHeader .active {
-    color: #C66E00;
-}
-
-.nb-createTrip {
-    padding: .5em .25em;
-    width: 23%;
-    border-radius: 0.75em;
-    font-weight: bold;
-    font-family: 'Roboto';
-    font-size: 0.75em;
-    background-color: #FF9506;
-    border: 2px solid #272A33;
-    transition: 0.3s ease-in-out;
-}
-
-.nb-createTrip:hover {
-    background-color: #e08002;
-    cursor: pointer;
+.mainHeader .active:hover {
+    text-decoration: underline;
 }
 
 .dropdown-menu.show {
@@ -108,5 +92,6 @@
 }
 
 .dropdown-menu.show a:hover {
-    color: #b26400;
+    color: #0091ea;
+    background-color: #272A33;
 }

@@ -111,7 +111,7 @@ const TripsPageFilter = ({ filterTrips }) => {
                 </Button>
             </form>
 
-            <Button onClick={showFilters} variant="standard" color="secondary" className="tpf-show">
+            <Button onClick={showFilters} variant="text" className="tpf-show">
                 {isShown}
             </Button>
 

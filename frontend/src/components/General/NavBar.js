@@ -6,17 +6,28 @@ import { AuthContext } from "../../providers/AuthContext";
 import { getUserById } from "../../util/apiCalls/getRequests";
 import Button from '@material-ui/core/Button';
 import AppBar from '@material-ui/core/AppBar';
+import { useScrollTrigger } from '@material-ui/core';
 import "bootstrap/dist/css/bootstrap.min.css";
 
 const style = {
 	'backgroundColor': '#f3f3f3',
 	'display': 'flex',
 	'flexDirection': 'row',
-	'boxShadow': 'none',
 	'justifyContent': 'space-between'
 }
 
-const NavBar = () => {
+const ElevationScroll = ({ children }) => {
+	const trigger = useScrollTrigger({
+	  disableHysteresis: true,
+	  threshold: 0
+	});
+  
+	return React.cloneElement(children, {
+	  elevation: trigger ? 4 : 0,
+	});
+}
+
+const NavBar = ( props ) => {
 	const { currentUser } = useContext(AuthContext);
 	const history = useHistory();
 
@@ -99,16 +110,21 @@ const NavBar = () => {
 	}, [currentUser]);
 
 	return (
+		<ElevationScroll {...props}>
 		<AppBar style={style} className="mainHeader">
 			<section className="mainNav-left" style={{width: '20%'}}>
 				{/* Logo Here */}
 				<h1 style={{width: 'fit-content'}}>
-					<Link to={currentUser ? "/trips" : "/"} style={{width: 'fit-content'}}>TRIPHIKERS</Link>
+					<Link to={currentUser ? "/trips" : "/"} style={{width: 'fit-content'}}>
+						TRIPHIKERS
+					</Link>
 				</h1>
 			</section>
 
 			{displayNavBar()}
 		</AppBar>
+		</ElevationScroll>
+		
 	);
 };
 

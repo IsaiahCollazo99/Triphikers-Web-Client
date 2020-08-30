@@ -7,6 +7,10 @@
     align-items: center;
 }
 
+.tp-filterContainer .MuiFormLabel-root {
+    color: black;
+}
+
 .tp-filter {
     width: 60%;
     display: flex;
@@ -100,4 +104,8 @@
     transition: 0.3s ease-in-out;
     border-radius: 0.5em;
     justify-self: center;
+}
+
+.tpf-advanced :disabled {
+    color: #33a7ee;
 }

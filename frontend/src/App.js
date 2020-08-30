@@ -22,6 +22,8 @@ function App() {
 		<div className="App">
 		<AuthProvider>
 			<NavBar />
+
+			<div id="back-to-top-anchor"></div>
 			
 			<Switch>
 				<AuthRoute exact path="/">

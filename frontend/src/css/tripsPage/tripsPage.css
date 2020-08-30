@@ -27,6 +27,9 @@
 }
 
 .tp-refresh {
+    position: absolute;
+    right: 15%;
+    top: 19.5%;
     justify-self: flex-end;
     color: #272A33;
     font-size: 2.25em;

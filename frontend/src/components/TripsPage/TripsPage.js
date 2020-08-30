@@ -5,8 +5,44 @@ import '../../css/tripsPage/tripsPage.css';
 import TripsPageFilter from './TripsPageFilter';
 import { FaSync } from 'react-icons/fa';
 import { AuthContext } from '../../providers/AuthContext';
+import { useScrollTrigger, Zoom, Fab } from '@material-ui/core';
+import { KeyboardArrowUp } from '@material-ui/icons';
+import { makeStyles } from '@material-ui/core/styles';
 
-const TripsPage = () => {
+const useStyles = makeStyles(theme => ({
+	root: {
+        position: 'fixed',
+        bottom: theme.spacing(2),
+        right: theme.spacing(2),
+	},
+}));
+
+const ScrollToTop = ({ children, handleSearch }) => {
+	const classes = useStyles();
+
+	const trigger = useScrollTrigger({
+		disableHysteresis: true,
+		threshold: 100,
+	});
+
+	const handleClick = ( e ) => {
+		const anchor = document.querySelector('#back-to-top-anchor');
+	
+		if(anchor) {
+		  anchor.scrollIntoView({ behavior: 'smooth', block: 'center' });
+		}
+	};
+	
+	return (
+		<Zoom in={trigger}>
+			<div onClick={handleClick} role="presentation" className={classes.root}>
+				{children}
+			</div>
+		</Zoom>
+	);
+}
+
+const TripsPage = ( props ) => {
     const [ trips, setTrips ] = useState([]);
     const [ filteredTrips, setFilteredTrips ] = useState([]);
     const [ response, setResponse ] = useState(null);
@@ -135,16 +171,22 @@ const TripsPage = () => {
     
     return (
         <div className="tripsPage">
-            {/* <FaSync onClick={getTripsCall} className="tp-refresh" title="Refresh trips"/> */}
 
             <section className="tp-feedManager">
                 <TripsPageFilter filterTrips={filterTrips}/>
+                <FaSync onClick={getTripsCall} className="tp-refresh" title="Refresh trips"/>
             </section>
 
             <section className="tripsPageFeed">
                 {response}
                 {tripsList}
             </section>
+
+            <ScrollToTop {...props}>
+            <Fab color="secondary" size="small" aria-label="scroll back to top">
+                <KeyboardArrowUp />
+            </Fab>
+            </ScrollToTop>
         </div>
     )
 }
