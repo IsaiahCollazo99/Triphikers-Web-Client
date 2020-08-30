@@ -1,11 +1,12 @@
 import React, { useContext, useEffect, useState } from 'react';
 import { AuthContext } from '../../providers/AuthContext';
 import { getUserById } from '../../util/apiCalls/getRequests';
+import { InputLabel, Select, MenuItem, FormHelperText, FormControl } from '@material-ui/core';
 
 const TripsPageAdvanced = ({ isHidden, filters }) => {
     const { currentUser } = useContext(AuthContext);
     const [ userGender, setUserGender ] = useState(null);
-    const { dateFrom, dateTo, budget, tripType, splitCosts, groupType } = filters;
+    const { budget, tripType, splitCosts, groupType, itinerary, accommodation } = filters;
 
     const getUserGender = async () => {
         try {
@@ -23,11 +24,11 @@ const TripsPageAdvanced = ({ isHidden, filters }) => {
 
     const getGroupTypeOptions = () => {
         if(userGender === 'Male') {
-            return <option value="Only Men">Men Only</option>
+            return <MenuItem value="Only Men">Men Only</MenuItem>
         } else if(userGender === 'Female') {
-            return <option value="Only Women">Women Only</option>
+            return <MenuItem value="Only Women">Women Only</MenuItem>
         } else if (userGender === 'Non-Binary') {
-            return <option value="Only Non-Binary">Non-Binary Only</option>
+            return <MenuItem value="Only Non-Binary">Non-Binary Only</MenuItem>
         } else {
             return null;
         }
@@ -35,63 +36,76 @@ const TripsPageAdvanced = ({ isHidden, filters }) => {
     
     return (
         <section className={`tpf-advanced ${isHidden}`}>
-            <section className="tpf-dates">
-                <label>
-                    <p>Date From: </p>
-                    <input type="date" {...dateFrom} />
-                </label>
+            <FormControl>
+                <InputLabel shrink id="tpf-budget">Budget</InputLabel>
+                <Select labelId="tpf-budget" {...budget}>
+                    <MenuItem value="" disabled>Select a Budget</MenuItem>
+                    <MenuItem value="none"><em>No preference</em></MenuItem>
+                    <MenuItem value="Budget ($0 - $999)">Budget ($0 - $999)</MenuItem>
+                    <MenuItem value="Average ($1000 - $1999)">Average ($1000 - $1999)</MenuItem>
+                    <MenuItem value="Luxury ($2000+)">Luxury ($2000+)</MenuItem>
+                </Select>
+            </FormControl>
 
-                <label>
-                    <p>Date To: </p>
-                    <input type="date" {...dateTo} />
-                </label>
-            </section>
+            <FormControl>
+                <InputLabel shrink id="tpf-tripType">Trip Type</InputLabel>
+                <Select labelId="tpf-tripType" {...tripType}>
+                    <MenuItem value="" disabled>Select a Trip Type</MenuItem>
+                    <MenuItem value="none"><em>No preference</em></MenuItem>
+                    <MenuItem value="Explore Cities">Explore Cities</MenuItem>
+                    <MenuItem value="Airport Layovers">Airport Layovers</MenuItem>
+                    <MenuItem value="Road Trip">Road Trip</MenuItem>
+                    <MenuItem value="Backpaking">Backpaking</MenuItem>
+                    <MenuItem value="Other">Other</MenuItem>
+                </Select>
+            </FormControl>
 
-            <label>
-                <p>Budget: </p>
-                <select {...budget}>
-                    <option value="" disabled>Select a Budget</option>
-                    <option value="none">No preference</option>
-                    <option value="Budget ($0 - $999)">Budget ($0 - $999)</option>
-                    <option value="Average ($1000 - $1999)">Average ($1000 - $1999)</option>
-                    <option value="Luxury ($2000+)">Luxury ($2000+)</option>
-                </select>
-            </label>
+            <FormControl>
+                <InputLabel shrink id="tpf-splitCosts">Split Costs</InputLabel>
+                <Select labelId="tpf-splitCosts" {...splitCosts}>
+                    <MenuItem value="" disabled>Split Costs?</MenuItem>
+                    <MenuItem value="none"><em>No preference</em></MenuItem>
+                    <MenuItem value="Yes">Yes</MenuItem>
+                    <MenuItem value="No">No</MenuItem>
+                </Select>
+            </FormControl>
 
-            <label>
-                <p>Trip Type: </p>
-                <select {...tripType}>
-                    <option value="" disabled>Select a Trip Type</option>
-                    <option value="none">No preference</option>
-                    <option value="Explore Cities">Explore Cities</option>
-                    <option value="Airport Layovers">Airport Layovers</option>
-                    <option value="Road Trip">Road Trip</option>
-                    <option value="Backpacking">Backpacking</option>
-                    <option value="Other">Other</option>
-                </select>
-            </label>
-
-            <label>
-                <p>Split Costs: </p>
-                <select {...splitCosts}>
-                    <option value="" disabled>Split Costs?</option>
-                    <option value="none">No preference</option>
-                    <option value="Yes">Yes</option>
-                    <option value="No">No</option>
-                </select>
-            </label>
-
-            <label>
-                <p>Group Type: </p>
-                <select {...groupType}>
-                    <option value="" disabled>Select a Group Type</option>
-                    <option value="none">No preference</option>
-                    <option value="Male">Male</option>
-                    <option value="Female">Female</option>
+            <FormControl>
+                <InputLabel shrink id="tpf-groupType">Group Type</InputLabel>
+                <Select labelId="tpf-groupType" {...groupType}>
+                    <MenuItem value="" disabled>Select a Group Type</MenuItem>
+                    <MenuItem value="none"><em>No preference</em></MenuItem>
+                    <MenuItem value="Male">Male</MenuItem>
+                    <MenuItem value="Female">Female</MenuItem>
                     {getGroupTypeOptions()}
-                    <option value="Any">Any</option>
-                </select>
-            </label>
+                    <MenuItem value="Any">Any</MenuItem>
+                </Select>
+            </FormControl>
+
+            <FormControl>
+                <InputLabel shrink id="tpf-Itinerary">Itinerary</InputLabel>
+                <Select labelId="tpf-Itinerary" {...itinerary}>
+                    <MenuItem value="" disabled>Itinerary</MenuItem>
+                    <MenuItem value="none"><em>No preference</em></MenuItem>
+                    <MenuItem value="Set">Set</MenuItem>
+                    <MenuItem value="Flexible">Flexible</MenuItem>
+                    <MenuItem value="None">None</MenuItem>
+                </Select>
+            </FormControl>
+
+            <FormControl>
+                <InputLabel shrink id="tpf-accommodation">Accommodation</InputLabel>
+                <Select {...accommodation} labelId="tpf-accommodation">
+                    <MenuItem value="" disabled>Select an Accommodation</MenuItem>
+                    <MenuItem value="none"><em>No Preference</em></MenuItem>
+                    <MenuItem value="Camping">Camping</MenuItem>
+                    <MenuItem value="Couchsurf">CouchSurf</MenuItem>
+                    <MenuItem value="Home">Home</MenuItem>
+                    <MenuItem value="Hotel">Hotel</MenuItem>
+                    <MenuItem value="Hostel">Hostel</MenuItem>
+                    <MenuItem value="Other">Other</MenuItem>
+                </Select>
+            </FormControl>
         </section>
     )
 }

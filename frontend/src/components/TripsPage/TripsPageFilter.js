@@ -15,9 +15,11 @@ const TripsPageFilter = ({ filterTrips }) => {
     const tripType = useInput("");
     const splitCosts = useInput("");
     const groupType = useInput("");
+    const itinerary = useInput("");
+    const accommodation = useInput("");
 
     const filters = {
-        search, dateFrom, dateTo, budget, tripType, splitCosts, groupType
+        search, dateFrom, dateTo, budget, tripType, splitCosts, groupType, itinerary, accommodation
     }
 
     const filterValues = {
@@ -27,7 +29,9 @@ const TripsPageFilter = ({ filterTrips }) => {
         budget: budget.value, 
         trip_type: tripType.value, 
         split_costs: splitCosts.value, 
-        group_type: groupType.value
+        group_type: groupType.value,
+        itinerary: itinerary.value,
+        accommodation: accommodation.value
     }
     
     const handleSubmit = ( e ) => {
@@ -101,12 +105,13 @@ const TripsPageFilter = ({ filterTrips }) => {
                     variant="contained" 
                     style={{'fontSize': '32px'}}
                     disableElevation
+                    onClick={handleSubmit}
                 >
                     <FaSearch />
                 </Button>
             </form>
 
-            <Button onClick={showFilters} variant="outlined" color="secondary" className="tpf-show">
+            <Button onClick={showFilters} variant="standard" color="secondary" className="tpf-show">
                 {isShown}
             </Button>
 

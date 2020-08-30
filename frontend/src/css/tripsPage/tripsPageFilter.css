@@ -82,7 +82,7 @@
     justify-items: center;
 }
 
-.tpf-advanced label {
+.tpf-advanced .MuiFormControl-root {
     margin-top: 10px;
     width: 90%;
 }
