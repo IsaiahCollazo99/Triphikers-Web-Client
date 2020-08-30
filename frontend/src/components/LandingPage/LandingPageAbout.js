@@ -1,6 +1,6 @@
 import React from 'react';
-// import LandingPageLatest from "./LandingPageLatest";
 import '../../css/landingPage/landingPageAbout.css';
+import LandingPageSearch from './LandingPageSearch';
 
 const LandingPageAbout = ({ redirect }) => {
     return (
@@ -8,7 +8,7 @@ const LandingPageAbout = ({ redirect }) => {
 
             <h1>FIND YOUR TRAVEL PARTNERS FOR LIFE. FOR FREE</h1>
 
-            {/* <LandingPageLatest /> */}
+            <LandingPageSearch/>
 
 			<button onClick={redirect} className="lp-orange">Create Your Trip</button>
 

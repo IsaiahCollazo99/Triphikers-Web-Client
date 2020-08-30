@@ -1,9 +1,7 @@
 import React, { useState, useEffect} from "react";
-// import { createClient } from 'pexels';
 import PopulateLocationSelect from "../helper/populateLocationSelect";
-import { useHistory } from "react-router-dom";
+import "../../css/landingPage/landingPageSearch.css";
 import axios from "axios";
-import "../../css/locations/LocationSearch.css";
 import { useLoadScript } from '@react-google-maps/api';
 import usePlacesAutocomplete, {
     getGeocode,
@@ -23,19 +21,11 @@ const {
     REACT_APP_GOOGLEAPIKEY
 } = process.env;
 const libraries = ["places"];
-// const client = createClient('563492ad6f9170000100000153f28b06267f4b548fc99fbb457455db');
 
-const LocationSearch = (id) => {
+const LandingPageSearch = (id) => {
     const [allCountries, setAllCountries] = useState([]);
     const [selectedCountry, setSelectedCountry] = useState('');
     const [loadCityFilter, setLoadCityFilter] = useState(false);
-    const history = useHistory();
-    const locationRedirect = (country, city, lat, lng) => {
-        history.push({
-            pathname: `/location/${country}/${city}/hotspots`,
-            state: { city: city, country: selectedCountry, coordinates: {lat: lat, lng: lng} }}
-        );
-    }
 
 
     const {isLoaded, loadError} = useLoadScript({
@@ -58,7 +48,7 @@ const LocationSearch = (id) => {
         setLoadCityFilter(true);
     }
 
-    const Search = ({ selectedCountry, locationRedirect}) => {
+    const Search = ({ selectedCountry }) => {
         const {ready, value, suggestions: {status, data}, setValue, clearSuggestions} = usePlacesAutocomplete({
             requestOptions: {
                 types: ['(cities)'],
@@ -82,7 +72,6 @@ const LocationSearch = (id) => {
                 try {
                     const res = await getGeocode({ address: value });
                     const { lat, lng } = await getLatLng(res[0]);
-                    locationRedirect(selectedCountry, value, lat, lng)
                 } catch(error) {
                     console.log(error)
                 }
@@ -92,12 +81,12 @@ const LocationSearch = (id) => {
         }
         
         return(
-            <div className="searchContainer">
-                <div className="searchResults">
+            <div className="landingSearchContainer">
+                <div className="landingSearchResults">
                     {error ? <p className="error">{error}</p> : null}
-                    <label htmlFor="searchInput"><b>Select a City: </b></label>
+                    <label htmlFor="landingSearchInput"><b>Select a City: </b></label>
                     <Combobox onSelect={handleSelect} >
-                        <ComboboxInput className="searchInput" value={value} onChange={handleInput} 
+                        <ComboboxInput className="landingSearchInput" value={value} onChange={handleInput} 
                         disabled={!ready} disabled={selectedCountry === ''} placeholder="Search A City"/>
                         <ComboboxPopover>
                             <ComboboxList>
@@ -106,7 +95,6 @@ const LocationSearch = (id) => {
                         </ComboboxPopover>
                     </Combobox>
                 </div>
-                <button onClick={handleSubmit}>Go There</button>
             </div>
         )
     }
@@ -119,17 +107,17 @@ const LocationSearch = (id) => {
     if(!isLoaded) return "Loading maps";
 
     return (
-        <div className="searchCity">
-            <label className="selectedCountry">
+        <div className="landingSearchCity">
+            <label className="landingSearchCountry">
                 <b>Select a Country:</b>
-                <select className="selectedCountry" onChange={filterCity}>
+                <select className="landingSearchCountry" onChange={filterCity}>
                     <option ion="true" hidden>Select A Country</option>
                     <PopulateLocationSelect list={allCountries}/>
                 </select>
             </label>
-            {isLoaded !== '' ? <Search selectedCountry={selectedCountry} locationRedirect={locationRedirect}/> : null }
+            {isLoaded !== '' ? <Search selectedCountry={selectedCountry}/> : null }
         </div>
     )
 }
 
-export default LocationSearch;
+export default LandingPageSearch;
