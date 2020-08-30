@@ -21,11 +21,9 @@ function App() {
 	return (
 		<div className="App">
 		<AuthProvider>
-				<NavBar />
-				
-				<Switch>
-					
-
+			<NavBar />
+			
+			<Switch>
 				<AuthRoute exact path="/">
 					<LandingPage />
 				</AuthRoute>
@@ -74,7 +72,7 @@ function App() {
 					<LocationPage/>
 				</Route>
 			</Switch>
-			</AuthProvider>
+		</AuthProvider>
 		</div>
 	);
 }

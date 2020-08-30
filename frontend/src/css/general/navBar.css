@@ -1,4 +1,4 @@
-.mainNav {
+.mainHeader {
     width: 100%;
     display: flex;
     flex-direction: row;
@@ -12,17 +12,17 @@
     z-index: 3;
 }
 
-.mainNav {
+.mainHeader {
     display: flex;
     align-items: center;
 }
 
-.mainNav h1 {
+.mainHeader h1 {
     font-size: 3em;
     font-family: 'Prompt';
 }
 
-.mainNav h1:hover {
+.mainHeader h1:hover {
     cursor: pointer;
 }
 
@@ -47,7 +47,7 @@
 }
 
 .mainNav-right a {
-    color: white;
+    color: black;
     text-decoration: none;
     font-family: 'Roboto';
     font-weight: 500;
@@ -61,7 +61,7 @@
     color: #FF9E00;
 }
 
-.mainNav .active {
+.mainHeader .active {
     color: #157CFF;
 }
 
@@ -107,5 +107,5 @@
 
 .dropdown-menu.show {
     display: block;
-    background: #272A33;
+    background: #f3f3f3;
 }

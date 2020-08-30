@@ -4,7 +4,18 @@ import "../../css/general/navBar.css";
 import { logout } from "../../util/firebaseFunction";
 import { AuthContext } from "../../providers/AuthContext";
 import { getUserById } from "../../util/apiCalls/getRequests";
+import Button from '@material-ui/core/Button';
+import AppBar from '@material-ui/core/AppBar';
 import "bootstrap/dist/css/bootstrap.min.css";
+
+const style = {
+	'background-color': '#f3f3f3',
+	'display': 'flex',
+	'flex-direction': 'row',
+	'box-shadow': 'none',
+	'justify-content': 'space-between'
+}
+
 const NavBar = () => {
 	const { currentUser } = useContext(AuthContext);
 	const history = useHistory();
@@ -33,7 +44,10 @@ const NavBar = () => {
 		if (currentUser) {
 			return (
 				<section className="mainNav-right">
-					<button onClick={redirectCaT} className="nb-createTrip">CREATE A TRIP</button>
+					{/* <button onClick={redirectCaT} className="nb-createTrip">CREATE A TRIP</button> */}
+					<Button onClick={redirectCaT} variant="contained" color="primary">
+						CREATE A TRIP
+					</Button>
 					<NavLink exact to="/trips">
 						TRIPS
 					</NavLink>
@@ -86,16 +100,18 @@ const NavBar = () => {
 	}, [currentUser]);
 
 	return (
-		<nav className="mainNav">
-			<section className="mainNav-left">
+		// <nav className="mainNav">
+		<AppBar color='#F3F3F3' style={style} className="mainHeader">
+			<section className="mainNav-left" style={{width: '20%'}}>
 				{/* Logo Here */}
-				<h1>
-					<Link to={currentUser ? "/trips" : "/"}>TRIPHIKERS</Link>
+				<h1 style={{width: 'fit-content'}}>
+					<Link to={currentUser ? "/trips" : "/"} style={{width: 'fit-content'}}>TRIPHIKERS</Link>
 				</h1>
 			</section>
 
 			{displayNavBar()}
-		</nav>
+		</AppBar>
+		// </nav>
 	);
 };
 
