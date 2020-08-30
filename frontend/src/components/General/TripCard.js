@@ -5,7 +5,7 @@ import { AuthContext } from '../../providers/AuthContext';
 import { getTripRequests, getTripTravelers } from '../../util/apiCalls/getRequests';
 import { createTripRequest } from '../../util/apiCalls/postRequests';
 import { deleteTripRequest, deleteTrip } from '../../util/apiCalls/deleteRequests';
-import { completeTrip } from '../../util/apiCalls/patchRequests';
+import { Button } from '@material-ui/core';
 
 const TripCard = ({ trip, refresh }) => {
     const [ requests, setRequests ] = useState([]);
@@ -52,17 +52,6 @@ const TripCard = ({ trip, refresh }) => {
             refresh();
         } catch ( error ) {
             setResponse(<p className="error">There was a problem with the delete request.</p>)
-            console.log(error);
-        }
-    }
-
-    const completeTripCall = async ( ) => {
-        try {
-            const completeTripResponse = await completeTrip(trip.id);
-            setResponse(completeTripResponse);
-            refresh();
-        } catch ( error ) {
-            setResponse(<p className="error">There was a problem with the complete request.</p>)
             console.log(error);
         }
     }
@@ -120,13 +109,27 @@ const TripCard = ({ trip, refresh }) => {
             return null;
         } else if(isUserRequestExisting()) {
             return (
-                <button className="tc-requested tc-btn" onClick={deleteReqCall}>
+                <Button 
+                    className="tc-requested" 
+                    onClick={deleteReqCall} 
+                    color="secondary" 
+                    variant="contained" 
+                    disableElevation
+                >
                     <span>Requested</span>
-                </button>
+                </Button>
             )
         } else {
             return (
-                <button className="tc-req tc-btn" onClick={requestCall}>Request</button>
+                <Button 
+                    className="tc-req" 
+                    onClick={requestCall}  
+                    color="secondary" 
+                    variant="contained" 
+                    disableElevation
+                >
+                    Request
+                </Button>
             )
         }
     }
@@ -135,6 +138,8 @@ const TripCard = ({ trip, refresh }) => {
         const currentDate = new Date();
         const currentTime = currentDate.getTime();
         const dateToTime = new Date(trip.date_to).getTime();
+        const currentUserIsOwner = currentUser.id === trip.planner_id;
+
         if(currentTime > dateToTime || trip.is_completed) {
             return (
                 <>
@@ -142,45 +147,46 @@ const TripCard = ({ trip, refresh }) => {
                 </>
             )
         } else {
-            if(currentUser) {
-                if(currentUser.id === trip.planner_id) {
-                    return (
-                        <>
-                        <button onClick={completeTripCall} className="tc-com tc-btn">Complete</button>
-                        <button onClick={deleteTripCall} className="tc-del tc-btn">Delete</button>
-                        </>
-                    )
-                } else {
-                    return (
-                        <>
-                        {displayRequestButton()}
-                        </>
-                    )
-    
-                }
-            } else {
+            if(currentUser && currentUserIsOwner) {
                 return (
-                    <button className="tc-req tc-btn">Request</button>
+                    <>
+                    <Button 
+                        onClick={deleteTripCall}  
+                        color="secondary" 
+                        variant="contained" 
+                        disableElevation
+                    >
+                        Delete
+                    </Button>
+                    </>
                 )
+            } else if(currentUser && !currentUserIsOwner) {
+                return (
+                    <>
+                    {displayRequestButton()}
+                    </>
+                )
+    
+            } else {
+                return null;
             }
         }
     }
 
     const displayUserInfo = () => {
-        if(window.location.pathname === "/") {
-            return null
-        } else {
+        if(currentUser) {
             return (
                 <aside>
                     <img src={trip.profile_picture} alt={trip.full_name}/>
                     <div className="tc-userInfo">
                         <p>{trip.full_name}</p>
-                        <p>{trip.country_of_origin}</p>
                         <p>{trip.age}</p>
                         <p>{trip.gender}</p>
                     </div>
                 </aside>
             )
+        } else {
+            return null
         }
     }
     
@@ -206,10 +212,10 @@ const TripCard = ({ trip, refresh }) => {
             </header>
 
             <section>
-                <p className="tc-tl"><span>Budget: </span>{trip.budget}</p>
-                <p className="tc-tr"><span>Trip Type: </span>{trip.trip_type}</p>
-                <p className="tc-bl"><span>Split Costs: </span>{trip.split_costs}</p>
-                <p className="tc-br"><span>Group Type: </span>{trip.group_type}</p>
+                <p><span>Budget: </span>{trip.budget}</p>
+                <p><span>Trip Type: </span>{trip.trip_type}</p>
+                <p><span>Split Costs: </span>{trip.split_costs}</p>
+                <p><span>Group Type: </span>{trip.group_type}</p>
             </section>
         </article>
         </>

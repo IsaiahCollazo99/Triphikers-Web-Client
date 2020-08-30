@@ -44,56 +44,24 @@
 
 .tripCardTitle {
     font-weight: 700;
-    background-color: rgb(255,174,65);
-    background-image: radial-gradient(circle, rgba(255,174,65,1) 0%, rgba(255,94,1,1) 100%);
-    background-clip: text;
-    text-decoration: none;
-    background-size: 100%;
-    -webkit-background-clip: text;
-    -moz-background-clip: text;
-    -webkit-text-fill-color: transparent; 
-    -moz-text-fill-color: transparent;
-    transition: 0.3s ease-in-out;
+    color: black;
     width: fit-content;
 }
 
 .tripCardButtons {
     display: flex;
     justify-content: space-evenly;
-    width: 40%;
-    align-self: center;
+    width: 20%;
+    align-self: baseline;
     height: 100%;
 }
 
 .tripCard button {
-    width: 6em;
     height: fit-content;
-    background-color: #272A33;
-    color: white;
-    border-radius: 0.5em;
-    padding: 0.25em 0;
-    transition: 0.3s ease-in-out;
-    border: 1px solid black;
 }
 
 .tripCard button:hover {
     cursor: pointer;
-}
-
-.tc-req, .tc-com {
-    color: #272A33;
-}
-
-.tc-req:hover, .tc-com:hover {
-    color: rgb(0, 202, 0);
-}
-
-.tc-del {
-    color: #272A33;
-}
-
-.tc-del:hover {
-    color: red;
 }
 
 .tripCard section {
@@ -107,29 +75,9 @@
     align-items: center;
 }
 
-.tripCard span {
+.tripCard p > span {
     font-weight: bold;
-    color: #0062e2;
-}
-
-.tc-tl {
-    grid-column: 1 / 2;
-    grid-row: 1 / 2;
-}
-
-.tc-tr {
-    grid-column: 2 / 3;
-    grid-row: 1 / 2;
-}
-
-.tc-bl {
-    grid-column: 1 / 2;
-    grid-row: 2 / 3;
-}
-
-.tc-br {
-    grid-column: 2 / 3;
-    grid-row: 2 / 3;
+    color: #0065a3;
 }
 
 .tc-requested span {
@@ -143,5 +91,4 @@
 
 .tc-requested:hover::before {
     content: 'Del Req';
-    color: red;
 }

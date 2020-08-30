@@ -4,9 +4,7 @@ import "../../css/general/navBar.css";
 import { logout } from "../../util/firebaseFunction";
 import { AuthContext } from "../../providers/AuthContext";
 import { getUserById } from "../../util/apiCalls/getRequests";
-import Button from '@material-ui/core/Button';
-import AppBar from '@material-ui/core/AppBar';
-import { useScrollTrigger } from '@material-ui/core';
+import { useScrollTrigger, Button, AppBar } from '@material-ui/core';
 import "bootstrap/dist/css/bootstrap.min.css";
 
 const style = {

@@ -4,9 +4,9 @@ import { FaSearch } from 'react-icons/fa';
 import '../../css/tripsPage/tripsPageFilter.css';
 import TripsPageAdvanced from './TripsPageAdvanced';
 import { TextField, Button } from '@material-ui/core';
-import SearchIcon from '@material-ui/icons/Search';
+import { FaSync } from 'react-icons/fa';
 
-const TripsPageFilter = ({ filterTrips }) => {
+const TripsPageFilter = ({ filterTrips, getTripsCall }) => {
     const [ showAdvanced, setShowAdvanced ] = useState(false);
     const search = useInput("");
     const dateFrom = useInput("");
@@ -109,6 +109,8 @@ const TripsPageFilter = ({ filterTrips }) => {
                 >
                     <FaSearch />
                 </Button>
+
+                <FaSync onClick={getTripsCall} className="tp-refresh" title="Refresh trips"/>
             </form>
 
             <Button onClick={showFilters} variant="text" className="tpf-show">

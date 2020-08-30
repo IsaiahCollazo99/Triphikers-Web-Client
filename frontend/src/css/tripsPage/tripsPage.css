@@ -26,22 +26,6 @@
     margin-top: 32px;
 }
 
-.tp-refresh {
-    position: absolute;
-    right: 15%;
-    top: 19.5%;
-    justify-self: flex-end;
-    color: #272A33;
-    font-size: 2.25em;
-    align-self: center;
-    transition: 0.3s ease-in-out;
-}
-
-.tp-refresh:hover {
-    color: #FF9506;
-    cursor: pointer;
-}
-
 .tripsPageFeed {
     width: 100%;
     display: flex;

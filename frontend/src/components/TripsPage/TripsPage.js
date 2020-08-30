@@ -3,7 +3,6 @@ import { getAllTrips, getUserById } from '../../util/apiCalls/getRequests';
 import TripCard from '../General/TripCard';
 import '../../css/tripsPage/tripsPage.css';
 import TripsPageFilter from './TripsPageFilter';
-import { FaSync } from 'react-icons/fa';
 import { AuthContext } from '../../providers/AuthContext';
 import { useScrollTrigger, Zoom, Fab } from '@material-ui/core';
 import { KeyboardArrowUp } from '@material-ui/icons';
@@ -173,8 +172,7 @@ const TripsPage = ( props ) => {
         <div className="tripsPage">
 
             <section className="tp-feedManager">
-                <TripsPageFilter filterTrips={filterTrips}/>
-                <FaSync onClick={getTripsCall} className="tp-refresh" title="Refresh trips"/>
+                <TripsPageFilter filterTrips={filterTrips} getTripsCall={getTripsCall} />
             </section>
 
             <section className="tripsPageFeed">
