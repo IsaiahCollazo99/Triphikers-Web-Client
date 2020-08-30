@@ -10,38 +10,37 @@
 .tp-filter {
     width: 60%;
     display: flex;
-    justify-content: space-evenly;
-
-}
-
-.tp-filter input[type="search"] {
-    width: 80%;
-    background-color: #e9e9e9;
-    color: #272A33;
-    border: 3px solid #272A33;
-    font-size: 1.25em;
-    transition: 0.3s ease-in-out;
-    border-radius: 0.5em;
-    margin-right: 15px;
-}
-
-.tp-filter input[type="search"]:focus {
-    background-color: #FFAE41;
-    outline: none;
-}
-
-.tp-filter button[type="submit"] {
-    width: 7%;
-    background-color: #FF9506;
-    border: 2px solid #272A33;
-    color: #272A33;
-    transition: 0.3s ease-in-out;
-    border-radius: 0.35em;
-    display: flex;
-    align-items: center;
     justify-content: center;
-    font-size: 24px;
-    padding: 10px;
+    background-color: #f3f3f3;
+    margin-bottom: 15px;
+}
+
+.tp-filter .MuiTextField-root {
+    width: 50%;
+}
+
+.tpf-first .MuiFilledInput-root {
+    border-top-right-radius: 0;
+    border-right: 1px solid black;
+}
+
+.tpf-second .MuiFilledInput-root  {
+    border-radius: 0;
+    border-right: 1px solid black;
+}
+
+.tpf-third .MuiFilledInput-root {
+    border-radius: 0;
+}
+
+.tp-filter .MuiTextField-root:not(:first-child) {
+    width: 25%;
+}
+
+.tp-filter button {
+    padding: 6px 10px;
+    font-size: 32px;
+    border-radius: 0 4px 4px 0;
 }
 
 .tp-filter button[type="submit"]:hover {
@@ -50,24 +49,12 @@
 }
 
 .tpf-show {
-    width: 10%;
-    background-color: #FF9506;
-    border: 2px solid #272A33;
-    color: #272A33;
-    transition: 0.3s ease-in-out;
-    border-radius: 0.5em;
     display: flex;
     align-items: center;
     justify-content: center;
     font-size: 18px;
-    padding: 10px;
     align-self: center;
     margin-top: 15px;
-}
-
-.tpf-show:hover {
-    background-color: #e08002;
-    cursor: pointer;
 }
 
 .tpf-shown {

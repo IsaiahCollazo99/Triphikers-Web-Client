@@ -9,11 +9,11 @@ import AppBar from '@material-ui/core/AppBar';
 import "bootstrap/dist/css/bootstrap.min.css";
 
 const style = {
-	'background-color': '#f3f3f3',
+	'backgroundColor': '#f3f3f3',
 	'display': 'flex',
-	'flex-direction': 'row',
-	'box-shadow': 'none',
-	'justify-content': 'space-between'
+	'flexDirection': 'row',
+	'boxShadow': 'none',
+	'justifyContent': 'space-between'
 }
 
 const NavBar = () => {
@@ -43,8 +43,7 @@ const NavBar = () => {
 	const displayNavBar = () => {
 		if (currentUser) {
 			return (
-				<section className="mainNav-right">
-					{/* <button onClick={redirectCaT} className="nb-createTrip">CREATE A TRIP</button> */}
+				<section className="mainNav-right mh-right">
 					<Button onClick={redirectCaT} variant="contained" color="primary">
 						CREATE A TRIP
 					</Button>
@@ -78,7 +77,7 @@ const NavBar = () => {
 			);
 		} else {
 			return (
-				<section className="lp-navRight">
+				<section className="lp-navRight mh-right">
 					<NavLink exact to="/">
 						ABOUT
 					</NavLink>
@@ -100,8 +99,7 @@ const NavBar = () => {
 	}, [currentUser]);
 
 	return (
-		// <nav className="mainNav">
-		<AppBar color='#F3F3F3' style={style} className="mainHeader">
+		<AppBar style={style} className="mainHeader">
 			<section className="mainNav-left" style={{width: '20%'}}>
 				{/* Logo Here */}
 				<h1 style={{width: 'fit-content'}}>
@@ -111,7 +109,6 @@ const NavBar = () => {
 
 			{displayNavBar()}
 		</AppBar>
-		// </nav>
 	);
 };
 

@@ -135,10 +135,7 @@ const TripsPage = () => {
     
     return (
         <div className="tripsPage">
-            <section className="tp-buttons">
-                
-                <FaSync onClick={getTripsCall} className="tp-refresh" title="Refresh trips"/>
-            </section>
+            {/* <FaSync onClick={getTripsCall} className="tp-refresh" title="Refresh trips"/> */}
 
             <section className="tp-feedManager">
                 <TripsPageFilter filterTrips={filterTrips}/>

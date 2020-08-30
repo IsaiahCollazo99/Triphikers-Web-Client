@@ -3,6 +3,8 @@ import { useInput } from '../../util/customHooks';
 import { FaSearch } from 'react-icons/fa';
 import '../../css/tripsPage/tripsPageFilter.css';
 import TripsPageAdvanced from './TripsPageAdvanced';
+import { TextField, Button } from '@material-ui/core';
+import SearchIcon from '@material-ui/icons/Search';
 
 const TripsPageFilter = ({ filterTrips }) => {
     const [ showAdvanced, setShowAdvanced ] = useState(false);
@@ -55,11 +57,58 @@ const TripsPageFilter = ({ filterTrips }) => {
     return (
         <section className="tp-filterContainer">
             <form className="tp-filter" onSubmit={handleSubmit}>
-                <input type="search" {...search} placeholder="Search a Destination" />
-                <button type="submit"><FaSearch /></button>
+                <TextField 
+                    label="Search" 
+                    placeholder="Search a Destination" 
+                    {...search} 
+                    type="search"
+                    variant="filled"
+                    size="medium"
+                    InputLabelProps={{
+                        shrink: true,
+                    }}
+                    className="tpf-first"
+                />
+
+                <TextField
+                    label="Date From"
+                    type="date"
+                    placeholder="yyyy-mm-dd"
+                    variant="filled"
+                    size="medium"
+                    InputLabelProps={{
+                        shrink: true,
+                    }}
+                    className="tpf-second"
+                    {...dateFrom}
+                />
+
+                <TextField
+                    label="Date From"
+                    type="date"
+                    placeholder="yyyy-mm-dd"
+                    variant="filled"
+                    size="medium"
+                    InputLabelProps={{
+                        shrink: true,
+                    }}
+                    className="tpf-third"
+                    {...dateTo}
+                />
+
+                <Button 
+                    color="primary" 
+                    variant="contained" 
+                    style={{'fontSize': '32px'}}
+                    disableElevation
+                >
+                    <FaSearch />
+                </Button>
             </form>
 
-            <button className="tpf-show" onClick={showFilters}>{isShown}</button>
+            <Button onClick={showFilters} variant="outlined" color="secondary" className="tpf-show">
+                {isShown}
+            </Button>
 
             <TripsPageAdvanced filterTrips={filterTrips} isHidden={isHidden} filters={filters} />
         </section>

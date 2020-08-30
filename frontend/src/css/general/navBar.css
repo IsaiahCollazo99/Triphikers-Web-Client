@@ -17,9 +17,17 @@
     align-items: center;
 }
 
+.mainNav-left {
+    margin-left: 30px;
+    display: flex;
+    align-content: center;
+    justify-content: center;
+}
+
 .mainHeader h1 {
-    font-size: 3em;
+    font-size: 2.5em;
     font-family: 'Prompt';
+    margin-bottom: 0;
 }
 
 .mainHeader h1:hover {
@@ -27,66 +35,50 @@
 }
 
 .mainNav-left a {
-    background-color: rgb(255,174,65);
-    background-image: radial-gradient(circle, rgba(255,174,65,1) 0%, rgba(255,94,1,1) 100%);
-    background-clip: text;
-    text-decoration: none;
-    background-size: 100%;
-    -webkit-background-clip: text;
-    -moz-background-clip: text;
-    -webkit-text-fill-color: transparent; 
-    -moz-text-fill-color: transparent;
-    margin-left: 30px;
+    color: #ff8f00;
 }
 
-.mainNav-right {
+.mainNav-left a:hover {
+    color: #ff8f00;
+}
+
+.mh-right {
     display: flex;
     align-items: center;
     justify-content: space-evenly;
-    width: 60%;
     font-size: 1.5em;
 }
 
-.mainNav-right a {
+.mainNav-right {
+    width: 60%;
+}
+
+.lp-navRight {
+    width: 50%;
+}
+
+.mh-right a {
     color: black;
     text-decoration: none;
     font-family: 'Roboto';
     font-weight: 500;
+    padding: 10px 15px;
+    border-radius: 0.75em;
 }
 
-.mainNav-right a:hover {
+.mainHeader a:hover {
     cursor: pointer;
+    text-decoration: none;
 }
 
-.mainNav-right a:hover:not(.active) {
-    color: #FF9E00;
+.mhp-right a:hover:not(.active) {
+    background-color: #d4D4d4;
+    color: black;
+    text-decoration: underline;
 }
 
 .mainHeader .active {
-    color: #157CFF;
-}
-
-.lp-navRight {
-    display: flex;
-    align-items: center;
-    justify-content: space-evenly;
-    width: 50%;
-    font-size: 1.5em;
-}
-
-.lp-navRight a {
-    color: white;
-    text-decoration: none;
-    font-family: 'Roboto';
-    font-weight: 500;
-}
-
-.lp-navRight a:hover:not(.active) {
-    color: #FF9E00;
-}
-
-.lp-nav .active {
-    color: #157CFF;
+    color: #C66E00;
 }
 
 .nb-createTrip {
@@ -108,5 +100,13 @@
 
 .dropdown-menu.show {
     display: block;
-    background: #f3f3f3;
+    background: #272A33;
+}
+
+.dropdown-menu.show a {
+    color: white;
+}
+
+.dropdown-menu.show a:hover {
+    color: #b26400;
 }
