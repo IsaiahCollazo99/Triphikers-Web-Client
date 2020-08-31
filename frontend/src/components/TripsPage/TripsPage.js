@@ -89,6 +89,7 @@ const TripsPage = () => {
     useEffect(() => {
         getTripsCall();
         getCurrentUser();
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [])
 
     const isTripExpired = ( trip ) => {

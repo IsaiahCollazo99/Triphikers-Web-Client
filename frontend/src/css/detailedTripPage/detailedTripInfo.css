@@ -101,7 +101,7 @@
     justify-self: center;
 }
 
-.dt-info span {
+.dt-info span:not(.requested) {
     font-weight: bold;
     color: #da5300;
 }

@@ -63,7 +63,7 @@ const NavBar = () => {
 							MESSAGES
 						</Link>
 						<div className="dropdown-divider"></div>
-						<Link className="dropdown-item" onClick={redirect}>
+						<Link className="dropdown-item" onClick={redirect} to="/signUp">
 							LOG OUT
 						</Link>
 					</div>
@@ -89,6 +89,7 @@ const NavBar = () => {
 
 	useEffect(() => {
 		getFirstName();
+		// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, [currentUser]);
 
 	return (

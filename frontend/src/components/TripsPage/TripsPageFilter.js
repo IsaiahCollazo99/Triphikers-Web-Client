@@ -37,6 +37,7 @@ const TripsPageFilter = ({ filterTrips }) => {
         if(!search.value) {
             filterTrips(null, false);
         }
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [search.value])
 
     const showFilters = () => {

@@ -18,6 +18,7 @@ const TripsPageAdvanced = ({ isHidden, filters }) => {
 
     useEffect(() => {
         getUserGender();
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [])
 
     const getGroupTypeOptions = () => {
@@ -48,7 +49,7 @@ const TripsPageAdvanced = ({ isHidden, filters }) => {
 
             <label>
                 <p>Budget: </p>
-                <select {...budget} defaultValue="">
+                <select {...budget}>
                     <option value="" disabled>Select a Budget</option>
                     <option value="none">No preference</option>
                     <option value="Budget ($0 - $999)">Budget ($0 - $999)</option>
@@ -59,7 +60,7 @@ const TripsPageAdvanced = ({ isHidden, filters }) => {
 
             <label>
                 <p>Trip Type: </p>
-                <select {...tripType} defaultValue="">
+                <select {...tripType}>
                     <option value="" disabled>Select a Trip Type</option>
                     <option value="none">No preference</option>
                     <option value="Explore Cities">Explore Cities</option>
@@ -72,7 +73,7 @@ const TripsPageAdvanced = ({ isHidden, filters }) => {
 
             <label>
                 <p>Split Costs: </p>
-                <select {...splitCosts} defaultValue="">
+                <select {...splitCosts}>
                     <option value="" disabled>Split Costs?</option>
                     <option value="none">No preference</option>
                     <option value="Yes">Yes</option>
@@ -82,7 +83,7 @@ const TripsPageAdvanced = ({ isHidden, filters }) => {
 
             <label>
                 <p>Group Type: </p>
-                <select {...groupType} defaultValue="">
+                <select {...groupType}>
                     <option value="" disabled>Select a Group Type</option>
                     <option value="none">No preference</option>
                     <option value="Male">Male</option>
