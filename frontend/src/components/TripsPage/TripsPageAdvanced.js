@@ -45,6 +45,7 @@ const TripsPageAdvanced = ({ isHidden, filters }) => {
                     <MenuItem value="Average ($1000 - $1999)">Average ($1000 - $1999)</MenuItem>
                     <MenuItem value="Luxury ($2000+)">Luxury ($2000+)</MenuItem>
                 </Select>
+                <FormHelperText>How much money will you spend?</FormHelperText>
             </FormControl>
 
             <FormControl>
@@ -58,6 +59,7 @@ const TripsPageAdvanced = ({ isHidden, filters }) => {
                     <MenuItem value="Backpaking">Backpaking</MenuItem>
                     <MenuItem value="Other">Other</MenuItem>
                 </Select>
+                <FormHelperText>How do you want to spend your time?</FormHelperText>
             </FormControl>
 
             <FormControl>
@@ -68,6 +70,7 @@ const TripsPageAdvanced = ({ isHidden, filters }) => {
                     <MenuItem value="Yes">Yes</MenuItem>
                     <MenuItem value="No">No</MenuItem>
                 </Select>
+                <FormHelperText>Do you want to split costs with others?</FormHelperText>
             </FormControl>
 
             <FormControl>
@@ -80,6 +83,7 @@ const TripsPageAdvanced = ({ isHidden, filters }) => {
                     {getGroupTypeOptions()}
                     <MenuItem value="Any">Any</MenuItem>
                 </Select>
+                <FormHelperText>Who do you want to travel with?</FormHelperText>
             </FormControl>
 
             <FormControl>
@@ -91,6 +95,7 @@ const TripsPageAdvanced = ({ isHidden, filters }) => {
                     <MenuItem value="Flexible">Flexible</MenuItem>
                     <MenuItem value="None">None</MenuItem>
                 </Select>
+                <FormHelperText>How strict of an itinerary do you want?</FormHelperText>
             </FormControl>
 
             <FormControl>
@@ -105,6 +110,7 @@ const TripsPageAdvanced = ({ isHidden, filters }) => {
                     <MenuItem value="Hostel">Hostel</MenuItem>
                     <MenuItem value="Other">Other</MenuItem>
                 </Select>
+                <FormHelperText>Where would you like to stay?</FormHelperText>
             </FormControl>
         </section>
     )
