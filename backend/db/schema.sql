@@ -34,7 +34,6 @@ CREATE TABLE trips (
     date_to VARCHAR,
     group_type VARCHAR,
     language VARCHAR,
-    before_trip_meetup VARCHAR,
     trip_type VARCHAR,
     trip_title VARCHAR,
     first_time VARCHAR,

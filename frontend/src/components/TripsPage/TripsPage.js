@@ -16,7 +16,7 @@ const useStyles = makeStyles(theme => ({
 	},
 }));
 
-const ScrollToTop = ({ children, handleSearch }) => {
+const ScrollToTop = ({ children }) => {
 	const classes = useStyles();
 
 	const trigger = useScrollTrigger({
