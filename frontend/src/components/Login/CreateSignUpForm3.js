@@ -44,7 +44,9 @@ const CreateSignUpForm3 = (props) => {
 			<textarea col="10" row="5" {...bio} name="bio" maxLength={120}/>
 
 			<label htmlFor="language">Language : </label>
-			<LanguageSelect input={language} className="su-language" />
+			<select {...language} className="su-language">
+				<LanguageSelect />
+			</select>
 
 			<label htmlFor="country">Country : </label>
 			<select {...country} name="country" required>
