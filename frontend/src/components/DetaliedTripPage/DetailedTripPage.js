@@ -1,20 +1,19 @@
-import React, { useEffect, useState, useContext } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useParams, Route, Switch, Link } from 'react-router-dom';
-import { getTripById, getTripRequests, getTripTravelers } from '../../util/apiCalls/getRequests';
+import { getTripById } from '../../util/apiCalls/getRequests';
 import DetailedTripNav from './DetailedTripNav';
 import DetailedTripInfo from './DetailedTripInfo';
 import DetailedTripRequests from './DetailedTripRequests';
 import DetailedTripTravelers from './DetailedTripTravelers';
 import '../../css/detailedTripPage/detailedTripPage.css';
-import { AuthContext } from '../../providers/AuthContext';
 import { ProtectedUserRoute } from '../../util/routesUtil';
+import FacebookLogo from '../../images/f_logo_RGB-Blue_1024.png';
+import InstagramLogo from '../../images/glyph-logo_May2016.png';
+import TwitterLogo from '../../images/Twitter_Social_Icon_Circle_Color.png'
 
 const DetailedTripPage = () => {
     const { id } = useParams();
-    const { currentUser } = useContext(AuthContext);
     const [ trip, setTrip ] = useState({});
-    const [ requests, setRequests ] = useState([]);
-    const [ travelers, setTravelers ] = useState([]);
 
     const getTripCall = async () => {
         try {
@@ -25,32 +24,45 @@ const DetailedTripPage = () => {
         }
     }
 
-    const getRequestsCall = async () => {
-        const data = await getTripRequests(trip.id)
-        if(data.requests) {
-            setRequests(data.requests);
-        } else {
-            setRequests([]);
-        }
-    }
-
-    const getTravelersCall = async () => {
-        const data = await getTripTravelers(trip.id);
-        if(data.travelers) {
-            setTravelers(data.travelers);
-        } else {
-            setTravelers([]);
-        }
-    }
-
-    const refreshFuncs = {
-        getRequestsCall,
-        getTripCall
-    }
-
     useEffect(() => {
         getTripCall();
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [])
+
+    
+    const displaySocialMedia = () => {
+        const {
+            facebook_link,
+            twitter_username,
+            instagram_username
+        } = trip;
+
+        const facebookLink = facebook_link ? (
+            <a href={`https://www.${facebook_link}`} target="_blank" rel="noopener noreferrer">
+                <img src={FacebookLogo} alt="facebook" />
+            </a>
+        ) : null;
+
+        const instagramLink = instagram_username ? (
+            <a href={`https://www.${instagram_username}`} target="_blank" rel="noopener noreferrer">
+                <img src={InstagramLogo} alt="instagram" />
+            </a>
+        ) : null;
+
+        const twitterLink = twitter_username ? (
+            <a href={`https://www.${twitter_username}`} target="_blank" rel="noopener noreferrer">
+                <img src={TwitterLogo} alt="instagram" />
+            </a>
+        ) : null;
+
+        return (
+            <>
+                {facebookLink}
+                {instagramLink}
+                {twitterLink}
+            </>
+        )
+    }
 
     if(trip.full_name) {
         return (
@@ -59,10 +71,9 @@ const DetailedTripPage = () => {
                     <section className="dt-user">
                         <img src={trip.profile_picture} alt={trip.full_name} />
                         <div className="dt-userInteraction">
-                            {/* The user's rating goes in the span */}
                             <Link to={`/user/${trip.planner_id}`}>{trip.full_name}<span></span></Link> 
-                            <section>
-                                {/* Social Media Here */}
+                            <section className="dt-socialMedia">
+                                {displaySocialMedia()}
                             </section>
     
                         </div>
@@ -82,11 +93,11 @@ const DetailedTripPage = () => {
                 <DetailedTripNav trip={trip}/>
                 <Switch>
                     <Route exact path={"/trips/:tripId/"}>
-                        <DetailedTripInfo trip={trip} {...refreshFuncs} requests={requests} travelers={travelers}/>
+                        <DetailedTripInfo trip={trip} getTripCall={getTripCall} />
                     </Route>
     
                     <Route exact path={"/trips/:tripId/travelers"}>
-                        <DetailedTripTravelers trip={trip} travelers={travelers}/>
+                        <DetailedTripTravelers trip={trip} />
                     </Route>
                     
                     <ProtectedUserRoute exact path={"/trips/:tripId/requests"} trip={trip}>

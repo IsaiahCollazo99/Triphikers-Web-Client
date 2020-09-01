@@ -12,12 +12,11 @@ const CreateTripsContainer = () => {
     const history = useHistory();
     
     const [ page, setPage ] = useState(1);
-    const destination = useInput("");
+    const [ destination, setDestination ] = useState("");
     const dateFrom = useInput("");
     const dateTo = useInput("");
     const groupType = useInput("");
     const language = useInput("");
-    const meetup = useInput("");
     const tripType = useInput("");
     const title = useInput("");
     const accommodation = useInput("");
@@ -31,20 +30,19 @@ const CreateTripsContainer = () => {
     }
 
     const pageOne = {
-        destination,
+        destination: { destination, setDestination },
         dateFrom,
         dateTo,
         groupType,
         language,
-        meetup,
+        budget,
+        split,
         tripType
     }
 
     const pageTwo = {
         title,
         accommodation,
-        budget,
-        split,
         itinerary,
         description,
     }

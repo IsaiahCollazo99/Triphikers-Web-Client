@@ -29,6 +29,7 @@ const HotspotMap = ({ location, fetchData, allMarkers }) => {
                 selected: selected
             });
         }
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [markers, selected])
     
     

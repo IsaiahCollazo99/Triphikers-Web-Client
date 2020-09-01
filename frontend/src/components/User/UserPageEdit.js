@@ -40,6 +40,7 @@ const UserPageEdit = () => {
     useEffect(() => {
         getUserCall();
         getCountries();
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [])
 
     const getFullName = () => {
@@ -68,7 +69,7 @@ const UserPageEdit = () => {
             instagram_username: instagram.value ? `instagram.com/${instagram.value}` : null
         }
 
-        const response = await updateUser(currentUser.id, userData);
+        await updateUser(currentUser.id, userData);
     }
 
     const handleUpdate = () => {
@@ -95,7 +96,7 @@ const UserPageEdit = () => {
         <section className="up-edit">
             <header className="upe-header">
                 <section className="upe-coverImage">
-                    <p className="upe-closeEdit" onClick={returnToProfile}>X</p>
+                    <button className="upe-closeEdit" onClick={returnToProfile}>Return To Profile</button>
                 </section>
 
                 <section className="upe-user">
@@ -122,7 +123,7 @@ const UserPageEdit = () => {
 
                     <label>
                         <span>Country of Origin: </span> 
-                        <select defaultValue="" {...country}>
+                        <select {...country}>
                             <option disabled value="">Select a country</option>
                             {countryOptions}
                         </select>
@@ -130,7 +131,7 @@ const UserPageEdit = () => {
 
                     <label>
                         <span>Gender: </span>
-                        <select defaultValue="" {...gender}>
+                        <select {...gender}>
                             <option disabled value="">Select a gender</option>
                             <option value="Male">Male</option>
                             <option value="Female">Female</option>
@@ -146,8 +147,6 @@ const UserPageEdit = () => {
             </header>
 
             <section className="upe-extras">
-                <button type="submit" onClick={handleUpdate}>Update</button>
-
                 <section className="upe-socialMedia">
                     <label htmlFor="facebook">
                         <p>Facebook Link: </p>
@@ -170,6 +169,8 @@ const UserPageEdit = () => {
                         <input type="text" placeholder="Twitter Username" {...twitter} />
                     </label>
                 </section>
+
+                <button type="submit" onClick={handleUpdate}>Update</button>
             </section>
         </section>
     )

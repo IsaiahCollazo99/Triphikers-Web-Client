@@ -29,7 +29,7 @@
     outline: none;
 }
 
-.up-edit button {
+.upe-extras button {
     background-color: #FF9506;
     border: 2px solid #272A33;
     color: #272A33;
@@ -42,7 +42,7 @@
     padding: 0.25em 1em;
 }
 
-.up-edit button:hover {
+.upe-extras button:hover {
     background-color: #e08002;
     cursor: pointer;
 }
@@ -62,14 +62,19 @@
     z-index: 2;
     width: fit-content;
     float: right;
-    font-size: 22px;
-    font-weight: bold;
-    margin-right: 40px;
+    margin-top: 20px;
+    margin-right: 30px;
+    background-color: #272A33;
+    color: white;
+    border-radius: 0.5em;
+    padding: 0.25em 0.5em;
+    transition: 0.3s ease-in-out;
+    border: 1px solid black;
 }
 
 .upe-closeEdit:hover {
-    cursor: pointer;
     color: red;
+    cursor: pointer;
 }
 
 .upe-user {
@@ -169,7 +174,7 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    padding-top: 50px;
+    padding: 50px 0;
 }
 
 .upe-socialMedia {

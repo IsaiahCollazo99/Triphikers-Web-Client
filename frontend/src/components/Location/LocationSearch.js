@@ -23,16 +23,18 @@ const {
     REACT_APP_GOOGLEAPIKEY
 } = process.env;
 const libraries = ["places"];
-const client = createClient('563492ad6f9170000100000153f28b06267f4b548fc99fbb457455db');
+createClient('563492ad6f9170000100000153f28b06267f4b548fc99fbb457455db');
 
 const LocationSearch = (id) => {
     const [allCountries, setAllCountries] = useState([]);
     const [selectedCountry, setSelectedCountry] = useState('');
     const history = useHistory();
-    const locationRedirect = (country, city, lat, lng) => history.push({
-        pathname: `/location/${country}/${city}/hotspots`,
-        state: { city: city, country: selectedCountry, coordinates: {lat: lat, lng: lng} }}
+    const locationRedirect = (country, city, lat, lng) => {
+        history.push({
+            pathname: `/location/${country}/${city}/hotspots`,
+            state: { city: city, country: selectedCountry, coordinates: {lat: lat, lng: lng} }}
         );
+    }
 
 
     const {isLoaded, loadError} = useLoadScript({
@@ -61,28 +63,57 @@ const LocationSearch = (id) => {
                 componentRestrictions: {country: selectedCountry}
             }
         })
+
+        const [ error, setError ] = useState(null);
+
+        const handleSelect = ( address ) => {
+            setValue(address, false);
+            clearSuggestions();
+        }
+
+        const handleInput = ( e ) => {
+            setValue(e.target.value);
+        }
+
+        const handleSubmit = async  () => {
+            if(value) {
+                try {
+                    const res = await getGeocode({ address: value });
+                    const { lat, lng } = await getLatLng(res[0]);
+
+                    let resultCountry = selectedCountry;
+
+                    if(!selectedCountry) {
+                        const splitLocation = value.split(" ");
+                        resultCountry = splitLocation[value.length - 1];
+                    }
+
+                    debugger;
+
+                    locationRedirect(resultCountry, value, lat, lng)
+                } catch(error) {
+                    console.log(error)
+                }
+            } else {
+                setError("You must select a city.");
+            }
+        }
+        
         return(
             <div className="searchContainer">
-                <label htmlFor="searchInput">Select a City: </label>
-                <Combobox onSelect={async (address) => {
-                    setValue(address, false);
-                    clearSuggestions();
-                        try {
-                            const res = await getGeocode({address});
-                            const { lat, lng } = await getLatLng(res[0]);
-                            locationRedirect(selectedCountry, address, lat, lng)
-                        } catch(error) {
-                            console.log(error)
-                        }
-                    }}>
-                    <ComboboxInput className="searchInput" value={value} onChange={(e)=>{setValue(e.target.value)
-                    }} disabled={!ready} placeholder="Search A City"/>
+                {error ? <p className="error">{error}</p> : null}
+                <label htmlFor="searchInput"><b>Select a City: </b></label>
+                <Combobox onSelect={handleSelect}>
+                    <ComboboxInput className="searchInput" value={value} onChange={handleInput} 
+                    disabled={!ready} placeholder="Search A City"/>
                     <ComboboxPopover>
                         <ComboboxList>
                             {status === "OK" && data.map(({description }, index) => <ComboboxOption key={index} value={description} className="searchResults"/>)}
                         </ComboboxList>
                     </ComboboxPopover>
                 </Combobox>
+
+                <button onClick={handleSubmit}>Go There</button>
             </div>
         )
     }
@@ -96,12 +127,15 @@ const LocationSearch = (id) => {
 
     return (
         <div className="searchCity">
-            <label htmlFor="selectedCountry">Select a Country: </label>
-            <select className="selectedCountry" onChange={filterCity}>
-                <option hidden>Select A Country</option>
-                <PopulateLocationSelect list={allCountries}/>
-            </select>
-            {selectedCountry !== '' ? <Search selectedCountry={selectedCountry} locationRedirect={locationRedirect}/> : null }
+            <label className="selectedCountry">
+                <b>Select a Country: (optional filter)</b>
+                <select className="selectedCountry" onChange={filterCity}>
+                    <option   ion hidden>Select A Country</option>
+                    <PopulateLocationSelect list={allCountries}/>
+                </select>
+            </label>
+
+            {isLoaded !== '' ? <Search selectedCountry={selectedCountry} locationRedirect={locationRedirect}/> : null }
         </div>
     )
 }

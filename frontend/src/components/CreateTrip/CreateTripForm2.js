@@ -1,12 +1,12 @@
 import React from 'react';
+import { Button } from '@material-ui/core';
+import CustomTextField from '../General/CustomTextField';
 import '../../css/createTrip/createTripForms.css';
 
 const CreateTripForm2 = ( props ) => {
     const {
         title,
         accommodation,
-        budget,
-        split,
         itinerary,
         description,
         handlePageChange,
@@ -21,58 +21,85 @@ const CreateTripForm2 = ( props ) => {
             <h3>2/2</h3>
         </header>
         <form onSubmit={handleSubmit} className="createTrip2">
-            <label htmlFor="title">
-                <p>Trip Title: </p>
-                <input type="text" {...title} placeholder="Enter a Trip Title" name="title" required />
-            </label>
+            <CustomTextField
+                label="Title"
+                type="text"
+                variant="outlined"
+                InputLabelProps={{
+                    shrink: true,
+                    required: false
+                }}
+                placeholder="Enter a title"
+                required
+                helperText="Create an eye catching title"
+                fullWidth
+                {...title}
+            />
 
-            <label htmlFor="accommodation">
-                <p>Accommodation: </p>
-                <select {...accommodation} name="accommodation" required>
-                    <option value="" disabled>Select an Accommodation</option>
-                    <option value="Camping">Camping</option>
-                    <option value="Couchsurf">CouchSurf</option>
-                    <option value="Home">Home</option>
-                    <option value="Hotel">Hotel</option>
-                    <option value="Hostel">Hostel</option>
-                    <option value="Other">Other</option>
-                </select>
-            </label>
+            <CustomTextField 
+                label="Accomodation"
+                select
+                variant="outlined"
+                helperText="Where do you plan on staying?"
+                SelectProps={{
+                    native: true,
+                }}
+                InputLabelProps={{
+                    shrink: true,
+                    required: false
+                }}
+                {...accommodation}
+                required
+            >
+                <option value="" disabled>Select an Accommodation</option>
+                <option value="Camping">Camping</option>
+                <option value="Couchsurf">CouchSurf</option>
+                <option value="Home">Home</option>
+                <option value="Hotel">Hotel</option>
+                <option value="Hostel">Hostel</option>
+                <option value="Other">Other</option>
+            </CustomTextField>
 
-            <label htmlFor="budget">
-                <p>Your Budget: </p>
-                <input type="number" name="budget" {...budget} min="0" required/>
-            </label>
+            <CustomTextField
+                label="Itinerary"
+                variant="outlined"
+                select
+                helperText="How strict of an itinerary do you have?"
+                SelectProps={{
+                    native: true,
+                }}
+                InputLabelProps={{
+                    shrink: true,
+                    required: false
+                }}
+                {...itinerary}
+                required
+            >
+                <option value="" disabled>Select An Itinerary Type</option>
+                <option value="Set">Set</option>
+                <option value="Flexible">Flexible</option>
+                <option value="None">None</option>
+            </CustomTextField>
 
-            <div className="tripForm2Bottom">
-                <label htmlFor="split">
-                    <p>Split Costs: </p>
-                    <select {...split} name="split" required>
-                        <option value="" disabled>Split Costs?</option>
-                        <option value="Yes">Yes</option>
-                        <option value="No">No</option>
-                    </select>
-                </label>
-
-                <label htmlFor="itinerary">
-                    <p>Itinerary Type: </p>
-                    <select {...itinerary} name="itinerary" required>
-                        <option value="" disabled>Select An Itinerary Type</option>
-                        <option value="Set">Set</option>
-                        <option value="Flexible">Flexible</option>
-                        <option value="None">None</option>
-                    </select>
-                </label>
-            </div>
-
-            <label htmlFor="description" className="createTripDesc">
-                <p>Describe Your Trip: </p>
-                <textarea {...description} name="description" col="15" rows="5"/>
-            </label>
+            <CustomTextField
+                label="Description"
+                multiline
+                rows={4}
+                placeholder="Trip Description"
+                variant="outlined"
+                InputLabelProps={{
+                    shrink: true,
+                    required: false
+                }}
+                {...description}
+                helperText="Write a short description about your trip and plans"
+                className="createTripDesc"
+                style={{width: "60%"}}
+            />
 
             <div className="buttons">
-                <button onClick={handlePageChange}>Back</button>
-                <input type="submit" />
+                <Button onClick={handlePageChange} variant="outlined" color="primary">Back</Button>
+                <Button type="submit" variant="contained" color="primary">Submit</Button>
             </div>
         </form>
         </>

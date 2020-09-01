@@ -13,3 +13,7 @@
     font-weight: bold;
     color: rgb(0, 228, 0);
 }
+
+#back-to-top-anchor {
+    height: 0;
+}

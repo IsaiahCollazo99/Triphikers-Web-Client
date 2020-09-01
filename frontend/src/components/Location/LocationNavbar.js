@@ -8,7 +8,6 @@ const LocationNavbar = ({ city, country }) => {
         <nav className="locationNavbarContainer">
             <NavLink className="Links" to={`/location/${country}/${city}/hotspots`}>Hotspots</NavLink>
             <NavLink className="Links" to={`/location/${country}/${city}/attractions`}>Attractions</NavLink>
-            <NavLink className="Links" to={`/location/${country}/${city}/reviews`}>Reviews</NavLink>
         </nav>
     )
 }

@@ -4,13 +4,17 @@ import './index.css';
 import App from './App';
 import * as serviceWorker from './serviceWorker';
 import { BrowserRouter as Router } from 'react-router-dom';
-import AuthProvider from './providers/AuthContext';
+import { ThemeProvider } from '@material-ui/core/styles';
+import theme from './util/theme';
+import 'bootstrap/dist/css/bootstrap.min.css';
 
 ReactDOM.render(
   <React.StrictMode>
-    <Router>    
-        <App />
+    <ThemeProvider theme={theme}>
+    <Router>
+          <App /> 
     </Router>
+    </ThemeProvider>
   </React.StrictMode>,
   document.getElementById('root')
 );

@@ -17,7 +17,6 @@ export const getTripById = async (id) => {
     try {
         let res = await axios.get(API + `/api/trips/${id}`);
         return res.data;
-        debugger
     } catch (error) {
         throw error;
     }
@@ -82,6 +81,26 @@ export const getUserFriendRequests = async ( id ) => {
 export const getUserFriends = async ( id ) => {
     try {  
         const res = await axios.get(API + `/api/users/${id}/friends`);
+        return res.data;
+    } catch ( error ) {
+        console.log(error);
+        throw error;
+    }
+}
+
+export const getUserByEmail = async ( email ) => {
+    try {
+        const res = await axios.get(API + `/api/users/email/${email}`);
+        return res.data;
+    } catch ( error ) {
+        console.log(error);
+        throw error;
+    }
+}
+
+export const getUserByUsername = async ( username ) => {
+    try {
+        const res = await axios.get(API + `/api/users/username/${username}`);
         return res.data;
     } catch ( error ) {
         console.log(error);

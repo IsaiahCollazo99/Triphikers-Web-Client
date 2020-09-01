@@ -5,28 +5,33 @@ import { apiURL } from '../../util/apiURL';
 const API = apiURL();
 
 export const createTrip = async ( tripObj, user ) => {
-    const {
-        destination: { value: destination },
-        dateFrom: { value: date_from },
-        dateTo: { value: date_to },
-        groupType: { value: group_type },
-        language: { value: language },
-        meetup: { value: before_trip_meetup },
-        tripType: { value: trip_type },
-        title: { value: trip_title },
-        accommodation: { value: accommodation },
-        budget: { value: budget },
-        split: { value: split_costs },
-        itinerary: { value: itinerary },
-        description: { value: description }
-    } = tripObj;
-
-    const planner_id = user.id;
-
-    const res = await axios.post(API + "/api/trips", {
-        destination, date_from, date_to, group_type, language, before_trip_meetup, trip_type, 
-        trip_title, accommodation, budget, split_costs, itinerary, description, planner_id
-    })
+    try {
+        const {
+            destination: { destination },
+            dateFrom: { value: date_from },
+            dateTo: { value: date_to },
+            groupType: { value: group_type },
+            language: { value: language },
+            tripType: { value: trip_type },
+            title: { value: trip_title },
+            accommodation: { value: accommodation },
+            budget: { value: budget },
+            split: { value: split_costs },
+            itinerary: { value: itinerary },
+            description: { value: description }
+        } = tripObj;
+    
+        console.log(destination);
+    
+        const planner_id = user.id;
+    
+        await axios.post(API + "/api/trips", {
+            destination, date_from, date_to, group_type, language, trip_type, 
+            trip_title, accommodation, budget, split_costs, itinerary, description, planner_id
+        })
+    } catch ( error ) {
+        throw error;
+    }
 }
 
 const getUserAge = ( birthday ) => {
@@ -52,11 +57,12 @@ export const createUser = async (userObj) => {
             firstName: { value: first_name },
             lastName: { value: last_name },
             birthday: { value: birthday },
-            gender: { value: gender},
+            gender: { value: gender },
             bio: { value: bio },
             language: { value: language },
             country: { value: country_of_origin },
             url: profile_picture,
+            username,
             id
           } = userObj
       
@@ -64,7 +70,7 @@ export const createUser = async (userObj) => {
       
           const age = getUserAge(birthday);
       
-          const res = await axios.post(API + "/api/users", {
+          await axios.post(API + "/api/users", {
               id,
               full_name,
               first_name,
@@ -73,6 +79,7 @@ export const createUser = async (userObj) => {
               age,
               profile_picture,
               gender,
+              username,
               bio,
               country_of_origin,
               language,
@@ -86,7 +93,7 @@ export const createUser = async (userObj) => {
 
 export const createTripRequest = async ( tripId, requester_id ) => {
     try {
-        const res = await axios.post(API + `/api/trips/${tripId}/requests`, {requester_id});
+        await axios.post(API + `/api/trips/${tripId}/requests`, {requester_id});
         return <p className="success">Request successfuly sent</p>
     } catch ( error ) {
         throw error;
@@ -95,7 +102,7 @@ export const createTripRequest = async ( tripId, requester_id ) => {
 
 export const approveTraveler = async ( tripId, traveler_id ) => {
     try {
-        const res = await axios.post(API + `/api/trips/${tripId}/travelers`, {traveler_id});
+        await axios.post(API + `/api/trips/${tripId}/travelers`, {traveler_id});
         return <p className="success">Successfuly approved request</p>
     } catch ( error ) {
         throw error;
@@ -104,7 +111,7 @@ export const approveTraveler = async ( tripId, traveler_id ) => {
 
 export const sendFriendRequest = async ( requester_id, requested_id ) => {
     try {
-        const res = await axios.post(API + `/api/friendRequests`, {requester_id, requested_id});
+        await axios.post(API + `/api/friendRequests`, {requester_id, requested_id});
     } catch ( error ) {
         throw error;
     }
