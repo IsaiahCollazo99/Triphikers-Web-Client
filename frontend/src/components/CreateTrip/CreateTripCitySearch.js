@@ -8,8 +8,10 @@ import {
     ComboboxOption
 } from "@reach/combobox";
 import "@reach/combobox/styles.css";
+import Autocomplete from '@material-ui/lab/Autocomplete';
+import { TextField, FormControl } from '@material-ui/core'
 
-const CreateTripCitySearch = ({ selectedCountry, destination, setDestination }) => {
+const CreateTripCitySearch = ({ selectedCountry, setDestination }) => {
 
     const { ready, value, suggestions: {status, data}, setValue } = usePlacesAutocomplete({
         requestOptions: {
@@ -19,36 +21,39 @@ const CreateTripCitySearch = ({ selectedCountry, destination, setDestination }) 
     })
 
     const handleInput = ( e ) => {
+        console.log({ready, value, status, data});
         setValue(e.target.value);
     }
 
-    const handleSelect = ( val ) => {
-        setValue(val, false);
-        setDestination(val);
+    const handleSelect = ( e ) => {
+        setValue(e.target.innerText, false);
+        setDestination(e.target.innerText);
     }
     
     return(
-        <label htmlFor="ct-city">
-            <p>City: </p>
-            <Combobox onSelect={handleSelect}>
-                <ComboboxInput value={destination ? destination : value} onChange={handleInput} disabled={!ready}
-                placeholder="Input A City" name="ct-city" autoComplete="off" required/>
-                <ComboboxPopover>
-                    <ComboboxList>
-                        {status === "OK" && 
-                            data.map(({ description }, index) => {
-                                return (
-                                    <ComboboxOption 
-                                        key={index} 
-                                        value={description} 
-                                    />
-                                )
-                        })}
-                    </ComboboxList>
-                </ComboboxPopover>
-            </Combobox>
-        </label>
-
+        <FormControl>
+            <Autocomplete
+                id="combo-box-demo"
+                options={data}
+                getOptionLabel={(option) => option.description}
+                style={{ width: 300 }}
+                renderInput={(params) => {
+                    return (
+                        <TextField 
+                            {...params} 
+                            label="City"                         
+                            InputLabelProps={{
+                                shrink: true,
+                            }} 
+                            placeholder="Select a City"
+                        />
+                    )
+                }}
+                onInputChange={handleInput}
+                onChange={handleSelect}
+                required={true}
+            />
+        </FormControl>
     )
 }
 

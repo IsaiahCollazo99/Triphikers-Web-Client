@@ -33,16 +33,11 @@
     font-weight: bold;
 }
 
-.createTripsContainer select:focus, .createTripsContainer input:focus, .createTripsContainer textarea:focus {
-    background-color: #FFAE41;
-    color: #272A33;
-    outline: none;
-}
-
 .createTripDates {
     width: 100%;
     display: flex;
     flex-direction: column;
+    justify-content: space-between;
 }
 
 .ct-destination {
@@ -51,6 +46,11 @@
     flex-direction: column;
     justify-content: space-evenly;
 }
+
+/* .MuiList-root {
+    display: flex;
+    flex-direction: column;
+} */
 
 .ct-budgets {
     width: 100%;
@@ -137,17 +137,6 @@
 .createTrip1 input[type="submit"]:hover {
     background-color: #e08002;
     cursor: pointer;
-}
-
-.createTripsContainer input, .createTripsContainer select, .createTripsContainer textarea {
-    width: 85%;
-    background-color: #dfdfdf;
-    color: #272A33;
-    border: 3px solid #272A33;
-    font-size: 1.25em;
-    transition: 0.3s ease-in-out;
-    border-radius: 0.5em;
-    font-weight: normal;
 }
 
 .createTripDesc textarea {

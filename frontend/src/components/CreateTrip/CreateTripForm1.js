@@ -4,6 +4,15 @@ import CreateTripDestination from './CreateTripDestination';
 import LanguageSelect from '../General/LanguageSelect';
 import { AuthContext } from '../../providers/AuthContext';
 import { getUserById } from '../../util/apiCalls/getRequests';
+import { 
+    InputLabel, 
+    Select, 
+    MenuItem, 
+    FormHelperText, 
+    FormControl, 
+    TextField, 
+    Button 
+} from '@material-ui/core';
 
 const CreateTripForm1 = ( props ) => {
     const [ error, setError ] = useState(null);
@@ -41,10 +50,10 @@ const CreateTripForm1 = ( props ) => {
         const dateToDate = new Date(dateTo.value);
 
         if(today.getTime() >= dateToDate.getTime()) {
-            setError(<p className="error">Please enter a valid date to entry</p> )
+            setError(<p className="error">Please enter a valid date</p> )
             return false;
         } else if(dateToDate.getTime() <= dateFromDate.getTime()) {
-            setError(<p className="error">Please enter a valid date to entry</p> )
+            setError(<p className="error">Please enter a valid date</p> )
             return false;
         }
 
@@ -82,15 +91,29 @@ const CreateTripForm1 = ( props ) => {
             <CreateTripDestination destination={destination} />
 
             <section className="createTripDates">
-                <label htmlFor="dateFrom">
-                    <p>Date From: </p> 
-                    <input type="date" {...dateFrom} name="dateFrom" required />
-                </label>
+                <FormControl>
+                    <TextField                     
+                        label="Date From"
+                        type="date"
+                        variant="standard"
+                        InputLabelProps={{
+                            shrink: true,
+                        }}
+                        {...dateFrom}
+                    />
+                </FormControl>
 
-                <label htmlFor="dateTo">
-                    <p>Date To: </p>
-                    <input type="date" {...dateTo} name="dateTo" required />
-                </label>
+                <FormControl>
+                    <TextField 
+                        label="Date To"
+                        type="date"
+                        variant="standard"
+                        InputLabelProps={{
+                            shrink: true,
+                        }}
+                        {...dateTo}
+                    />
+                </FormControl>
             </section>
 
             <section className="ct-budgets">
