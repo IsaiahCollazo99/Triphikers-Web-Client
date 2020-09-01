@@ -57,6 +57,12 @@
     align-self: center;
 }
 
+.createTrip1 button {
+    grid-column: 2 / 3;
+    align-self: center;
+    font-size: 20px;
+}
+
 .createTrip2 {
     grid-template-rows: 0.65fr 1fr 0.65fr;
     height: 100%;
@@ -111,25 +117,6 @@
 
 .createTrip2 button:hover {
     background-color: #444858;
-    cursor: pointer;
-}
-
-.createTrip1 input[type="submit"] {
-    grid-column: 2 / 3;
-    align-self: center;
-    justify-self: center;
-    width: 45%;
-    border-radius: 1em;
-    padding: 0.75em 0.25em;
-    background-color: #FF9506;
-    border: 2px solid #272A33;
-    color: #272A33;
-    transition: 0.3s ease-in-out;
-    font-weight: 600;
-}
-
-.createTrip1 input[type="submit"]:hover {
-    background-color: #e08002;
     cursor: pointer;
 }
 
