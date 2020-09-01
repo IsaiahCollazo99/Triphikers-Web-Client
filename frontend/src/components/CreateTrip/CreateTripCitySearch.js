@@ -49,11 +49,14 @@ const CreateTripCitySearch = ({ selectedCountry, setDestination }) => {
                             placeholder="Select a City"
                             required
                             helperText="Select your destination"
+                            fullWidth
+                            style={{width: '100%'}}
                         />
                     )
                 }}
                 onInputChange={handleInput}
                 onChange={handleSelect}
+                fullWidth
             />
         </FormControl>
     )

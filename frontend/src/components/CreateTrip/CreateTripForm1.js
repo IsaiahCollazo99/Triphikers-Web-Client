@@ -101,23 +101,23 @@ const CreateTripForm1 = ( props ) => {
                     }}
                     required
                     helperText="When will your trip begin?"
+                    fullWidth
                     {...dateFrom}
                 />
 
-                <FormControl required>
-                    <TextField 
-                        label="Date To"
-                        type="date"
-                        variant="standard"
-                        InputLabelProps={{
-                            shrink: true,
-                            required: false
-                        }}
-                        required
-                        helperText="When will your trip end?"
-                        {...dateTo}
-                    />
-                </FormControl>
+                <TextField 
+                    label="Date To"
+                    type="date"
+                    variant="standard"
+                    InputLabelProps={{
+                        shrink: true,
+                        required: false
+                    }}
+                    required
+                    helperText="When will your trip end?"
+                    fullWidth
+                    {...dateTo}
+                />
             </section>
 
             <section className="ct-budgets">

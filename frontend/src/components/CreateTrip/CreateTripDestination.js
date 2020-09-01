@@ -55,6 +55,7 @@ const CreateTripDestination = ({ destination }) => {
                     value={selectedCountry} 
                     onChange={filterCity}
                     variant="standard"
+                    fullWidth
                 >
                     <option value="" disabled>Select a Country</option>
                     <PopulateLocationSelect list={allCountries} />
