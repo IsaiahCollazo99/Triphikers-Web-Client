@@ -12,6 +12,7 @@ import {
     TextField, 
     Button 
 } from '@material-ui/core';
+import CustomTextField from '../General/CustomTextField';
 
 const CreateTripForm1 = ( props ) => {
     const [ error, setError ] = useState(null);
@@ -90,7 +91,7 @@ const CreateTripForm1 = ( props ) => {
             <CreateTripDestination destination={destination} />
 
             <section className="createTripDates">
-                <TextField                     
+                <CustomTextField                     
                     label="Date From"
                     type="date"
                     variant="outlined"
@@ -104,7 +105,7 @@ const CreateTripForm1 = ( props ) => {
                     {...dateFrom}
                 />
 
-                <TextField 
+                <CustomTextField 
                     label="Date To"
                     type="date"
                     variant="outlined"
@@ -120,121 +121,110 @@ const CreateTripForm1 = ( props ) => {
             </section>
 
             <section className="ct-budgets">
-                <FormControl variant="outlined">
-                    <InputLabel shrink required={false} htmlFor="budget">Budget</InputLabel>
-                    <Select
-                        native
-                        {...budget} 
-                        displayEmpty 
-                        fullWidth 
-                        variant="outlined"
-                        inputProps={{
-                            name: "budget"
-                        }}
-                        required
-                        notched
-                        label="Budget"
-                    >
-                        <option value="" disabled>Select Your Budget</option>
-                        <option value="Budget ($0 - $999)">Budget ($0 - $999)</option>
-                        <option value="Average ($1000 - $1999)">Average ($1000 - $1999)</option>
-                        <option value="Luxury ($2000+)">Luxury ($2000+)</option>
-                    </Select>
-                    <FormHelperText>What is your budget for the trip?</FormHelperText>
-                </FormControl>
+                <CustomTextField
+                    label="Budget"
+                    variant="outlined"
+                    select
+                    helperText="What is your budget for the trip?"
+                    SelectProps={{
+                        native: true,
+                    }}
+                    InputLabelProps={{
+                        shrink: true,
+                        required: false
+                    }}
+                    {...budget}
+                    required
+                >
+                    <option value="" disabled>Select Your Budget</option>
+                    <option value="Budget ($0 - $999)">Budget ($0 - $999)</option>
+                    <option value="Average ($1000 - $1999)">Average ($1000 - $1999)</option>
+                    <option value="Luxury ($2000+)">Luxury ($2000+)</option>
+                </CustomTextField>
 
-                <FormControl variant="outlined">
-                    <InputLabel shrink required={false} htmlFor="split">Split Costs</InputLabel>
-                    <Select
-                        native
-                        {...split} 
-                        displayEmpty 
-                        fullWidth 
-                        variant="outlined"
-                        inputProps={{
-                            name: "split"
-                        }}
-                        required
-                        notched
-                        label="Split Costs"
-                    >
-                        <option value="" disabled>Split Costs?</option>
-                        <option value="Yes">Yes</option>
-                        <option value="No">No</option>
-                    </Select>
-                    <FormHelperText>Split costs with other travelers?</FormHelperText>
-                </FormControl>
+                <CustomTextField
+                    label="Split Costs"
+                    variant="outlined"
+                    select
+                    helperText="Split costs with other travelers?"
+                    SelectProps={{
+                        native: true,
+                    }}
+                    InputLabelProps={{
+                        shrink: true,
+                        required: false
+                    }}
+                    {...split}
+                    required
+                >
+                    <option value="" disabled>Split Costs?</option>
+                    <option value="Yes">Yes</option>
+                    <option value="No">No</option>      
+                </CustomTextField>
             </section>
 
-            <FormControl variant="outlined">
-                <InputLabel shrink required={false} htmlFor="groupType">Group Type</InputLabel>
-                <Select
-                    native
-                    {...groupType} 
-                    displayEmpty 
-                    fullWidth 
-                    variant="outlined"
-                    inputProps={{
-                        name: "groupType"
-                    }}
-                    required
-                    notched
+            <CustomTextField
                     label="Group Type"
-                >
-                    <option value="" disabled>Select a Group Type</option>
-                    <option value="Male">Male</option>
-                    <option value="Female">Female</option>
-                    {getGroupTypeOptions()}
-                    <option value="Any">Any</option>
-                </Select>
-                <FormHelperText>Who would you like to travel with?</FormHelperText>
-            </FormControl>
-
-            <FormControl variant="outlined">
-                <InputLabel shrink required={false} htmlFor="language">Language</InputLabel>
-                <Select
-                    native
-                    {...language} 
-                    displayEmpty 
-                    fullWidth 
                     variant="outlined"
-                    inputProps={{
-                        name: "language"
+                    select
+                    helperText="Who would you like to travel with?"
+                    SelectProps={{
+                        native: true,
                     }}
+                    InputLabelProps={{
+                        shrink: true,
+                        required: false
+                    }}
+                    {...groupType}
                     required
-                    notched
+            >
+                <option value="" disabled>Select a Group Type</option>
+                <option value="Male">Male</option>
+                <option value="Female">Female</option>
+                {getGroupTypeOptions()}
+                <option value="Any">Any</option>
+            </CustomTextField>
+
+            <CustomTextField
                     label="Language"
-                >
-                    <option value="" disabled>Select a language</option>
-                    <LanguageSelect input={language} />
-                </Select>
-                <FormHelperText>What language will you speak?</FormHelperText>
-            </FormControl>
-
-            <FormControl variant="outlined">
-                <InputLabel shrink required={false} htmlFor="tripType">Trip Type</InputLabel>
-                <Select
-                    native
-                    {...tripType} 
-                    displayEmpty 
-                    fullWidth 
                     variant="outlined"
-                    inputProps={{
-                        name: "tripType"
+                    select
+                    helperText="What language will you speak?"
+                    SelectProps={{
+                        native: true,
                     }}
+                    InputLabelProps={{
+                        shrink: true,
+                        required: false
+                    }}
+                    {...language}
                     required
-                    notched
+            >
+                <LanguageSelect input={language} />
+            </CustomTextField>
+
+            <CustomTextField
                     label="Trip Type"
-                >
-                    <option value="" disabled>Select a Trip Type</option>
-                    <option value="Explore Cities">Explore Cities</option>
-                    <option value="Airport Layovers">Airport Layovers</option>
-                    <option value="Road Trip">Road Trip</option>
-                    <option value="Backpacking">Backpacking</option>
-                    <option value="Other">Other</option>
-                </Select>
-                <FormHelperText>Who would you like to travel with?</FormHelperText>
-            </FormControl>
+                    variant="outlined"
+                    select
+                    helperText="How do you want to spend your time?"
+                    SelectProps={{
+                        native: true,
+                    }}
+                    InputLabelProps={{
+                        shrink: true,
+                        required: false
+                    }}
+                    {...tripType}
+                    required
+            >
+                <option value="" disabled>Select a Trip Type</option>
+                <option value="Explore Cities">Explore Cities</option>
+                <option value="Airport Layovers">Airport Layovers</option>
+                <option value="Road Trip">Road Trip</option>
+                <option value="Backpacking">Backpacking</option>
+                <option value="Other">Other</option>
+            </CustomTextField>
 
             <Button type="submit" variant="contained" color="primary">Next Page</Button>
         </form>

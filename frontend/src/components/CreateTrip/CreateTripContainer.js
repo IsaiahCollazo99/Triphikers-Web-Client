@@ -11,7 +11,7 @@ const CreateTripsContainer = () => {
     const { currentUser } = useContext(AuthContext);
     const history = useHistory();
     
-    const [ page, setPage ] = useState(2);
+    const [ page, setPage ] = useState(1);
     const [ destination, setDestination ] = useState("");
     const dateFrom = useInput("");
     const dateTo = useInput("");

@@ -1,13 +1,8 @@
 import React from 'react';
 import { 
-    InputLabel, 
-    NativeSelect, 
-    FormHelperText, 
-    FormControl, 
-    TextField, 
     Button 
 } from '@material-ui/core';
-import CustomTextField, { CustomInputBase } from '../General/CustomTextField';
+import CustomTextField from '../General/CustomTextField';
 import '../../css/createTrip/createTripForms.css';
 
 const CreateTripForm2 = ( props ) => {
