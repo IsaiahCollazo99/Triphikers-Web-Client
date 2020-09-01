@@ -12,7 +12,6 @@ export const createTrip = async ( tripObj, user ) => {
             dateTo: { value: date_to },
             groupType: { value: group_type },
             language: { value: language },
-            meetup: { value: before_trip_meetup },
             tripType: { value: trip_type },
             title: { value: trip_title },
             accommodation: { value: accommodation },
@@ -27,7 +26,7 @@ export const createTrip = async ( tripObj, user ) => {
         const planner_id = user.id;
     
         await axios.post(API + "/api/trips", {
-            destination, date_from, date_to, group_type, language, before_trip_meetup, trip_type, 
+            destination, date_from, date_to, group_type, language, trip_type, 
             trip_title, accommodation, budget, split_costs, itinerary, description, planner_id
         })
     } catch ( error ) {

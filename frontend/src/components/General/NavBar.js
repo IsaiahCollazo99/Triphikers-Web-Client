@@ -1,26 +1,35 @@
 import React, { useContext, useState, useEffect } from "react";
-import { NavLink, Link, useLocation } from "react-router-dom";
+import { NavLink, Link, useHistory } from "react-router-dom";
 import "../../css/general/navBar.css";
 import { logout } from "../../util/firebaseFunction";
 import { AuthContext } from "../../providers/AuthContext";
 import { getUserById } from "../../util/apiCalls/getRequests";
+import { useScrollTrigger, Button, AppBar } from '@material-ui/core';
 import "bootstrap/dist/css/bootstrap.min.css";
-const NavBar = () => {
+
+const style = {
+	'backgroundColor': '#f3f3f3',
+	'display': 'flex',
+	'flexDirection': 'row',
+	'justifyContent': 'space-between'
+}
+
+const ElevationScroll = ({ children }) => {
+	const trigger = useScrollTrigger({
+	  disableHysteresis: true,
+	  threshold: 0
+	});
+  
+	return React.cloneElement(children, {
+	  elevation: trigger ? 4 : 0,
+	});
+}
+
+const NavBar = ( props ) => {
 	const { currentUser } = useContext(AuthContext);
+	const history = useHistory();
 
 	const [firstName, setFirstName] = useState("");
-	const location = useLocation();
-
-	const isOnTripsPage = location.pathname === "/trips";
-	const isOnCreateTripsPage = location.pathname === "/trips/create";
-
-	const displayCreateTrip = () => {
-		if (isOnTripsPage || isOnCreateTripsPage) {
-			return null;
-		} else {
-			return <NavLink to="/trips/create">CREATE A TRIP</NavLink>;
-		}
-	};
 
 	const getFirstName = async ( backOffTime = 1 ) => {
 		try {
@@ -36,11 +45,17 @@ const NavBar = () => {
 
 	};
 
+	const redirectCaT = () => {
+		history.push("/trips/create");
+	}
+
 	const displayNavBar = () => {
 		if (currentUser) {
 			return (
-				<section className="mainNav-right">
-					{displayCreateTrip()}
+				<section className="mainNav-right mh-right">
+					<Button onClick={redirectCaT} variant="contained" color="primary">
+						CREATE A TRIP
+					</Button>
 					<NavLink exact to="/trips">
 						TRIPS
 					</NavLink>
@@ -71,7 +86,7 @@ const NavBar = () => {
 			);
 		} else {
 			return (
-				<section className="lp-navRight">
+				<section className="lp-navRight mh-right">
 					<NavLink exact to="/">
 						ABOUT
 					</NavLink>
@@ -93,16 +108,21 @@ const NavBar = () => {
 	}, [currentUser]);
 
 	return (
-		<nav className="mainNav">
-			<section className="mainNav-left">
+		<ElevationScroll {...props}>
+		<AppBar style={style} className="mainHeader">
+			<section className="mainNav-left" style={{width: '20%'}}>
 				{/* Logo Here */}
-				<h1>
-					<Link to={currentUser ? "/trips" : "/"}>TRIPHIKERS</Link>
+				<h1 style={{width: 'fit-content'}}>
+					<Link to={currentUser ? "/trips" : "/"} style={{width: 'fit-content'}}>
+						TRIPHIKERS
+					</Link>
 				</h1>
 			</section>
 
 			{displayNavBar()}
-		</nav>
+		</AppBar>
+		</ElevationScroll>
+		
 	);
 };
 

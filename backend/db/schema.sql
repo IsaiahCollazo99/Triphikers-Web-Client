@@ -34,12 +34,11 @@ CREATE TABLE trips (
     date_to VARCHAR,
     group_type VARCHAR,
     language VARCHAR,
-    before_trip_meetup VARCHAR,
     trip_type VARCHAR,
     trip_title VARCHAR,
     first_time VARCHAR,
     accommodation VARCHAR,
-    budget INTEGER,
+    budget VARCHAR,
     split_costs VARCHAR,
     itinerary VARCHAR,
     description VARCHAR,
@@ -94,4 +93,4 @@ ALTER TABLE users
 ADD COLUMN facebook_link VARCHAR,
 ADD COLUMN twitter_username VARCHAR,
 ADD COLUMN instagram_username VARCHAR,
-ADD COLUMN username VARCHAR
+ADD COLUMN username VARCHAR;
