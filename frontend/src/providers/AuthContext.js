@@ -1,8 +1,6 @@
 import React, { createContext, useState, useEffect } from 'react';
 import firebase from '../firebase';
-import axios from 'axios';
 import { getFirebaseIdToken } from '../util/firebaseFunction';
-import { apiURL } from '../util/apiURL';
 
 export const AuthContext = createContext();
 
@@ -15,8 +13,8 @@ const AuthProvider = ({ children }) => {
         try {
             if(user) {
                 // Add a time checker. Throw an error if it's taking too long
-                const { uid, email } = user;
-                setCurrentUser({id: uid, email});
+                const { uid: id, email, displayName: username } = user;
+                setCurrentUser({id, email, username});
                 const token = await getFirebaseIdToken()
                 setToken(token);
                 setLoading(false);

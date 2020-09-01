@@ -40,6 +40,7 @@ const UserPageEdit = () => {
     useEffect(() => {
         getUserCall();
         getCountries();
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [])
 
     const getFullName = () => {
@@ -68,7 +69,7 @@ const UserPageEdit = () => {
             instagram_username: instagram.value ? `instagram.com/${instagram.value}` : null
         }
 
-        const response = await updateUser(currentUser.id, userData);
+        await updateUser(currentUser.id, userData);
     }
 
     const handleUpdate = () => {

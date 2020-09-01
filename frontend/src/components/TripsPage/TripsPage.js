@@ -3,22 +3,50 @@ import { getAllTrips, getUserById } from '../../util/apiCalls/getRequests';
 import TripCard from '../General/TripCard';
 import '../../css/tripsPage/tripsPage.css';
 import TripsPageFilter from './TripsPageFilter';
-import { useHistory } from 'react-router-dom';
-import { FaSync } from 'react-icons/fa';
 import { AuthContext } from '../../providers/AuthContext';
+import { useScrollTrigger, Zoom, Fab } from '@material-ui/core';
+import { KeyboardArrowUp } from '@material-ui/icons';
+import { makeStyles } from '@material-ui/core/styles';
 
-const TripsPage = () => {
+const useStyles = makeStyles(theme => ({
+	root: {
+        position: 'fixed',
+        bottom: theme.spacing(2),
+        right: theme.spacing(2),
+	},
+}));
+
+const ScrollToTop = ({ children }) => {
+	const classes = useStyles();
+
+	const trigger = useScrollTrigger({
+		disableHysteresis: true,
+		threshold: 100,
+	});
+
+	const handleClick = ( e ) => {
+		const anchor = document.querySelector('#back-to-top-anchor');
+	
+		if(anchor) {
+		  anchor.scrollIntoView({ behavior: 'smooth', block: 'center' });
+		}
+	};
+	
+	return (
+		<Zoom in={trigger}>
+			<div onClick={handleClick} role="presentation" className={classes.root}>
+				{children}
+			</div>
+		</Zoom>
+	);
+}
+
+const TripsPage = ( props ) => {
     const [ trips, setTrips ] = useState([]);
     const [ filteredTrips, setFilteredTrips ] = useState([]);
     const [ response, setResponse ] = useState(null);
     const [ user, setUser ] = useState({});
     const { currentUser } = useContext(AuthContext);
-
-    const history = useHistory();
-
-    const redirect = () => {
-        history.push("/trips/create");
-    }
     
     const getTripsCall = async () => {
         try {
@@ -89,6 +117,7 @@ const TripsPage = () => {
     useEffect(() => {
         getTripsCall();
         getCurrentUser();
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [])
 
     const isTripExpired = ( trip ) => {
@@ -141,19 +170,21 @@ const TripsPage = () => {
     
     return (
         <div className="tripsPage">
-            <section className="tp-buttons">
-                <button onClick={redirect} className="tp-createTrip">CREATE A TRIP</button>
-                <FaSync onClick={getTripsCall} className="tp-refresh" title="Refresh trips"/>
-            </section>
 
             <section className="tp-feedManager">
-                <TripsPageFilter filterTrips={filterTrips}/>
+                <TripsPageFilter filterTrips={filterTrips} getTripsCall={getTripsCall} />
             </section>
 
             <section className="tripsPageFeed">
                 {response}
                 {tripsList}
             </section>
+
+            <ScrollToTop {...props}>
+            <Fab color="secondary" size="small" aria-label="scroll back to top">
+                <KeyboardArrowUp />
+            </Fab>
+            </ScrollToTop>
         </div>
     )
 }

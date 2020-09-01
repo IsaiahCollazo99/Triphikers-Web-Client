@@ -33,9 +33,9 @@ const SignUpMethod = ({ handlePageChange, setUser }) => {
     </header>
 
     <section className="signUpMethod">
-      {/* <button className="twitterButton" onClick={handleTwitterClick}> 
+      <button className="twitterButton" onClick={handleTwitterClick}> 
         SIGN UP WITH TWITTER
-      </button> */}
+      </button>
       <button className="facebookButton" onClick={handleFBookClick}>
           <img src={fBookLogo} alt="Facebook Logo" />
           <p>Continue with Facebook</p>

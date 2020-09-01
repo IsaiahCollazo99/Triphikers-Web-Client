@@ -1,11 +1,9 @@
 .dt-info {
     display: flex;
     flex-direction: column;
-    border: 2px solid #272A33;
+    border-top: 2px solid #272A33;
     padding: 1em;
     background-color: white;
-    border-bottom-left-radius: 1em;
-    border-bottom-right-radius: 1em;
 }
 
 .dt-info header {
@@ -103,7 +101,7 @@
     justify-self: center;
 }
 
-.dt-info span {
+.dt-info span:not(.requested) {
     font-weight: bold;
     color: #da5300;
 }

@@ -1,8 +1,11 @@
 import React, { useState } from "react";
+import { getUserByUsername } from "../../util/apiCalls/getRequests";
 
 
 const CreateSignUpForm2 = (props) => {
-	const { firstName, lastName, birthday, gender, handlePageChange, user } = props;
+	const { firstName, lastName, birthday, gender, handlePageChange, user,
+	username, setUsername } = props;
+	const [ isValidUsername, setIsValidUsername ] = useState(true);
 	const [ error, setError ] = useState(null);
 	
 	const isValidAge = () => {
@@ -21,13 +24,38 @@ const CreateSignUpForm2 = (props) => {
 		}
 	}
 
-	const handleSubmit = (e) => {
+	const isUsernameExisting = async () => {
+		try {
+			const data = await getUserByUsername(username);
+			return data.user;
+		} catch ( error ) {
+			console.log(error);
+		}
+	}
+
+	const handleSubmit = async (e) => {
 		e.preventDefault();
-		if(isValidAge()) {
+		if(await isUsernameExisting()) {
+			setError(<p className="error">User with that username exists.</p>);
+		} else if(isValidAge() && isValidUsername) {
 			handlePageChange(3)
 		} else {
-			setError(<p className="error">Must be 18 years or older to sign up.</p>)
+			if(!isValidAge()) {
+				setError(<p className="error">Must be 18 years or older to sign up.</p>);
+			}
 		}
+	}
+
+	const onInputChange = ( e ) => {
+		const inputValue = e.target.value;
+		const pattern = "[^a-z0-9._%+-]";
+
+		if(inputValue.match(pattern)) {
+			setIsValidUsername(false);
+		} else {
+			setIsValidUsername(true);
+		}
+		setUsername(inputValue);
 	}
 
 	const displayBackButton = () => {
@@ -52,6 +80,8 @@ const CreateSignUpForm2 = (props) => {
 
 	const today = `${yyyy}-${mm}-${dd}`;
 
+	const displayUsernameError = isValidUsername ? "none" : "inline-block";
+
 	return (
 		<>
 		<header>
@@ -62,16 +92,30 @@ const CreateSignUpForm2 = (props) => {
 		<form onSubmit={handleSubmit}>
 			{error}
 
-			<label htmlFor="firstName">First Name : </label>
+			<label htmlFor="firstName">First Name: </label>
 			<input type="text" name="firstName" autoComplete="on" placeholder="First Name" {...firstName} required />
 
-			<label htmlFor="lastName">Last Name : </label>
+			<label htmlFor="lastName">Last Name: </label>
 			<input type="text" {...lastName} name="lastName" autoComplete="on" placeholder="Last Name"  required />
 
-			<label htmlFor="birthday">Birthday : </label>
+			<label htmlFor="birthday">Birthday: </label>
 			<input type="date" name="birthday" {...birthday} max={today} min={"1900-01-01"} autoComplete="on"  required />
 
-			<label htmlFor="gender">Gender : </label>
+			<label htmlFor="username">Username: </label>
+			<p style={{display: displayUsernameError}} className="error">
+				Username contains an invalid character
+			</p>
+			<input 
+				type="text" 
+				name="username" 
+				value={username} 
+				onChange={onInputChange} 
+				placeholder="Username" 
+				required 
+				
+				/>
+
+			<label htmlFor="gender">Gender: </label>
 			<select {...gender} name="gender" required>
 				<option disabled value="">Select your Gender</option>
 				<option value="Male">Male</option>
