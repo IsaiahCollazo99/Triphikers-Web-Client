@@ -44,14 +44,16 @@ const CreateTripCitySearch = ({ selectedCountry, setDestination }) => {
                             label="City"                         
                             InputLabelProps={{
                                 shrink: true,
+                                required: false
                             }} 
                             placeholder="Select a City"
+                            required
+                            helperText="Select your destination"
                         />
                     )
                 }}
                 onInputChange={handleInput}
                 onChange={handleSelect}
-                required={true}
             />
         </FormControl>
     )

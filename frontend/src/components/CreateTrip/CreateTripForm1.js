@@ -91,26 +91,30 @@ const CreateTripForm1 = ( props ) => {
             <CreateTripDestination destination={destination} />
 
             <section className="createTripDates">
-                <FormControl>
-                    <TextField                     
-                        label="Date From"
-                        type="date"
-                        variant="standard"
-                        InputLabelProps={{
-                            shrink: true,
-                        }}
-                        {...dateFrom}
-                    />
-                </FormControl>
+                <TextField                     
+                    label="Date From"
+                    type="date"
+                    variant="standard"
+                    InputLabelProps={{
+                        shrink: true,
+                        required: false
+                    }}
+                    required
+                    helperText="When will your trip begin?"
+                    {...dateFrom}
+                />
 
-                <FormControl>
+                <FormControl required>
                     <TextField 
                         label="Date To"
                         type="date"
                         variant="standard"
                         InputLabelProps={{
                             shrink: true,
+                            required: false
                         }}
+                        required
+                        helperText="When will your trip end?"
                         {...dateTo}
                     />
                 </FormControl>
