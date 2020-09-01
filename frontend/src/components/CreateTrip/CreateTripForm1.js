@@ -4,14 +4,7 @@ import CreateTripDestination from './CreateTripDestination';
 import LanguageSelect from '../General/LanguageSelect';
 import { AuthContext } from '../../providers/AuthContext';
 import { getUserById } from '../../util/apiCalls/getRequests';
-import { 
-    InputLabel, 
-    Select, 
-    FormHelperText, 
-    FormControl, 
-    TextField, 
-    Button 
-} from '@material-ui/core';
+import { Button } from '@material-ui/core';
 import CustomTextField from '../General/CustomTextField';
 
 const CreateTripForm1 = ( props ) => {

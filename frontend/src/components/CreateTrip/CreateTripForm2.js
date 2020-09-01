@@ -1,7 +1,5 @@
 import React from 'react';
-import { 
-    Button 
-} from '@material-ui/core';
+import { Button } from '@material-ui/core';
 import CustomTextField from '../General/CustomTextField';
 import '../../css/createTrip/createTripForms.css';
 

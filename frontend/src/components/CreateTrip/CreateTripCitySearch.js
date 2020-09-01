@@ -1,11 +1,11 @@
 import React from 'react';
 import usePlacesAutocomplete from "use-places-autocomplete";
 import Autocomplete from '@material-ui/lab/Autocomplete';
-import { TextField, FormControl } from '@material-ui/core'
+import CustomTextField from '../General/CustomTextField';
 
 const CreateTripCitySearch = ({ selectedCountry, setDestination }) => {
 
-    const { ready, value, suggestions: {status, data}, setValue } = usePlacesAutocomplete({
+    const { suggestions: { data }, setValue } = usePlacesAutocomplete({
         requestOptions: {
             types: ['(cities)'],
             componentRestrictions: {country: selectedCountry}
@@ -13,7 +13,6 @@ const CreateTripCitySearch = ({ selectedCountry, setDestination }) => {
     })
 
     const handleInput = ( e ) => {
-        console.log({ready, value, status, data});
         setValue(e.target.value);
     }
 
@@ -23,35 +22,33 @@ const CreateTripCitySearch = ({ selectedCountry, setDestination }) => {
     }
     
     return(
-        <FormControl>
-            <Autocomplete
-                id="combo-box-demo"
-                options={data}
-                getOptionLabel={(option) => option.description}
-                style={{ width: 300 }}
-                renderInput={(params) => {
-                    return (
-                        <TextField 
-                            {...params} 
-                            label="City"                         
-                            InputLabelProps={{
-                                shrink: true,
-                                required: false
-                            }} 
-                            placeholder="Select a City"
-                            required
-                            helperText="Select your destination"
-                            fullWidth
-                            variant="outlined"
-                            style={{width: '100%'}}
-                        />
-                    )
-                }}
-                onInputChange={handleInput}
-                onChange={handleSelect}
-                fullWidth
-            />
-        </FormControl>
+        <Autocomplete
+            id="combo-box-demo"
+            options={data}
+            getOptionLabel={(option) => option.description}
+            style={{ width: 300 }}
+            renderInput={(params) => {
+                return (
+                    <CustomTextField 
+                        {...params} 
+                        label="City"                         
+                        InputLabelProps={{
+                            shrink: true,
+                            required: false
+                        }} 
+                        placeholder="Select a City"
+                        required
+                        helperText="Select your destination"
+                        fullWidth
+                        variant="outlined"
+                        style={{width: '100%'}}
+                    />
+                )
+            }}
+            onInputChange={handleInput}
+            onChange={handleSelect}
+            fullWidth
+        />
     )
 }
 

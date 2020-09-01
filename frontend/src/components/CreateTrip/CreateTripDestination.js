@@ -4,12 +4,7 @@ import "../../css/LocationSearch.css";
 import PopulateLocationSelect from '../helper/populateLocationSelect';
 import CreateTripCitySearch from "./CreateTripCitySearch";
 import { useLoadScript } from "@react-google-maps/api";
-import { 
-    InputLabel, 
-    Select, 
-    FormHelperText, 
-    FormControl
-} from '@material-ui/core';
+import CustomTextField from '../General/CustomTextField';
 
 const {
     REACT_APP_GOOGLEAPIKEY
@@ -46,26 +41,25 @@ const CreateTripDestination = ({ destination }) => {
 
     return (
         <section className="ct-destination">
-            <FormControl variant="outlined">
-                <InputLabel shrink htmlFor="country">Select a Country (optional filter)</InputLabel>
-                <Select 
-                    native
-                    labelId="country" 
-                    displayEmpty 
-                    value={selectedCountry} 
-                    onChange={filterCity}
-                    fullWidth
-                    inputProps={{
-                        name: "country"
-                    }}
-                    notched
-                    label="Select a Country (optional filter)"
-                >
-                    <option value="" disabled>Select a Country</option>
-                    <PopulateLocationSelect list={allCountries} />
-                </Select>
-                <FormHelperText>Select a country to filter the city list</FormHelperText>
-            </FormControl>
+            <CustomTextField
+                select
+                label="Select a Country (optional filter)"
+                variant="outlined"
+                helperText="Select a country to filter the city list"
+                SelectProps={{
+                    native: true,
+                }}
+                InputLabelProps={{
+                    shrink: true,
+                    required: false
+                }}
+                value={selectedCountry} 
+                onChange={filterCity}
+                required
+            >               
+                <option value="" disabled>Select a Country</option>
+                <PopulateLocationSelect list={allCountries} />
+            </CustomTextField>
 
             { isLoaded ? 
                 <CreateTripCitySearch selectedCountry={selectedCountry} destination={destination.destination} setDestination={setDestination} /> :
