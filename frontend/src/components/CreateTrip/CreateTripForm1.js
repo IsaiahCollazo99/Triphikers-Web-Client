@@ -237,7 +237,6 @@ const CreateTripForm1 = ( props ) => {
             </FormControl>
 
             <Button type="submit" variant="contained" color="primary">Next Page</Button>
-            {/* <input type="submit" value="Next Page" /> */}
         </form>
         </>
     )

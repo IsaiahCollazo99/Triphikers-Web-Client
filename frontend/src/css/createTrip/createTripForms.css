@@ -68,14 +68,16 @@
     height: 100%;
 }
 
-.createTripDesc {
-    grid-column: 1 / 4;
-    width: 60%;
-    justify-self: center;
+.createTrip2 > .MuiFormControl-root {
+    height: fit-content;
+    align-self: center;
 }
 
-.createTripDesc p {
-    width: fit-content
+.createTripDesc {
+    grid-column: 1 / 4;
+    justify-self: center;
+    height: fit-content;
+    align-self: center;
 }
 
 .createTripsContainer .buttons {
@@ -88,39 +90,6 @@
     align-content: center;
 }
 
-.createTrip2 button, .createTrip2 input[type="submit"] {
-    width: 25%;
-    border-radius: 0.75em;
-    padding: 0.75em 1em;
-    font-size: 1.25em;
-    font-weight: 600;
-}
-
-.createTrip2 input[type="submit"] {
-    background-color: #FF9506;
-    border: 2px solid #272A33;
-    color: #272A33;
-    transition: 0.3s ease-in-out;
-}
-
-.createTrip2 input[type="submit"]:hover {
-    background-color: #e08002;
-    cursor: pointer;
-}
-
 .createTrip2 button {
-    background-color: #272A33;
-    border-color: rgb(255, 157, 0);
-    color: rgb(255, 157, 0);
-    transition: 0.3s ease-in-out;
-}
-
-.createTrip2 button:hover {
-    background-color: #444858;
-    cursor: pointer;
-}
-
-.createTripDesc textarea {
-    resize: none;
-    width: 100%;
+    font-size: 20px;
 }
