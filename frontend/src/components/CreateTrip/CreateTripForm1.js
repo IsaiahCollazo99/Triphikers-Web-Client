@@ -7,7 +7,6 @@ import { getUserById } from '../../util/apiCalls/getRequests';
 import { 
     InputLabel, 
     Select, 
-    MenuItem, 
     FormHelperText, 
     FormControl, 
     TextField, 
@@ -94,7 +93,7 @@ const CreateTripForm1 = ( props ) => {
                 <TextField                     
                     label="Date From"
                     type="date"
-                    variant="standard"
+                    variant="outlined"
                     InputLabelProps={{
                         shrink: true,
                         required: false
@@ -108,7 +107,7 @@ const CreateTripForm1 = ( props ) => {
                 <TextField 
                     label="Date To"
                     type="date"
-                    variant="standard"
+                    variant="outlined"
                     InputLabelProps={{
                         shrink: true,
                         required: false
@@ -121,56 +120,124 @@ const CreateTripForm1 = ( props ) => {
             </section>
 
             <section className="ct-budgets">
-                <label htmlFor="budget" className="ct-budget">
-                    <p>Your Budget: </p>
-                    <select {...budget} name="budget" required>
+                <FormControl variant="outlined">
+                    <InputLabel shrink required={false} htmlFor="budget">Budget</InputLabel>
+                    <Select
+                        native
+                        {...budget} 
+                        displayEmpty 
+                        fullWidth 
+                        variant="outlined"
+                        inputProps={{
+                            name: "budget"
+                        }}
+                        required
+                        notched
+                        label="Budget"
+                    >
                         <option value="" disabled>Select Your Budget</option>
                         <option value="Budget ($0 - $999)">Budget ($0 - $999)</option>
                         <option value="Average ($1000 - $1999)">Average ($1000 - $1999)</option>
                         <option value="Luxury ($2000+)">Luxury ($2000+)</option>
-                    </select>
-                </label>
+                    </Select>
+                    <FormHelperText>What is your budget for the trip?</FormHelperText>
+                </FormControl>
 
-                <label htmlFor="split">
-                    <p>Split Costs: </p>
-                    <select {...split} name="split" required>
+                <FormControl variant="outlined">
+                    <InputLabel shrink required={false} htmlFor="split">Split Costs</InputLabel>
+                    <Select
+                        native
+                        {...split} 
+                        displayEmpty 
+                        fullWidth 
+                        variant="outlined"
+                        inputProps={{
+                            name: "split"
+                        }}
+                        required
+                        notched
+                        label="Split Costs"
+                    >
                         <option value="" disabled>Split Costs?</option>
                         <option value="Yes">Yes</option>
                         <option value="No">No</option>
-                    </select>
-                </label>
+                    </Select>
+                    <FormHelperText>Split costs with other travelers?</FormHelperText>
+                </FormControl>
             </section>
 
-            <label htmlFor="groupType">
-                <p>Group Type: </p>
-                <select {...groupType} name="groupType" required>
+            <FormControl variant="outlined">
+                <InputLabel shrink required={false} htmlFor="groupType">Group Type</InputLabel>
+                <Select
+                    native
+                    {...groupType} 
+                    displayEmpty 
+                    fullWidth 
+                    variant="outlined"
+                    inputProps={{
+                        name: "groupType"
+                    }}
+                    required
+                    notched
+                    label="Group Type"
+                >
                     <option value="" disabled>Select a Group Type</option>
                     <option value="Male">Male</option>
                     <option value="Female">Female</option>
                     {getGroupTypeOptions()}
                     <option value="Any">Any</option>
-                </select>
-            </label>
+                </Select>
+                <FormHelperText>Who would you like to travel with?</FormHelperText>
+            </FormControl>
 
-            <label htmlFor="language">
-                <p>Language: </p>
-                <LanguageSelect input={language} />
-            </label>
+            <FormControl variant="outlined">
+                <InputLabel shrink required={false} htmlFor="language">Language</InputLabel>
+                <Select
+                    native
+                    {...language} 
+                    displayEmpty 
+                    fullWidth 
+                    variant="outlined"
+                    inputProps={{
+                        name: "language"
+                    }}
+                    required
+                    notched
+                    label="Language"
+                >
+                    <option value="" disabled>Select a language</option>
+                    <LanguageSelect input={language} />
+                </Select>
+                <FormHelperText>What language will you speak?</FormHelperText>
+            </FormControl>
 
-
-            <label htmlFor="tripType">
-                <p>Trip Type: </p>
-                <select {...tripType} name="tripType" required>
+            <FormControl variant="outlined">
+                <InputLabel shrink required={false} htmlFor="tripType">Trip Type</InputLabel>
+                <Select
+                    native
+                    {...tripType} 
+                    displayEmpty 
+                    fullWidth 
+                    variant="outlined"
+                    inputProps={{
+                        name: "tripType"
+                    }}
+                    required
+                    notched
+                    label="Trip Type"
+                >
                     <option value="" disabled>Select a Trip Type</option>
                     <option value="Explore Cities">Explore Cities</option>
                     <option value="Airport Layovers">Airport Layovers</option>
                     <option value="Road Trip">Road Trip</option>
                     <option value="Backpacking">Backpacking</option>
                     <option value="Other">Other</option>
-                </select>
-            </label>
+                </Select>
+                <FormHelperText>Who would you like to travel with?</FormHelperText>
+            </FormControl>
 
-            <input type="submit" value="Next Page" />
+            <Button type="submit" variant="contained" color="primary">Next Page</Button>
+            {/* <input type="submit" value="Next Page" /> */}
         </form>
         </>
     )

@@ -1,13 +1,5 @@
 import React from 'react';
 import usePlacesAutocomplete from "use-places-autocomplete";
-import {
-    Combobox,
-    ComboboxInput,
-    ComboboxPopover,
-    ComboboxList,
-    ComboboxOption
-} from "@reach/combobox";
-import "@reach/combobox/styles.css";
 import Autocomplete from '@material-ui/lab/Autocomplete';
 import { TextField, FormControl } from '@material-ui/core'
 
@@ -50,6 +42,7 @@ const CreateTripCitySearch = ({ selectedCountry, setDestination }) => {
                             required
                             helperText="Select your destination"
                             fullWidth
+                            variant="outlined"
                             style={{width: '100%'}}
                         />
                     )

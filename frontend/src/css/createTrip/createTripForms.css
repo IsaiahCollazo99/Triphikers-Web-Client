@@ -16,6 +16,7 @@
 .createTripsContainer form {
     display: grid;
     grid-template-columns: 1fr 1fr 1fr;
+    justify-items: center;
 }
 
 .createTripsContainer .MuiFormControl-root {
@@ -49,6 +50,11 @@
     flex-direction: column;
     justify-content: space-evenly;
     align-items: center;
+}
+
+.createTrip1 > .MuiFormControl-root {
+    height: fit-content;
+    align-self: center;
 }
 
 .createTrip2 {

@@ -46,16 +46,20 @@ const CreateTripDestination = ({ destination }) => {
 
     return (
         <section className="ct-destination">
-            <FormControl>
-                <InputLabel shrink id="country">Select a Country (optional filter)</InputLabel>
+            <FormControl variant="outlined">
+                <InputLabel shrink htmlFor="country">Select a Country (optional filter)</InputLabel>
                 <Select 
                     native
                     labelId="country" 
                     displayEmpty 
                     value={selectedCountry} 
                     onChange={filterCity}
-                    variant="standard"
                     fullWidth
+                    inputProps={{
+                        name: "country"
+                    }}
+                    notched
+                    label="Select a Country (optional filter)"
                 >
                     <option value="" disabled>Select a Country</option>
                     <PopulateLocationSelect list={allCountries} />

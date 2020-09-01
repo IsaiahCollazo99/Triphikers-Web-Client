@@ -1,5 +1,4 @@
 import React from "react";
-import { MenuItem } from '@material-ui/core';
 
 const PopulateLocationSelect = ({ list }) => {
 
