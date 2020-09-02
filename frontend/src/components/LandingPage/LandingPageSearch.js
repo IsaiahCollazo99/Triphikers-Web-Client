@@ -1,6 +1,5 @@
 import React, { useState, useEffect} from "react";
 import PopulateLocationSelect from "../helper/populateLocationSelect";
-import "../../css/landingPage/landingPageSearch.css";
 import axios from "axios";
 import usePlacesAutocomplete from "use-places-autocomplete";
 import Autocomplete from '@material-ui/lab/Autocomplete';

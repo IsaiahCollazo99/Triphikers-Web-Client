@@ -10,7 +10,7 @@ import { withStyles, makeStyles } from '@material-ui/core/styles';
 
 const ColorButton = withStyles((theme) => ({
     root: {
-      color: theme.palette.getContrastText(orange[500]),
+      color: "white",
       backgroundColor: orange[500],
       '&:hover': {
         backgroundColor: orange[700],
