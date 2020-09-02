@@ -2,7 +2,7 @@ import React from 'react'
 
 export default function Safety() {
   return (
-		<>
+		<div className="safetyContainer">
 			<h2 className="StafetyTitle">Solo Travel Safety Precautions</h2>
 
 			<h2>Save Money</h2>
@@ -29,11 +29,7 @@ export default function Safety() {
 				abroad, especially if your itinerary involves long-distance hiking in
 				remote areas or other risky activities, make sure your policy has
 				medical evacuation coverage. Medical airlifts (air ambulances) are
-				incredibly expensive. According to CostHelper, you’re looking at upwards
-				of $25,000 for a medium-haul flight, and well over $100,000 for an
-				international flight. Many health insurance plans cover the bulk of
-				these costs in the U.S., but you shouldn’t expect any financial help
-				abroad.
+				incredibly expensive.
 			</p>
 			<h2> Protect Your Money and Valuables</h2>
 			<p>
@@ -49,7 +45,9 @@ export default function Safety() {
 				credit card data from passersby in public places. My RFID-blocking
 				wallet cost less than $20 and looks great – it’s not actual leather, but
 				I certainly can’t tell the difference.
+				</p>
 				<h2> Be Discreet With Accessories </h2>
+				<p>
 				Flashing shiny, spendy accessories is a surefire way to attract the
 				wrong kind of attention. Avoid displaying expensive-looking jewelry,
 				handbags, sunglasses, and other accessories on the road. In fact, unless
@@ -58,6 +56,7 @@ export default function Safety() {
 				need to sport name brands at an evening function or two, that’s fine –
 				just dress down for the rest of your trip and leave the expensive stuff
 				tucked safely away in your room.
+					</p>
 				<h2>Reserve Secure Room Locker </h2>
 				<p>
 					Use Your Room Safe or Reserve a Secure Locker Speaking of room
@@ -123,6 +122,6 @@ export default function Safety() {
 				your posts. Wait to post pictures and reminiscences once you’re safely
 				back home.
 			</p>
-				</>
+				</div>
 	)
 }

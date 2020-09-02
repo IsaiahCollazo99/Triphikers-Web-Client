@@ -1,9 +1,9 @@
 import React from 'react';
 
-const LanguageSelect = ({ input, className }) => {
+const LanguageSelect = () => {
 
     return (
-        <select {...input} className={className} required>
+        <>
             <option value="" disabled>Select a Language</option>
             <option value="Afrikaans">Afrikaans</option>
             <option value="Albanian">Albanian</option>
@@ -77,7 +77,7 @@ const LanguageSelect = ({ input, className }) => {
             <option value="Vietnamese">Vietnamese</option>
             <option value="Welsh">Welsh</option>
             <option value="Xhosa">Xhosa</option>
-        </select>
+        </>
     )
 }
 

@@ -4,6 +4,8 @@ import CreateTripDestination from './CreateTripDestination';
 import LanguageSelect from '../General/LanguageSelect';
 import { AuthContext } from '../../providers/AuthContext';
 import { getUserById } from '../../util/apiCalls/getRequests';
+import { Button } from '@material-ui/core';
+import CustomTextField from '../General/CustomTextField';
 
 const CreateTripForm1 = ( props ) => {
     const [ error, setError ] = useState(null);
@@ -41,10 +43,10 @@ const CreateTripForm1 = ( props ) => {
         const dateToDate = new Date(dateTo.value);
 
         if(today.getTime() >= dateToDate.getTime()) {
-            setError(<p className="error">Please enter a valid date to entry</p> )
+            setError(<p className="error">Please enter a valid date</p> )
             return false;
         } else if(dateToDate.getTime() <= dateFromDate.getTime()) {
-            setError(<p className="error">Please enter a valid date to entry</p> )
+            setError(<p className="error">Please enter a valid date</p> )
             return false;
         }
 
@@ -82,68 +84,142 @@ const CreateTripForm1 = ( props ) => {
             <CreateTripDestination destination={destination} />
 
             <section className="createTripDates">
-                <label htmlFor="dateFrom">
-                    <p>Date From: </p> 
-                    <input type="date" {...dateFrom} name="dateFrom" required />
-                </label>
+                <CustomTextField                     
+                    label="Date From"
+                    type="date"
+                    variant="outlined"
+                    InputLabelProps={{
+                        shrink: true,
+                        required: false
+                    }}
+                    required
+                    helperText="When will your trip begin?"
+                    fullWidth
+                    {...dateFrom}
+                />
 
-                <label htmlFor="dateTo">
-                    <p>Date To: </p>
-                    <input type="date" {...dateTo} name="dateTo" required />
-                </label>
+                <CustomTextField 
+                    label="Date To"
+                    type="date"
+                    variant="outlined"
+                    InputLabelProps={{
+                        shrink: true,
+                        required: false
+                    }}
+                    required
+                    helperText="When will your trip end?"
+                    fullWidth
+                    {...dateTo}
+                />
             </section>
 
             <section className="ct-budgets">
-                <label htmlFor="budget" className="ct-budget">
-                    <p>Your Budget: </p>
-                    <select {...budget} name="budget" required>
-                        <option value="" disabled>Select Your Budget</option>
-                        <option value="Budget ($0 - $999)">Budget ($0 - $999)</option>
-                        <option value="Average ($1000 - $1999)">Average ($1000 - $1999)</option>
-                        <option value="Luxury ($2000+)">Luxury ($2000+)</option>
-                    </select>
-                </label>
+                <CustomTextField
+                    label="Budget"
+                    variant="outlined"
+                    select
+                    helperText="What is your budget for the trip?"
+                    SelectProps={{
+                        native: true,
+                    }}
+                    InputLabelProps={{
+                        shrink: true,
+                        required: false
+                    }}
+                    {...budget}
+                    required
+                >
+                    <option value="" disabled>Select Your Budget</option>
+                    <option value="Budget ($0 - $999)">Budget ($0 - $999)</option>
+                    <option value="Average ($1000 - $1999)">Average ($1000 - $1999)</option>
+                    <option value="Luxury ($2000+)">Luxury ($2000+)</option>
+                </CustomTextField>
 
-                <label htmlFor="split">
-                    <p>Split Costs: </p>
-                    <select {...split} name="split" required>
-                        <option value="" disabled>Split Costs?</option>
-                        <option value="Yes">Yes</option>
-                        <option value="No">No</option>
-                    </select>
-                </label>
+                <CustomTextField
+                    label="Split Costs"
+                    variant="outlined"
+                    select
+                    helperText="Split costs with other travelers?"
+                    SelectProps={{
+                        native: true,
+                    }}
+                    InputLabelProps={{
+                        shrink: true,
+                        required: false
+                    }}
+                    {...split}
+                    required
+                >
+                    <option value="" disabled>Split Costs?</option>
+                    <option value="Yes">Yes</option>
+                    <option value="No">No</option>      
+                </CustomTextField>
             </section>
 
-            <label htmlFor="groupType">
-                <p>Group Type: </p>
-                <select {...groupType} name="groupType" required>
-                    <option value="" disabled>Select a Group Type</option>
-                    <option value="Male">Male</option>
-                    <option value="Female">Female</option>
-                    {getGroupTypeOptions()}
-                    <option value="Any">Any</option>
-                </select>
-            </label>
+            <CustomTextField
+                    label="Group Type"
+                    variant="outlined"
+                    select
+                    helperText="Who would you like to travel with?"
+                    SelectProps={{
+                        native: true,
+                    }}
+                    InputLabelProps={{
+                        shrink: true,
+                        required: false
+                    }}
+                    {...groupType}
+                    required
+            >
+                <option value="" disabled>Select a Group Type</option>
+                <option value="Male">Male</option>
+                <option value="Female">Female</option>
+                {getGroupTypeOptions()}
+                <option value="Any">Any</option>
+            </CustomTextField>
 
-            <label htmlFor="language">
-                <p>Language: </p>
+            <CustomTextField
+                    label="Language"
+                    variant="outlined"
+                    select
+                    helperText="What language will you speak?"
+                    SelectProps={{
+                        native: true,
+                    }}
+                    InputLabelProps={{
+                        shrink: true,
+                        required: false
+                    }}
+                    {...language}
+                    required
+            >
                 <LanguageSelect input={language} />
-            </label>
+            </CustomTextField>
 
+            <CustomTextField
+                    label="Trip Type"
+                    variant="outlined"
+                    select
+                    helperText="How do you want to spend your time?"
+                    SelectProps={{
+                        native: true,
+                    }}
+                    InputLabelProps={{
+                        shrink: true,
+                        required: false
+                    }}
+                    {...tripType}
+                    required
+            >
+                <option value="" disabled>Select a Trip Type</option>
+                <option value="Explore Cities">Explore Cities</option>
+                <option value="Airport Layovers">Airport Layovers</option>
+                <option value="Road Trip">Road Trip</option>
+                <option value="Backpacking">Backpacking</option>
+                <option value="Other">Other</option>
+            </CustomTextField>
 
-            <label htmlFor="tripType">
-                <p>Trip Type: </p>
-                <select {...tripType} name="tripType" required>
-                    <option value="" disabled>Select a Trip Type</option>
-                    <option value="Explore Cities">Explore Cities</option>
-                    <option value="Airport Layovers">Airport Layovers</option>
-                    <option value="Road Trip">Road Trip</option>
-                    <option value="Backpacking">Backpacking</option>
-                    <option value="Other">Other</option>
-                </select>
-            </label>
-
-            <input type="submit" value="Next Page" />
+            <Button type="submit" variant="contained" color="primary">Next Page</Button>
         </form>
         </>
     )

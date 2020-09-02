@@ -1,9 +1,10 @@
 import React, { useState, useEffect} from "react";
-import PopulateLocationSelect from "../helper/populateLocationSelect";
 import axios from "axios";
 import "../../css/LocationSearch.css";
+import PopulateLocationSelect from '../helper/populateLocationSelect';
 import CreateTripCitySearch from "./CreateTripCitySearch";
 import { useLoadScript } from "@react-google-maps/api";
+import CustomTextField from '../General/CustomTextField';
 
 const {
     REACT_APP_GOOGLEAPIKEY
@@ -12,17 +13,13 @@ const libraries = ["places"];
 
 const CreateTripDestination = ({ destination }) => {
     const { setDestination } = destination;
-    const [allCountries, setAllCountries] = useState([]);
-    const [selectedCountry, setSelectedCountry] = useState('');
+    const [ allCountries, setAllCountries ] = useState([]);
+    const [ selectedCountry, setSelectedCountry ] = useState('');
     
     const { isLoaded } = useLoadScript({
         googleMapsApiKey: REACT_APP_GOOGLEAPIKEY,
         libraries,
     });
-
-    useEffect(() => {
-        if(destination.destination) debugger;
-    }, [destination.destination]);
 
     const fetchFilters = async () => {
         try {
@@ -44,16 +41,28 @@ const CreateTripDestination = ({ destination }) => {
 
     return (
         <section className="ct-destination">
-            <label>
-                <p>Select a Country: (optional filter) </p>
-                <select onChange={filterCity} defaultValue="">
-                    <option value="" disabled>Select a Country</option>
-                    <PopulateLocationSelect list={allCountries}/>
-                </select>
-            </label>
+            <CustomTextField
+                select
+                label="Select a Country (optional filter)"
+                variant="outlined"
+                helperText="Select a country to filter the city list"
+                SelectProps={{
+                    native: true,
+                }}
+                InputLabelProps={{
+                    shrink: true,
+                    required: false
+                }}
+                value={selectedCountry} 
+                onChange={filterCity}
+                required
+            >               
+                <option value="" disabled>Select a Country</option>
+                <PopulateLocationSelect list={allCountries} />
+            </CustomTextField>
 
             { isLoaded ? 
-                <CreateTripCitySearch selectedCountry={selectedCountry} destinatoin={destination.destination} setDestination={setDestination} /> :
+                <CreateTripCitySearch selectedCountry={selectedCountry} destination={destination.destination} setDestination={setDestination} /> :
                 null
             }
         </section>

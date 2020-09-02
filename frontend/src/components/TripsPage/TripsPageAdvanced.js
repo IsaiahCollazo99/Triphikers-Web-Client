@@ -1,7 +1,7 @@
 import React, { useContext, useEffect, useState } from 'react';
 import { AuthContext } from '../../providers/AuthContext';
 import { getUserById } from '../../util/apiCalls/getRequests';
-import { InputLabel, Select, MenuItem, FormHelperText, FormControl } from '@material-ui/core';
+import CustomTextField from '../General/CustomTextField';
 
 const TripsPageAdvanced = ({ isHidden, filters }) => {
     const { currentUser } = useContext(AuthContext);
@@ -24,11 +24,11 @@ const TripsPageAdvanced = ({ isHidden, filters }) => {
 
     const getGroupTypeOptions = () => {
         if(userGender === 'Male') {
-            return <MenuItem value="Only Men">Men Only</MenuItem>
+            return <option value="Only Men">Men Only</option>
         } else if(userGender === 'Female') {
-            return <MenuItem value="Only Women">Women Only</MenuItem>
+            return <option value="Only Women">Women Only</option>
         } else if (userGender === 'Non-Binary') {
-            return <MenuItem value="Only Non-Binary">Non-Binary Only</MenuItem>
+            return <option value="Only Non-Binary">Non-Binary Only</option>
         } else {
             return null;
         }
@@ -36,82 +36,130 @@ const TripsPageAdvanced = ({ isHidden, filters }) => {
     
     return (
         <section className={`tpf-advanced ${isHidden}`}>
-            <FormControl>
-                <InputLabel shrink id="tpf-budget">Budget</InputLabel>
-                <Select labelId="tpf-budget" {...budget} color="secondary" displayEmpty>
-                    <MenuItem value="" disabled>Select a Budget</MenuItem>
-                    <MenuItem value="none"><em>No preference</em></MenuItem>
-                    <MenuItem value="Budget ($0 - $999)">Budget ($0 - $999)</MenuItem>
-                    <MenuItem value="Average ($1000 - $1999)">Average ($1000 - $1999)</MenuItem>
-                    <MenuItem value="Luxury ($2000+)">Luxury ($2000+)</MenuItem>
-                </Select>
-                <FormHelperText>How much money will you spend?</FormHelperText>
-            </FormControl>
+            <CustomTextField 
+                label="Budget"
+                select
+                variant="outlined"
+                helperText="How much money will you spend?"
+                SelectProps={{
+                    native: true,
+                }}
+                InputLabelProps={{
+                    shrink: true,
+                }}
+                {...budget}
+            >
+                <option value="" disabled>Select a Budget</option>
+                <option value="none">No preference</option>
+                <option value="Budget ($0 - $999)">Budget ($0 - $999)</option>
+                <option value="Average ($1000 - $1999)">Average ($1000 - $1999)</option>
+                <option value="Luxury ($2000+)">Luxury ($2000+)</option>
+            </CustomTextField>
 
-            <FormControl>
-                <InputLabel shrink id="tpf-tripType">Trip Type</InputLabel>
-                <Select labelId="tpf-tripType" {...tripType} displayEmpty>
-                    <MenuItem value="" disabled>Select a Trip Type</MenuItem>
-                    <MenuItem value="none"><em>No preference</em></MenuItem>
-                    <MenuItem value="Explore Cities">Explore Cities</MenuItem>
-                    <MenuItem value="Airport Layovers">Airport Layovers</MenuItem>
-                    <MenuItem value="Road Trip">Road Trip</MenuItem>
-                    <MenuItem value="Backpaking">Backpaking</MenuItem>
-                    <MenuItem value="Other">Other</MenuItem>
-                </Select>
-                <FormHelperText>How do you want to spend your time?</FormHelperText>
-            </FormControl>
+            <CustomTextField 
+                label="Trip Type"
+                select
+                variant="outlined"
+                helperText="How do you want to spend your time?"
+                SelectProps={{
+                    native: true,
+                }}
+                InputLabelProps={{
+                    shrink: true,
+                }}
+                {...tripType}
+            >
+                <option value="" disabled>Select a Trip Type</option>
+                <option value="none">No preference</option>
+                <option value="Explore Cities">Explore Cities</option>
+                <option value="Airport Layovers">Airport Layovers</option>
+                <option value="Road Trip">Road Trip</option>
+                <option value="Backpaking">Backpaking</option>
+                <option value="Other">Other</option>
+            </CustomTextField>
 
-            <FormControl>
-                <InputLabel shrink id="tpf-splitCosts">Split Costs</InputLabel>
-                <Select labelId="tpf-splitCosts" {...splitCosts} displayEmpty>
-                    <MenuItem value="" disabled>Split Costs?</MenuItem>
-                    <MenuItem value="none"><em>No preference</em></MenuItem>
-                    <MenuItem value="Yes">Yes</MenuItem>
-                    <MenuItem value="No">No</MenuItem>
-                </Select>
-                <FormHelperText>Do you want to split costs with others?</FormHelperText>
-            </FormControl>
+            <CustomTextField 
+                label="Split Costs"
+                select
+                variant="outlined"
+                helperText="Do you want to split costs with others?"
+                SelectProps={{
+                    native: true,
+                }}
+                InputLabelProps={{
+                    shrink: true,
+                }}
+                {...splitCosts}
+            >
+                <option value="" disabled>Split Costs?</option>
+                <option value="none">No preference</option>
+                <option value="Yes">Yes</option>
+                <option value="No">No</option>
+            </CustomTextField>
 
-            <FormControl>
-                <InputLabel shrink id="tpf-groupType">Group Type</InputLabel>
-                <Select labelId="tpf-groupType" {...groupType} displayEmpty>
-                    <MenuItem value="" disabled>Select a Group Type</MenuItem>
-                    <MenuItem value="none"><em>No preference</em></MenuItem>
-                    <MenuItem value="Male">Male</MenuItem>
-                    <MenuItem value="Female">Female</MenuItem>
+            <CustomTextField 
+                label="Group Type"
+                select
+                variant="outlined"
+                helperText="Who do you want to travel with?"
+                SelectProps={{
+                    native: true,
+                }}
+                InputLabelProps={{
+                    shrink: true,
+                }}
+                {...groupType}
+            >
+                    <option value="" disabled>Select a Group Type</option>
+                    <option value="none">No preference</option>
+                    <option value="Male">Male</option>
+                    <option value="Female">Female</option>
                     {getGroupTypeOptions()}
-                    <MenuItem value="Any">Any</MenuItem>
-                </Select>
-                <FormHelperText>Who do you want to travel with?</FormHelperText>
-            </FormControl>
+                    <option value="Any">Any</option>
+            </CustomTextField>
 
-            <FormControl>
-                <InputLabel shrink id="tpf-Itinerary">Itinerary</InputLabel>
-                <Select labelId="tpf-Itinerary" {...itinerary} displayEmpty>
-                    <MenuItem value="" disabled>Itinerary</MenuItem>
-                    <MenuItem value="none"><em>No preference</em></MenuItem>
-                    <MenuItem value="Set">Set</MenuItem>
-                    <MenuItem value="Flexible">Flexible</MenuItem>
-                    <MenuItem value="None">None</MenuItem>
-                </Select>
-                <FormHelperText>How strict of an itinerary do you want?</FormHelperText>
-            </FormControl>
-
-            <FormControl>
-                <InputLabel shrink id="tpf-accommodation">Accommodation</InputLabel>
-                <Select {...accommodation} labelId="tpf-accommodation" displayEmpty>
-                    <MenuItem value="" disabled>Select an Accommodation</MenuItem>
-                    <MenuItem value="none"><em>No Preference</em></MenuItem>
-                    <MenuItem value="Camping">Camping</MenuItem>
-                    <MenuItem value="Couchsurf">CouchSurf</MenuItem>
-                    <MenuItem value="Home">Home</MenuItem>
-                    <MenuItem value="Hotel">Hotel</MenuItem>
-                    <MenuItem value="Hostel">Hostel</MenuItem>
-                    <MenuItem value="Other">Other</MenuItem>
-                </Select>
-                <FormHelperText>Where would you like to stay?</FormHelperText>
-            </FormControl>
+            <CustomTextField 
+                label="Itinerary"
+                select
+                variant="outlined"
+                helperText="How strict of an itinerary do you want?"
+                SelectProps={{
+                    native: true,
+                }}
+                InputLabelProps={{
+                    shrink: true,
+                }}
+                {...itinerary}
+            >   
+                <option value="" disabled>Select An Itinerary Type</option>
+                <option value="none">No preference</option>
+                <option value="Set">Set</option>
+                <option value="Flexible">Flexible</option>
+                <option value="None">None</option>
+            </CustomTextField>
+            
+            <CustomTextField 
+                label="Accommodation"
+                select
+                variant="outlined"
+                helperText="Where would you like to stay?"
+                SelectProps={{
+                    native: true,
+                }}
+                InputLabelProps={{
+                    shrink: true,
+                }}
+                {...accommodation}
+            >
+                <option value="" disabled>Select an Accommodation</option>
+                <option value="none">No preference</option>
+                <option value="Camping">Camping</option>
+                <option value="Couchsurf">CouchSurf</option>
+                <option value="Home">Home</option>
+                <option value="Hotel">Hotel</option>
+                <option value="Hostel">Hostel</option>
+                <option value="Other">Other</option>
+            </CustomTextField>
         </section>
     )
 }
