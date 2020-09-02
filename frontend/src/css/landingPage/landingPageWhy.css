@@ -12,7 +12,7 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    margin-bottom: 8em;
+    margin-bottom: 5em;
 }
 
 .lp-why h1 {
@@ -42,6 +42,9 @@
 .lp-why img {
     width: 40%;
     object-fit: cover;
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+    transition: 0.3s;
+    border-radius: 5px;
 }
 
 .lp-why article {
@@ -50,4 +53,7 @@
 
 .lp-why p {
     font-size: 1.25em;
+    text-align: center;
+    color: black;
+    font-weight: 500;
 }

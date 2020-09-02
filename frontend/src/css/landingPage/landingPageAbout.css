@@ -8,10 +8,7 @@
 
 .lp-about::before {
     content: "";
-    /* background-image: url(../../images/friendsTravelCliffs.webp); */
-    /* background-image: url(../../images/friendsAtSydney.jpg); */
     background-image: url(../../images/friendsOnBoat.jpg);
-    /* background-image: url(../../images/friendsSelfieCar.jpg); */
     background-position: center;
     background-size: cover;
     position: absolute;
