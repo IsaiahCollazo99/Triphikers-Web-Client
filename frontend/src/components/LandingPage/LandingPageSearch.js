@@ -1,6 +1,6 @@
 import React, { useState, useEffect} from "react";
 import PopulateLocationSelect from "../helper/populateLocationSelect";
-// import "../../css/landingPage/landingPageSearch.css";
+import "../../css/landingPage/landingPageSearch.css";
 import axios from "axios";
 import usePlacesAutocomplete from "use-places-autocomplete";
 import Autocomplete from '@material-ui/lab/Autocomplete';
@@ -50,7 +50,8 @@ const LandingPageSearch = (id) => {
                     select
                     label="Select a Country"
                     variant="outlined"
-                    helperText="Choose a Country first"
+                    helperText="Where is your next adventure?"
+                    style={{width: '98%'}}
                     SelectProps={{
                         native: true,
                     }}
@@ -82,10 +83,10 @@ const LandingPageSearch = (id) => {
                             }} 
                             placeholder="Select a City"
                             required
-                            helperText="Select your destination"
+                            helperText="Where is the city of your dreams?"
                             fullWidth
                             variant="outlined"
-                            style={{width: '100%'}}
+                            style={{width: '140%'}}
                         />
                     )
                 }}

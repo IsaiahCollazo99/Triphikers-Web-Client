@@ -4,14 +4,39 @@ import LandingPageSearch from './LandingPageSearch';
 import worldIcon from "../../images/icons/around-the-globe-icon.png";
 import peopleIcon from "../../images/icons/people-icon.png";
 import selfieIcon from "../../images/icons/selfie-icon.png";
+import Button from '@material-ui/core/Button';
+import { orange } from '@material-ui/core/colors';
+import { withStyles, makeStyles } from '@material-ui/core/styles';
+
+const ColorButton = withStyles((theme) => ({
+    root: {
+      color: theme.palette.getContrastText(orange[500]),
+      backgroundColor: orange[500],
+      '&:hover': {
+        backgroundColor: orange[700],
+      },
+    },
+  }))(Button);
+
+const useStyles = makeStyles((theme) => ({
+    margin: {
+    margin: theme.spacing(1),
+    },
+}));
+
 
 const LandingPageAbout = ({ redirect }) => {
+    const classes = useStyles();
     return (
         <section className="lp-about">
             <div className="leftContainer">
-                <h1>FIND YOUR TRAVEL PARTNERS FOR LIFE. FOR FREE</h1>
-                <LandingPageSearch redirect={redirect}/>
-			    <button onClick={redirect} className="lp-orange">Create Your Trip</button>
+                <div className="searchCard">
+                    <h1>TRAVEL PARTNERS</h1>
+                    <h1>FOR LIFE</h1>
+                    <h1>FOR FREE</h1>
+                    <LandingPageSearch redirect={redirect}/>
+                    <ColorButton onClick={redirect} variant="contained" color="primary" className={classes.margin} style={{maxWidth: '200%', maxHeight: '10%', minWidth: '50%', minHeight: '5%'}}> Create Your Trip </ColorButton>
+                </div>
             </div>
             <div className="rightContainer">
                 <div className="landingPageCard">
@@ -27,7 +52,7 @@ const LandingPageAbout = ({ redirect }) => {
                 <div className="landingPageCard">
                     <img src={selfieIcon} alt="icon" className="landingPageIcon"/>
                     <h2 className="landingPageCardTitle">Travel & Share</h2>
-                    <p className="landingPageCardInfo">Organize trips, choose your interests, and share photos with the community.</p>
+                    <p className="landingPageCardInfo">Organize trips, choose your interests, and share photos with the Triphikers community.</p>
                 </div>
             </div>
 		</section>
