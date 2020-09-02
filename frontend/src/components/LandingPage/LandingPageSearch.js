@@ -9,7 +9,6 @@ import CustomTextField from '../General/CustomTextField';
 const LandingPageSearch = (id) => {
     const [allCountries, setAllCountries] = useState([]);
     const [selectedCountry, setSelectedCountry] = useState('');
-    const [loadCityFilter, setLoadCityFilter] = useState(false);
 
     const fetchFilters = async () => {
         try {
@@ -23,7 +22,6 @@ const LandingPageSearch = (id) => {
     const filterCity = (e) => {
         e.preventDefault();
         setSelectedCountry(e.target.value);
-        setLoadCityFilter(true);
     }
 
     const { suggestions: { data }, setValue } = usePlacesAutocomplete({

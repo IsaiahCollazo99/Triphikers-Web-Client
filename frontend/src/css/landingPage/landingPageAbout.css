@@ -37,13 +37,35 @@
 }
 
 .landingPageIcon {
-    height: 10%;
+    height: 40%;
     width: auto;
 }
 
 .rightContainer {
     display: flex;
     flex-direction: column;
+    align-items: flex-end;
+    justify-content: space-evenly;
+}
+
+.landingPageCard {
+    display: flex;
+    flex-direction: column;
     align-items: center;
-    width: 20%;
+    width: 60%;
+    height: 30%;
+    background-color: white;
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+    transition: 0.3s;
+    padding: 2px 16px;
+    border-radius: 5px;
+    opacity: 85%;
+}
+
+.landingPageCardTitle {
+    color: #E55F00;
+}
+
+.landingPageCardInfo {
+    text-align: center;
 }
