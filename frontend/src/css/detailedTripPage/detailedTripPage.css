@@ -26,6 +26,10 @@
     font-size: 1.2em;
     grid-column: 1 / 2;
     border-right: 2px solid black;
+    height: 100vh;
+    position: fixed;
+    padding: 2em 0;
+    padding-bottom: 5em;
 }
 
 .dt-user {
@@ -86,6 +90,16 @@
 
 .dt-userInfo p:last-of-type {
     margin-bottom: 0;
+}
+
+.detailedTripContainer > a {
+    height: fit-content;
+}
+
+.dt-coverImg {
+    height: 300px;
+    width: 100%;
+    object-fit: cover;
 }
 
 .detailedTripContainer > main {

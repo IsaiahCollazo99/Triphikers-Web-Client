@@ -3,8 +3,9 @@
     flex-direction: row;
     justify-content: space-evenly;
     padding: 1em;
-    font-size: 1.5em;
+    font-size: 1.25em;
     border-bottom: 2px solid black;
+    border-top: 2px solid black;
 }
 
 .dt-nav a {
