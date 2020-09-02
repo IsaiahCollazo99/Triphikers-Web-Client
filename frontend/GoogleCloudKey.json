@@ -1,0 +1,12 @@
+{
+  "type": "service_account",
+  "project_id": "geolocation-api-280821",
+  "private_key_id": "ad6e96839abf9a7e9a8a08acf959659383db6f17",
+  "private_key": "-----BEGIN PRIVATE KEY-----\nMIIEvgIBADANBgkqhkiG9w0BAQEFAASCBKgwggSkAgEAAoIBAQDHbBCwpO+spYI4\niGRLF14OCXVM+G5Dc7JtvJ2yRKtpFHZ51SMZgKA8+PPgE+BC1/CjfAF3sa4IR+Kd\ndTJlNBBoRsaQa06YX7DSi0iuPi9Sh7YutA4k0D8YApPi/B9MsobBbcM0nHysfaYU\nF/A0ATmqeB3z/OKfSKffPzEe8K8dfsjEZrcP2DuXqpXkc0WrsBkjZrjmZGR+PHdE\nBh4gT6WOPlhaKr9kna83tg4JezTlIVDbPYmc+UKtH+Ewk+Vjgp+5u/XlL0HTBOkL\nb/qdlwYJuEjUaaTZLfNdizKua17jUnCINeJih++/V5bymXe++j1+HB7Q0WBl2tN5\nLC4BNxKnAgMBAAECggEAAObWhdCecNESxKoBN2xfStWfcn37vvxVRd/AysnlXdqa\nKoox2BoCdM7KCNeuKj81twIxiNavKxnAHDwnwoNja5qeUpAu+8tlo54TnGNq7VxF\nu5z+z2B4WJBya2f+cDytFU98vs59AH6qSJRPIWe8A1mlsQZnXpcCg0+S1klPprom\nT5Eifqw9QtIZAJkW/mncpQmAs3MoDmMAg8hbATV9TWLcHcZC+1Xs1a73rldLAsRD\nXHvIeMFHXTpD8rX/LNSQperB0WdCwa0np48strfm4bpkMPVDJw+EpAnb4cVmHNb3\n46w+s8f3fZ+5xrM0uSRhPUQi37wrCPDhs2Ns9nnAmQKBgQD7IpNZ/4oEpj/iQQ6X\ntmbrMiTTqEI6eHYc+b/f4EzgtGyrNjBI8+d9PkyU8RaVhF4hWXRCTweElCO2gtTt\nySQRtRzLMpL9UzlKws/uy1KwhTSCTt0wjQqLupOK1GmIfeKQEjIfIRSVHVpGNXfM\n7oD5jwixV4aKqw/o3vB5+5A09QKBgQDLSQko0gwKQbyi6Un2qoo1hEeX0kUlhZSe\nuUCq5ppfTpemQeNZILz1jU70E87dhtMzeCiiH8w0TSN3TCx98Y8YZneoHINdUYJ6\nP0UaBiUA406SYuOcnxGFZFXjfedx+ohMwevTW/D1n3+0lR61vofo9IK/p55BVYBa\n9o98Pg0HqwKBgQCO9H2gi4BLaT+QUaw23FP1qlOgUHVyx0Ok9t4sWIgqmUoKpAwU\nWxL5Dk+VsS9D6VeT8FHntQj4hUNXD16aBReNJOXBHYbiwU8pqX+n1QG7Dfh3/OCY\nVJEePRTjwEpash4YGOODKNeIkm7i7GjHtTSh2rP+D2683Odvjgihx3utSQKBgQCb\nRAWC8CvSCbOSmqyrgkZd6dLk2u2FYynIsaX64nc2JEkf62NCSAcLZgrP0fFGshvO\nTBB9A9xsdh6Il93DtCSfdmQeOuj69a66wGh/IAJTU0pH9M/0aGpxf9k6EIgePkSs\nm9ELdkXs1Q4tV1hFaGlWPKtAxz3QmQWYdInTU3GQUQKBgCHQxNgnPBTpFt4AImk/\noBCXFRV03CdsTUDJPDJyPjDnY57/uSZ8PHYIsai7rfeVJce1Z+/qp65uqp5qipyV\n0YP6GqaCY0RXHlqVs/5s/1AWpJ0LzbUc0/TgvlVMkQ3nBAZwqyHtKItxr3zY34Cl\nYreU/HDzQjetChxtmjiZYwTw\n-----END PRIVATE KEY-----\n",
+  "client_email": "myserviceacct@geolocation-api-280821.iam.gserviceaccount.com",
+  "client_id": "117001731124129378970",
+  "auth_uri": "https://accounts.google.com/o/oauth2/auth",
+  "token_uri": "https://oauth2.googleapis.com/token",
+  "auth_provider_x509_cert_url": "https://www.googleapis.com/oauth2/v1/certs",
+  "client_x509_cert_url": "https://www.googleapis.com/robot/v1/metadata/x509/myserviceacct%40geolocation-api-280821.iam.gserviceaccount.com"
+}
