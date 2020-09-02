@@ -2,9 +2,9 @@
     width: 100%;
     height: 100vh;
     display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: space-evenly;
+    flex-direction: row;
+    /* align-items: center;
+    justify-content: space-evenly; */
     padding-top: 6em;
 }
 
@@ -34,4 +34,16 @@
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     font-weight: 900;
+}
+
+.landingPageIcon {
+    height: 10%;
+    width: auto;
+}
+
+.rightContainer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 20%;
 }
