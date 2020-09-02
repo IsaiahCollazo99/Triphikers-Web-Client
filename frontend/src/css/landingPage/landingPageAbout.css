@@ -2,15 +2,13 @@
     width: 100%;
     height: 100vh;
     display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: space-evenly;
+    flex-direction: row;
     padding-top: 6em;
 }
 
 .lp-about::before {
     content: "";
-    background-image: url(../../images/landingPageBground2.jpg);
+    background-image: url(../../images/friendsOnBoat.jpg);
     background-position: center;
     background-size: cover;
     position: absolute;
@@ -18,7 +16,7 @@
     left: 0px;
     right: 0px;
     bottom: 0px;
-    opacity: 0.5;
+    opacity: 0.9;
     z-index: -1;
 }
 
@@ -34,4 +32,67 @@
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     font-weight: 900;
+}
+
+.landingPageIcon {
+    height: 40%;
+    width: auto;
+}
+
+.leftContainer {
+    display: flex;
+    width: 50%;
+    align-items: center;
+    margin-left: 4em;
+}
+
+.searchCard {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 70%;
+    height: 60%;
+    background-color: #F3F3F3;
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+    transition: 0.3s;
+    padding: 2px 16px;
+    border-radius: 5px;
+    opacity: 85%;
+    cursor: default;
+}
+
+.rightContainer {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    justify-content: space-evenly;
+    width: 50%;
+    margin-right: 4em;
+}
+
+.landingPageCard {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 45%;
+    height: 30%;
+    background-color: #F3F3F3;
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+    transition: 0.3s;
+    padding: 2px 16px;
+    border-radius: 5px;
+    opacity: 85%;
+    cursor: default;
+}
+
+.landingPageCardTitle {
+    color: #E55F00;
+    font-weight: bold;
+}
+
+.landingPageCardInfo {
+    text-align: center;
+    color: black;
+    font-weight: 500;
 }
