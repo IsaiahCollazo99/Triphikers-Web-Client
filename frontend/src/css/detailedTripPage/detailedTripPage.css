@@ -1,26 +1,26 @@
 .detailedTripContainer {
-    width: 70%;
-    margin-top: 150px;
+    width: 100%;
+    margin-top: 95px;
     margin-bottom: 30px;
+    background-color: #f3f3f3;
 }
 
 .detailedTripContainer p {
     font-weight: 500;
 }
 
-.detailedTripContainer span {
+.detailedTripContainer span:not(.requested) {
     font-weight: 800;
+    color: #da5300;
 }
 
 .dt-header {
     display: flex;
     flex-direction: row;
     justify-content: center;
-    border: 2px solid #272A33;
+    border-bottom: 2px solid #272A33;
     background-color: white;
     font-size: 1.2em;
-    border-top-left-radius: 1em;
-    border-top-right-radius: 1em;
 }
 
 .dt-user {
@@ -31,6 +31,7 @@
     align-items: center;
     font-weight: 600;
     justify-content: space-evenly;
+    text-align: center;
 }
 
 .dt-user img {
@@ -44,11 +45,24 @@
 .dt-user a {
     color: #0062e2;
     text-decoration: none;
+    align-self: center;
 }
 
 .dt-user a:hover {
     color: #FF9506;
     cursor: pointer;
+}
+
+.dt-socialMedia {
+    display: flex;
+    width: 100%;
+}
+
+.dt-socialMedia img {
+    width: 39px;
+    height: 39px;
+    margin: 22.5px;
+    border-radius: 0;
 }
 
 .dt-userInfo {
@@ -58,6 +72,7 @@
     border-right: 1px solid #272A33;
     border-left: 1px solid #272A33;
     padding: 1em;
+    justify-content: space-evenly;
 }
 
 
@@ -73,18 +88,7 @@
     margin-bottom: 0;
 }
 
-.dt-userInfo span {
-    font-weight: bold;
-    color: #da5300;
-}
-
-
 .dt-bio {
     width: 33%;
     padding: 1em;
-}
-
-.dt-bio span {
-    font-weight: bold;
-    color: #da5300;
 }

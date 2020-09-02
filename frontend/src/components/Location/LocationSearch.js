@@ -23,7 +23,11 @@ const {
     REACT_APP_GOOGLEAPIKEY
 } = process.env;
 const libraries = ["places"];
+<<<<<<< HEAD
 // const client = createClient('563492ad6f9170000100000153f28b06267f4b548fc99fbb457455db');
+=======
+createClient('563492ad6f9170000100000153f28b06267f4b548fc99fbb457455db');
+>>>>>>> 26a2744db117ef55a4200c201a8a4c991bfabde0
 
 const LocationSearch = (id) => {
     const [allCountries, setAllCountries] = useState([]);

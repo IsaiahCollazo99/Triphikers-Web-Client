@@ -80,6 +80,7 @@ const UserPage = () => {
         return () => {
             setProfileUser({});
         }
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [id]);
     
     const sendFriendRequestCall = async () => {
@@ -139,7 +140,7 @@ const UserPage = () => {
             )
         } else if(currentUserIsFriend()) {
             return null;
-        }{
+        } else {
             return (
                 <div>
                     <button className="up-friendRequest" onClick={sendFriendRequestCall}>

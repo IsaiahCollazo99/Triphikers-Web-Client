@@ -9,8 +9,12 @@ export const login = (email, password) => {
 	return firebase.auth().signInWithEmailAndPassword(email, password);
 }
 
-export const signUp = (email, password) => {
-	return firebase.auth().createUserWithEmailAndPassword(email, password);
+export const signUp = async ( email, password, displayName ) => {
+    const { user } = await firebase.auth().createUserWithEmailAndPassword(email, password);
+    await user.updateProfile({
+        displayName
+    })
+    return user;
 }
 
 export const signUpWithGoogle = async () => {

@@ -9,6 +9,7 @@ const LandingPageAbout = ({ redirect }) => {
             <h1>FIND YOUR TRAVEL PARTNERS FOR LIFE. FOR FREE</h1>
 
             <LandingPageSearch/>
+            <p>The world is your oyster with Triphikers. </p>
 
 			<button onClick={redirect} className="lp-orange">Create Your Trip</button>
 

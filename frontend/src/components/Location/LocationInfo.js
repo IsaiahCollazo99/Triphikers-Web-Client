@@ -11,7 +11,7 @@ let weatherkey = '18d629f0d66c4d5e831121754202907';
 
 const LocationInfo = ({city, coord, country, title}) => {
     const client = createClient(`563492ad6f9170000100000153f28b06267f4b548fc99fbb457455db`);
-    const [currency, setCurrency] = useState([]);
+    // const [currency, setCurrency] = useState([]);
     const [travelAdv, setTravelAdv] = useState([]);
     const [imageRef, setImageRef] = useState([]);
     const [weather, setWeather] = useState([]);
@@ -20,10 +20,10 @@ const LocationInfo = ({city, coord, country, title}) => {
     const getAllInfo = async (city, coord, country) => {
         if(city.length > 0){
             try {
-                let currency = await axios.get(`https://api.exchangeratesapi.io/latest?symbols=USD,GBP`);
+                // let currency = await axios.get(`https://api.exchangeratesapi.io/latest?symbols=USD,GBP`);
                 let travelAdvisory = await axios.get(`https://www.travel-advisory.info/api?countrycode=${country}`);
                 let weather = await axios.get(`http://api.weatherapi.com/v1/forecast.json?key=${weatherkey}&q=${coord.lat},${coord.lng}&days=7`);
-                setCurrency(currency.data.rates);
+                // setCurrency(currency.data.rates);
                 setTravelAdv(travelAdvisory.data.data[country]);
                 setWeather(weather.data.forecast.forecastday);
                 setCurrentTime(weather.data.location.localtime);
@@ -40,18 +40,18 @@ const LocationInfo = ({city, coord, country, title}) => {
     client.photos.search({ query, per_page: 1 }).then(photos => setImageRef(photos.photos[0].src.landscape));
     }
 
-    const currencyPrint = (exchange) => {
-        let array = [];
-        for (let key in exchange) {
-            const value = exchange[key];
-            array.push(
-                <div className="values" key={key}>
-                    <p>{key} : {value} </p>
-                </div>
-            )
-          }
-          return array
-    }
+    // const currencyPrint = (exchange) => {
+    //     let array = [];
+    //     for (let key in exchange) {
+    //         const value = exchange[key];
+    //         array.push(
+    //             <div className="values" key={key}>
+    //                 <p>{key} : {value} </p>
+    //             </div>
+    //         )
+    //       }
+    //       return array
+    // }
 
     const advisoryPrint = (country) => {
         let info = country.advisory;
@@ -81,7 +81,7 @@ const LocationInfo = ({city, coord, country, title}) => {
         <div key={index} className="dayWeather">
             <p>{dayOfWeek}</p>
             <div className="weatherInfo">
-                <img src={each.day.condition.icon}></img>
+                <img src={each.day.condition.icon} alt="weather condition" />
                 <p> {each.day.avgtemp_f}°F <br/> {each.day.avgtemp_c}°C</p>
             </div>
             <p>{each.day.condition.text}</p>
@@ -96,6 +96,7 @@ const LocationInfo = ({city, coord, country, title}) => {
 
     useEffect(() => {
         getAllInfo(city, coord, country);
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [city])
 
     return(

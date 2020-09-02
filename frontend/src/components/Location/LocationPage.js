@@ -1,10 +1,8 @@
 import React, { useState, useEffect } from "react";
 import { Route, Switch, useLocation } from "react-router-dom";
-// import axios from "axios";
 import LocationAttractions from "./LocationAttractions";
 import LocationNavbar from "./LocationNavbar";
 import LocationHotspots from "./LocationHotspots";
-import LocationReviews from "./LocationReviews";
 import LocationInfo from "./LocationInfo";
 
 
@@ -42,9 +40,6 @@ const LocationPage = () => {
                     </Route>
                     <Route exact path={`/location/${country}/${city}/attractions`}>
                         <LocationAttractions city={city} coord={coord} country={country}/>
-                    </Route>
-                    <Route exact path={`/location/${country}/${city}/reviews`}>
-                        <LocationReviews info={info}/>
                     </Route>
                 </Switch>
             </div>
