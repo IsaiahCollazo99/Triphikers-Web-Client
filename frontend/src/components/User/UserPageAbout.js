@@ -14,19 +14,19 @@ const UserPageAbout = ({ user }) => {
         } = user;
 
         const facebookLink = facebook_link ? (
-            <a href={`https://www.${facebook_link}`} target="_blank">
+            <a href={`https://www.${facebook_link}`} target="_blank" rel="noopener noreferrer">
                 <img src={FacebookLogo} alt="facebook" />
             </a>
         ) : null;
 
         const instagramLink = instagram_username ? (
-            <a href={`https://www.${instagram_username}`} target="_blank">
+            <a href={`https://www.${instagram_username}`} target="_blank" rel="noopener noreferrer">
                 <img src={InstagramLogo} alt="instagram" />
             </a>
         ) : null;
 
         const twitterLink = twitter_username ? (
-            <a href={`https://www.${twitter_username}`} target="_blank">
+            <a href={`https://www.${twitter_username}`} target="_blank" rel="noopener noreferrer">
                 <img src={TwitterLogo} alt="instagram" />
             </a>
         ) : null;

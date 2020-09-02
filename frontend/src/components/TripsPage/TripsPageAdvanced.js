@@ -1,11 +1,12 @@
 import React, { useContext, useEffect, useState } from 'react';
 import { AuthContext } from '../../providers/AuthContext';
 import { getUserById } from '../../util/apiCalls/getRequests';
+import CustomTextField from '../General/CustomTextField';
 
 const TripsPageAdvanced = ({ isHidden, filters }) => {
     const { currentUser } = useContext(AuthContext);
     const [ userGender, setUserGender ] = useState(null);
-    const { dateFrom, dateTo, budget, tripType, splitCosts, groupType } = filters;
+    const { budget, tripType, splitCosts, groupType, itinerary, accommodation } = filters;
 
     const getUserGender = async () => {
         try {
@@ -18,6 +19,7 @@ const TripsPageAdvanced = ({ isHidden, filters }) => {
 
     useEffect(() => {
         getUserGender();
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [])
 
     const getGroupTypeOptions = () => {
@@ -34,63 +36,130 @@ const TripsPageAdvanced = ({ isHidden, filters }) => {
     
     return (
         <section className={`tpf-advanced ${isHidden}`}>
-            <section className="tpf-dates">
-                <label>
-                    <p>Date From: </p>
-                    <input type="date" {...dateFrom} />
-                </label>
+            <CustomTextField 
+                label="Budget"
+                select
+                variant="outlined"
+                helperText="How much money will you spend?"
+                SelectProps={{
+                    native: true,
+                }}
+                InputLabelProps={{
+                    shrink: true,
+                }}
+                {...budget}
+            >
+                <option value="" disabled>Select a Budget</option>
+                <option value="none">No preference</option>
+                <option value="Budget ($0 - $999)">Budget ($0 - $999)</option>
+                <option value="Average ($1000 - $1999)">Average ($1000 - $1999)</option>
+                <option value="Luxury ($2000+)">Luxury ($2000+)</option>
+            </CustomTextField>
 
-                <label>
-                    <p>Date To: </p>
-                    <input type="date" {...dateTo} />
-                </label>
-            </section>
+            <CustomTextField 
+                label="Trip Type"
+                select
+                variant="outlined"
+                helperText="How do you want to spend your time?"
+                SelectProps={{
+                    native: true,
+                }}
+                InputLabelProps={{
+                    shrink: true,
+                }}
+                {...tripType}
+            >
+                <option value="" disabled>Select a Trip Type</option>
+                <option value="none">No preference</option>
+                <option value="Explore Cities">Explore Cities</option>
+                <option value="Airport Layovers">Airport Layovers</option>
+                <option value="Road Trip">Road Trip</option>
+                <option value="Backpaking">Backpaking</option>
+                <option value="Other">Other</option>
+            </CustomTextField>
 
-            <label>
-                <p>Budget: </p>
-                <select {...budget} defaultValue="">
-                    <option value="" disabled>Select a Budget</option>
-                    <option value="none">No preference</option>
-                    <option value="Budget ($0 - $999)">Budget ($0 - $999)</option>
-                    <option value="Average ($1000 - $1999)">Average ($1000 - $1999)</option>
-                    <option value="Luxury ($2000+)">Luxury ($2000+)</option>
-                </select>
-            </label>
+            <CustomTextField 
+                label="Split Costs"
+                select
+                variant="outlined"
+                helperText="Do you want to split costs with others?"
+                SelectProps={{
+                    native: true,
+                }}
+                InputLabelProps={{
+                    shrink: true,
+                }}
+                {...splitCosts}
+            >
+                <option value="" disabled>Split Costs?</option>
+                <option value="none">No preference</option>
+                <option value="Yes">Yes</option>
+                <option value="No">No</option>
+            </CustomTextField>
 
-            <label>
-                <p>Trip Type: </p>
-                <select {...tripType} defaultValue="">
-                    <option value="" disabled>Select a Trip Type</option>
-                    <option value="none">No preference</option>
-                    <option value="Explore Cities">Explore Cities</option>
-                    <option value="Airport Layovers">Airport Layovers</option>
-                    <option value="Road Trip">Road Trip</option>
-                    <option value="Backpacking">Backpacking</option>
-                    <option value="Other">Other</option>
-                </select>
-            </label>
-
-            <label>
-                <p>Split Costs: </p>
-                <select {...splitCosts} defaultValue="">
-                    <option value="" disabled>Split Costs?</option>
-                    <option value="none">No preference</option>
-                    <option value="Yes">Yes</option>
-                    <option value="No">No</option>
-                </select>
-            </label>
-
-            <label>
-                <p>Group Type: </p>
-                <select {...groupType} defaultValue="">
+            <CustomTextField 
+                label="Group Type"
+                select
+                variant="outlined"
+                helperText="Who do you want to travel with?"
+                SelectProps={{
+                    native: true,
+                }}
+                InputLabelProps={{
+                    shrink: true,
+                }}
+                {...groupType}
+            >
                     <option value="" disabled>Select a Group Type</option>
                     <option value="none">No preference</option>
                     <option value="Male">Male</option>
                     <option value="Female">Female</option>
                     {getGroupTypeOptions()}
                     <option value="Any">Any</option>
-                </select>
-            </label>
+            </CustomTextField>
+
+            <CustomTextField 
+                label="Itinerary"
+                select
+                variant="outlined"
+                helperText="How strict of an itinerary do you want?"
+                SelectProps={{
+                    native: true,
+                }}
+                InputLabelProps={{
+                    shrink: true,
+                }}
+                {...itinerary}
+            >   
+                <option value="" disabled>Select An Itinerary Type</option>
+                <option value="none">No preference</option>
+                <option value="Set">Set</option>
+                <option value="Flexible">Flexible</option>
+                <option value="None">None</option>
+            </CustomTextField>
+            
+            <CustomTextField 
+                label="Accommodation"
+                select
+                variant="outlined"
+                helperText="Where would you like to stay?"
+                SelectProps={{
+                    native: true,
+                }}
+                InputLabelProps={{
+                    shrink: true,
+                }}
+                {...accommodation}
+            >
+                <option value="" disabled>Select an Accommodation</option>
+                <option value="none">No preference</option>
+                <option value="Camping">Camping</option>
+                <option value="Couchsurf">CouchSurf</option>
+                <option value="Home">Home</option>
+                <option value="Hotel">Hotel</option>
+                <option value="Hostel">Hostel</option>
+                <option value="Other">Other</option>
+            </CustomTextField>
         </section>
     )
 }

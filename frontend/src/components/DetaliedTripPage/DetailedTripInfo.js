@@ -1,15 +1,42 @@
-import React, { useState, useEffect, useContext } from 'react';
+import React, { useState, useContext, useEffect } from 'react';
 import '../../css/detailedTripPage/detailedTripInfo.css';
 import { deleteTrip, deleteTripRequest } from '../../util/apiCalls/deleteRequests';
 import { useHistory } from 'react-router-dom';
 import { completeTrip } from '../../util/apiCalls/patchRequests';
 import { AuthContext } from '../../providers/AuthContext';
 import { createTripRequest } from '../../util/apiCalls/postRequests';
+import { getTripRequests, getTripTravelers } from '../../util/apiCalls/getRequests';
 
-const DetailedTripInfo = ({ trip = {}, getTripCall, getRequestsCall, requests, travelers }) => {
+const DetailedTripInfo = ({ trip = {}, getTripCall }) => {
     const [ response, setResponse ] = useState(null)
+    const [ requests, setRequests ] = useState([]);
+    const [ travelers, setTravelers ] = useState([]);
     const { currentUser } = useContext(AuthContext);
     const history = useHistory();
+
+    const getRequestsCall = async () => {
+        const data = await getTripRequests(trip.id)
+        if(data.requests) {
+            setRequests(data.requests);
+        } else {
+            setRequests([]);
+        }
+    }
+
+    const getTravelersCall = async () => {
+        const data = await getTripTravelers(trip.id);
+        if(data.travelers) {
+            setTravelers(data.travelers);
+        } else {
+            setTravelers([]);
+        }
+    }
+
+    useEffect(() => {
+        getTravelersCall();
+        getRequestsCall();
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [])
 
     const deleteTripCall = async () => {
         await deleteTrip(trip.id);
@@ -49,6 +76,7 @@ const DetailedTripInfo = ({ trip = {}, getTripCall, getRequestsCall, requests, t
                 break;
             }
         }
+        return userRequestExisting;
     }
 
     const isUserTraveler = () => {
@@ -59,14 +87,19 @@ const DetailedTripInfo = ({ trip = {}, getTripCall, getRequestsCall, requests, t
                 break;
             }
         }
+        return userTraveler;
     }
 
     const displayRequestButton = () => {
-        if(isUserTraveler) {
+        if(isUserTraveler()) {
             return null;
         } else if(isUserRequestExisting()) {
             return (
-                <button className="tc-requested tc-btn" onClick={deleteReqCall}><span>Requested</span></button>
+                <button className="tc-requested tc-btn" onClick={deleteReqCall}>
+                    <span className="requested">
+                        Requested
+                    </span>
+                </button>
             )
         } else {
             return (
@@ -107,6 +140,7 @@ const DetailedTripInfo = ({ trip = {}, getTripCall, getRequestsCall, requests, t
     
     return (
         <section className="dt-info">
+            {response}
             <header>
                 <section className="dt-hi">
                     <p className="dt-title"><span>Title: </span>{trip.trip_title}</p>

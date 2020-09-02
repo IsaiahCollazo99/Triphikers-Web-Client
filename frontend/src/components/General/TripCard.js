@@ -1,11 +1,11 @@
 import React, { useContext, useState, useEffect } from 'react';
 import '../../css/general/tripCard.css';
-import { useHistory } from 'react-router-dom';
+import { useHistory, Link } from 'react-router-dom';
 import { AuthContext } from '../../providers/AuthContext';
 import { getTripRequests, getTripTravelers } from '../../util/apiCalls/getRequests';
 import { createTripRequest } from '../../util/apiCalls/postRequests';
 import { deleteTripRequest, deleteTrip } from '../../util/apiCalls/deleteRequests';
-import { completeTrip } from '../../util/apiCalls/patchRequests';
+import { Button } from '@material-ui/core';
 
 const TripCard = ({ trip, refresh }) => {
     const [ requests, setRequests ] = useState([]);
@@ -36,10 +36,14 @@ const TripCard = ({ trip, refresh }) => {
     useEffect(() => {
         getRequestsCall()
         getTravelersCall();
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [])
     
     const redirect = (e) => {
-        if(e.target.nodeName !== "BUTTON") {
+        const isAnchorClicked = e.target.nodeName === "A";
+        const isButtonClicked = e.target.nodeName === "BUTTON";
+        const isButtonLabelClicked = e.target.className === "MuiButton-label";
+        if(!isButtonClicked && !isAnchorClicked && !isButtonLabelClicked) {
             history.push("/trips/" + trip.id);
         }
     }
@@ -51,17 +55,6 @@ const TripCard = ({ trip, refresh }) => {
             refresh();
         } catch ( error ) {
             setResponse(<p className="error">There was a problem with the delete request.</p>)
-            console.log(error);
-        }
-    }
-
-    const completeTripCall = async ( ) => {
-        try {
-            const completeTripResponse = await completeTrip(trip.id);
-            setResponse(completeTripResponse);
-            refresh();
-        } catch ( error ) {
-            setResponse(<p className="error">There was a problem with the complete request.</p>)
             console.log(error);
         }
     }
@@ -115,17 +108,29 @@ const TripCard = ({ trip, refresh }) => {
     }
 
     const displayRequestButton = () => {
-        if(isUserTraveler()) {
+        if(isUserTraveler() || !currentUser) {
             return null;
         } else if(isUserRequestExisting()) {
             return (
-                <button className="tc-requested tc-btn" onClick={deleteReqCall}>
+                <Button 
+                    className="tc-requested" 
+                    onClick={deleteReqCall} 
+                    color="primary" 
+                    variant="contained" 
+                >
                     <span>Requested</span>
-                </button>
+                </Button>
             )
         } else {
             return (
-                <button className="tc-req tc-btn" onClick={requestCall}>Request</button>
+                <Button 
+                    className="tc-req" 
+                    onClick={requestCall}  
+                    color="primary" 
+                    variant="contained" 
+                >
+                    Request
+                </Button>
             )
         }
     }
@@ -134,6 +139,8 @@ const TripCard = ({ trip, refresh }) => {
         const currentDate = new Date();
         const currentTime = currentDate.getTime();
         const dateToTime = new Date(trip.date_to).getTime();
+        const currentUserIsOwner = currentUser.id === trip.planner_id;
+
         if(currentTime > dateToTime || trip.is_completed) {
             return (
                 <>
@@ -141,46 +148,57 @@ const TripCard = ({ trip, refresh }) => {
                 </>
             )
         } else {
-            if(currentUser) {
-                if(currentUser.id === trip.planner_id) {
-                    return (
-                        <>
-                        <button onClick={completeTripCall} className="tc-com tc-btn">Complete</button>
-                        <button onClick={deleteTripCall} className="tc-del tc-btn">Delete</button>
-                        </>
-                    )
-                } else {
-                    return (
-                        <>
-                        {displayRequestButton()}
-                        </>
-                    )
-    
-                }
-            } else {
+            if(currentUser && currentUserIsOwner) {
                 return (
-                    <button className="tc-req tc-btn">Request</button>
+                    <>
+                    <Button 
+                        onClick={deleteTripCall}  
+                        color="primary" 
+                        variant="contained" 
+
+                    >
+                        Delete
+                    </Button>
+                    </>
                 )
+            } else if(currentUser && !currentUserIsOwner) {
+                return (
+                    <>
+                    {displayRequestButton()}
+                    </>
+                )
+    
+            } else {
+                return null;
             }
         }
     }
 
     const displayUserInfo = () => {
-        if(window.location.pathname === "/") {
-            return null
-        } else {
+        if(currentUser) {
             return (
                 <aside>
                     <img src={trip.profile_picture} alt={trip.full_name}/>
                     <div className="tc-userInfo">
-                        <p>{trip.full_name}</p>
-                        <p>{trip.country_of_origin}</p>
-                        <p>{trip.age}</p>
-                        <p>{trip.gender}</p>
+                        <Link to={`/user/${trip.planner_id}`}>{trip.full_name}</Link>
+                        <p style={{marginTop: '5px', marginBottom: '5px'}}>{trip.age}</p>
+                        <p style={{marginBottom: 0}}>{trip.gender}</p>
                     </div>
                 </aside>
             )
+        } else {
+            return null
         }
+    }
+
+    const getDisplayDate = ( date ) => {
+        if(Number(trip.id) <= 4) return date;
+        const splitDate = date.split("-");
+        let year = splitDate[0];
+        let month = splitDate[1];
+        let day = splitDate[2];
+        
+        return month + "/" + day + "/" + year;
     }
     
     return (
@@ -190,25 +208,30 @@ const TripCard = ({ trip, refresh }) => {
             {displayUserInfo()}
             
             <header>
-                <div className="tripCardInfo">
-                    <p className="tripCardTitle">{trip.trip_title}</p>
+                <section className="tripCardInfo">
+                    <h4 className="tripCardTitle">{trip.trip_title}</h4>
                     <p><span>Destination: </span>{trip.destination}</p>
                     <p>
-                        <span>From:</span> {trip.date_from}
-                        <span> To:</span> {trip.date_to}
+                        <span>From:</span> {getDisplayDate(trip.date_from)}
+                        <span> To:</span> {getDisplayDate(trip.date_to)}
                     </p>
-                </div>
+                </section>
                 
-                <div className="tripCardButtons">
+                <section className="tripCardButtons">
                     {displayExpired()}
-                </div>
+                </section>
             </header>
 
-            <section>
-                <p className="tc-tl"><span>Budget: </span>{trip.budget}</p>
-                <p className="tc-tr"><span>Trip Type: </span>{trip.trip_type}</p>
-                <p className="tc-bl"><span>Split Costs: </span>{trip.split_costs}</p>
-                <p className="tc-br"><span>Group Type: </span>{trip.group_type}</p>
+            <section className="tc-details">
+                <section>
+                    <p><span>Budget: </span>{trip.budget}</p>
+                    <p><span>Split Costs: </span>{trip.split_costs}</p>
+                </section>
+                
+                <section>
+                    <p><span>Trip Type: </span>{trip.trip_type}</p> 
+                    <p><span>Group Type: </span>{trip.group_type}</p>
+                </section>
             </section>
         </article>
         </>
