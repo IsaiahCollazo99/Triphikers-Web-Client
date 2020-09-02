@@ -1,6 +1,4 @@
 import React from 'react';
-// import LandingPageCreateAccount from "./LandingPageCreateAccount";
-// import whyTriphikersImg from '../../images/whyTriphikersImg.jpg';
 import '../../css/landingPage/landingPageWhy.css';
 import LandingPageFooter from './LandingPageFooter';
 import Button from '@material-ui/core/Button';
