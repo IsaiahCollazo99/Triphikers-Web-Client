@@ -1,37 +1,15 @@
 import React, { useState, useEffect} from "react";
 import PopulateLocationSelect from "../helper/populateLocationSelect";
-import "../../css/landingPage/landingPageSearch.css";
+// import "../../css/landingPage/landingPageSearch.css";
 import axios from "axios";
-import { useLoadScript } from '@react-google-maps/api';
-import usePlacesAutocomplete, {
-    getGeocode,
-    getLatLng,
-} from "use-places-autocomplete";
-import {
-    Combobox,
-    ComboboxInput,
-    ComboboxPopover,
-    ComboboxList,
-    ComboboxOption
-} from "@reach/combobox";
-import "@reach/combobox/styles.css";
-require("dotenv").config()
-
-const {
-    REACT_APP_GOOGLEAPIKEY
-} = process.env;
-const libraries = ["places"];
+import usePlacesAutocomplete from "use-places-autocomplete";
+import Autocomplete from '@material-ui/lab/Autocomplete';
+import CustomTextField from '../General/CustomTextField';
 
 const LandingPageSearch = (id) => {
     const [allCountries, setAllCountries] = useState([]);
     const [selectedCountry, setSelectedCountry] = useState('');
     const [loadCityFilter, setLoadCityFilter] = useState(false);
-
-
-    const {isLoaded, loadError} = useLoadScript({
-        googleMapsApiKey: REACT_APP_GOOGLEAPIKEY,
-        libraries,
-    });
 
     const fetchFilters = async () => {
         try {
@@ -48,74 +26,75 @@ const LandingPageSearch = (id) => {
         setLoadCityFilter(true);
     }
 
-    const Search = ({ selectedCountry }) => {
-        const {ready, value, suggestions: {status, data}, setValue, clearSuggestions} = usePlacesAutocomplete({
-            requestOptions: {
-                types: ['(cities)'],
-                componentRestrictions: {country: selectedCountry}
-            }
-        })
-
-        const [ error, setError ] = useState(null);
-
-        const handleSelect = ( address ) => {
-            setValue(address, false);
-            clearSuggestions();
+    const { suggestions: { data }, setValue } = usePlacesAutocomplete({
+        requestOptions: {
+            types: ['(cities)'],
+            componentRestrictions: {country: selectedCountry}
         }
+    })
+    
+    const handleInput = ( e ) => {
+        setValue(e.target.value);
+    }
 
-        const handleInput = ( e ) => {
-            setValue(e.target.value);
-        }
-
-        const handleSubmit = async  () => {
-            if(value && selectedCountry) {
-                try {
-                    const res = await getGeocode({ address: value });
-                    const { lat, lng } = await getLatLng(res[0]);
-                } catch(error) {
-                    console.log(error)
-                }
-            } else {
-                setError("You Must Choose a Country and City");
-            }
-        }
-        
-        return(
-            <div className="landingSearchContainer">
-                <div className="landingSearchResults">
-                    {error ? <p className="error">{error}</p> : null}
-                    <label htmlFor="landingSearchInput"><b>Select a City: </b></label>
-                    <Combobox onSelect={handleSelect} >
-                        <ComboboxInput className="landingSearchInput" value={value} onChange={handleInput} 
-                        disabled={!ready} disabled={selectedCountry === ''} placeholder="Search A City"/>
-                        <ComboboxPopover>
-                            <ComboboxList>
-                                {status === "OK" && data.map(({description}, index) => <ComboboxOption key={index} value={description.split(",")[0]} className="searchResults"/> )}
-                            </ComboboxList>
-                        </ComboboxPopover>
-                    </Combobox>
-                </div>
-            </div>
-        )
+    const handleSelect = ( e ) => {
+        setValue(e.target.innerText, false);
     }
     
     useEffect(() => {
         fetchFilters();
     }, []);
 
-    if(loadError) return "Error loading maps";
-    if(!isLoaded) return "Loading maps";
-
     return (
         <div className="landingSearchCity">
             <label className="landingSearchCountry">
-                <b>Select a Country:</b>
-                <select className="landingSearchCountry" onChange={filterCity}>
-                    <option ion="true" hidden>Select A Country</option>
-                    <PopulateLocationSelect list={allCountries}/>
-                </select>
+                <CustomTextField
+                    select
+                    label="Select a Country"
+                    variant="outlined"
+                    helperText="Choose a Country first"
+                    SelectProps={{
+                        native: true,
+                    }}
+                    InputLabelProps={{
+                        shrink: true,
+                        required: false
+                    }}
+                    value={selectedCountry} 
+                    onChange={filterCity}
+                    required
+                >               
+                    <option value="" disabled>Select a Country</option>
+                    <PopulateLocationSelect list={allCountries} />
+                </CustomTextField>
             </label>
-            {isLoaded !== '' ? <Search selectedCountry={selectedCountry}/> : null }
+                <Autocomplete
+                id="combo-box-demo"
+                options={data}
+                getOptionLabel={(option) => option.description}
+                style={{ width: 300 }}
+                renderInput={(params) => {
+                    return (
+                        <CustomTextField 
+                            {...params} 
+                            label="City"                         
+                            InputLabelProps={{
+                                shrink: true,
+                                required: false
+                            }} 
+                            placeholder="Select a City"
+                            required
+                            helperText="Select your destination"
+                            fullWidth
+                            variant="outlined"
+                            style={{width: '100%'}}
+                        />
+                    )
+                }}
+                onInputChange={handleInput}
+                onChange={handleSelect}
+                fullWidth
+            />
         </div>
     )
 }
