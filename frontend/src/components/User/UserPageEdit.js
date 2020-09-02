@@ -93,87 +93,113 @@ const UserPageEdit = () => {
 	})
     
     return (
-        <section className="up-edit">
-            <header className="upe-header">
-                <section className="upe-coverImage">
-                    <button className="upe-closeEdit" onClick={returnToProfile}>Return To Profile</button>
-                </section>
+			<section className="up-edit">
+				<header className="upe-header">
+					<section className="upe-coverImage">
+						<button className="upe-closeEdit" onClick={returnToProfile}>
+							Return To Profile
+						</button>
+					</section>
 
-                <section className="upe-user">
-                    <label>
-                        <span>Profile Picture: </span>
-                        <input type="file"  accept=".png, .jpg, .jpeg" onChange={handleFileSelect} />
-                    </label>
+					<section className="upe-user">
+						<label>
+							<span>Profile Picture: </span>
+							<input
+								type="file"
+								accept=".png, .jpg, .jpeg"
+								onChange={handleFileSelect}
+							/>
+						</label>
 
-                    <div className="upe-userInteraction">
-                        <label>
-                            <span>First Name:</span> 
-                            <input type="text" placeholder="First Name" {...firstName} />
-                        </label>
+						<div className="upe-userInteraction">
+							<label>
+								<span>First Name:</span>
+								<input type="text" placeholder="First Name" {...firstName} />
+							</label>
 
-                        <label>
-                            <span>Last Name: </span>
-                            <input type="text" placeholder="Last Name" {...lastName} />
-                        </label>
-                    </div>
-                </section>
+							<label>
+								<span>Last Name: </span>
+								<input type="text" placeholder="Last Name" {...lastName} />
+							</label>
+						</div>
+					</section>
 
-                <section className="upe-userInfo">
-                    <p><span>Age: </span>{user.age}</p>
+					<section className="upe-userInfo">
+						<p>
+							<span>Age: </span>
+							{user.age}
+						</p>
 
-                    <label>
-                        <span>Country of Origin: </span> 
-                        <select {...country}>
-                            <option disabled value="">Select a country</option>
-                            {countryOptions}
-                        </select>
-                    </label>
+						<label>
+							<span>Country of Origin: </span>
+							<select defaultValue="" {...country}>
+								<option disabled value="">
+									Select a country
+								</option>
+								{countryOptions}
+							</select>
+						</label>
 
-                    <label>
-                        <span>Gender: </span>
-                        <select {...gender}>
-                            <option disabled value="">Select a gender</option>
-                            <option value="Male">Male</option>
-                            <option value="Female">Female</option>
-                            <option value="Non-Binary">Non-Binary</option>
-                        </select>
-                    </label>
-                </section>
+						<label>
+							<span>Gender: </span>
+							<select defaultValue="" {...gender}>
+								<option disabled value="">
+									Select a gender
+								</option>
+								<option value="Male">Male</option>
+								<option value="Female">Female</option>
+								<option value="Non-Binary">Non-Binary</option>
+							</select>
+						</label>
+					</section>
 
-                <section className="upe-bio">
-                    <label htmlFor="bio">Bio: </label>
-                    <textarea rows="7" cols="40" placeholder="Bio" {...bio} />
-                </section>
-            </header>
+					<section className="upe-bio">
+						<label htmlFor="bio">Bio: </label>
+						<textarea rows="7" cols="40" placeholder="Bio" {...bio} />
+					</section>
+				</header>
 
-            <section className="upe-extras">
-                <section className="upe-socialMedia">
-                    <label htmlFor="facebook">
-                        <p>Facebook Link: </p>
+				<section className="upe-extras">
+					<section className="upe-socialMedia">
+						<label htmlFor="facebook">
+							<p>Facebook Link: </p>
 
-                        <span>Facebook.com/</span>
-                        <input type="text" placeholder="Facebook Username" {...facebook} />
-                    </label>
-                    
-                    <label htmlFor="instagram">
-                        <p>Instagram Username: </p>
+							<span>Facebook.com/</span>
+							<input
+								type="text"
+								placeholder="Facebook Username"
+								{...facebook}
+							/>
+						</label>
 
-                        <span>Instagram.com/</span>
-                        <input type="text" placeholder="Instagram Username" {...instagram} />
-                    </label>
+						<label htmlFor="instagram">
+							<p>Instagram Username: </p>
 
-                    <label>
-                        <p>Twitter Username: </p>
+							<span>Instagram.com/</span>
+							<input
+								type="text"
+								placeholder="Instagram Username"
+								{...instagram}
+							/>
+						</label>
 
-                        <span>Twitter.com/</span>
-                        <input type="text" placeholder="Twitter Username" {...twitter} />
-                    </label>
-                </section>
+						<label>
+							<p>Twitter Username: </p>
 
-                <button type="submit" onClick={handleUpdate}>Update</button>
-            </section>
-        </section>
-    )
+							<span>Twitter.com/</span>
+							<input type="text" placeholder="Twitter Username" {...twitter} />
+						</label>
+					</section>
+
+                <button
+                    type="submit"
+                    onClick={handleUpdate}
+					>
+						Update
+					</button>
+				</section>
+			</section>
+		);
 }
 
 export default UserPageEdit;
