@@ -181,7 +181,7 @@ const TripsPage = ( props ) => {
             </section>
 
             <ScrollToTop {...props}>
-            <Fab color="secondary" size="small" aria-label="scroll back to top">
+            <Fab color="secondary" size="small" aria-label="scroll back to top" className="fabToTop">
                 <KeyboardArrowUp />
             </Fab>
             </ScrollToTop>
