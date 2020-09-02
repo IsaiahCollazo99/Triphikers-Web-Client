@@ -1,15 +1,15 @@
 import React, { useEffect, useState } from 'react';
 import { useParams, Route, Switch, Link } from 'react-router-dom';
 import { getTripById } from '../../util/apiCalls/getRequests';
+import { ProtectedUserRoute } from '../../util/routesUtil';
 import DetailedTripNav from './DetailedTripNav';
 import DetailedTripInfo from './DetailedTripInfo';
 import DetailedTripRequests from './DetailedTripRequests';
 import DetailedTripTravelers from './DetailedTripTravelers';
-import '../../css/detailedTripPage/detailedTripPage.css';
-import { ProtectedUserRoute } from '../../util/routesUtil';
 import FacebookLogo from '../../images/f_logo_RGB-Blue_1024.png';
 import InstagramLogo from '../../images/glyph-logo_May2016.png';
 import TwitterLogo from '../../images/Twitter_Social_Icon_Circle_Color.png'
+import '../../css/detailedTripPage/detailedTripPage.css';
 
 const DetailedTripPage = () => {
     const { id } = useParams();
@@ -67,7 +67,7 @@ const DetailedTripPage = () => {
     if(trip.full_name) {
         return (
             <div className="detailedTripContainer">
-                <header className="dt-header">
+                <aside className="dt-header">
                     <section className="dt-user">
                         <img src={trip.profile_picture} alt={trip.full_name} />
                         <div className="dt-userInteraction">
@@ -81,30 +81,28 @@ const DetailedTripPage = () => {
     
                     <section className="dt-userInfo">
                         <p><span>Age: </span>{trip.age}</p>
-                        <p><span>Country of Origin: </span>{trip.country_of_origin}</p>
+                        <p><span>Country: </span>{trip.country_of_origin}</p>
                         <p><span>Gender: </span>{trip.gender}</p>
                     </section>
-    
-                    <section className="dt-bio">
-                        <span>Bio: </span>
-                        <p>{trip.bio}</p>
-                    </section>
-                </header>
-                <DetailedTripNav trip={trip}/>
-                <Switch>
-                    <Route exact path={"/trips/:tripId/"}>
-                        <DetailedTripInfo trip={trip} getTripCall={getTripCall} />
-                    </Route>
-    
-                    <Route exact path={"/trips/:tripId/travelers"}>
-                        <DetailedTripTravelers trip={trip} />
-                    </Route>
-                    
-                    <ProtectedUserRoute exact path={"/trips/:tripId/requests"} trip={trip}>
-                        <DetailedTripRequests trip={trip} />
-                    </ProtectedUserRoute>
-    
-                </Switch>
+                </aside>
+
+                <main>
+                    <DetailedTripNav trip={trip}/>
+                    <Switch>
+                        <Route exact path={"/trips/:tripId/"}>
+                            <DetailedTripInfo trip={trip} getTripCall={getTripCall} />
+                        </Route>
+        
+                        <Route exact path={"/trips/:tripId/travelers"}>
+                            <DetailedTripTravelers trip={trip} />
+                        </Route>
+                        
+                        <ProtectedUserRoute exact path={"/trips/:tripId/requests"} trip={trip}>
+                            <DetailedTripRequests trip={trip} />
+                        </ProtectedUserRoute>
+        
+                    </Switch>
+                </main>
             </div>
         )
     } else {

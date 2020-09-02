@@ -88,7 +88,7 @@ const TripsPageFilter = ({ filterTrips, getTripsCall }) => {
                 />
 
                 <TextField
-                    label="Date From"
+                    label="Date To"
                     type="date"
                     placeholder="yyyy-mm-dd"
                     variant="filled"
