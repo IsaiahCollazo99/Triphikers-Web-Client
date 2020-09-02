@@ -59,7 +59,6 @@ const CreateTripDestination = ({ destination }) => {
                 <option value="" disabled>Select a Country</option>
                 <PopulateLocationSelect list={allCountries} />
             </CustomTextField>
-
             { isLoaded ? 
                 <CreateTripCitySearch selectedCountry={selectedCountry} destination={destination.destination} setDestination={setDestination} /> :
                 null

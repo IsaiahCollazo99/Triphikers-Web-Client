@@ -1,13 +1,24 @@
 import React, { useState, useEffect} from "react";
 import PopulateLocationSelect from "../helper/populateLocationSelect";
 import axios from "axios";
-import usePlacesAutocomplete from "use-places-autocomplete";
-import Autocomplete from '@material-ui/lab/Autocomplete';
 import CustomTextField from '../General/CustomTextField';
+import { useLoadScript } from "@react-google-maps/api";
+import LandingPageCitySearch from "./LandingPageCitySearch";
+require("dotenv").config()
 
-const LandingPageSearch = (id) => {
+const {
+    REACT_APP_GOOGLEAPIKEY
+} = process.env;
+const libraries = ["places"];
+
+const LandingPageSearch = () => {
     const [allCountries, setAllCountries] = useState([]);
     const [selectedCountry, setSelectedCountry] = useState('');
+
+    const { isLoaded } = useLoadScript({
+        googleMapsApiKey: REACT_APP_GOOGLEAPIKEY,
+        libraries,
+    });
 
     const fetchFilters = async () => {
         try {
@@ -21,21 +32,6 @@ const LandingPageSearch = (id) => {
     const filterCity = (e) => {
         e.preventDefault();
         setSelectedCountry(e.target.value);
-    }
-
-    const { suggestions: { data }, setValue } = usePlacesAutocomplete({
-        requestOptions: {
-            types: ['(cities)'],
-            componentRestrictions: {country: selectedCountry}
-        }
-    })
-    
-    const handleInput = ( e ) => {
-        setValue(e.target.value);
-    }
-
-    const handleSelect = ( e ) => {
-        setValue(e.target.innerText, false);
     }
     
     useEffect(() => {
@@ -66,33 +62,10 @@ const LandingPageSearch = (id) => {
                     <PopulateLocationSelect list={allCountries} />
                 </CustomTextField>
             </label>
-                <Autocomplete
-                id="combo-box-demo"
-                options={data}
-                getOptionLabel={(option) => option.description}
-                style={{ width: 300 }}
-                renderInput={(params) => {
-                    return (
-                        <CustomTextField 
-                            {...params} 
-                            label="City"                         
-                            InputLabelProps={{
-                                shrink: true,
-                                required: false
-                            }} 
-                            placeholder="Select a City"
-                            required
-                            helperText="Where is the city of your dreams?"
-                            fullWidth
-                            variant="outlined"
-                            style={{width: '140%'}}
-                        />
-                    )
-                }}
-                onInputChange={handleInput}
-                onChange={handleSelect}
-                fullWidth
-            />
+            { isLoaded ? 
+                <LandingPageCitySearch selectedCountry={selectedCountry} /> :
+                null
+            }
         </div>
     )
 }
