@@ -1,0 +1,32 @@
+.footer {
+    display: flex;
+    flex-flow: row;
+    position: absolute;
+    bottom: 0;
+    width: 100vw;
+    text-align: center;
+    justify-content: space-evenly;
+    margin: auto;
+    background-color: #ff9800;
+    align-items: center;
+    color: white;
+    text-decoration: none;
+    text-shadow: 1px 1px 2px black;
+  }
+  
+  .shareSocial {
+    display: flex;
+    flex-direction: row;
+    height: 30%;
+    width: auto;
+  }
+  
+  .footerLinks {
+    text-shadow: 1px 1px 2px black;
+    color: white;
+  }
+
+  .copyrightLine {
+      color: lightgrey;
+      font-size: .75em;
+  }

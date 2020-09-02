@@ -1,9 +1,9 @@
 import React, { useState, useEffect} from "react";
-import { createClient } from 'pexels';
+// import { createClient } from 'pexels';
 import PopulateLocationSelect from "../helper/populateLocationSelect";
 import { useHistory } from "react-router-dom";
 import axios from "axios";
-import "../../css/LocationSearch.css";
+import "../../css/locations/LocationSearch.css";
 import { useLoadScript } from '@react-google-maps/api';
 import usePlacesAutocomplete, {
     getGeocode,
@@ -23,11 +23,12 @@ const {
     REACT_APP_GOOGLEAPIKEY
 } = process.env;
 const libraries = ["places"];
-createClient('563492ad6f9170000100000153f28b06267f4b548fc99fbb457455db');
+// const client = createClient('563492ad6f9170000100000153f28b06267f4b548fc99fbb457455db');
 
 const LocationSearch = (id) => {
     const [allCountries, setAllCountries] = useState([]);
     const [selectedCountry, setSelectedCountry] = useState('');
+    const [loadCityFilter, setLoadCityFilter] = useState(false);
     const history = useHistory();
     const locationRedirect = (country, city, lat, lng) => {
         history.push({
@@ -54,6 +55,7 @@ const LocationSearch = (id) => {
     const filterCity = (e) => {
         e.preventDefault();
         setSelectedCountry(e.target.value);
+        setLoadCityFilter(true);
     }
 
     const Search = ({ selectedCountry, locationRedirect}) => {
@@ -76,43 +78,34 @@ const LocationSearch = (id) => {
         }
 
         const handleSubmit = async  () => {
-            if(value) {
+            if(value && selectedCountry) {
                 try {
                     const res = await getGeocode({ address: value });
                     const { lat, lng } = await getLatLng(res[0]);
-
-                    let resultCountry = selectedCountry;
-
-                    if(!selectedCountry) {
-                        const splitLocation = value.split(" ");
-                        resultCountry = splitLocation[value.length - 1];
-                    }
-
-                    debugger;
-
-                    locationRedirect(resultCountry, value, lat, lng)
+                    locationRedirect(selectedCountry, value, lat, lng)
                 } catch(error) {
                     console.log(error)
                 }
             } else {
-                setError("You must select a city.");
+                setError("You Must Choose a Country and City");
             }
         }
         
         return(
             <div className="searchContainer">
-                {error ? <p className="error">{error}</p> : null}
-                <label htmlFor="searchInput"><b>Select a City: </b></label>
-                <Combobox onSelect={handleSelect}>
-                    <ComboboxInput className="searchInput" value={value} onChange={handleInput} 
-                    disabled={!ready} placeholder="Search A City"/>
-                    <ComboboxPopover>
-                        <ComboboxList>
-                            {status === "OK" && data.map(({description }, index) => <ComboboxOption key={index} value={description} className="searchResults"/>)}
-                        </ComboboxList>
-                    </ComboboxPopover>
-                </Combobox>
-
+                <div className="searchResults">
+                    {error ? <p className="error">{error}</p> : null}
+                    <label htmlFor="searchInput"><b>Select a City: </b></label>
+                    <Combobox onSelect={handleSelect} >
+                        <ComboboxInput className="searchInput" value={value} onChange={handleInput} 
+                        disabled={!ready} disabled={selectedCountry === ''} placeholder="Search A City"/>
+                        <ComboboxPopover>
+                            <ComboboxList>
+                                {status === "OK" && data.map(({description}, index) => <ComboboxOption key={index} value={description.split(",")[0]} className="searchResults"/> )}
+                            </ComboboxList>
+                        </ComboboxPopover>
+                    </Combobox>
+                </div>
                 <button onClick={handleSubmit}>Go There</button>
             </div>
         )
@@ -128,13 +121,12 @@ const LocationSearch = (id) => {
     return (
         <div className="searchCity">
             <label className="selectedCountry">
-                <b>Select a Country: (optional filter)</b>
+                <b>Select a Country:</b>
                 <select className="selectedCountry" onChange={filterCity}>
-                    <option   ion hidden>Select A Country</option>
+                    <option ion="true" hidden>Select A Country</option>
                     <PopulateLocationSelect list={allCountries}/>
                 </select>
             </label>
-
             {isLoaded !== '' ? <Search selectedCountry={selectedCountry} locationRedirect={locationRedirect}/> : null }
         </div>
     )
