@@ -7,7 +7,6 @@ import '../../css/signUpIn/signUp1.css';
 
 const CreateSignUpForm1 = (props) => {
 	const { email, password, confirmPassword, handlePageChange } = props;
-	const [ error, setError ] = useState(null);
 	const [ showPassword, setShowPassword ] = useState(false);
 	const [ showConfirm, setShowConfirm ] = useState(false);
 	const [ errors, setErrors ] = useState({ password: false, email: false });
@@ -24,10 +23,8 @@ const CreateSignUpForm1 = (props) => {
 	const handleSubmit = async (e) => {
 		e.preventDefault()
 		if(password.value !== confirmPassword.value) {
-			setError(<p className="error">The passwords don't match</p>);
 			setErrors({ ...errors, password: true });
 		} else if(await isEmailExisting()) {
-			setError(<p className="error">A user with that email exists.</p>);
 			setErrors({ password: false, email: true });
 		} else {
 			setErrors({ password: false, email: false });
@@ -55,8 +52,6 @@ const CreateSignUpForm1 = (props) => {
 		</header>
 
 		<form onSubmit={handleSubmit} className="signUp1">
-			{error}
-
 			<CustomTextField 
 				label="Email"
 				type="email"
@@ -64,6 +59,12 @@ const CreateSignUpForm1 = (props) => {
 				InputLabelProps={{
 					shrink: true,
 					required: false,
+				}}
+				helperText="A user with that email exists."
+				FormHelperTextProps={{
+					style: {
+						display: errors.email ? "inherit" : "none"
+					}
 				}}
 				placeholder="Enter your Email Address"
 				required
@@ -91,6 +92,12 @@ const CreateSignUpForm1 = (props) => {
 							</IconButton>
 						</InputAdornment>
 					)
+				}}
+				helperText="Password do not match."
+				FormHelperTextProps={{
+					style: {
+						display: errors.password ? "inherit" : "none"
+					}
 				}}
 				placeholder="Enter your Password"
 				required
