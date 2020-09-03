@@ -8,7 +8,11 @@ const CreateSignUpForm2 = (props) => {
 	const { firstName, lastName, birthday, gender, handlePageChange,
 	username, setUsername } = props;
 	const [ isValidUsername, setIsValidUsername ] = useState(true);
-	const [ error, setError ] = useState(null);
+	const [ usernameExists, setUsernameExists ] = useState(false);
+	const [ helperText, setHelperText ] = useState({
+		username: "Must include alpha-numeric characters or . _ - only",
+		birthday: ""
+	})
 	
 	const isValidAge = () => {
 		const today = new Date();
@@ -29,6 +33,7 @@ const CreateSignUpForm2 = (props) => {
 	const isUsernameExisting = async () => {
 		try {
 			const data = await getUserByUsername(username);
+			data.user ? setUsernameExists(true) : setUsernameExists(false);
 			return data.user;
 		} catch ( error ) {
 			console.log(error);
@@ -38,12 +43,12 @@ const CreateSignUpForm2 = (props) => {
 	const handleSubmit = async (e) => {
 		e.preventDefault();
 		if(await isUsernameExisting()) {
-			setError(<p className="error">User with that username exists.</p>);
+			setHelperText({...helperText, username: "User with that username exists"});
 		} else if(isValidAge() && isValidUsername) {
 			handlePageChange(3)
 		} else {
 			if(!isValidAge()) {
-				setError(<p className="error">Must be 18 years or older to sign up.</p>);
+				setHelperText({...helperText, birthday: "Must be 18 years or older to sign up."});
 			}
 		}
 	}
@@ -54,8 +59,12 @@ const CreateSignUpForm2 = (props) => {
 
 		if(inputValue.match(pattern)) {
 			setIsValidUsername(false);
+			setHelperText({...helperText, 
+				username: "Username contains invalid characters (a-z, 0-9, . _ - only)"});
 		} else {
 			setIsValidUsername(true);
+			setHelperText({...helperText, 
+				username: "Must include alpha-numeric characters or . _ - only"});
 		}
 		setUsername(inputValue);
 	}
@@ -70,8 +79,6 @@ const CreateSignUpForm2 = (props) => {
 
 	const today = `${yyyy}-${mm}-${dd}`;
 
-	const displayUsernameError = isValidUsername ? "none" : "inline-block";
-
 	return (
 		<>
 		<header>
@@ -80,7 +87,6 @@ const CreateSignUpForm2 = (props) => {
 		</header>
 
 		<form onSubmit={handleSubmit} className="signUp2" style={{height: '80%'}}>
-			{error}
 
 			<CustomTextField 
 				label="First Name"
@@ -120,13 +126,11 @@ const CreateSignUpForm2 = (props) => {
 					max: today,
 					min: "1900-01-01",
 				}}
+				helperText={helperText.birthday}
+				error={helperText.birthday ? true : false}
 				required
 				{...birthday}
 			/>
-
-			<p style={{display: displayUsernameError}} className="error">
-				Username contains an invalid character
-			</p>
 
 			<CustomTextField
 				label="Username"
@@ -136,8 +140,8 @@ const CreateSignUpForm2 = (props) => {
 					shrink: true,
 					required: false,
 				}}
-				helperText="Must include alpha-numeric characters or . _ - only"
-				error={!isValidUsername}
+				helperText={helperText.username}
+				error={!isValidUsername || usernameExists}
 				placeholder="Enter your Username"
 				required
 				value={username}
