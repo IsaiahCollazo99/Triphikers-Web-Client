@@ -80,8 +80,8 @@ const CreateSignUpForm3 = (props) => {
 				{countryOptions}
 			</CustomTextField>
 
-			<section className="upe-pfpContainer">
-                <label htmlFor="upe-pfp" className="pfpLabel">
+			<section className="suf3-pfpContainer">
+                <label htmlFor="suf3-pfp" className="pfpLabel">
                     <span className="MuiButton-startIcon MuiButton-iconSizeMedium">
                         <CloudUploadIcon />
                     </span>
@@ -92,7 +92,7 @@ const CreateSignUpForm3 = (props) => {
                     type="file"
                     accept=".png, .jpg, .jpeg"
                     name="pfp"
-                    id="upe-pfp"
+                    id="suf3-pfp"
                     onChange={handleFileSelect}
                 />
                 <b>Preview: </b>
@@ -100,10 +100,21 @@ const CreateSignUpForm3 = (props) => {
             </section>
 
 			<div className="buttons">
-				<button onClick={() => handlePageChange(2)} type="button" className="backButton">
+				<Button 
+					onClick={() => handlePageChange(2)} 
+					type="button" 
+					color="primary"
+					variant="outlined"
+				>
 					BACK
-				</button>
-				<input type="submit" value="SIGN UP" />
+				</Button>
+				<Button 
+					type="submit"
+					color="primary"
+					variant="contained"
+				>
+					SIGN UP
+				</Button>
 			</div>
 		</form>
 		</>
