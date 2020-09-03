@@ -1,5 +1,5 @@
 import React, { useEffect, useState, useContext } from 'react';
-import Button from '@material-ui/core/Button';
+// import Button from '@material-ui/core/Button';
 import { useParams, Switch, Route, useHistory } from 'react-router-dom'
 import { getUserById, getUserTrips, getUserFriendRequests, getUserFriends } from '../../util/apiCalls/getRequests'
 import '../../css/userPage/userPage.css'
@@ -12,11 +12,11 @@ import { deleteFriendRequest } from '../../util/apiCalls/deleteRequests';
 import UserPageFriends from './UserPageFriends';
 import { ProtectedUserRoute } from '../../util/routesUtil';
 import UserPageRequests from './UserPageRequests';
-import FacebookLogo from '../../images/f_logo_RGB-Blue_1024.png';
-import InstagramLogo from '../../images/glyph-logo_May2016.png';
-import TwitterLogo from '../../images/Twitter_Social_Icon_Circle_Color.png'
-import NewChat from '../../chatList/NewChat';
-import firebase from "../../firebase";
+// import FacebookLogo from '../../images/f_logo_RGB-Blue_1024.png';
+// import InstagramLogo from '../../images/glyph-logo_May2016.png';
+// import TwitterLogo from '../../images/Twitter_Social_Icon_Circle_Color.png'
+// import NewChat from '../../chatList/NewChat';
+// import firebase from "../../firebase";
 
 const UserPage = () => {
     const { id } = useParams();
@@ -33,6 +33,7 @@ const UserPage = () => {
     }
 
     const getUser = async () => {
+        console.log(newChatFormVisible);
         try {
             const data = await getUserById(id);
             setProfileUser(data.user)
@@ -164,12 +165,12 @@ const UserPage = () => {
         setNewChatFormVisible(true);
     }
 
+    console.log(newChat);
+
     // const buildDocKey = (friend) => {
     //     let users = [email, friend]
     //     return users.sort().join(":")
     // }
-    console.log(currentUser);
-    console.log(profileUser)
 
     // const newChatSubmit = async (chatObj) => {
     //     const docKey = buildDocKey(chatObj.sendTo);
