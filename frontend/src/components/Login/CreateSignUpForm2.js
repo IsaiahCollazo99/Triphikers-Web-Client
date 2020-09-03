@@ -79,7 +79,7 @@ const CreateSignUpForm2 = (props) => {
 			<h3>2/3</h3>
 		</header>
 
-		<form onSubmit={handleSubmit} className="signUp2">
+		<form onSubmit={handleSubmit} className="signUp2" style={{height: '80%'}}>
 			{error}
 
 			<CustomTextField 
