@@ -4,10 +4,8 @@ import { AuthContext } from '../../providers/AuthContext';
 import { useInput } from '../../util/customHooks';
 import { uploadPicture } from '../../util/firebaseFunction';
 import { useHistory } from 'react-router-dom';
-import axios from 'axios';
 import Button from '@material-ui/core/Button';
-import CustomTextField from '../General/CustomTextField';
-import CloudUploadIcon from '@material-ui/icons/CloudUpload';
+import UserInfoEdit from './UserInfoEdit';
 import '../../css/userPage/userPage.css';
 import '../../css/userPage/userPageEdit.css';
 
@@ -17,7 +15,6 @@ const UserPageEdit = () => {
     const [ user, setUser ] = useState({})
     const [ currentFirstName, setCurrentFirstName ] = useState("");
     const [ currentLastName, setCurrentLastName ] = useState("");
-    const [ countries, setCountries ] = useState([]);
 	const [ profilePicture, setProfilePicture ] = useState(null);
 	const [ tab, setTab ] = useState(1);
     const firstName = useInput("");
@@ -36,14 +33,8 @@ const UserPageEdit = () => {
         setUser(data.user);
     }
 
-	const getCountries = async () => {
-		let res = await axios.get("https://restcountries.eu/rest/v2/all");
-		setCountries(res.data);
-	}
-
     useEffect(() => {
         getUserCall();
-        getCountries();
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [])
 
@@ -90,95 +81,20 @@ const UserPageEdit = () => {
 
     const returnToProfile = () => {
         history.push(`/user/${currentUser.id}`);
-    }
-    
-    const countryOptions = countries.map(country => {
-		return <option value={country.name} key={country.alpha2Code}>{country.name}</option>
-	})
+	}
+	
+	const userInfoProps = {
+		handleFileSelect,
+		firstName,
+		lastName,
+		country,
+		gender
+	}
 
 	const getTabContent = () => {
 		if(tab === 1) {
 			return (
-				<section className="upe-user">
-					<label htmlFor="upe-pfp" className="pfpLabel">
-						<span className="MuiButton-startIcon MuiButton-iconSizeMedium">
-							<CloudUploadIcon />
-						</span>
-						Upload a Profile Picture
-					</label>
-
-					<input
-						type="file"
-						accept=".png, .jpg, .jpeg"
-						name="pfp"
-						id="upe-pfp"
-						onChange={handleFileSelect}
-					/>
-
-					<CustomTextField 
-						label="First Name"
-						type="text"
-						variant="outlined"
-						InputLabelProps={{
-							shrink: true
-						}}
-						placeholder="Enter your First Name"
-						style={{width: '30%'}}
-						{...firstName}
-					/>
-					
-					<CustomTextField 
-						label="Last Name"
-						type="text"
-						variant="outlined"
-						InputLabelProps={{
-							shrink: true
-						}}
-						placeholder="Enter your Last Name"
-						style={{width: '30%'}}
-						{...lastName}
-					/>
-
-					<CustomTextField 
-						label="Country of Origin"
-						select
-						variant="outlined"
-						SelectProps={{
-							native: true,
-						}}
-						InputLabelProps={{
-							shrink: true,
-						}}
-						style={{width: '30%'}}
-						{...country}
-					>
-						<option disabled value="">
-							Select a country
-						</option>
-						{countryOptions}
-					</CustomTextField>
-
-					<CustomTextField
-						label="Gender"
-						select
-						variant="outlined"
-						SelectProps={{
-							native: true,
-						}}
-						InputLabelProps={{
-							shrink: true,
-						}}
-						style={{width: '30%'}}
-						{...gender}
-					>
-						<option disabled value="">
-							Select a gender
-						</option>
-						<option value="Male">Male</option>
-						<option value="Female">Female</option>
-						<option value="Non-Binary">Non-Binary</option>
-					</CustomTextField>
-				</section>
+				<UserInfoEdit {...userInfoProps} />
 			)
 		} else {
 			return (
