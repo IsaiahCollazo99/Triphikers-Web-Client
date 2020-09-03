@@ -29,6 +29,7 @@ const UserInfoEdit = ( props ) => {
 
     return (
         <section className="upe-user">
+            <h2>Personal Info</h2>
             <label htmlFor="upe-pfp" className="pfpLabel">
                 <span className="MuiButton-startIcon MuiButton-iconSizeMedium">
                     <CloudUploadIcon />

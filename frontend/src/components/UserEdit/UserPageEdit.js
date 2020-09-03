@@ -8,6 +8,7 @@ import Button from '@material-ui/core/Button';
 import UserInfoEdit from './UserInfoEdit';
 import '../../css/userPage/userPage.css';
 import '../../css/userPage/userPageEdit.css';
+import UserSocialEdit from './UserSocialEdit';
 
 const UserPageEdit = () => {
     const history = useHistory();
@@ -16,7 +17,6 @@ const UserPageEdit = () => {
     const [ currentFirstName, setCurrentFirstName ] = useState("");
     const [ currentLastName, setCurrentLastName ] = useState("");
 	const [ profilePicture, setProfilePicture ] = useState(null);
-	const [ tab, setTab ] = useState(1);
     const firstName = useInput("");
     const lastName = useInput("");
     const country = useInput("");
@@ -92,18 +92,10 @@ const UserPageEdit = () => {
 		gender
 	}
 
-	const getTabContent = () => {
-		if(tab === 1) {
-			return (
-				<UserInfoEdit {...userInfoProps} />
-			)
-		} else {
-			return (
-				<section classname="upe-socialMedia">
-					
-				</section>
-			)
-		}
+	const userSocialProps = {
+		facebook,
+		instagram,
+		twitter
 	}
     
     return (
@@ -126,7 +118,11 @@ const UserPageEdit = () => {
 					</Button>
 				</section>
 
-				{getTabContent()}
+				<UserInfoEdit {...userInfoProps} />
+
+				<div className="upe-divider"></div>
+
+				<UserSocialEdit {...userSocialProps} />
 			</section>
 		);
 }

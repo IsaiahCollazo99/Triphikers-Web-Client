@@ -9,6 +9,7 @@ const UserSocialEdit = ( props ) => {
     
     return (
         <section className="upe-socialMedia">
+            <h2>Social Media</h2>
             <label htmlFor="facebook">
                 <p>Facebook Link: </p>
 
