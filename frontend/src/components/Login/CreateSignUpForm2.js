@@ -60,18 +60,6 @@ const CreateSignUpForm2 = (props) => {
 		setUsername(inputValue);
 	}
 
-	const displayBackButton = () => {
-		if(!user) {
-			return (
-				<button onClick={()=> handlePageChange(1)} type="button" className="backButton">
-					BACK
-				</button>
-			)
-		} else {
-			return null;
-		}
-	}
-
 	const yyyy = new Date().getFullYear(); 
 
 	let mm = new Date().getMonth() + 1;
@@ -176,10 +164,23 @@ const CreateSignUpForm2 = (props) => {
 				<option value="Non-Binary">Non-Binary</option>
 			</CustomTextField>
 
-			<div className="buttons">
-				{displayBackButton()}
-				<input type="submit" value="NEXT PAGE" />
-			</div>
+			<section className="buttons">
+				<Button 
+					onClick={()=> handlePageChange(1)} 
+					type="button" 
+					variant="outlined"
+					color="primary"
+				>
+					BACK
+				</Button>
+				<Button 
+					type="submit" 
+					variant="contained"
+					color="primary"
+				>
+					NEXT PAGE
+				</Button>
+			</section>
 		</form>
 		</>
 	);
