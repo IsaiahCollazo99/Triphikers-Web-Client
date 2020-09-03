@@ -1,21 +1,21 @@
 import React, { useEffect, useState, useContext } from 'react';
-import Button from '@material-ui/core/Button';
 import { useParams, Switch, Route } from 'react-router-dom'
 import { getUserById, getUserTrips, getUserFriendRequests, getUserFriends } from '../../util/apiCalls/getRequests'
-import '../../css/userPage/userPage.css'
-import UserPageNav from './UserPageNav';
-import TripCard from '../General/TripCard';
 import { AuthContext } from '../../providers/AuthContext';
 import { sendFriendRequest } from '../../util/apiCalls/postRequests';
 import { deleteFriendRequest } from '../../util/apiCalls/deleteRequests';
-import UserPageFriends from './UserPageFriends';
 import { ProtectedUserRoute } from '../../util/routesUtil';
+import Button from '@material-ui/core/Button';
+import TripCard from '../General/TripCard';
+import UserPageFriends from './UserPageFriends';
+import UserPageNav from './UserPageNav';
 import UserPageRequests from './UserPageRequests';
 import FacebookLogo from '../../images/f_logo_RGB-Blue_1024.png';
 import InstagramLogo from '../../images/glyph-logo_May2016.png';
 import TwitterLogo from '../../images/Twitter_Social_Icon_Circle_Color.png'
 // import NewChat from '../../chatList/NewChat';
 // import firebase from "../../firebase";
+import '../../css/userPage/userPage.css'
 
 const UserPage = () => {
     const { id } = useParams();

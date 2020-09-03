@@ -1,12 +1,12 @@
 import React, { useContext, useEffect, useState } from 'react';
-import { AuthContext } from '../../providers/AuthContext';
 import { getUserById, updateUser } from '../../util/apiCalls/getRequests';
-import '../../css/userPage/userPage.css';
-import '../../css/userPage/userPageEdit.css';
+import { AuthContext } from '../../providers/AuthContext';
 import { useInput } from '../../util/customHooks';
-import axios from 'axios';
 import { uploadPicture } from '../../util/firebaseFunction';
 import { useHistory } from 'react-router-dom';
+import axios from 'axios';
+import '../../css/userPage/userPage.css';
+import '../../css/userPage/userPageEdit.css';
 
 const UserPageEdit = () => {
     const history = useHistory();

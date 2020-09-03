@@ -1,9 +1,9 @@
 import React, { useContext } from 'react';
 import { AuthContext } from '../../providers/AuthContext';
 import { Link } from 'react-router-dom';
-import '../../css/userPage/userPageFriends.css';
 import { removeFriend } from '../../util/apiCalls/deleteRequests';
 import Button from '@material-ui/core/Button';
+import '../../css/userPage/userPageFriends.css';
 
 const FriendCard = ({ friend, refresh }) => {
     const { currentUser } = useContext(AuthContext);
