@@ -1,6 +1,6 @@
 import React, { useEffect, useState, useContext } from 'react';
-// import Button from '@material-ui/core/Button';
-import { useParams, Switch, Route, useHistory } from 'react-router-dom'
+import Button from '@material-ui/core/Button';
+import { useParams, Switch, Route } from 'react-router-dom'
 import { getUserById, getUserTrips, getUserFriendRequests, getUserFriends } from '../../util/apiCalls/getRequests'
 import '../../css/userPage/userPage.css'
 import UserPageNav from './UserPageNav';
@@ -26,11 +26,6 @@ const UserPage = () => {
     const [ friendRequests, setFriendRequests ] = useState([]);
     const [ friends, setFriends ] = useState([]);
     const [newChatFormVisible, setNewChatFormVisible] = useState(false);
-    const history = useHistory();
-
-    const redirect = () => {
-        history.push("/user/edit");
-    }
 
     const getUser = async () => {
         console.log(newChatFormVisible);
@@ -129,31 +124,37 @@ const UserPage = () => {
     }
 
     const displayFriendRequest = () => {
-        if(currentUser.id === id) {
+        if(currentUserSentRequest()) {
             return (
-                <button className="up-editButton" onClick={redirect}>Edit Profile</button>
-            );
-        } else if(currentUserSentRequest()) {
-            return (
-                <button className="up-requestSent" onClick={removeFriendRequest}>
+                <Button 
+                    className="up-requestSent" 
+                    onClick={removeFriendRequest}
+                    color="primary"
+                    variant="contained"
+                    disableElevation
+                >
                     <span>Friend Request Sent</span>
-                </button>
+                </Button>
             )
         } else if(currentUserIsFriend()) {
             return null;
         } else {
             return (
                 <div>
-                    <button className="up-friendRequest" onClick={sendFriendRequestCall}>
+                    <Button 
+                        className="up-friendRequest" 
+                        onClick={sendFriendRequestCall}
+                        color="primary"
+                        variant="contained"
+                        disableElevation
+                    >
                         Send Friend Request
-                    </button>
+                    </Button>
                     {/* <Button variant="contained" fullWidth color="primary" className="addNewChat" onClick={newChat}>New Message</Button> */}
                 </div>
             )
         }
     }
-
-
     
     const userTripsList = userTrips.map((trip, i) => {
         return (
@@ -165,7 +166,7 @@ const UserPage = () => {
         setNewChatFormVisible(true);
     }
 
-    console.log(newChat);
+    if(newChatFormVisible) console.log(newChat);
 
     // const buildDocKey = (friend) => {
     //     let users = [email, friend]
@@ -189,57 +190,65 @@ const UserPage = () => {
     //     setNewChatFormVisible(false);
     // }
 
+    const getCoverButtons = () => {
+        if(currentUser.id === id) {
+            return null;
+        } else {
+            return (
+                <section className="up-coverButtons">
+                    {displayFriendRequest()}
+                </section>
+            )
+        }
+    } 
+
     return (
       
         <div className="userPageContainer">
-            <header className="up-header">
-                <section className="up-coverImage">
-                    <section className="up-coverButtons">
-                        {displayFriendRequest()}
-                    </section>
-                </section>
-
+            <aside>
                 <section className="up-user">
                     <img src={profileUser.profile_picture} alt="profile_picture" />
                     <div className="up-userInteraction">
-                        {/* rating goes in the span */}
-                        <p>{profileUser.full_name}<span></span></p>
+                        <p>{profileUser.full_name}</p>
                     </div>
                 </section>
 
+                {getCoverButtons()}
+
                 <section className="up-userInfo">
                     <p><span>Age: </span>{profileUser.age}</p>
-                    <p><span>Country of Origin: </span>{profileUser.country_of_origin}</p>
+                    <p><span>Country: </span>{profileUser.country_of_origin}</p>
                     <p><span>Gender: </span>{profileUser.gender}</p>
                 </section>
+            </aside>
 
-                <section className="up-bio">
-                    <span>Bio: </span>
-                    <p>{profileUser.bio}</p>
+            <main>
+                <UserPageNav userId={id} />
+                
+                <section className="up-main">
+                <Switch>
+                    <Route exact path={"/user/:id/"}>
+                        {userTripsList}
+                    </Route>
+
+                    <Route exact path={"/user/:id/about"}>
+                        <UserPageAbout user={profileUser} />
+                    </Route>
+
+                    <Route exact path={"/user/:id/friends"}>
+                        <UserPageFriends userFriends={friends} refresh={getUserFriendsCall} />
+                    </Route>
+
+                    <ProtectedUserRoute userId={id} exact path={"/user/:id/friendRequests"}>
+                        <UserPageRequests 
+                            friendRequests={friendRequests} 
+                            refresh={getUserFriendRequestsCall} 
+                        />
+                    </ProtectedUserRoute>
+                </Switch>
                 </section>
-            </header>
-
-            <UserPageNav userId={id} />
+            </main>
             
-            <section className="up-main">
-            <Switch>
-                <Route exact path={"/user/:id/"}>
-                    {userTripsList}
-                </Route>
-
-                <Route exact path={"/user/:id/about"}>
-                    <UserPageAbout user={profileUser} />
-                </Route>
-
-                <Route exact path={"/user/:id/friends"}>
-                    <UserPageFriends userFriends={friends} refresh={getUserFriendsCall} />
-                </Route>
-
-                <ProtectedUserRoute userId={id} exact path={"/user/:id/friendRequests"}>
-                    <UserPageRequests friendRequests={friendRequests} refresh={getUserFriendRequestsCall} />
-                </ProtectedUserRoute>
-            </Switch>
-            </section>
         
         </div>
     )
