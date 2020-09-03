@@ -1,5 +1,7 @@
 import React, { useState } from "react";
 import { getUserByUsername } from "../../util/apiCalls/getRequests";
+import { Button } from '@material-ui/core';
+import CustomTextField from '../General/CustomTextField';
 
 
 const CreateSignUpForm2 = (props) => {
@@ -48,7 +50,7 @@ const CreateSignUpForm2 = (props) => {
 
 	const onInputChange = ( e ) => {
 		const inputValue = e.target.value;
-		const pattern = "[^a-z0-9._%+-]";
+		const pattern = "[^a-z0-9._-]";
 
 		if(inputValue.match(pattern)) {
 			setIsValidUsername(false);
@@ -92,36 +94,87 @@ const CreateSignUpForm2 = (props) => {
 		<form onSubmit={handleSubmit}>
 			{error}
 
-			<label htmlFor="firstName">First Name: </label>
-			<input type="text" name="firstName" autoComplete="on" placeholder="First Name" {...firstName} required />
+			<CustomTextField 
+				label="First Name"
+				type="text"
+				variant="outlined"
+				InputLabelProps={{
+					shrink: true,
+					required: false,
+				}}
+				placeholder="Enter your First Name"
+				required
+				{...firstName}
+			/>
 
-			<label htmlFor="lastName">Last Name: </label>
-			<input type="text" {...lastName} name="lastName" autoComplete="on" placeholder="Last Name"  required />
+			<CustomTextField 
+				label="Last Name"
+				type="text"
+				variant="outlined"
+				InputLabelProps={{
+					shrink: true,
+					required: false,
+				}}
+				placeholder="Enter your Last Name"
+				required
+				{...lastName}
+			/>
 
-			<label htmlFor="birthday">Birthday: </label>
-			<input type="date" name="birthday" {...birthday} max={today} min={"1900-01-01"} autoComplete="on"  required />
+			<CustomTextField
+				label="Birthday"
+				type="date"
+				variant="outlined"
+				InputLabelProps={{
+					shrink: true,
+					required: false,
+				}}
+				InputProps={{
+					max: today,
+					min: "1900-01-01",
+				}}
+				required
+				{...birthday}
+			/>
 
-			<label htmlFor="username">Username: </label>
 			<p style={{display: displayUsernameError}} className="error">
 				Username contains an invalid character
 			</p>
-			<input 
-				type="text" 
-				name="username" 
-				value={username} 
-				onChange={onInputChange} 
-				placeholder="Username" 
-				required 
-				
-				/>
 
-			<label htmlFor="gender">Gender: </label>
-			<select {...gender} name="gender" required>
+			<CustomTextField
+				label="Username"
+				type="text"
+				variant="outlined"
+				InputLabelProps={{
+					shrink: true,
+					required: false,
+				}}
+				helperText="Must include alpha-numeric characters or . _ - only"
+				error={!isValidUsername}
+				placeholder="Enter your Username"
+				required
+				value={username}
+				onChange={onInputChange}
+			/>
+
+			<CustomTextField
+				label="Gender"
+				select
+				variant="outlined"
+				SelectProps={{
+					native: true,
+				}}
+				InputLabelProps={{
+					shrink: true,
+					required: false,
+				}}
+				required
+				{...gender}
+			>
 				<option disabled value="">Select your Gender</option>
 				<option value="Male">Male</option>
 				<option value="Female">Female</option>
 				<option value="Non-Binary">Non-Binary</option>
-			</select>
+			</CustomTextField>
 
 			<div className="buttons">
 				{displayBackButton()}
