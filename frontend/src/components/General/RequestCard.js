@@ -1,6 +1,8 @@
 import React from 'react';
 import { approveTraveler } from '../../util/apiCalls/postRequests';
 import { deleteTripRequest } from '../../util/apiCalls/deleteRequests';
+import { Link } from 'react-router-dom';
+import { Button } from '@material-ui/core';
 
 const RequestCard = ({ user, tripId, setResponse, refresh }) => {
     const approveRequest = async () => {
@@ -29,12 +31,20 @@ const RequestCard = ({ user, tripId, setResponse, refresh }) => {
         <article className="requestCard" key={user.id}>
             <section className="rc-info">
                 <img src={user.profile_picture} alt={user.full_name} />
-                <p>{user.full_name}</p>
+                <Link to={`/user/${user.requester_id}`}>{user.full_name}</Link>
             </section>
 
             <section className="rc-buttons">
-                <button className="rc-accept" onClick={approveRequest}>Accept</button>
-                <button className="rc-deny" onClick={denyRequest}>Deny</button>
+                <Button 
+                    color="primary"
+                    variant="contained"
+                    onClick={approveRequest}
+                >Accept</Button>
+                <Button 
+                    onClick={denyRequest}
+                    color="primary"
+                    variant="outlined"
+                >Deny</Button>
             </section>
         </article>
     )

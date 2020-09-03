@@ -11,9 +11,11 @@
     display: flex;
     flex-direction: row;
     justify-content: space-between;
-    width: 90%;
-    border: 1px solid #272A33;
+    width: 60%;
     padding: 10px 20px;
+    border-radius: 1.5em;
+    background-color: white;
+    margin: 25px 0;
 }
 
 .rc-info {
@@ -22,6 +24,12 @@
     width: 60%;
     align-items: center;
     font-size: 1.5em;
+}
+
+.rc-info a {
+    color: #e45f00;
+    text-decoration: none;
+    font-weight: bold;
 }
 
 .rc-info img {
@@ -34,9 +42,12 @@
 
 .rc-buttons {
     display: flex;
-    flex-direction: row;
-    width: 30%;
-    justify-content: space-between;
-    margin-top: 0;
     align-items: center;
+    margin-top: 0;
+    width: 40%;
+    justify-content: space-evenly;
+}
+
+.rc-buttons button {
+    width: 40%;
 }

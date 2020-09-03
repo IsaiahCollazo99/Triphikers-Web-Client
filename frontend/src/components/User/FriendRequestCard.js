@@ -44,7 +44,7 @@ const FriendRequestCard = ({ user, refresh }) => {
                 <Button 
                     className="frc-deny" 
                     onClick={denyRequest}
-                    variant="contained"
+                    variant="outlined"
                     color="primary"
                 >Deny</Button>
             </section>
