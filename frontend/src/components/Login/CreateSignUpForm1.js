@@ -8,7 +8,8 @@ const CreateSignUpForm1 = (props) => {
 	const { email, password, confirmPassword, handlePageChange } = props;
 	const [ showPassword, setShowPassword ] = useState(false);
 	const [ showConfirm, setShowConfirm ] = useState(false);
-	const [ errors, setErrors ] = useState({ password: false, email: false });
+	const [ errorsState, setErrorsState ] = useState({ password: false, email: false });
+	const [ errors, setErrors ] = useState({ password: null, email: null });
 
 	const isEmailExisting = async () => {
 		try {
@@ -22,11 +23,17 @@ const CreateSignUpForm1 = (props) => {
 	const handleSubmit = async (e) => {
 		e.preventDefault()
 		if(password.value !== confirmPassword.value) {
-			setErrors({ ...errors, password: true });
+			setErrorsState({ ...errorsState, password: true });
+			setErrors({ ...errors, password: "Passwords do not match"});
+		} else if(password.value.length <= 5) {
+			setErrorsState({ ...errorsState, password: true});
+			setErrors({ ...errors, password: "Password must be 6 characters or longer"});
 		} else if(await isEmailExisting()) {
-			setErrors({ password: false, email: true });
+			setErrorsState({ password: false, email: true });
+			setErrors({ password: null, email: "A user with that email exists."});
 		} else {
-			setErrors({ password: false, email: false });
+			setErrorsState({ password: false, email: false });
+			setErrors({ password: null, email: null });
 			handlePageChange(2);
 		}
 	}
@@ -59,15 +66,15 @@ const CreateSignUpForm1 = (props) => {
 					shrink: true,
 					required: false,
 				}}
-				helperText="A user with that email exists."
+				helperText={errors.email}
 				FormHelperTextProps={{
 					style: {
-						display: errors.email ? "inherit" : "none"
+						display: errorsState.email ? "inherit" : "none"
 					}
 				}}
 				placeholder="Enter your Email Address"
 				required
-				error={errors.email}
+				error={errorsState.email}
 				{...email}
 
 			/>
@@ -92,15 +99,15 @@ const CreateSignUpForm1 = (props) => {
 						</InputAdornment>
 					)
 				}}
-				helperText="Password do not match."
+				helperText={errors.password}
 				FormHelperTextProps={{
 					style: {
-						display: errors.password ? "inherit" : "none"
+						display: errorsState.password ? "inherit" : "none"
 					}
 				}}
 				placeholder="Enter your Password"
 				required
-				error={errors.password}
+				error={errorsState.password}
 				{...password}
 				
 			/>
@@ -127,7 +134,7 @@ const CreateSignUpForm1 = (props) => {
 				}}
 				placeholder="Confirm your Password"
 				required
-				error={errors.password}
+				error={errorsState.password}
 				{...confirmPassword}
 
 			/>
