@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { Button } from '@material-ui/core';
 import axios from "axios";
+import CloudUploadIcon from '@material-ui/icons/CloudUpload';
 import CustomTextField from '../General/CustomTextField';
 import LanguageSelect from "../General/LanguageSelect";
 
@@ -14,9 +15,11 @@ const CreateSignUpForm3 = (props) => {
 	} = props;
 
 	const [ countries, setCountries ] = useState([]);
+	const [ imagePreview, setImagePreview ] = useState(null);
 
 	const handleFileSelect = ( e ) => {
 		setProfilePicture(e.target.files[0]);
+		setImagePreview(URL.createObjectURL(e.target.files[0]));
 	}
 
 	const getCountries = async () => {
@@ -26,12 +29,13 @@ const CreateSignUpForm3 = (props) => {
 
 	useEffect(() => {
 		getCountries()
-	}, [])
+	}, []);
 
 	const countryOptions = countries.map(country => {
 		return <option value={country.name} key={country.alpha2Code}>{country.name}</option>
+	});
 
-	})
+	const displayPreview = imagePreview ? <img src={imagePreview} alt="new Profile" /> : null;
 
 	return (
 		<>
@@ -76,8 +80,24 @@ const CreateSignUpForm3 = (props) => {
 				{countryOptions}
 			</CustomTextField>
 
-			<label htmlFor="profilePic">Profile Picture : </label>
-			<input type="file" name="profilePic" accept=".png, .jpg, .jpeg" onChange={handleFileSelect} required />
+			<section className="upe-pfpContainer">
+                <label htmlFor="upe-pfp" className="pfpLabel">
+                    <span className="MuiButton-startIcon MuiButton-iconSizeMedium">
+                        <CloudUploadIcon />
+                    </span>
+                    Upload a Profile Picture
+                </label>
+
+                <input
+                    type="file"
+                    accept=".png, .jpg, .jpeg"
+                    name="pfp"
+                    id="upe-pfp"
+                    onChange={handleFileSelect}
+                />
+                <b>Preview: </b>
+                {displayPreview}
+            </section>
 
 			<div className="buttons">
 				<button onClick={() => handlePageChange(2)} type="button" className="backButton">
