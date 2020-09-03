@@ -27,6 +27,7 @@
   width: 100%;
   padding-top: 32px;
   padding-bottom: 10px;
+  font-weight: 700;
 }
 
 .up-user img {
@@ -37,8 +38,28 @@
   margin-bottom: 20px;
 }
 
-.up-user {
-  font-weight: 700;
+.up-userInteraction {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.up-user p {
+  width: fit-content;
+}
+
+
+.up-socialMedia {
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+}
+
+.up-socialMedia img {
+  width: 39px;
+  height: 39px;
+  margin: 22.5px;
+  border-radius: 0;
 }
 
 .up-coverButtons {

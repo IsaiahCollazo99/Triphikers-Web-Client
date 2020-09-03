@@ -5,16 +5,15 @@ import { getUserById, getUserTrips, getUserFriendRequests, getUserFriends } from
 import '../../css/userPage/userPage.css'
 import UserPageNav from './UserPageNav';
 import TripCard from '../General/TripCard';
-import UserPageAbout from './UserPageAbout';
 import { AuthContext } from '../../providers/AuthContext';
 import { sendFriendRequest } from '../../util/apiCalls/postRequests';
 import { deleteFriendRequest } from '../../util/apiCalls/deleteRequests';
 import UserPageFriends from './UserPageFriends';
 import { ProtectedUserRoute } from '../../util/routesUtil';
 import UserPageRequests from './UserPageRequests';
-// import FacebookLogo from '../../images/f_logo_RGB-Blue_1024.png';
-// import InstagramLogo from '../../images/glyph-logo_May2016.png';
-// import TwitterLogo from '../../images/Twitter_Social_Icon_Circle_Color.png'
+import FacebookLogo from '../../images/f_logo_RGB-Blue_1024.png';
+import InstagramLogo from '../../images/glyph-logo_May2016.png';
+import TwitterLogo from '../../images/Twitter_Social_Icon_Circle_Color.png'
 // import NewChat from '../../chatList/NewChat';
 // import firebase from "../../firebase";
 
@@ -190,6 +189,40 @@ const UserPage = () => {
     //     setNewChatFormVisible(false);
     // }
 
+    const displaySocialMedia = () => {
+        const {
+            facebook_link,
+            twitter_username,
+            instagram_username
+        } = profileUser;
+
+        const facebookLink = facebook_link ? (
+            <a href={`https://www.${facebook_link}`} target="_blank" rel="noopener noreferrer">
+                <img src={FacebookLogo} alt="facebook" />
+            </a>
+        ) : null;
+
+        const instagramLink = instagram_username ? (
+            <a href={`https://www.${instagram_username}`} target="_blank" rel="noopener noreferrer">
+                <img src={InstagramLogo} alt="instagram" />
+            </a>
+        ) : null;
+
+        const twitterLink = twitter_username ? (
+            <a href={`https://www.${twitter_username}`} target="_blank" rel="noopener noreferrer">
+                <img src={TwitterLogo} alt="instagram" />
+            </a>
+        ) : null;
+
+        return (
+            <>
+                {facebookLink}
+                {instagramLink}
+                {twitterLink}
+            </>
+        )
+    }
+
     const getCoverButtons = () => {
         if(currentUser.id === id) {
             return null;
@@ -210,6 +243,9 @@ const UserPage = () => {
                     <img src={profileUser.profile_picture} alt="profile_picture" />
                     <div className="up-userInteraction">
                         <p>{profileUser.full_name}</p>
+                        <section className="up-socialMedia">
+                            {displaySocialMedia()}
+                        </section>
                     </div>
                 </section>
 
@@ -229,10 +265,6 @@ const UserPage = () => {
                 <Switch>
                     <Route exact path={"/user/:id/"}>
                         {userTripsList}
-                    </Route>
-
-                    <Route exact path={"/user/:id/about"}>
-                        <UserPageAbout user={profileUser} />
                     </Route>
 
                     <Route exact path={"/user/:id/friends"}>
