@@ -35,8 +35,9 @@ export default function Login() {
 			<header>
 				<h1>LOG IN</h1>
 			</header>
-				
+
 			<form onSubmit={handleSignIn} className="signIn">
+			{error ? <p className="error">{error}</p> : null}
 				<CustomTextField 
 					label="Email"
 					type="email"
@@ -48,6 +49,7 @@ export default function Login() {
 					placeholder="Enter your Email Address"
 					required
 					error={error ? true : false}
+					fullWidth
 					{...email}
 				/>
 
@@ -74,6 +76,7 @@ export default function Login() {
 					placeholder="Enter your Password"
 					required
 					error={error ? true : false}
+					fullWidth
 					{...password}
 					
 				/>
