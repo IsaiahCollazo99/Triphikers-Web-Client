@@ -5,6 +5,9 @@ import { useInput } from '../../util/customHooks';
 import { uploadPicture } from '../../util/firebaseFunction';
 import { useHistory } from 'react-router-dom';
 import axios from 'axios';
+import Button from '@material-ui/core/Button';
+import CustomTextField from '../General/CustomTextField';
+import CloudUploadIcon from '@material-ui/icons/CloudUpload';
 import '../../css/userPage/userPage.css';
 import '../../css/userPage/userPageEdit.css';
 
@@ -15,7 +18,8 @@ const UserPageEdit = () => {
     const [ currentFirstName, setCurrentFirstName ] = useState("");
     const [ currentLastName, setCurrentLastName ] = useState("");
     const [ countries, setCountries ] = useState([]);
-    const [ profilePicture, setProfilePicture ] = useState(null);
+	const [ profilePicture, setProfilePicture ] = useState(null);
+	const [ tab, setTab ] = useState(1);
     const firstName = useInput("");
     const lastName = useInput("");
     const country = useInput("");
@@ -91,113 +95,148 @@ const UserPageEdit = () => {
     const countryOptions = countries.map(country => {
 		return <option value={country.name} key={country.alpha2Code}>{country.name}</option>
 	})
+
+	const getTabContent = () => {
+		if(tab === 1) {
+			return (
+				<section className="upe-user">
+					<label htmlFor="upe-pfp" className="pfpLabel">
+						<span className="MuiButton-startIcon MuiButton-iconSizeMedium">
+							<CloudUploadIcon />
+						</span>
+						Upload a Profile Picture
+					</label>
+
+					<input
+						type="file"
+						accept=".png, .jpg, .jpeg"
+						name="pfp"
+						id="upe-pfp"
+						onChange={handleFileSelect}
+					/>
+
+					<CustomTextField 
+						label="First Name"
+						type="text"
+						variant="outlined"
+						InputLabelProps={{
+							shrink: true
+						}}
+						placeholder="Enter your First Name"
+						style={{width: '30%'}}
+						{...firstName}
+					/>
+					
+					<CustomTextField 
+						label="Last Name"
+						type="text"
+						variant="outlined"
+						InputLabelProps={{
+							shrink: true
+						}}
+						placeholder="Enter your Last Name"
+						style={{width: '30%'}}
+						{...lastName}
+					/>
+
+					<CustomTextField 
+						label="Country of Origin"
+						select
+						variant="outlined"
+						SelectProps={{
+							native: true,
+						}}
+						InputLabelProps={{
+							shrink: true,
+						}}
+						style={{width: '30%'}}
+						{...country}
+					>
+						<option disabled value="">
+							Select a country
+						</option>
+						{countryOptions}
+					</CustomTextField>
+
+					<CustomTextField
+						label="Gender"
+						select
+						variant="outlined"
+						SelectProps={{
+							native: true,
+						}}
+						InputLabelProps={{
+							shrink: true,
+						}}
+						style={{width: '30%'}}
+						{...gender}
+					>
+						<option disabled value="">
+							Select a gender
+						</option>
+						<option value="Male">Male</option>
+						<option value="Female">Female</option>
+						<option value="Non-Binary">Non-Binary</option>
+					</CustomTextField>
+				</section>
+			)
+		} else {
+			return (
+				<section classname="upe-socialMedia">
+					<label htmlFor="facebook">
+						<p>Facebook Link: </p>
+
+						<span>Facebook.com/</span>
+						<input
+							type="text"
+							placeholder="Facebook Username"
+							{...facebook}
+						/>
+					</label>
+
+					<label htmlFor="instagram">
+						<p>Instagram Username: </p>
+
+						<span>Instagram.com/</span>
+						<input
+							type="text"
+							placeholder="Instagram Username"
+							{...instagram}
+						/>
+					</label>
+
+					<label>
+						<p>Twitter Username: </p>
+
+						<span>Twitter.com/</span>
+						<input type="text" placeholder="Twitter Username" {...twitter} />
+					</label>
+				</section>
+			)
+		}
+	}
     
     return (
 			<section className="up-edit">
-				<header className="upe-header">
-					<section className="upe-coverImage">
-						<button className="upe-closeEdit" onClick={returnToProfile}>
-							Return To Profile
-						</button>
-					</section>
+				<section className="upe-buttons">
+					<Button 
+						onClick={returnToProfile}
+						variant="outlined"
+						color="primary"
+					>
+						Return To Profile
+					</Button>
 
-					<section className="upe-user">
-						<label>
-							<span>Profile Picture: </span>
-							<input
-								type="file"
-								accept=".png, .jpg, .jpeg"
-								onChange={handleFileSelect}
-							/>
-						</label>
-
-						<div className="upe-userInteraction">
-							<label>
-								<span>First Name:</span>
-								<input type="text" placeholder="First Name" {...firstName} />
-							</label>
-
-							<label>
-								<span>Last Name: </span>
-								<input type="text" placeholder="Last Name" {...lastName} />
-							</label>
-						</div>
-					</section>
-
-					<section className="upe-userInfo">
-						<p>
-							<span>Age: </span>
-							{user.age}
-						</p>
-
-						<label>
-							<span>Country of Origin: </span>
-							<select defaultValue="" {...country}>
-								<option disabled value="">
-									Select a country
-								</option>
-								{countryOptions}
-							</select>
-						</label>
-
-						<label>
-							<span>Gender: </span>
-							<select defaultValue="" {...gender}>
-								<option disabled value="">
-									Select a gender
-								</option>
-								<option value="Male">Male</option>
-								<option value="Female">Female</option>
-								<option value="Non-Binary">Non-Binary</option>
-							</select>
-						</label>
-					</section>
-
-					<section className="upe-bio">
-						<label htmlFor="bio">Bio: </label>
-						<textarea rows="7" cols="40" placeholder="Bio" {...bio} />
-					</section>
-				</header>
-
-				<section className="upe-extras">
-					<section className="upe-socialMedia">
-						<label htmlFor="facebook">
-							<p>Facebook Link: </p>
-
-							<span>Facebook.com/</span>
-							<input
-								type="text"
-								placeholder="Facebook Username"
-								{...facebook}
-							/>
-						</label>
-
-						<label htmlFor="instagram">
-							<p>Instagram Username: </p>
-
-							<span>Instagram.com/</span>
-							<input
-								type="text"
-								placeholder="Instagram Username"
-								{...instagram}
-							/>
-						</label>
-
-						<label>
-							<p>Twitter Username: </p>
-
-							<span>Twitter.com/</span>
-							<input type="text" placeholder="Twitter Username" {...twitter} />
-						</label>
-					</section>
-
-                <button
-                    type="submit"
-                    onClick={handleUpdate}
+					<Button 
+						onClick={handleUpdate}
+						variant="contained"
+						color="primary"
 					>
 						Update
-					</button>
+					</Button>
 				</section>
+
+				{getTabContent()}
 			</section>
 		);
 }
