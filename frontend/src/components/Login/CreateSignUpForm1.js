@@ -25,9 +25,9 @@ const CreateSignUpForm1 = (props) => {
 		if(password.value !== confirmPassword.value) {
 			setErrorsState({ ...errorsState, password: true });
 			setErrors({ ...errors, password: "Passwords do not match"});
-		} else if(password.value.length <= 5) {
+		} else if(password.value.length <= 6) {
 			setErrorsState({ ...errorsState, password: true});
-			setErrors({ ...errors, password: "Password must be 6 characters or longer"});
+			setErrors({ ...errors, password: "Password must be 7 characters or longer"});
 		} else if(await isEmailExisting()) {
 			setErrorsState({ password: false, email: true });
 			setErrors({ password: null, email: "A user with that email exists."});
