@@ -45,6 +45,7 @@ const LocationSearch = (id) => {
 
     const fetchFilters = async () => {
         try {
+            console.log(loadCityFilter);
             let countries = await axios.get(`https://restcountries.eu/rest/v2/all`);
             setAllCountries(countries.data);
         } catch (error) {
@@ -98,7 +99,7 @@ const LocationSearch = (id) => {
                     <label htmlFor="searchInput"><b>Select a City: </b></label>
                     <Combobox onSelect={handleSelect} >
                         <ComboboxInput className="searchInput" value={value} onChange={handleInput} 
-                        disabled={!ready} disabled={selectedCountry === ''} placeholder="Search A City"/>
+                        disabled={!ready || selectedCountry === ''} placeholder="Search A City"/>
                         <ComboboxPopover>
                             <ComboboxList>
                                 {status === "OK" && data.map(({description}, index) => <ComboboxOption key={index} value={description.split(",")[0]} className="searchResults"/> )}
@@ -113,6 +114,7 @@ const LocationSearch = (id) => {
     
     useEffect(() => {
         fetchFilters();
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
 
     if(loadError) return "Error loading maps";

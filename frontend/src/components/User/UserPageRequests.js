@@ -3,9 +3,9 @@ import FriendRequestCard from './FriendRequestCard';
 
 const UserPageRequests = ({ friendRequests = [], refresh }) => {
 
-    const requestsList = friendRequests.map(request => {
+    const requestsList = friendRequests.map((request, i) => {
         return (
-            <FriendRequestCard user={request} refresh={refresh} />
+            <FriendRequestCard user={request} refresh={refresh} key={i} />
         )
     })
     
