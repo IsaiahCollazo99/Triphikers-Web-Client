@@ -1,13 +1,16 @@
 import React, { useState } from "react";
 import { login } from "../../util/firebaseFunction";
 import { useInput } from "../../util/customHooks";
+import { IconButton, InputAdornment, Button } from '@material-ui/core';
+import { Visibility, VisibilityOff } from '@material-ui/icons';
+import CustomTextField from '../General/CustomTextField';
 import '../../css/signUpIn/login.css';
 
 export default function Login() {
 	const email = useInput("");
 	const password = useInput("");
-	const [error, setError] = useState(false);
-
+	const [ error, setError ] = useState(false);
+	const [ showPassword, setShowPassword ] = useState(false);
 
 	const handleSignIn = async (e) => {
 		e.preventDefault();
@@ -18,7 +21,13 @@ export default function Login() {
 		}
 	};
 
+	const handleShowPassword = () => {
+		setShowPassword((prevState) => !prevState);
+	}
 
+	const handleMouseDownPassword = ( e ) => {
+		e.preventDefault();
+	};
 	
   	return (
 		<>
@@ -26,24 +35,52 @@ export default function Login() {
 			<header>
 				<h1>LOG IN</h1>
 			</header>
-
-			{error ? <p className="error">{error}</p> : null}
 				
 			<form onSubmit={handleSignIn} className="signIn">
-				<label>
-					Email :
-					<input {...email} type="email" autoComplete="on" required placeholder="Email" />
-				</label>
+				<CustomTextField 
+					label="Email"
+					type="email"
+					variant="outlined"
+					InputLabelProps={{
+						shrink: true,
+						required: false,
+					}}
+					placeholder="Enter your Email Address"
+					required
+					error={error ? true : false}
+					{...email}
+				/>
+
+				<CustomTextField 
+					label="Password"
+					type={showPassword ? "text" : "password"}
+					variant="outlined"
+					InputLabelProps={{
+						shrink: true,
+						required: false,
+					}}
+					InputProps={{
+						endAdornment: (
+							<InputAdornment position="end">
+								<IconButton
+									onClick={handleShowPassword}
+									onMouseDown={handleMouseDownPassword}
+								>
+									{showPassword ? <Visibility /> : <VisibilityOff />}
+								</IconButton>
+							</InputAdornment>
+						)
+					}}
+					placeholder="Enter your Password"
+					required
+					error={error ? true : false}
+					{...password}
+					
+				/>
 	
-				<label>
-					Password :
-					<input {...password} type="password" autoComplete="on" required placeholder="Password" />
-	
-				</label>
-	
-				<button type="submit">
+				<Button type="submit" variant="contained" color="primary">
 					Log in
-				</button>
+				</Button>
 			</form>	
 		</div>		
 				
