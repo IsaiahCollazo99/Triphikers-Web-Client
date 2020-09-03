@@ -5,7 +5,7 @@ import CustomTextField from '../General/CustomTextField';
 
 
 const CreateSignUpForm2 = (props) => {
-	const { firstName, lastName, birthday, gender, handlePageChange, user,
+	const { firstName, lastName, birthday, gender, handlePageChange,
 	username, setUsername } = props;
 	const [ isValidUsername, setIsValidUsername ] = useState(true);
 	const [ error, setError ] = useState(null);

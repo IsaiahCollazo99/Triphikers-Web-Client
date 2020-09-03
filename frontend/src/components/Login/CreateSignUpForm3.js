@@ -1,10 +1,11 @@
 import React, { useEffect, useState } from "react";
+import { Button } from '@material-ui/core';
 import axios from "axios";
+import CustomTextField from '../General/CustomTextField';
 import LanguageSelect from "../General/LanguageSelect";
 
 const CreateSignUpForm3 = (props) => {
 	const { 
-		bio, 
 		language, 
 		country, 
 		setProfilePicture,
@@ -40,19 +41,40 @@ const CreateSignUpForm3 = (props) => {
 		</header>
 
 		<form onSubmit={handleSubmit}>
-			<label htmlFor="bio">Bio : (OPTIONAL)</label>
-			<textarea col="10" row="5" {...bio} name="bio" maxLength={120}/>
+			<CustomTextField 
+				label="Language"
+				select
+				variant="outlined"
+				SelectProps={{
+					native: true,
+				}}
+				InputLabelProps={{
+					shrink: true,
+					required: false,
+				}}
+				required
+				{...language}
+			>
+				<LanguageSelect />	
+			</CustomTextField>
 
-			<label htmlFor="language">Language : </label>
-			<select {...language} className="su-language">
-				<LanguageSelect />
-			</select>
-
-			<label htmlFor="country">Country : </label>
-			<select {...country} name="country" required>
+			<CustomTextField 
+				label="Country"
+				select
+				variant="outlined"
+				SelectProps={{
+					native: true,
+				}}
+				InputLabelProps={{
+					shrink: true,
+					required: false,
+				}}
+				required
+				{...country}
+			>
 				<option value="" disabled>Select a County</option>
 				{countryOptions}
-			</select>
+			</CustomTextField>
 
 			<label htmlFor="profilePic">Profile Picture : </label>
 			<input type="file" name="profilePic" accept=".png, .jpg, .jpeg" onChange={handleFileSelect} required />
