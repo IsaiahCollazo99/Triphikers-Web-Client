@@ -17,6 +17,8 @@ const UserPageEdit = () => {
     const [ currentFirstName, setCurrentFirstName ] = useState("");
     const [ currentLastName, setCurrentLastName ] = useState("");
 	const [ profilePicture, setProfilePicture ] = useState(null);
+	const [ response, setResponse ] = useState(null);
+	const [ imagePreview, setImagePreview ] = useState(null);
     const firstName = useInput("");
     const lastName = useInput("");
     const country = useInput("");
@@ -52,20 +54,26 @@ const UserPageEdit = () => {
     }
 
     const updateUserCall = async ( pictureData ) => {
-        const userData = {
-            full_name: getFullName(),
-            first_name: firstName.value ? firstName.value : null,
-            last_name: lastName.value ? lastName.value : null,
-            country_of_origin: country.value,
-            gender: gender.value,
-            bio: bio.value,
-            profile_picture: pictureData ? pictureData.url : null,
-            facebook_link: facebook.value ? `facebook.com/${facebook.value}` : null,
-            twitter_username: twitter.value ? `twitter.com/${twitter.value}` : null,
-            instagram_username: instagram.value ? `instagram.com/${instagram.value}` : null
-        }
-
-        await updateUser(currentUser.id, userData);
+		try {
+			const userData = {
+				full_name: getFullName(),
+				first_name: firstName.value ? firstName.value : null,
+				last_name: lastName.value ? lastName.value : null,
+				country_of_origin: country.value,
+				gender: gender.value,
+				bio: bio.value,
+				profile_picture: pictureData ? pictureData.url : null,
+				facebook_link: facebook.value ? `facebook.com/${facebook.value}` : null,
+				twitter_username: twitter.value ? `twitter.com/${twitter.value}` : null,
+				instagram_username: instagram.value ? `instagram.com/${instagram.value}` : null
+			}
+	
+			await updateUser(currentUser.id, userData);
+			setResponse(<p className="success">Profile Updated Successfully</p>);
+		} catch ( error ) {
+			setResponse(<p className="error">There was an issue with your request. Try again.</p>);
+		}
+        
     }
 
     const handleUpdate = () => {
@@ -78,6 +86,7 @@ const UserPageEdit = () => {
 
     const handleFileSelect = ( e ) => {
 		setProfilePicture(e.target.files[0]);
+		setImagePreview(URL.createObjectURL(e.target.files[0]));
     }
 
     const returnToProfile = () => {
@@ -89,7 +98,8 @@ const UserPageEdit = () => {
 		firstName,
 		lastName,
 		country,
-		gender
+		gender,
+		imagePreview,
 	}
 
 	const userSocialProps = {
@@ -117,6 +127,8 @@ const UserPageEdit = () => {
 						Update
 					</Button>
 				</section>
+
+				{response}
 
 				<UserInfoEdit {...userInfoProps} />
 

@@ -29,7 +29,6 @@
     flex-direction: column;
     justify-content: space-evenly;
     width: 100%;
-    height: 60vh;
     align-items: center;
     padding: 10px 0;
 }
@@ -74,6 +73,13 @@
 	z-index: -1;
 }
 
+.upe-user img {
+    height: 200px;
+    width: 200px;
+    object-fit: cover;
+    border-radius: 7em;
+}
+
 .upe-socialMedia {
     display: flex;
     flex-direction: column;
@@ -82,19 +88,4 @@
     width: 100%;
     height: 40vh;
     margin-top: 30px;
-}
-
-.upe-socialMedia label {
-    width: 30%;
-    margin-bottom: 30px;
-}
-
-.upe-socialMedia span {
-    font-weight: normal;
-    width: 30%;
-    display: inline-block
-}
-
-.upe-socialMedia input {
-    width: 70%;
 }

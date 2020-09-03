@@ -9,7 +9,8 @@ const UserInfoEdit = ( props ) => {
         firstName,
         lastName,
         country,
-        gender
+        gender,
+        imagePreview
     } = props;
     const [ countries, setCountries ] = useState([]);
 
@@ -25,10 +26,12 @@ const UserInfoEdit = ( props ) => {
 
     const countryOptions = countries.map(country => {
 		return <option value={country.name} key={country.alpha2Code}>{country.name}</option>
-	})
+    })
+    
+    const displayPreview = imagePreview ? <img src={imagePreview} alt="new Profile" /> : null;
 
     return (
-        <section className="upe-user">
+        <section className="upe-user" style={{height: imagePreview ? '100vh' : '70vh'}}>
             <h2>Personal Info</h2>
             <label htmlFor="upe-pfp" className="pfpLabel">
                 <span className="MuiButton-startIcon MuiButton-iconSizeMedium">
@@ -44,6 +47,8 @@ const UserInfoEdit = ( props ) => {
                 id="upe-pfp"
                 onChange={handleFileSelect}
             />
+
+            {displayPreview}
 
             <CustomTextField 
                 label="First Name"
