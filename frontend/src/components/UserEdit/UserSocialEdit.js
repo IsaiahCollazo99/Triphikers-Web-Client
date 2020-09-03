@@ -1,4 +1,6 @@
 import React from 'react';
+import CustomTextField from '../General/CustomTextField';
+import { InputAdornment } from '@material-ui/core';
 
 const UserSocialEdit = ( props ) => {
     const {
@@ -10,34 +12,50 @@ const UserSocialEdit = ( props ) => {
     return (
         <section className="upe-socialMedia">
             <h2>Social Media</h2>
-            <label htmlFor="facebook">
-                <p>Facebook Link: </p>
+            <CustomTextField 
+                label="Facebook"
+                type="text"
+                variant="outlined"
+                InputLabelProps={{
+                    shrink: true,
+                }}
+                InputProps={{
+                    startAdornment: <InputAdornment position="start">Facebook.com/</InputAdornment>
+                }}
+                placeholder="Enter your Facebook Username"
+                style={{width: '30%'}}
+                {...facebook}
+            />
 
-                <span>Facebook.com/</span>
-                <input
-                    type="text"
-                    placeholder="Facebook Username"
-                    {...facebook}
-                />
-            </label>
-
-            <label htmlFor="instagram">
-                <p>Instagram Username: </p>
-
-                <span>Instagram.com/</span>
-                <input
-                    type="text"
-                    placeholder="Instagram Username"
-                    {...instagram}
-                />
-            </label>
-
-            <label>
-                <p>Twitter Username: </p>
-
-                <span>Twitter.com/</span>
-                <input type="text" placeholder="Twitter Username" {...twitter} />
-            </label>
+            <CustomTextField 
+                label="Instagram"
+                type="text"
+                variant="outlined"
+                InputLabelProps={{
+                    shrink: true,
+                }}
+                InputProps={{
+                    startAdornment: <InputAdornment position="start">Instagram.com/</InputAdornment>
+                }}
+                placeholder="Enter your Instagram Username"
+                style={{width: '30%'}}
+                {...instagram}
+            />
+            
+            <CustomTextField 
+                label="Twitter"
+                type="text"
+                variant="outlined"
+                InputLabelProps={{
+                    shrink: true,
+                }}
+                InputProps={{
+                    startAdornment: <InputAdornment position="start">Twitter.com/</InputAdornment>
+                }}
+                placeholder="Enter your Twitter Username"
+                style={{width: '30%'}}
+                {...twitter}
+            />
         </section>
     )
 }
