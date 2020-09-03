@@ -4,6 +4,7 @@ import axios from "axios";
 import CloudUploadIcon from '@material-ui/icons/CloudUpload';
 import CustomTextField from '../General/CustomTextField';
 import LanguageSelect from "../General/LanguageSelect";
+import '../../css/signUpIn/signUpForm3.css';
 
 const CreateSignUpForm3 = (props) => {
 	const { 
@@ -44,7 +45,7 @@ const CreateSignUpForm3 = (props) => {
 			<h3>3/3</h3>
 		</header>
 
-		<form onSubmit={handleSubmit}>
+		<form onSubmit={handleSubmit} className="signUp3" style={{height: imagePreview ? '80%' : '60%'}}>
 			<CustomTextField 
 				label="Language"
 				select

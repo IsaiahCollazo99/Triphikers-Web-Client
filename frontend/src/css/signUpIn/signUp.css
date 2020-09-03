@@ -5,7 +5,7 @@
     align-items: center;
     justify-content: center;
     width: 100%;
-    margin-top: 2em;
+    margin-top: 85px;
 }
 
 .signUpContainer header {
@@ -15,39 +15,12 @@
     width: 100%;
 }
 
-.signUpContainer form, .signUpMethod {
-    display: flex;
-    flex-direction: column;
-    justify-content: space-evenly;
-    height: 40vh;
-}
-
 .signUpContainer form {
     width: 35%;
     height: 60%;
-}
-
-.signUpMethod {
-    width: 40%;
-    align-items: center;
-}
-
-.signUpContainer input[type="submit"], .backButton {
-    background-color: #FF9506;
-    border: 2px solid #272A33;
-    color: #272A33;
-    transition: 0.3s ease-in-out;
-    border-radius: 0.35em;
-    font-size: 1.25em;
-    margin-top: 1em;
-    width: fit-content;
-    align-self: center;
-    padding: 0.25em 1em;
-}
-
-.signUpContainer input[type="submit"]:hover, .backButton:hover {
-    background-color: #e08002;
-    cursor: pointer;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
 }
 
 .signUpContainer .buttons {
@@ -57,7 +30,6 @@
     justify-content: space-between;
 }
 
-.signUpContainer .buttons input[type="submit"], 
-.signUpContainer .buttons .backButton {
+.signUpContainer .buttons button {
     width: 45%;
 } 

@@ -3,7 +3,6 @@ import { getUserByEmail } from "../../util/apiCalls/getRequests";
 import { IconButton, InputAdornment, Button } from '@material-ui/core';
 import { Visibility, VisibilityOff } from '@material-ui/icons';
 import CustomTextField from '../General/CustomTextField';
-import '../../css/signUpIn/signUp1.css';
 
 const CreateSignUpForm1 = (props) => {
 	const { email, password, confirmPassword, handlePageChange } = props;
