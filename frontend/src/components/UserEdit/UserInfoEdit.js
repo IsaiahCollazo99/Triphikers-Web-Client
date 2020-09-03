@@ -33,22 +33,24 @@ const UserInfoEdit = ( props ) => {
     return (
         <section className="upe-user" style={{height: imagePreview ? '100vh' : '70vh'}}>
             <h2>Personal Info</h2>
-            <label htmlFor="upe-pfp" className="pfpLabel">
-                <span className="MuiButton-startIcon MuiButton-iconSizeMedium">
-                    <CloudUploadIcon />
-                </span>
-                Upload a Profile Picture
-            </label>
+            <section className="upe-pfpContainer">
+                <label htmlFor="upe-pfp" className="pfpLabel">
+                    <span className="MuiButton-startIcon MuiButton-iconSizeMedium">
+                        <CloudUploadIcon />
+                    </span>
+                    Upload a Profile Picture
+                </label>
 
-            <input
-                type="file"
-                accept=".png, .jpg, .jpeg"
-                name="pfp"
-                id="upe-pfp"
-                onChange={handleFileSelect}
-            />
-
-            {displayPreview}
+                <input
+                    type="file"
+                    accept=".png, .jpg, .jpeg"
+                    name="pfp"
+                    id="upe-pfp"
+                    onChange={handleFileSelect}
+                />
+                <b>Preview: </b>
+                {displayPreview}
+            </section>
 
             <CustomTextField 
                 label="First Name"

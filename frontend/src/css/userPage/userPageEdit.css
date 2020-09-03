@@ -33,6 +33,17 @@
     padding: 10px 0;
 }
 
+.upe-pfpContainer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.upe-pfpContainer b {
+    align-self: flex-start;
+    margin-top: 35px;
+}
+
 .pfpLabel {
     color: #fff;
     background-color: #0091ea;
