@@ -1,6 +1,6 @@
 import React from 'react';
-import '../../css/userPage/userPageFriends.css';
 import FriendCard from './FriendCard';
+import '../../css/userPage/userPageFriends.css';
 
 const UserPageFriends = ({ userFriends = [], refresh }) => {
 
@@ -9,10 +9,14 @@ const UserPageFriends = ({ userFriends = [], refresh }) => {
             <FriendCard friend={friend} refresh={refresh} key={friend.id}/>
         )
     });
+
+    const displayFriends = friendsList.length ? friendsList : (
+        <p className="error">The user has no friends</p>
+    )
     
     return (
         <section className="up-friends">
-            {friendsList}
+            {displayFriends}
         </section>
     )
 }

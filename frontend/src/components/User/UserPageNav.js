@@ -1,7 +1,7 @@
 import React, { useContext } from 'react';
 import { NavLink } from 'react-router-dom';
-import '../../css/userPage/userPageNav.css';
 import { AuthContext } from '../../providers/AuthContext';
+import '../../css/userPage/userPageNav.css';
 
 const UserPageNav = ({ userId }) => {
 
@@ -22,7 +22,6 @@ const UserPageNav = ({ userId }) => {
     return (
         <nav className="up-nav">
             <NavLink exact to={`/user/${userId}`}>Trips</NavLink>
-            <NavLink exact to={`/user/${userId}/about`}>About</NavLink>
             <NavLink exact to={`/user/${userId}/friends`}>Friends</NavLink>
             {displayFriendRequests()}
         </nav>

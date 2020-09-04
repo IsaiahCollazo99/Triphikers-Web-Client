@@ -1,0 +1,26 @@
+.suf3-pfpContainer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.suf3-pfpContainer b {
+    align-self: flex-start;
+    margin-top: 35px;
+}
+
+#suf3-pfp {
+    width: 0.1px;
+	height: 0.1px;
+	opacity: 0;
+	overflow: hidden;
+	position: absolute;
+	z-index: -1;
+}
+
+.signUp3 img {
+    height: 200px;
+    width: 200px;
+    object-fit: cover;
+    border-radius: 7em;
+}

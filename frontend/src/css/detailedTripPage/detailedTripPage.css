@@ -4,7 +4,7 @@
     padding-bottom: 30px;
     background-color: #f3f3f3;
     display: grid;
-    grid-template-columns: 1fr 3fr;
+    grid-template-columns: 25% 75%;
     min-height: 100vh;
     font-size: 18px;
 }
@@ -30,6 +30,7 @@
     position: fixed;
     padding: 2em 0;
     padding-bottom: 5em;
+    width: 25%;
 }
 
 .dt-user {

@@ -1,10 +1,15 @@
 import React, { useState } from "react";
-import '../../css/signUpIn/signUp1.css';
 import { getUserByEmail } from "../../util/apiCalls/getRequests";
+import { IconButton, InputAdornment, Button } from '@material-ui/core';
+import { Visibility, VisibilityOff } from '@material-ui/icons';
+import CustomTextField from '../General/CustomTextField';
 
 const CreateSignUpForm1 = (props) => {
 	const { email, password, confirmPassword, handlePageChange } = props;
-	const [ error, setError ] = useState(null);
+	const [ showPassword, setShowPassword ] = useState(false);
+	const [ showConfirm, setShowConfirm ] = useState(false);
+	const [ errorsState, setErrorsState ] = useState({ password: false, email: false });
+	const [ errors, setErrors ] = useState({ password: null, email: null });
 
 	const isEmailExisting = async () => {
 		try {
@@ -18,13 +23,33 @@ const CreateSignUpForm1 = (props) => {
 	const handleSubmit = async (e) => {
 		e.preventDefault()
 		if(password.value !== confirmPassword.value) {
-			setError(<p className="error">The passwords don't match</p>);
+			setErrorsState({ ...errorsState, password: true });
+			setErrors({ ...errors, password: "Passwords do not match"});
+		} else if(password.value.length <= 6) {
+			setErrorsState({ ...errorsState, password: true});
+			setErrors({ ...errors, password: "Password must be 7 characters or longer"});
 		} else if(await isEmailExisting()) {
-			setError(<p className="error">A user with that email exists.</p>);
+			setErrorsState({ password: false, email: true });
+			setErrors({ password: null, email: "A user with that email exists."});
 		} else {
+			setErrorsState({ password: false, email: false });
+			setErrors({ password: null, email: null });
 			handlePageChange(2);
 		}
 	}
+
+	const handleShowConfirm = () => {
+		setShowConfirm((prevState) => !prevState);
+	}
+
+	const handleShowPassword = () => {
+		setShowPassword((prevState) => !prevState);
+	}
+
+	const handleMouseDownPassword = ( e ) => {
+		e.preventDefault();
+	  };
+	
 	return (
 		<>
 		<header>
@@ -33,40 +58,93 @@ const CreateSignUpForm1 = (props) => {
 		</header>
 
 		<form onSubmit={handleSubmit} className="signUp1">
-			{error}
-		
-			<label htmlFor="email">Email: </label>
-			<input 
-				type="email" 
-				{...email} 
-				name="email" 
-				placeholder="Email" 
-				autoComplete="on" 
-				required 
+			<CustomTextField 
+				label="Email"
+				type="email"
+				variant="outlined"
+				InputLabelProps={{
+					shrink: true,
+					required: false,
+				}}
+				helperText={errors.email}
+				FormHelperTextProps={{
+					style: {
+						display: errorsState.email ? "inherit" : "none"
+					}
+				}}
+				placeholder="Enter your Email Address"
+				required
+				error={errorsState.email}
+				{...email}
+
 			/>
 
-			<label htmlFor="password">Password: </label>
-			<input 
-				type="password" 
-				{...password} 
-				name="password" 
-				placeholder="Password" 
-				autoComplete="on" 
-				minLength="6"
-				required 
+			<CustomTextField 
+				label="Password"
+				type={showPassword ? "text" : "password"}
+				variant="outlined"
+				InputLabelProps={{
+					shrink: true,
+					required: false,
+				}}
+				InputProps={{
+					endAdornment: (
+						<InputAdornment position="end">
+							<IconButton
+								onClick={handleShowPassword}
+								onMouseDown={handleMouseDownPassword}
+							>
+								{showPassword ? <Visibility /> : <VisibilityOff />}
+							</IconButton>
+						</InputAdornment>
+					)
+				}}
+				helperText={errors.password}
+				FormHelperTextProps={{
+					style: {
+						display: errorsState.password ? "inherit" : "none"
+					}
+				}}
+				placeholder="Enter your Password"
+				required
+				error={errorsState.password}
+				{...password}
+				
 			/>
 
-			<label htmlFor="confirm">Confirm password: </label>
-			<input 
-				type="password" 
-				{...confirmPassword} 
-				name="confirm" 
-				placeholder="Confirm Password" 
-				autoComplete="on" 
-				required 
+			<CustomTextField 
+				label="Confirm Password"
+				type={showConfirm ? "text" : "password"}
+				variant="outlined"
+				InputLabelProps={{
+					shrink: true,
+					required: false,
+				}}
+				InputProps={{
+					endAdornment: (
+						<InputAdornment position="end">
+							<IconButton
+								onClick={handleShowConfirm}
+								onMouseDown={handleMouseDownPassword}
+							>
+								{showConfirm ? <Visibility /> : <VisibilityOff />}
+							</IconButton>
+						</InputAdornment>
+					)
+				}}
+				placeholder="Confirm your Password"
+				required
+				error={errorsState.password}
+				{...confirmPassword}
+
 			/>
 
-			<input type="submit" value="Next Page" />
+			<Button 
+				type="submit"
+				variant="contained"
+				color="primary"
+				style={{width: 'fit-content', alignSelf: 'center'}}
+			>Next Page</Button>
 		</form>
 		</>
 	);

@@ -3,15 +3,19 @@ import FriendRequestCard from './FriendRequestCard';
 
 const UserPageRequests = ({ friendRequests = [], refresh }) => {
 
-    const requestsList = friendRequests.map(request => {
+    const requestsList = friendRequests.map((request, i) => {
         return (
-            <FriendRequestCard user={request} refresh={refresh} />
+            <FriendRequestCard user={request} refresh={refresh} key={i} />
         )
     })
+
+    const displayRequests = requestsList.length ? requestsList : (
+        <p className="error">You have no requests at the moment</p>
+    )
     
     return (
         <section className="up-requests">
-            {requestsList}
+            {displayRequests}
         </section>
     )
 }
