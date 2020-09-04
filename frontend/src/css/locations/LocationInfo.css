@@ -1,154 +1,45 @@
-.locationContainer {
-    margin-top: 104px;
-}
-
-.locationInfoContainer {
-    display: grid;
-    grid-template-columns: 70% 30%;
-    grid-template-rows: 50% 50%;
-    width: 100vw;
-    height: 55vh;
-    background-color: white;
-    color: #272A33;
-}
-
-.locationImageContainer {
-    position: relative;
-    width: 100%;
-    height: 100%;
-    border: 1px solid #272A33;
-    grid-row-start: 1;
-    grid-column: 1/3;
-}
-
-.overlay {
-    position: absolute;
-    top: 0;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    height: 100%;
-    width: 100%;
-    opacity: 0%;
-    transition: .5s ease;
-    background-color: #f3f3f3;
-}
-
-.locationImageContainer:hover .overlay {
-    opacity: 1;
-}
-
-.locationName {
-    color: #FF9506;
-    font-size: 50px;
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    -ms-transform: translate(-50%, -50%);
-  }
-
-.cityImage {
-    display: block;
-    object-fit: cover;
-    width: 100%;
-    height: 100%;
-}
-
-.details {
-    height: 100%;
-    grid-row-start: 2;
-    display: grid;
-    grid-template-columns: 1.75fr 2fr;
-    border: 1px solid #272A33;
-    justify-content: center;
-    padding: 5px;
-    align-items: center;
-}
-
-.detailsText{
+.locationInfoCard {
+    display: flex;
+    flex-direction: column;
     align-items: center;
     justify-content: center;
+    width: 100%;
+    height: fit-content;
+    background-color: #F3F3F3;
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+    transition: 0.3s;
+    padding: 2px 16px;
+    border-radius: 5px;
+    opacity: 90%;
+    cursor: default;
 }
 
-.detailsAdvisory {
-    border-right: 1px solid #272A33;
+.weatherForecast {
+    display: flex;
+    flex-direction: row;
 }
 
-.detailsAdvisory h1 {
-    font-size: 24px;
-    color: #FF9506;
-}
-
-.detailsAdvisory h2 {
-    font-size: 20px;
-}
-
-.locationPageText{
-    font-size: 110%;
-}
-
-.li-labels {
-    display: grid;
-    grid-template-columns: 1fr 1.55fr;
-}
-
-.li-labels label {
-    grid-column: 1 / 2;
+.locationTitle {
+    color: #E55F00;
     font-weight: bold;
+}
+
+.locationTravelAd {
+    display: flex;
+    flex-direction: row;
 }
 
 .linkAdv {
-    text-decoration: underline;
-    color: #FF9506;
-    width: fit-content;
+    text-decoration-line: underline;
+    color: blue;
 }
 
 .linkAdv:hover {
-    color: #0062e2;
+    color: darkblue;
     cursor: pointer;
 }
 
-.weatherContainer {
-    display: flex;
-    flex-direction: column;
-    padding-left: 10px;
-    align-self: baseline;
-}
-
-.weatherContainer h1 {
-    color: #FF9506;
-    font-size: 24px;
-}
-
-.weatherForecast{
-    display: flex;
-    flex-direction: row;
-    justify-content: space-evenly;
-    width: 35vw;
-    height: auto;
-}
-
-.weatherInfo{
-    display: flex;
-    flex-direction: row;
-}
-
-.li-misc {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    padding: 15px 10px;
-    border-top: 1px solid #272A33;
-    border-bottom: 1px solid #272A33;
-}
-
-.localTime {
-    display: flex;
-    flex-direction: column;
-}
-
-.localTime label {
-    font-size: 18px;
-    font-weight: bold;
+.locationTravelAdNotice {
+    color: rgb(97, 97, 97);
+    font-size: small;
 }
