@@ -1,12 +1,18 @@
 import React, { useState } from "react";
 import { getUserByUsername } from "../../util/apiCalls/getRequests";
+import { Button } from '@material-ui/core';
+import CustomTextField from '../General/CustomTextField';
 
 
 const CreateSignUpForm2 = (props) => {
-	const { firstName, lastName, birthday, gender, handlePageChange, user,
+	const { firstName, lastName, birthday, gender, handlePageChange,
 	username, setUsername } = props;
 	const [ isValidUsername, setIsValidUsername ] = useState(true);
-	const [ error, setError ] = useState(null);
+	const [ usernameExists, setUsernameExists ] = useState(false);
+	const [ helperText, setHelperText ] = useState({
+		username: "Must include alpha-numeric characters or . _ - only",
+		birthday: ""
+	})
 	
 	const isValidAge = () => {
 		const today = new Date();
@@ -27,6 +33,7 @@ const CreateSignUpForm2 = (props) => {
 	const isUsernameExisting = async () => {
 		try {
 			const data = await getUserByUsername(username);
+			data.user ? setUsernameExists(true) : setUsernameExists(false);
 			return data.user;
 		} catch ( error ) {
 			console.log(error);
@@ -36,38 +43,30 @@ const CreateSignUpForm2 = (props) => {
 	const handleSubmit = async (e) => {
 		e.preventDefault();
 		if(await isUsernameExisting()) {
-			setError(<p className="error">User with that username exists.</p>);
+			setHelperText({...helperText, username: "User with that username exists"});
 		} else if(isValidAge() && isValidUsername) {
 			handlePageChange(3)
 		} else {
 			if(!isValidAge()) {
-				setError(<p className="error">Must be 18 years or older to sign up.</p>);
+				setHelperText({...helperText, birthday: "Must be 18 years or older to sign up."});
 			}
 		}
 	}
 
 	const onInputChange = ( e ) => {
 		const inputValue = e.target.value;
-		const pattern = "[^a-z0-9._%+-]";
+		const pattern = "[^a-z0-9._-]";
 
 		if(inputValue.match(pattern)) {
 			setIsValidUsername(false);
+			setHelperText({...helperText, 
+				username: "Username contains invalid characters (a-z, 0-9, . _ - only)"});
 		} else {
 			setIsValidUsername(true);
+			setHelperText({...helperText, 
+				username: "Must include alpha-numeric characters or . _ - only"});
 		}
 		setUsername(inputValue);
-	}
-
-	const displayBackButton = () => {
-		if(!user) {
-			return (
-				<button onClick={()=> handlePageChange(1)} type="button" className="backButton">
-					BACK
-				</button>
-			)
-		} else {
-			return null;
-		}
 	}
 
 	const yyyy = new Date().getFullYear(); 
@@ -80,8 +79,6 @@ const CreateSignUpForm2 = (props) => {
 
 	const today = `${yyyy}-${mm}-${dd}`;
 
-	const displayUsernameError = isValidUsername ? "none" : "inline-block";
-
 	return (
 		<>
 		<header>
@@ -89,44 +86,105 @@ const CreateSignUpForm2 = (props) => {
 			<h3>2/3</h3>
 		</header>
 
-		<form onSubmit={handleSubmit}>
-			{error}
+		<form onSubmit={handleSubmit} className="signUp2" style={{height: '80%'}}>
 
-			<label htmlFor="firstName">First Name: </label>
-			<input type="text" name="firstName" autoComplete="on" placeholder="First Name" {...firstName} required />
+			<CustomTextField 
+				label="First Name"
+				type="text"
+				variant="outlined"
+				InputLabelProps={{
+					shrink: true,
+					required: false,
+				}}
+				placeholder="Enter your First Name"
+				required
+				{...firstName}
+			/>
 
-			<label htmlFor="lastName">Last Name: </label>
-			<input type="text" {...lastName} name="lastName" autoComplete="on" placeholder="Last Name"  required />
+			<CustomTextField 
+				label="Last Name"
+				type="text"
+				variant="outlined"
+				InputLabelProps={{
+					shrink: true,
+					required: false,
+				}}
+				placeholder="Enter your Last Name"
+				required
+				{...lastName}
+			/>
 
-			<label htmlFor="birthday">Birthday: </label>
-			<input type="date" name="birthday" {...birthday} max={today} min={"1900-01-01"} autoComplete="on"  required />
+			<CustomTextField
+				label="Birthday"
+				type="date"
+				variant="outlined"
+				InputLabelProps={{
+					shrink: true,
+					required: false,
+				}}
+				InputProps={{
+					max: today,
+					min: "1900-01-01",
+				}}
+				helperText={helperText.birthday}
+				error={helperText.birthday ? true : false}
+				required
+				{...birthday}
+			/>
 
-			<label htmlFor="username">Username: </label>
-			<p style={{display: displayUsernameError}} className="error">
-				Username contains an invalid character
-			</p>
-			<input 
-				type="text" 
-				name="username" 
-				value={username} 
-				onChange={onInputChange} 
-				placeholder="Username" 
-				required 
-				
-				/>
+			<CustomTextField
+				label="Username"
+				type="text"
+				variant="outlined"
+				InputLabelProps={{
+					shrink: true,
+					required: false,
+				}}
+				helperText={helperText.username}
+				error={!isValidUsername || usernameExists}
+				placeholder="Enter your Username"
+				required
+				value={username}
+				onChange={onInputChange}
+			/>
 
-			<label htmlFor="gender">Gender: </label>
-			<select {...gender} name="gender" required>
+			<CustomTextField
+				label="Gender"
+				select
+				variant="outlined"
+				SelectProps={{
+					native: true,
+				}}
+				InputLabelProps={{
+					shrink: true,
+					required: false,
+				}}
+				required
+				{...gender}
+			>
 				<option disabled value="">Select your Gender</option>
 				<option value="Male">Male</option>
 				<option value="Female">Female</option>
 				<option value="Non-Binary">Non-Binary</option>
-			</select>
+			</CustomTextField>
 
-			<div className="buttons">
-				{displayBackButton()}
-				<input type="submit" value="NEXT PAGE" />
-			</div>
+			<section className="buttons">
+				<Button 
+					onClick={()=> handlePageChange(1)} 
+					type="button" 
+					variant="outlined"
+					color="primary"
+				>
+					BACK
+				</Button>
+				<Button 
+					type="submit" 
+					variant="contained"
+					color="primary"
+				>
+					NEXT PAGE
+				</Button>
+			</section>
 		</form>
 		</>
 	);

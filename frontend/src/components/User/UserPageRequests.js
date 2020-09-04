@@ -8,10 +8,14 @@ const UserPageRequests = ({ friendRequests = [], refresh }) => {
             <FriendRequestCard user={request} refresh={refresh} key={i} />
         )
     })
+
+    const displayRequests = requestsList.length ? requestsList : (
+        <p className="error">You have no requests at the moment</p>
+    )
     
     return (
         <section className="up-requests">
-            {requestsList}
+            {displayRequests}
         </section>
     )
 }

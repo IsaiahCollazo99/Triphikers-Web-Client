@@ -138,6 +138,16 @@ const DetailedTripInfo = ({ trip = {}, getTripCall }) => {
             )
         }
     }
+
+    const getDisplayDate = ( date ) => {
+        if(Number(trip.id) <= 4) return date;
+        const splitDate = date.split("-");
+        let year = splitDate[0];
+        let month = splitDate[1];
+        let day = splitDate[2];
+        
+        return month + "/" + day + "/" + year;
+    }
     
     return (
         <section className="dt-info">
@@ -146,7 +156,9 @@ const DetailedTripInfo = ({ trip = {}, getTripCall }) => {
                 <section className="dt-hi">
                     <h2>{trip.trip_title}</h2>
                     <p><span>Destination: </span>{trip.destination}</p>
-                    <p><span>From </span>{trip.date_from}<span> To </span>{trip.date_to}</p>
+                    <p>
+                        <span>From </span>{getDisplayDate(trip.date_from)}
+                        <span> To </span>{getDisplayDate(trip.date_to)}</p>
                 </section>
 
                 <section className="dt-buttons">
