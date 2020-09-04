@@ -6,20 +6,44 @@ import { useLoadScript } from "@react-google-maps/api";
 import { useHistory } from "react-router-dom";
 import { getGeocode, getLatLng } from "use-places-autocomplete";
 import LocationCitySearch from "./LocationCitySearch.js";
+import Button from '@material-ui/core/Button';
+import { orange } from '@material-ui/core/colors';
+import { withStyles, makeStyles } from '@material-ui/core/styles';
 import "../../css/locations/LocationSearch.css";
 require("dotenv").config()
+
+const ColorButton = withStyles((theme) => ({
+    root: {
+      color: "white",
+      backgroundColor: orange[500],
+      '&:hover': {
+        backgroundColor: orange[700],
+      },
+    },
+  }))(Button);
+
+const useStyles = makeStyles((theme) => ({
+    margin: {
+    margin: theme.spacing(1),
+    },
+}));
 
 const {
     REACT_APP_GOOGLEAPIKEY
 } = process.env;
 const libraries = ["places"];
 
-const LandingPageSearch = () => {
+
+const LocationSearch = () => {
     const [allCountries, setAllCountries] = useState([]);
-    const [selectedCountry, setSelectedCountry] = useState('');
+    const [selectedCountry, setSelectedCountry] = useState("");
     const [city, setCity] = useState([]);
     const [error, setError] = useState(false);
     const history = useHistory();
+    const classes = useStyles();
+    // let imgArr = [imgAfrica, imgAgra, imgArr, imgBangkok, imgBejing, imgDubai, imgGiza, imgJohannesburg, imgLondon, imgLosAngeles, imgMachuPicchu, imgMexicoCity, imgNYC, imgParis, imgRiodeJaniero, imgRome, imgSydney, imgTokyo];
+    //trying to build a dynamic image background to inspire users on search
+    
     const locationRedirect = (country, city, lat, lng) => {
         history.push({
             pathname: `/location/${country}/${city}/hotspots`,
@@ -66,36 +90,39 @@ const LandingPageSearch = () => {
 
     return (
         <div className="citySearchContainer">
-            <label className="landingSearchCountry">
-                <CustomTextField
-                    select
-                    label="Select a Country"
-                    variant="outlined"
-                    helperText="Where is your next adventure?"
-                    style={{width: '98%'}}
-                    SelectProps={{
-                        native: true,
-                    }}
-                    InputLabelProps={{
-                        shrink: true,
-                        required: false
-                    }}
-                    value={selectedCountry} 
-                    onChange={filterCity}
-                    required
-                >               
-                    <option value="" disabled>Select a Country</option>
-                    <PopulateLocationSelect list={allCountries} />
-                </CustomTextField>
-            </label>
-            { isLoaded ? 
-                <LocationCitySearch selectedCountry={selectedCountry} setCity={setCity} /> :
-                null
-            }
-            <button onClick={handleSubmit}>Go There</button>
-            {error !== false ? <p>{error}</p> : null}
+            <div className="citySearchCard">
+                <h1 className="citySearchTitle">Where to?</h1>
+                <label className="citySearchCountry">
+                    <CustomTextField
+                        select
+                        label="Select a Country"
+                        variant="outlined"
+                        helperText="Where is your next adventure?"
+                        style={{width: '98%'}}
+                        SelectProps={{
+                            native: true,
+                        }}
+                        InputLabelProps={{
+                            shrink: true,
+                            required: false
+                        }}
+                        value={selectedCountry} 
+                        onChange={filterCity}
+                        required
+                    >               
+                        <option value="" disabled>Select a Country</option>
+                        <PopulateLocationSelect list={allCountries} />
+                    </CustomTextField>
+                </label>
+                { isLoaded ? 
+                    <LocationCitySearch selectedCountry={selectedCountry} setCity={setCity} /> :
+                    null
+                }
+                <ColorButton onClick={handleSubmit} variant="contained" color="primary" className={classes.margin} style={{maxWidth: '100%', maxHeight: '10%', minWidth: '50%', minHeight: '5%'}}> Explore </ColorButton>
+                {error !== false ? <p>{error}</p> : null}
+            </div>
         </div>
     )
 }
 
-export default LandingPageSearch;
+export default LocationSearch;
