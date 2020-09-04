@@ -98,7 +98,6 @@ const LocationInfo = ({ city, coord, country }) => {
 
     useEffect(() => {
         getAllInfo(city, coord, country);
-        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [city])
     
     return(

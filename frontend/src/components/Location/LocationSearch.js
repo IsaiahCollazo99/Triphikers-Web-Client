@@ -10,6 +10,7 @@ import Button from '@material-ui/core/Button';
 import { orange } from '@material-ui/core/colors';
 import { withStyles, makeStyles } from '@material-ui/core/styles';
 import "../../css/locations/LocationSearch.css";
+// import imgAfrica from "../../images/cities/africa.jpeg";
 require("dotenv").config()
 
 const ColorButton = withStyles((theme) => ({
@@ -41,7 +42,7 @@ const LocationSearch = () => {
     const [error, setError] = useState(false);
     const history = useHistory();
     const classes = useStyles();
-    // let imgArr = [imgAfrica, imgAgra, imgArr, imgBangkok, imgBejing, imgDubai, imgGiza, imgJohannesburg, imgLondon, imgLosAngeles, imgMachuPicchu, imgMexicoCity, imgNYC, imgParis, imgRiodeJaniero, imgRome, imgSydney, imgTokyo];
+    // let imgArr = [imgAfrica, imgAgra, imgBangkok, imgBejing, imgDubai, imgGiza, imgJohannesburg, imgLondon, imgLosAngeles, imgMachuPicchu, imgMexicoCity, imgNYC, imgParis, imgRiodeJaniero, imgRome, imgSydney, imgTokyo];
     //trying to build a dynamic image background to inspire users on search
     
     const locationRedirect = (country, city, lat, lng) => {
