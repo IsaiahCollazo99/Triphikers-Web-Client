@@ -5,6 +5,7 @@ const ChatView = ({user, chat}) => {
 
     const autoTranslate = (str) => {
         let natLang= navigator.languages[1]
+        console.log(natLang);
         debugger
     }
 
