@@ -20,6 +20,7 @@ const LocationInfo = ({city, coord, country, title}) => {
     const getAllInfo = async (city, coord, country) => {
         if(city.length > 0){
             try {
+                debugger
                 // let currency = await axios.get(`https://api.exchangeratesapi.io/latest?symbols=USD,GBP`);
                 let travelAdvisory = await axios.get(`https://www.travel-advisory.info/api?countrycode=${country}`);
                 let weather = await axios.get(`http://api.weatherapi.com/v1/forecast.json?key=${weatherkey}&q=${coord.lat},${coord.lng}&days=7`);
@@ -28,7 +29,6 @@ const LocationInfo = ({city, coord, country, title}) => {
                 setWeather(weather.data.forecast.forecastday);
                 setCurrentTime(weather.data.location.localtime);
                 getPhoto();
-                //currency doesnt exist in location db, needs to be dry coded
             } catch (error) {
                 console.log(error)
             }
@@ -36,7 +36,8 @@ const LocationInfo = ({city, coord, country, title}) => {
     }
 
     const getPhoto = () => {
-    const query = city;
+    const query = `${city} skyline`;
+    debugger
     client.photos.search({ query, per_page: 1 }).then(photos => setImageRef(photos.photos[0].src.landscape));
     }
 

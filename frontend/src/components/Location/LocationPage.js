@@ -26,7 +26,6 @@ const LocationPage = () => {
             setCoord(info.coordinates);
             setCountry(info.country);
         }
-        //all gets reset when switching the navbar
     }, [info])
 
     return(
