@@ -1,7 +1,7 @@
 import React from "react";
-import "./App.css";
-import TripsPage from "./components/TripsPage/TripsPage";
+import { AuthRoute, ProtectedRoute } from "./util/routesUtil";
 import { Switch, Route } from "react-router-dom";
+import TripsPage from "./components/TripsPage/TripsPage";
 import CreateTripsContainer from "./components/CreateTrip/CreateTripContainer";
 import DetailedTripPage from "./components/DetaliedTripPage/DetailedTripPage";
 import LandingPage from "./components/LandingPage/LandingPage";
@@ -10,12 +10,12 @@ import LocationPage from "./components/Location/LocationPage"
 import Login	from "./components/Login/Login"
 import UserPage from "./components/User/UserPage";
 import NavBar from "./components/General/NavBar";
-import { AuthRoute, ProtectedRoute } from "./util/routesUtil";
 import AuthProvider from "./providers/AuthContext";
 import LocationSearch from "./components/Location/LocationSearch";
-import UserPageEdit from "./components/User/UserPageEdit";
+import UserPageEdit from "./components/UserEdit/UserPageEdit";
 import Messages from "./components/General/Messages";
 import Safety from "./components/General/Safety";
+import "./App.css";
 
 function App() {
 

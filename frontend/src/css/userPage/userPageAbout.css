@@ -6,24 +6,6 @@
     margin: 30px 0;
 }
 
-.up-about button {
-    margin-bottom: 30px;
-    background-color: #FF9506;
-    border: 2px solid #272A33;
-    color: #272A33;
-    transition: 0.3s ease-in-out;
-    border-radius: 0.35em;
-    font-size: 1.25em;
-    width: fit-content;
-    align-self: center;
-    padding: 0.25em 1em;
-}
-
-.up-about button:hover {
-    background-color: #e08002;
-    cursor: pointer;
-}
-
 .up-about span {
     font-weight: 800;
     color: #da5300;

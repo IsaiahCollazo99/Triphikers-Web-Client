@@ -2,6 +2,8 @@ import React, { useContext } from 'react';
 import { AuthContext } from '../../providers/AuthContext';
 import { deleteFriendRequest } from '../../util/apiCalls/deleteRequests';
 import { acceptFriendRequest } from '../../util/apiCalls/postRequests';
+import { Link } from '@material-ui/core';
+import Button from '@material-ui/core/Button';
 
 const FriendRequestCard = ({ user, refresh }) => {
     const { currentUser } = useContext(AuthContext);
@@ -29,12 +31,22 @@ const FriendRequestCard = ({ user, refresh }) => {
         <article className="friendRequestCard" key={user.requester_id}>
             <section className="frc-info">
                 <img src={user.profile_picture} alt={user.full_name} />
-                <p>{user.full_name}</p>
+                <Link to={`/user/${user.id}`}>{user.full_name}</Link>
             </section>
 
             <section className="frc-buttons">
-                <button className="frc-accept" onClick={approveRequest}>Accept</button>
-                <button className="frc-deny" onClick={denyRequest}>Deny</button>
+                <Button 
+                    className="frc-accept" 
+                    onClick={approveRequest}
+                    variant="contained"
+                    color="primary"
+                >Accept</Button>
+                <Button 
+                    className="frc-deny" 
+                    onClick={denyRequest}
+                    variant="outlined"
+                    color="primary"
+                >Deny</Button>
             </section>
         </article>
     )

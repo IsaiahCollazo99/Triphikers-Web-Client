@@ -78,6 +78,10 @@ const NavBar = ( props ) => {
 							MESSAGES
 						</Link>
 						<div className="dropdown-divider"></div>
+						<Link className="dropdown-item" to="/user/edit">
+							EDIT PROFILE
+						</Link>
+						<div className="dropdown-divider"></div>
 						<Link className="dropdown-item" onClick={redirect} to="/signUp">
 							LOG OUT
 						</Link>
