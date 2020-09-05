@@ -3,7 +3,6 @@
     flex-direction: column;
     width: 100%;
     align-items: center;
-    margin-top: 30px;
 }
 
 .friendCard, .friendRequestCard {
@@ -14,7 +13,7 @@
     padding: 10px 20px;
     border-radius: 1.5em;
     background-color: white;
-    margin: 25px 0;
+    margin: 25px
 }
 
 .fc-info, .frc-info {
@@ -23,6 +22,10 @@
     width: 60%;
     align-items: center;
     font-size: 1.5em;
+}
+
+.fc-info {
+    width: 70%;
 }
 
 .fc-info img, .frc-info img {
