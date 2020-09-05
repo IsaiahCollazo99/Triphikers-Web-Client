@@ -10,6 +10,7 @@ const CreateSignUpForm3 = (props) => {
 	const { 
 		language, 
 		country, 
+		bio,
 		setProfilePicture,
 		handlePageChange, 
 		handleSubmit 
@@ -45,7 +46,7 @@ const CreateSignUpForm3 = (props) => {
 			<h3>3/3</h3>
 		</header>
 
-		<form onSubmit={handleSubmit} className="signUp3" style={{height: imagePreview ? '80%' : '60%'}}>
+		<form onSubmit={handleSubmit} className="signUp3" style={{height: imagePreview ? '120%' : '80%'}}>
 			<CustomTextField 
 				label="Language"
 				select
@@ -81,8 +82,23 @@ const CreateSignUpForm3 = (props) => {
 				{countryOptions}
 			</CustomTextField>
 
+			<CustomTextField 
+				multiline
+				label="Bio (optional)"
+				variant="outlined"
+				InputLabelProps={{
+					shrink: true,
+				}}
+				placeholder="Enter your Bio"
+				rows={4}
+				{...bio}
+			/>
+
 			<section className="suf3-pfpContainer">
-                <label htmlFor="suf3-pfp" className="pfpLabel">
+				<b>Preview: </b>
+                {displayPreview}
+
+				<label htmlFor="suf3-pfp" className="pfpLabel">
                     <span className="MuiButton-startIcon MuiButton-iconSizeMedium">
                         <CloudUploadIcon />
                     </span>
@@ -96,8 +112,6 @@ const CreateSignUpForm3 = (props) => {
                     id="suf3-pfp"
                     onChange={handleFileSelect}
                 />
-                <b>Preview: </b>
-                {displayPreview}
             </section>
 
 			<div className="buttons">

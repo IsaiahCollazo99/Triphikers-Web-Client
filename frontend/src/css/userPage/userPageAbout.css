@@ -1,17 +1,27 @@
 .up-about {
-    display: flex;
-    flex-direction: column;
+    display: grid;
+    grid-template-rows: 1fr 1fr 0.5fr;
     width: 100%;
     align-items: center;
-    margin: 30px 0;
+    grid-column: 2 / 3;
+    justify-items: center;
+    min-height: 60vh;
+    font-size: 20px;
 }
 
-.up-about span {
+.up-bio {
+    width: 60%;
+    align-self: end;
+}
+
+.up-aboutList {
+    width: 60%;
+    display: grid;
+    grid-template-columns: 0.8fr 1fr;
+    margin: auto;
+}
+
+.up-about span:not(.MuiButton-label) {
     font-weight: 800;
-    color: #da5300;
-}
-
-.up-about p {
-    margin-left: 22.5px;
-    font-size: 18px;
+    color: #0065a3;
 }

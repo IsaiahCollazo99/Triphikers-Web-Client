@@ -1,29 +1,31 @@
 .up-nav {
-  border-top: 1px solid #272A33;
-  border-bottom: 1px solid #272A33;
-  background-color: white;
   display: flex;
-  justify-content: space-evenly;
-  padding: 1em;
-  font-size: 1.25em;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 15%;
+  align-self: center;
+  font-size: 24px;
+  width: 175px;
 }
 
 .up-nav a {
-  color: black;
+  color: #a4a4a4;
   text-decoration: none;
   font-family: 'Roboto';
   font-weight: 800;
-  padding: 10px 15px;
-  border-radius: 0.75em;
+  word-wrap: none;
+  width: fit-content;
 }
 
 .up-nav .active {
   color: black;
-  text-decoration: underline;
 }
 
 .up-nav a:hover:not(.active) {
-  background-color: #d4D4d4;
   color: #0091ea;
+  text-decoration: none;
+}
+
+.up-nav .active:hover {
   text-decoration: none;
 }

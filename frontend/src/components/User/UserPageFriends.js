@@ -11,7 +11,7 @@ const UserPageFriends = ({ userFriends = [], refresh }) => {
     });
 
     const displayFriends = friendsList.length ? friendsList : (
-        <p className="error">The user has no friends</p>
+        <p className="error">Become their first friend!</p>
     )
     
     return (

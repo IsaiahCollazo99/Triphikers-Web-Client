@@ -99,6 +99,7 @@ const UserPageEdit = () => {
 		lastName,
 		country,
 		gender,
+		bio,
 		imagePreview,
 	}
 
@@ -110,6 +111,12 @@ const UserPageEdit = () => {
     
     return (
 			<section className="up-edit">
+				<UserInfoEdit {...userInfoProps} />
+
+				<UserSocialEdit {...userSocialProps} />
+
+				{response}
+
 				<section className="upe-buttons">
 					<Button 
 						onClick={returnToProfile}
@@ -127,14 +134,6 @@ const UserPageEdit = () => {
 						Update
 					</Button>
 				</section>
-
-				{response}
-
-				<UserInfoEdit {...userInfoProps} />
-
-				<div className="upe-divider"></div>
-
-				<UserSocialEdit {...userSocialProps} />
 			</section>
 		);
 }

@@ -3,7 +3,7 @@ import { useHistory } from 'react-router-dom';
 import { useInput } from '../../util/customHooks';
 import CreateTripForm1 from './CreateTripForm1';
 import CreateTripForm2 from './CreateTripForm2';
-import { createTrip } from '../../util/apiCalls/postRequests';
+import { createTrip, approveTraveler } from '../../util/apiCalls/postRequests';
 import '../../css/createTrip/createTripContainer.css';
 import { AuthContext } from '../../providers/AuthContext';
 
@@ -13,6 +13,7 @@ const CreateTripsContainer = () => {
     
     const [ page, setPage ] = useState(1);
     const [ destination, setDestination ] = useState("");
+    const [ error, setError ] = useState(null);
     const dateFrom = useInput("");
     const dateTo = useInput("");
     const groupType = useInput("");
@@ -45,12 +46,18 @@ const CreateTripsContainer = () => {
         accommodation,
         itinerary,
         description,
+        postError: error
     }
 
     const handleSubmit = async ( e ) => {
-        e.preventDefault();
-        await createTrip({...pageOne, ...pageTwo}, currentUser);
-        history.push("/trips");
+        try {
+            e.preventDefault();
+            const data = await createTrip({...pageOne, ...pageTwo}, currentUser);
+            await approveTraveler(data.trip.id, currentUser.id);
+            history.push("/trips");
+        } catch ( error ) {
+            setError(<p className="error">There was a problem with the request. Try again later.</p>);
+        }
     }
 
     const formPageDisplay = page === 1 ? 
