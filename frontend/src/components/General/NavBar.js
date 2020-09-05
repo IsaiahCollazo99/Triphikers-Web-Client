@@ -67,9 +67,9 @@ const NavBar = ( props ) => {
 						role="button"
 						aria-expanded="false"
 					>
-						Hi, {firstName}
+						Hi, {firstName.toUpperCase()}
 					</a>
-					<div className="dropdown-menu">
+					<div className="dropdown-menu" id="ddmenu">
 						<Link className="dropdown-item" to={`/user/${currentUser.id}`}>
 							PROFILE
 						</Link>
@@ -82,9 +82,9 @@ const NavBar = ( props ) => {
 							EDIT PROFILE
 						</Link>
 						<div className="dropdown-divider"></div>
-						<Link className="dropdown-item" onClick={redirect} to="/signUp">
+						<a className="dropdown-item" onClick={redirect} href="#ddmenu">
 							LOG OUT
-						</Link>
+						</a>
 					</div>
 				</section>
 			);
