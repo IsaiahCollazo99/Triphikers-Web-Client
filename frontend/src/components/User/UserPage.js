@@ -258,7 +258,9 @@ const UserPage = () => {
                 <section className="up-main">
                 <Switch>
                     <Route exact path={"/user/:id/"}>
-                        {userTripsList}
+                        {userTripsList.length ? userTripsList : (
+                            <p className="error" style={{marginTop: '80px'}}>User has made no trips</p>
+                        )}
                     </Route>
 
                     <Route exact path={"/user/:id/friends"}>
