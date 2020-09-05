@@ -1,14 +1,7 @@
 import React from "react";
-import { withStyles, makeStyles } from "@material-ui/core/styles";
 import "../../css/safety/Safety.css";
 
 export default function Safety() {
-	const useStyles = makeStyles((theme) => ({
-		margin: {
-			margin: theme.spacing(1),
-		},
-	}));
-
 	return (
 		<div className="safetyContainer">
 			<div className="safetyTitle">
