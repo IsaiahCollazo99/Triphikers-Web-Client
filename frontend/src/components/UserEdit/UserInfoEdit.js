@@ -10,6 +10,7 @@ const UserInfoEdit = ( props ) => {
         lastName,
         country,
         gender,
+        bio,
         imagePreview
     } = props;
     const [ countries, setCountries ] = useState([]);
@@ -34,6 +35,9 @@ const UserInfoEdit = ( props ) => {
         <section className="upe-user" style={{height: imagePreview ? '100vh' : '70vh'}}>
             <h2>Personal Info</h2>
             <section className="upe-pfpContainer">
+                <b>Preview: </b>
+                {displayPreview}
+
                 <label htmlFor="upe-pfp" className="pfpLabel">
                     <span className="MuiButton-startIcon MuiButton-iconSizeMedium">
                         <CloudUploadIcon />
@@ -48,8 +52,6 @@ const UserInfoEdit = ( props ) => {
                     id="upe-pfp"
                     onChange={handleFileSelect}
                 />
-                <b>Preview: </b>
-                {displayPreview}
             </section>
 
             <CustomTextField 
@@ -115,6 +117,19 @@ const UserInfoEdit = ( props ) => {
                 <option value="Female">Female</option>
                 <option value="Non-Binary">Non-Binary</option>
             </CustomTextField>
+
+            <CustomTextField 
+				multiline
+				label="Bio"
+				variant="outlined"
+				InputLabelProps={{
+					shrink: true,
+				}}
+				placeholder="Enter your Bio"
+				rows={4}
+                style={{width: '30%'}}
+				{...bio}
+			/>
         </section>
     )
 }

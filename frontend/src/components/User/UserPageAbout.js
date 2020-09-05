@@ -1,7 +1,9 @@
 import React from 'react';
+import { useHistory } from 'react-router-dom';
 import '../../css/userPage/userPageAbout.css'
 
 const UserPageAbout = ({ user }) => {
+    const history = useHistory();
 
     return (
         <section className="up-about">

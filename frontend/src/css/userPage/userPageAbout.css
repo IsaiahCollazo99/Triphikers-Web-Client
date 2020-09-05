@@ -1,6 +1,6 @@
 .up-about {
     display: grid;
-    grid-template-rows: 1fr 1fr;
+    grid-template-rows: 1fr 1fr 0.5fr;
     width: 100%;
     align-items: center;
     grid-column: 2 / 3;
@@ -21,7 +21,7 @@
     margin: auto;
 }
 
-.up-about span {
+.up-about span:not(.MuiButton-label) {
     font-weight: 800;
     color: #0065a3;
 }
