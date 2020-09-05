@@ -1,15 +1,21 @@
 .up-about {
-    display: flex;
-    flex-direction: column;
+    display: grid;
+    grid-template-rows: 1fr 1fr;
     width: 100%;
     align-items: center;
     grid-column: 2 / 3;
     justify-items: center;
-    min-height: 80vh;
+    min-height: 60vh;
     font-size: 20px;
 }
 
+.up-bio {
+    width: 60%;
+    align-self: end;
+}
+
 .up-aboutList {
+    width: 60%;
     display: grid;
     grid-template-columns: 0.8fr 1fr;
     margin: auto;

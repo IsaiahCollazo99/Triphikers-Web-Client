@@ -5,6 +5,10 @@ const UserPageAbout = ({ user }) => {
 
     return (
         <section className="up-about">
+            <label className="up-bio">
+                <span>Bio: </span>
+                <p>{user.bio}</p>
+            </label>
             <section className="up-aboutList">
                 <span>Language: </span><p>{user.language}</p>
                 <span>Age: </span><p>{user.age}</p>
