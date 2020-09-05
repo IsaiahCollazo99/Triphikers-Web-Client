@@ -1,6 +1,6 @@
-import React from 'react';
+import React from "react";
 import { withStyles, makeStyles } from "@material-ui/core/styles";
-import "../../css/safety/Safety.css"
+import "../../css/safety/Safety.css";
 
 export default function Safety() {
 	const useStyles = makeStyles((theme) => ({
@@ -9,10 +9,10 @@ export default function Safety() {
 		},
 	}));
 
-  return (
+	return (
 		<div className="safetyContainer">
 			<div className="safetyTitle">
-				<h2 >Solo Travel Safety Precautions</h2>
+				<h2>Solo Travel Safety Precautions</h2>
 			</div>
 			<div className="safetyCard">
 				<h2 className="safetySubTitle">Save Money</h2>
@@ -161,58 +161,3 @@ export default function Safety() {
 		</div>
 	);
 }
-
-// import React from "react";
-// import { makeStyles } from "@material-ui/core/styles";
-// import Card from "@material-ui/core/Card";
-// import CardActionArea from "@material-ui/core/CardActionArea";
-// import CardActions from "@material-ui/core/CardActions";
-// import CardContent from "@material-ui/core/CardContent";
-// import CardMedia from "@material-ui/core/CardMedia";
-// import Button from "@material-ui/core/Button";
-// import Typography from "@material-ui/core/Typography";
-
-// 	const useStyles = makeStyles((theme) => ({
-// 		root: {
-// 			maxWidth: 2550,
-// 		},
-// 		media: {
-// 			height: 10,
-// 			paddingTop: 200, 
-// 		},
-
-// 	}));
-
-// 	export default function Safety() {
-// 		const classes = useStyles();
-
-// 		return (
-// 			<Card className={classes.root}>
-// 				<CardActionArea>
-// 					<CardMedia
-// 						className={classes.media}
-// 						image="/images/adventure-1850912_640.jpg"
-// 						title="Solo Travel Safety Precautions"
-// 					/>
-// 					<CardContent>
-// 						<Typography gutterBottom variant="h5" component="h2">
-// 							Solo Travel Safety Precautions
-// 						</Typography>
-// 						<Typography variant="body2" color="textSecondary" component="p">
-// 							Lizards are a widespread group of squamate reptiles, with over
-// 							6,000 species, ranging across all continents except Antarctica
-// 						</Typography>
-// 					</CardContent>
-// 				</CardActionArea>
-// 				<CardActions>
-// 					<Button size="small" color="primary">
-// 						Share
-// 					</Button>
-// 					<Button size="small" color="primary">
-// 						Learn More
-// 					</Button>
-// 				</CardActions>
-// 			</Card>
-// 		);
-// 	}
-
