@@ -1,0 +1,38 @@
+.safetyContainer {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: space-evenly;
+	width: 50%;
+	margin-right: 4em;
+	margin-top: 8em;
+	margin-bottom: 4em;
+}
+
+.safetyTitle {
+	font-size: 2em;
+	font-family: "Prompt";
+	background: linear-gradient(to top, #6334ff, #0099ff);
+	-webkit-background-clip: text;
+	-webkit-text-fill-color: transparent;
+	font-weight: 900;
+}
+
+.safetySubTitle {
+	color: #e55f00;
+	font-weight: bold;
+}
+
+.safetyCard {
+	text-align: left;
+	color: black;
+	font-weight: 500;
+	margin: 1em;
+	background-color: #f3f3f3;
+	box-shadow: 2px 4px 8px 2px rgba(0, 0, 0, 0.2);
+	transition: 0.3s;
+	border-radius: 5px;
+	opacity: 85%;
+	cursor: default;
+	padding: 2em;
+}
