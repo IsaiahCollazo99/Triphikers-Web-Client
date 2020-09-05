@@ -3,7 +3,7 @@ import { useHistory } from 'react-router-dom';
 import { useInput } from '../../util/customHooks';
 import CreateTripForm1 from './CreateTripForm1';
 import CreateTripForm2 from './CreateTripForm2';
-import { createTrip } from '../../util/apiCalls/postRequests';
+import { createTrip, approveTraveler } from '../../util/apiCalls/postRequests';
 import '../../css/createTrip/createTripContainer.css';
 import { AuthContext } from '../../providers/AuthContext';
 
@@ -52,7 +52,8 @@ const CreateTripsContainer = () => {
     const handleSubmit = async ( e ) => {
         try {
             e.preventDefault();
-            await createTrip({...pageOne, ...pageTwo}, currentUser);
+            const data = await createTrip({...pageOne, ...pageTwo}, currentUser);
+            await approveTraveler(data.trip.id, currentUser.id);
             history.push("/trips");
         } catch ( error ) {
             setError(<p className="error">There was a problem with the request. Try again later.</p>);
