@@ -215,11 +215,11 @@ const UserPage = () => {
         ) : null;
 
         return (
-            <>
+            <section className="up-socialMedia">
                 {facebookLink}
                 {instagramLink}
                 {twitterLink}
-            </>
+            </section>
         )
     }
 
@@ -237,30 +237,23 @@ const UserPage = () => {
 
     return (
       
-        <div className="userPageContainer">
+        <section className="userPageContainer">
             <aside>
                 <section className="up-user">
                     <img src={profileUser.profile_picture} alt="profile_picture" />
                     <div className="up-userInteraction">
                         <p>{profileUser.full_name}</p>
-                        <section className="up-socialMedia">
-                            {displaySocialMedia()}
-                        </section>
+                        <p className="up-username">@{profileUser.username}</p>   
+                        {displaySocialMedia()}
                     </div>
                 </section>
 
                 {getCoverButtons()}
 
-                <section className="up-userInfo">
-                    <p><span>Age: </span>{profileUser.age}</p>
-                    <p><span>Country: </span>{profileUser.country_of_origin}</p>
-                    <p><span>Gender: </span>{profileUser.gender}</p>
-                </section>
+                <UserPageNav userId={id} />
             </aside>
 
             <main>
-                <UserPageNav userId={id} />
-                
                 <section className="up-main">
                 <Switch>
                     <Route exact path={"/user/:id/"}>
@@ -282,7 +275,7 @@ const UserPage = () => {
             </main>
             
         
-        </div>
+        </section>
     )
 }
 
