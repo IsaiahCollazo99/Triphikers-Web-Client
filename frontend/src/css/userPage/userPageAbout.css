@@ -6,20 +6,16 @@
     grid-column: 2 / 3;
     justify-items: center;
     min-height: 80vh;
+    font-size: 20px;
 }
 
 .up-aboutList {
     display: grid;
-    grid-template-columns: 0.5fr 1fr;
+    grid-template-columns: 0.8fr 1fr;
     margin: auto;
 }
 
 .up-about span {
     font-weight: 800;
-    color: #da5300;
-}
-
-.up-about p {
-    margin-left: 22.5px;
-    font-size: 18px;
+    color: #0065a3;
 }

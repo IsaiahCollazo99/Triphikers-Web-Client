@@ -67,9 +67,9 @@
 }
 
 .up-coverButtons {
-  width: 55%;
+  width: 100%;
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
   justify-content: space-evenly;
   align-self: center;
   margin: 25px 0;
@@ -118,10 +118,4 @@
 
 .up-main .tripCard {
   width: 95%;
-  float: left;
-}
-
-.userPageContainer p > span {
-  font-weight: 800;
-  color: #0065a3;
 }
