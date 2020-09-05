@@ -2,19 +2,8 @@ import React from 'react';
 import '../../css/landingPage/landingPageWhy.css';
 import LandingPageFooter from './LandingPageFooter';
 import Button from '@material-ui/core/Button';
-import { orange } from '@material-ui/core/colors';
-import { withStyles, makeStyles } from '@material-ui/core/styles';
-import friendsSelfie from "../../images/friendsSelfieCar.jpg"
-
-const ColorButton = withStyles((theme) => ({
-    root: {
-      color: "white",
-      backgroundColor: orange[500],
-      '&:hover': {
-        backgroundColor: orange[700],
-      },
-    },
-  }))(Button);
+import { makeStyles } from '@material-ui/core/styles';
+import friendsSelfie from "../../images/friendsSelfieCar.jpg";
 
 const useStyles = makeStyles((theme) => ({
     margin: {
@@ -42,7 +31,7 @@ const LandingPageWhy = ({ redirect }) => {
                         </p>
                     </article>
                 </section>
-                <ColorButton onClick={redirect} variant="contained" color="primary" className={classes.margin} style={{maxWidth: '100%', maxHeight: '10%', minWidth: '25%', minHeight: '5%'}}> Join </ColorButton>
+                <Button onClick={redirect} variant="contained" color="primary" className={classes.margin} style={{maxWidth: '100%', maxHeight: '10%', minWidth: '25%', minHeight: '5%'}}> Join </Button>
             </section> 
             <LandingPageFooter className="landingPageFooter"/>
         </div>
