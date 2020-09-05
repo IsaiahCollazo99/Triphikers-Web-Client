@@ -1,3 +1,7 @@
+.signUp3 {
+    height: 80%;
+}
+
 .suf3-pfpContainer {
     display: flex;
     flex-direction: column;
@@ -23,5 +27,8 @@
     object-fit: cover;
     border-radius: 7em;
     margin-bottom: 35px;
+}
 
+.suf3-pfpContainer label {
+    margin-bottom: 35px;
 }

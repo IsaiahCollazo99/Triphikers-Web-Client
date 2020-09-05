@@ -46,7 +46,7 @@ const CreateSignUpForm3 = (props) => {
 			<h3>3/3</h3>
 		</header>
 
-		<form onSubmit={handleSubmit} className="signUp3" style={{height: imagePreview ? '80%' : '60%'}}>
+		<form onSubmit={handleSubmit} className="signUp3" style={{height: imagePreview ? '120%' : '80%'}}>
 			<CustomTextField 
 				label="Language"
 				select
