@@ -30,7 +30,7 @@ const NavBar = ( props ) => {
 	const history = useHistory();
 
 	const [firstName, setFirstName] = useState("");
-
+	
 	const getFirstName = async ( backOffTime = 1 ) => {
 		try {
 			if (currentUser) {
@@ -67,7 +67,7 @@ const NavBar = ( props ) => {
 						role="button"
 						aria-expanded="false"
 					>
-						Hi, {firstName.toUpperCase()}
+						HI, {firstName.toUpperCase()}
 					</a>
 					<div className="dropdown-menu" id="ddmenu">
 						<Link className="dropdown-item" to={`/user/${currentUser.id}`}>
