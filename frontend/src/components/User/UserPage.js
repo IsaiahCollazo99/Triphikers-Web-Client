@@ -10,6 +10,7 @@ import TripCard from '../General/TripCard';
 import UserPageFriends from './UserPageFriends';
 import UserPageNav from './UserPageNav';
 import UserPageRequests from './UserPageRequests';
+import UserPageAbout from './UserPageAbout';
 import FacebookLogo from '../../images/f_logo_RGB-Blue_1024.png';
 import InstagramLogo from '../../images/glyph-logo_May2016.png';
 import TwitterLogo from '../../images/Twitter_Social_Icon_Circle_Color.png'
@@ -262,6 +263,10 @@ const UserPage = () => {
 
                     <Route exact path={"/user/:id/friends"}>
                         <UserPageFriends userFriends={friends} refresh={getUserFriendsCall} />
+                    </Route>
+
+                    <Route exact path={"/user/:id/about"}>
+                        <UserPageAbout user={profileUser} />
                     </Route>
 
                     <ProtectedUserRoute userId={id} exact path={"/user/:id/friendRequests"}>

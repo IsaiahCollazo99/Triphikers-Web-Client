@@ -3,7 +3,15 @@
     flex-direction: column;
     width: 100%;
     align-items: center;
-    margin: 30px 0;
+    grid-column: 2 / 3;
+    justify-items: center;
+    min-height: 80vh;
+}
+
+.up-aboutList {
+    display: grid;
+    grid-template-columns: 0.5fr 1fr;
+    margin: auto;
 }
 
 .up-about span {
