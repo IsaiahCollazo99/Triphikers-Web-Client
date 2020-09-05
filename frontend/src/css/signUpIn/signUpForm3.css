@@ -6,7 +6,6 @@
 
 .suf3-pfpContainer b {
     align-self: flex-start;
-    margin-top: 35px;
 }
 
 #suf3-pfp {
@@ -23,4 +22,6 @@
     width: 200px;
     object-fit: cover;
     border-radius: 7em;
+    margin-bottom: 35px;
+
 }
