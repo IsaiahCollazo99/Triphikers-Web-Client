@@ -43,12 +43,13 @@ const CreateTripForm1 = ( props ) => {
         const dateToDate = new Date(dateTo.value);
 
         if(today.getTime() >= dateToDate.getTime()) {
-            setError(<p className="error">Please enter a valid date</p> )
+            setError("Date To must be after today's date");
             return false;
         } else if(dateToDate.getTime() <= dateFromDate.getTime()) {
-            setError(<p className="error">Please enter a valid date</p> )
+            setError("Date To must be after the Date From");
             return false;
         }
+        setError(null);
 
         return true;
     }
@@ -78,9 +79,7 @@ const CreateTripForm1 = ( props ) => {
             <h1>Create a Trip</h1>
             <h3>1/2</h3>
         </header>
-        {error}
         <form onSubmit={handleSubmit} className="createTrip1">
-
             <CreateTripDestination destination={destination} />
 
             <section className="createTripDates">
@@ -93,7 +92,7 @@ const CreateTripForm1 = ( props ) => {
                         required: false
                     }}
                     required
-                    helperText="When will your trip begin?"
+                    helperText={"When will your trip begin?"}
                     fullWidth
                     {...dateFrom}
                 />
@@ -107,7 +106,8 @@ const CreateTripForm1 = ( props ) => {
                         required: false
                     }}
                     required
-                    helperText="When will your trip end?"
+                    helperText={error ? error : "When will your trip end?"}
+                    error={error ? true : false}
                     fullWidth
                     {...dateTo}
                 />

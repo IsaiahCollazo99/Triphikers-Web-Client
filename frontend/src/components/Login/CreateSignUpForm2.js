@@ -55,7 +55,7 @@ const CreateSignUpForm2 = (props) => {
 
 	const onInputChange = ( e ) => {
 		const inputValue = e.target.value;
-		const pattern = "[^a-z0-9._-]";
+		const pattern = "[^a-zA-Z0-9._-]";
 
 		if(inputValue.match(pattern)) {
 			setIsValidUsername(false);

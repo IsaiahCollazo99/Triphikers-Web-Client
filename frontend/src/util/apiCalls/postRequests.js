@@ -21,14 +21,13 @@ export const createTrip = async ( tripObj, user ) => {
             description: { value: description }
         } = tripObj;
     
-        console.log(destination);
-    
         const planner_id = user.id;
     
-        await axios.post(API + "/api/trips", {
+        const res = await axios.post(API + "/api/trips", {
             destination, date_from, date_to, group_type, language, trip_type, 
             trip_title, accommodation, budget, split_costs, itinerary, description, planner_id
         })
+        return res.data;
     } catch ( error ) {
         throw error;
     }

@@ -11,7 +11,7 @@ const UserPageNav = ({ userId }) => {
         if(currentUser.id === userId) {
             return (
                 <NavLink exact to={`/user/${userId}/friendRequests`}>
-                    Friend Requests
+                    REQUESTS
                 </NavLink>
             )
         } else {
@@ -21,8 +21,9 @@ const UserPageNav = ({ userId }) => {
 
     return (
         <nav className="up-nav">
-            <NavLink exact to={`/user/${userId}`}>Trips</NavLink>
-            <NavLink exact to={`/user/${userId}/friends`}>Friends</NavLink>
+            <NavLink exact to={`/user/${userId}`}>TRIPS</NavLink>
+            <NavLink exact to={`/user/${userId}/friends`}>FRIENDS</NavLink>
+            <NavLink exact to={`/user/${userId}/about`}>ABOUT</NavLink>
             {displayFriendRequests()}
         </nav>
     )
