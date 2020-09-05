@@ -9,19 +9,44 @@
 
 .citySearchContainer::before {
     content: "";
-    background-image: url(../../images/cities/riodejaniero.jpeg);
+    background-image: none;
     background-position: center;
     background-repeat: no-repeat;
+    height: 100%;
+    width: 100%;
     background-size: cover;
     position: absolute;
+    overflow: hidden;
     top: 0px;
     left: 0px;
     right: 0px;
     bottom: 0px;
     opacity: 0.7;
     z-index: 0;
-    filter: blur(3px);
-    -webkit-filter: blur(3px);
+    animation: animate 50s infinite;
+    -webkit-transform-style: preserve-3d;
+    -webkit-backface-visibility: hidden;
+}
+
+@keyframes animate {
+    0% {
+        background-image: url(../../images/cities/agra.jpeg);
+    }
+    20% {
+        background-image: url(../../images/cities/bangkok.jpeg);
+    }
+    40% {
+        background-image: url(../../images/cities/machupicchu.jpeg);
+    }
+    60% {
+        background-image: url(../../images/cities/mexicocity.jpeg);
+    }
+    80% {
+        background-image: url(../../images/cities/riodejaniero.jpeg);
+    }
+    100% {
+        background-image: url(../../images/cities/sydney.jpeg);
+    }
 }
 
 .citySearchCard{
@@ -43,4 +68,8 @@
 .citySearchTitle {
     color: #E55F00;
     font-weight: bold;
+}
+
+.errorPrompt {
+    color: red;
 }

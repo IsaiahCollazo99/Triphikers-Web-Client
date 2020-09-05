@@ -7,21 +7,21 @@ import { useHistory } from "react-router-dom";
 import { getGeocode, getLatLng } from "use-places-autocomplete";
 import LocationCitySearch from "./LocationCitySearch.js";
 import Button from '@material-ui/core/Button';
-import { orange } from '@material-ui/core/colors';
+// import { orange } from '@material-ui/core/colors';
 import { withStyles, makeStyles } from '@material-ui/core/styles';
 import "../../css/locations/LocationSearch.css";
 // import imgAfrica from "../../images/cities/africa.jpeg";
 require("dotenv").config()
 
-const ColorButton = withStyles((theme) => ({
-    root: {
-      color: "white",
-      backgroundColor: orange[500],
-      '&:hover': {
-        backgroundColor: orange[700],
-      },
-    },
-  }))(Button);
+// const ColorButton = withStyles((theme) => ({
+//     root: {
+//       color: "white",
+//       backgroundColor: orange[500],
+//       '&:hover': {
+//         backgroundColor: orange[700],
+//       },
+//     },
+//   }))(Button);
 
 const useStyles = makeStyles((theme) => ({
     margin: {
@@ -42,8 +42,6 @@ const LocationSearch = () => {
     const [error, setError] = useState(false);
     const history = useHistory();
     const classes = useStyles();
-    // let imgArr = [imgAfrica, imgAgra, imgBangkok, imgBejing, imgDubai, imgGiza, imgJohannesburg, imgLondon, imgLosAngeles, imgMachuPicchu, imgMexicoCity, imgNYC, imgParis, imgRiodeJaniero, imgRome, imgSydney, imgTokyo];
-    //trying to build a dynamic image background to inspire users on search
     
     const locationRedirect = (country, city, lat, lng) => {
         history.push({
@@ -76,7 +74,7 @@ const LocationSearch = () => {
                 console.log(error)
             }
         } else {
-            setError("You Must Choose a Country and City");
+            setError("You must choose a country and city");
         }
     }
 
@@ -120,8 +118,8 @@ const LocationSearch = () => {
                     <LocationCitySearch selectedCountry={selectedCountry} setCity={setCity} /> :
                     null
                 }
-                <ColorButton onClick={handleSubmit} variant="contained" color="primary" className={classes.margin} style={{maxWidth: '100%', maxHeight: '10%', minWidth: '50%', minHeight: '5%'}}> Explore </ColorButton>
-                {error !== false ? <p>{error}</p> : null}
+                <Button onClick={handleSubmit} variant="contained" color="primary" className={classes.margin} style={{maxWidth: '100%', maxHeight: '10%', minWidth: '50%', minHeight: '5%'}}> Explore </Button>
+                {error !== false ? <p className="errorPrompt">{error}</p> : null}
             </div>
         </div>
     )
