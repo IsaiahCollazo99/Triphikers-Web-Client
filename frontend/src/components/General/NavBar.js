@@ -67,7 +67,7 @@ const NavBar = ( props ) => {
 						role="button"
 						aria-expanded="false"
 					>
-						HI, {firstName}
+						HI, {firstName.toUpperCase()}
 					</a>
 					<div className="dropdown-menu">
 						<Link className="dropdown-item" to={`/user/${currentUser.id}`}>
