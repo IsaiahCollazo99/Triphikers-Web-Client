@@ -10,7 +10,8 @@ const CreateTripForm2 = ( props ) => {
         itinerary,
         description,
         handlePageChange,
-        handleSubmit
+        handleSubmit,
+        postError
     } = props
 
     
@@ -102,6 +103,7 @@ const CreateTripForm2 = ( props ) => {
                 <Button type="submit" variant="contained" color="primary">Submit</Button>
             </div>
         </form>
+        {postError}
         </>
     )
 }

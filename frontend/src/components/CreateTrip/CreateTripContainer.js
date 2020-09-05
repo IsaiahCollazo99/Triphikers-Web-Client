@@ -13,6 +13,7 @@ const CreateTripsContainer = () => {
     
     const [ page, setPage ] = useState(1);
     const [ destination, setDestination ] = useState("");
+    const [ error, setError ] = useState(null);
     const dateFrom = useInput("");
     const dateTo = useInput("");
     const groupType = useInput("");
@@ -45,12 +46,17 @@ const CreateTripsContainer = () => {
         accommodation,
         itinerary,
         description,
+        postError: error
     }
 
     const handleSubmit = async ( e ) => {
-        e.preventDefault();
-        await createTrip({...pageOne, ...pageTwo}, currentUser);
-        history.push("/trips");
+        try {
+            e.preventDefault();
+            await createTrip({...pageOne, ...pageTwo}, currentUser);
+            history.push("/trips");
+        } catch ( error ) {
+            setError(<p className="error">There was a problem with the request. Try again later.</p>);
+        }
     }
 
     const formPageDisplay = page === 1 ? 
