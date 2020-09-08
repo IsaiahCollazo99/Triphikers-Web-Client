@@ -28,7 +28,6 @@ const UserPage = () => {
     const [newChatFormVisible, setNewChatFormVisible] = useState(false);
 
     const getUser = async () => {
-        console.log(newChatFormVisible);
         try {
             const data = await getUserById(id);
             setProfileUser(data.user)
@@ -166,7 +165,7 @@ const UserPage = () => {
         setNewChatFormVisible(true);
     }
 
-    if(newChatFormVisible) console.log(newChat);
+    // if(newChatFormVisible) console.log(newChat);
 
     // const buildDocKey = (friend) => {
     //     let users = [email, friend]
