@@ -51,11 +51,11 @@ const LocationInfo = ({ city, coord, country }) => {
                     <h1 className="locationTitle">Travel Advisory</h1>
                     <section className="li-labels">
                         <div className="locationTravelAd">
-                            <label className="locationTitle"> Continent: </label>
+                            <label className="locationAdExtra"> Continent: </label>
                             <p>{country.continent}</p>
                         </div>
                         <div className="locationTravelAd">
-                            <label className="locationTitle"> Local Situation Rating: </label>
+                            <label className="locationAdExtra"> Local Situation Rating: </label>
                             <p> {info.score}</p>
                         </div>
                     </section>
@@ -96,8 +96,9 @@ const LocationInfo = ({ city, coord, country }) => {
             </div>
             <div className="locationInfoScroll">
                 <div className="locationInfoCard">
-                    {advisoryPrint(travelAdv)}
-                </div>
+                    <label className="locationTitle">Local Time: </label>
+                    <p>{convertTime(currentTime)}</p>
+                </div> 
                 <div className="locationInfoCard">
                     <h1 className="locationTitle">Weather Forecast</h1>
                     <div className="weatherForecast">
@@ -105,9 +106,8 @@ const LocationInfo = ({ city, coord, country }) => {
                     </div>
                 </div>
                 <div className="locationInfoCard">
-                    <label className="locationTitle">Local Time: </label>
-                    <p>{convertTime(currentTime)}</p>
-                </div> 
+                    {advisoryPrint(travelAdv)}
+                </div>
                     {/* <div className="detailsCurrency">
                         <h1 className="locationPageText">Currency Exchange</h1>
                             {currencyPrint(currency)}

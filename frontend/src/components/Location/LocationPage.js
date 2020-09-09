@@ -16,10 +16,6 @@ const LocationPage = () => {
     const [imageRef, setImageRef] = useState([]);
     const client = createClient(`563492ad6f9170000100000153f28b06267f4b548fc99fbb457455db`);
 
-    let sectionStyle = {
-        backgroundImage: `url(${ imageRef })`
-      };
-
     const getPhoto = (city) => {
         const query = `${city} skyline`;
         client.photos.search({ query, per_page: 1 }).then(photos => setImageRef(photos.photos[0].src.landscape));
@@ -35,23 +31,27 @@ const LocationPage = () => {
     }, [info])
 
     return(
-        <div className="locationContainer" style={sectionStyle}>
-            <div className="locationLeftSide">
-                <LocationInfo city={city} coord={coord} country={country}/>
-            </div>
-            <div className="locationRightSide">
-                <Route exact path={`/location/${country}/${city}/hotspots`}>
-                    <LocationHotspots city={city} coord={coord} country={country}/>
-                </Route>
-            </div>
-            {/* <div className="locationNavbar">
-                <LocationNavbar city={city} country={country}/>
-                <Switch>
-                    <Route exact path={`/location/${country}/${city}/attractions`}>
-                        <LocationAttractions city={city} coord={coord} country={country}/>
+        <div className="locationContainer">
+            <img src={imageRef} className="locationCoverImage"/>
+            <div className="locationContent">
+                <div className="locationLeftSide">
+                    <LocationInfo city={city} coord={coord} country={country}/>
+                </div>
+                <div className="locationRightSide">
+                    <Route exact path={`/location/${country}/${city}/hotspots`}>
+                        <LocationHotspots city={city} coord={coord} country={country}/>
                     </Route>
-                </Switch>
-            </div> */}
+                </div>
+                {/* <div className="locationNavbar">
+                    <LocationNavbar city={city} country={country}/>
+                    <Switch>
+                        <Route exact path={`/location/${country}/${city}/attractions`}>
+                            <LocationAttractions city={city} coord={coord} country={country}/>
+                        </Route>
+                    </Switch>
+                </div> */}
+
+            </div>
         </div>
     )
 }

@@ -1,17 +1,31 @@
 .locationContainer {
-    background-repeat: no-repeat;
-    background-position: center;
-    background-size: cover;
-    height: 100vh;
+    height: 220vh;
     width: 100vw;
+    display: flex;
+    flex-direction: column;
+    margin-top: 5em;
+}
+
+.locationCoverImage{
+    width: 100%;
+    height: 30vh;
+    object-fit: cover;
+    margin-bottom: 2em;
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+    transition: 0.3s;
+}
+
+.locationContent {
     display: flex;
     flex-direction: row;
 }
 
 .locationLeftSide{
     width: 50%;
+    margin-left: 2em;
 }
 
 .locationRightSide {
     width: 50%;
+    margin-right: 2em;
 }
