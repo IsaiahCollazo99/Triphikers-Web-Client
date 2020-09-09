@@ -26,7 +26,14 @@
     color: white;
   }
 
+  .footerLinks:hover {
+    cursor: pointer;
+    color: darkgrey;
+  }
+
   .copyrightLine {
       color: lightgrey;
       font-size: .75em;
+      text-shadow: none;
+      margin-bottom: -2em;
   }

@@ -5,18 +5,7 @@ import worldIcon from "../../images/icons/around-the-globe-icon.png";
 import peopleIcon from "../../images/icons/people-icon.png";
 import selfieIcon from "../../images/icons/selfie-icon.png";
 import Button from '@material-ui/core/Button';
-import { orange } from '@material-ui/core/colors';
-import { withStyles, makeStyles } from '@material-ui/core/styles';
-
-const ColorButton = withStyles((theme) => ({
-    root: {
-      color: "white",
-      backgroundColor: orange[500],
-      '&:hover': {
-        backgroundColor: orange[700],
-      },
-    },
-  }))(Button);
+import { makeStyles } from '@material-ui/core/styles';
 
 const useStyles = makeStyles((theme) => ({
     margin: {
@@ -31,11 +20,13 @@ const LandingPageAbout = ({ redirect }) => {
         <section className="lp-about">
             <div className="leftContainer">
                 <div className="searchCard">
-                    <h1>TRAVEL PARTNERS</h1>
-                    <h1>FOR LIFE</h1>
-                    <h1>FOR FREE</h1>
+                    <div className="searchCardTitle">
+                        <h1>TRAVEL PARTNERS</h1>
+                        <h1>FOR LIFE</h1>
+                        <h1>FOR FREE</h1>
+                    </div>
                     <LandingPageSearch redirect={redirect}/>
-                    <ColorButton onClick={redirect} variant="contained" color="primary" className={classes.margin} style={{maxWidth: '200%', maxHeight: '10%', minWidth: '50%', minHeight: '5%'}}> Create Your Trip </ColorButton>
+                    <Button onClick={redirect} variant="contained" color="primary" className={classes.margin} style={{maxWidth: '200%', maxHeight: '10%', minWidth: '50%', minHeight: '5%'}}> Create Your Trip </Button>
                 </div>
             </div>
             <div className="rightContainer">
