@@ -4,35 +4,30 @@ import LocationAttractions from "./LocationAttractions";
 import LocationNavbar from "./LocationNavbar";
 import LocationHotspots from "./LocationHotspots";
 import LocationInfo from "./LocationInfo";
+import "../../css/locations/LocationPage.css";
 
 
 const LocationPage = () => {
     const location = useLocation();
     let info = location.state;
     const [city, setCity] = useState([]);
-    const [cityTitle, setCityTitle] = useState([]);
     const [coord, setCoord] = useState([]);
     const [country, setCountry] = useState([]);
 
-    const getCityTitle = (str) => {
-        let title = str.split(",")[0];
-        setCityTitle(title);
-    }
-
     useEffect(() => {
         if(info !== null) {
-            getCityTitle(info.city);
             setCity(info.city);
             setCoord(info.coordinates);
             setCountry(info.country);
         }
-        //all gets reset when switching the navbar
     }, [info])
 
     return(
         <div className="locationContainer">
-            <LocationInfo city={city} coord={coord} country={country} title={cityTitle}/>
-            <div className="locationNavbar">
+            <div className="locationLeftSide">
+                <LocationInfo city={city} coord={coord} country={country}/>
+            </div>
+            {/* <div className="locationNavbar">
                 <LocationNavbar city={city} country={country}/>
                 <Switch>
                     <Route exact path={`/location/${country}/${city}/hotspots`}>
@@ -42,7 +37,7 @@ const LocationPage = () => {
                         <LocationAttractions city={city} coord={coord} country={country}/>
                     </Route>
                 </Switch>
-            </div>
+            </div> */}
         </div>
     )
 }
