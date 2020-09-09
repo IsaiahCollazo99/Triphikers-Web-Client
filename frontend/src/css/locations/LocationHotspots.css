@@ -1,12 +1,8 @@
 .hotSpotContainer {
     display: flex;
-    flex-direction: row;
-    background-color: white;
-    color: #272A33;
-    min-height: 90vh;
-    justify-content: space-evenly;
-    align-items: center;
-    padding: 25px 0;
+    flex-direction: column;
+    align-content: flex-end;
+    margin-top: 2em;
 }
 
 .hotSpotContainer h1 {

@@ -5,8 +5,8 @@ let apiKey = "AIzaSyA0vq8MgHI_qpQ45Ug8ZyOPCoIEtk5MjjM";
 
 const libraries = ["places"];
 const mapContainerStyle = {
-    width: "50vw",
-    height: "40vh",
+    width: "10vw",
+    height: "10vh",
 }
 
 const AttractionsMap = ({ location, zoom }) => {

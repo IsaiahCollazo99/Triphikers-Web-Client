@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import "../../css/locations/LocationInfo.css";
-import { createClient } from 'pexels';
 
 // const {
 //     REACT_APP_PEXELSAPIKEY
@@ -10,10 +9,8 @@ import { createClient } from 'pexels';
 let weatherkey = '18d629f0d66c4d5e831121754202907';
 
 const LocationInfo = ({ city, coord, country }) => {
-    const client = createClient(`563492ad6f9170000100000153f28b06267f4b548fc99fbb457455db`);
     // const [currency, setCurrency] = useState([]);
     const [travelAdv, setTravelAdv] = useState([]);
-    const [imageRef, setImageRef] = useState([]);
     const [weather, setWeather] = useState([]);
     const [currentTime, setCurrentTime] = useState([]);
     
@@ -27,17 +24,10 @@ const LocationInfo = ({ city, coord, country }) => {
                 setTravelAdv(travelAdvisory.data.data[country]);
                 setWeather(weather.data.forecast.forecastday);
                 setCurrentTime(weather.data.location.localtime);
-                getPhoto();
             } catch (error) {
                 console.log(error)
             }
         }
-    }
-
-    const getPhoto = () => {
-    const query = `${city} skyline`;
-    debugger
-    client.photos.search({ query, per_page: 1 }).then(photos => setImageRef(photos.photos[0].src.landscape));
     }
 
     // const currencyPrint = (exchange) => {
@@ -86,7 +76,6 @@ const LocationInfo = ({ city, coord, country }) => {
                 <img src={each.day.condition.icon} alt="weather condition" />
                 <p> {each.day.avgtemp_f}°F <br/> {each.day.avgtemp_c}°C</p>
             </div>
-            <p>{each.day.condition.text}</p>
         </div>
         )
     })
@@ -102,28 +91,33 @@ const LocationInfo = ({ city, coord, country }) => {
     
     return(
         <div className="locationInfoContainer">
-            <h1 className="locationTitle">{city}</h1>
-            <div className="locationInfoCard">
-                {advisoryPrint(travelAdv)}
+            <div className="locationInfoCardTitle">
+                <h1 className="locationTitle">{city}</h1>
             </div>
-            <div className="locationInfoCard">
-                <h1 className="locationTitle">Weather Forecast</h1>
-                <div className="weatherForecast">
-                    {printForecast}
+            <div className="locationInfoScroll">
+                <div className="locationInfoCard">
+                    {advisoryPrint(travelAdv)}
                 </div>
-            </div>
-            <div className="locationInfoCard">
-                <label className="locationTitle">Local Time: </label>
-                <p>{convertTime(currentTime)}</p>
-            </div> 
-                {/* <div className="detailsCurrency">
-                    <h1 className="locationPageText">Currency Exchange</h1>
-                        {currencyPrint(currency)}
+                <div className="locationInfoCard">
+                    <h1 className="locationTitle">Weather Forecast</h1>
+                    <div className="weatherForecast">
+                        {printForecast}
+                    </div>
+                </div>
+                <div className="locationInfoCard">
+                    <label className="locationTitle">Local Time: </label>
+                    <p>{convertTime(currentTime)}</p>
+                </div> 
+                    {/* <div className="detailsCurrency">
+                        <h1 className="locationPageText">Currency Exchange</h1>
+                            {currencyPrint(currency)}
+                    </div> */}
+                {/* <div className="emergencyServices">
+                    <p className="locationPageText">Emergency Services</p>
+                    <p className="locationPageText">{info.emergency_services}</p>
                 </div> */}
-            {/* <div className="emergencyServices">
-                <p className="locationPageText">Emergency Services</p>
-                <p className="locationPageText">{info.emergency_services}</p>
-            </div> */}
+
+            </div>
         </div>
     )
 }
