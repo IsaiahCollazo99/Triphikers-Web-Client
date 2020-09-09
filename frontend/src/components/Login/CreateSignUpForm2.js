@@ -2,7 +2,9 @@ import React, { useState } from "react";
 import { getUserByUsername } from "../../util/apiCalls/getRequests";
 import { Button } from '@material-ui/core';
 import CustomTextField from '../General/CustomTextField';
-
+import FiberManualRecordIcon from "@material-ui/icons/FiberManualRecord";
+import RadioButtonUncheckedIcon from "@material-ui/icons/RadioButtonUnchecked";
+import "../../css/signUpIn/CreateSignUpForm1.css";
 
 const CreateSignUpForm2 = (props) => {
 	const { firstName, lastName, birthday, gender, handlePageChange,
@@ -81,111 +83,116 @@ const CreateSignUpForm2 = (props) => {
 
 	return (
 		<>
-		<header>
-			<h1>CREATE AN ACCOUNT</h1>
-			<h3>2/3</h3>
-		</header>
+			<header>
+				<h1>CREATE AN ACCOUNT</h1>
+				<div>
+					<RadioButtonUncheckedIcon className="circle1" />
+					<FiberManualRecordIcon className="circle2" />
+					<RadioButtonUncheckedIcon className="circle3" />
+				</div>
+			</header>
 
-		<form onSubmit={handleSubmit} className="signUp2" style={{height: '80%'}}>
-
-			<CustomTextField 
-				label="First Name"
-				type="text"
-				variant="outlined"
-				InputLabelProps={{
-					shrink: true,
-					required: false,
-				}}
-				placeholder="Enter your First Name"
-				required
-				{...firstName}
-			/>
-
-			<CustomTextField 
-				label="Last Name"
-				type="text"
-				variant="outlined"
-				InputLabelProps={{
-					shrink: true,
-					required: false,
-				}}
-				placeholder="Enter your Last Name"
-				required
-				{...lastName}
-			/>
-
-			<CustomTextField
-				label="Birthday"
-				type="date"
-				variant="outlined"
-				InputLabelProps={{
-					shrink: true,
-					required: false,
-				}}
-				InputProps={{
-					max: today,
-					min: "1900-01-01",
-				}}
-				helperText={helperText.birthday}
-				error={helperText.birthday ? true : false}
-				required
-				{...birthday}
-			/>
-
-			<CustomTextField
-				label="Username"
-				type="text"
-				variant="outlined"
-				InputLabelProps={{
-					shrink: true,
-					required: false,
-				}}
-				helperText={helperText.username}
-				error={!isValidUsername || usernameExists}
-				placeholder="Enter your Username"
-				required
-				value={username}
-				onChange={onInputChange}
-			/>
-
-			<CustomTextField
-				label="Gender"
-				select
-				variant="outlined"
-				SelectProps={{
-					native: true,
-				}}
-				InputLabelProps={{
-					shrink: true,
-					required: false,
-				}}
-				required
-				{...gender}
+			<form
+				onSubmit={handleSubmit}
+				className="signUp2"
+				style={{ height: "80%" }}
 			>
-				<option disabled value="">Select your Gender</option>
-				<option value="Male">Male</option>
-				<option value="Female">Female</option>
-				<option value="Non-Binary">Non-Binary</option>
-			</CustomTextField>
-
-			<section className="buttons">
-				<Button 
-					onClick={()=> handlePageChange(1)} 
-					type="button" 
+				<CustomTextField
+					label="First Name"
+					type="text"
 					variant="outlined"
-					color="primary"
+					InputLabelProps={{
+						shrink: true,
+						required: false,
+					}}
+					placeholder="Enter your First Name"
+					required
+					{...firstName}
+				/>
+
+				<CustomTextField
+					label="Last Name"
+					type="text"
+					variant="outlined"
+					InputLabelProps={{
+						shrink: true,
+						required: false,
+					}}
+					placeholder="Enter your Last Name"
+					required
+					{...lastName}
+				/>
+
+				<CustomTextField
+					label="Birthday"
+					type="date"
+					variant="outlined"
+					InputLabelProps={{
+						shrink: true,
+						required: false,
+					}}
+					InputProps={{
+						max: today,
+						min: "1900-01-01",
+					}}
+					helperText={helperText.birthday}
+					error={helperText.birthday ? true : false}
+					required
+					{...birthday}
+				/>
+
+				<CustomTextField
+					label="Username"
+					type="text"
+					variant="outlined"
+					InputLabelProps={{
+						shrink: true,
+						required: false,
+					}}
+					helperText={helperText.username}
+					error={!isValidUsername || usernameExists}
+					placeholder="Enter your Username"
+					required
+					value={username}
+					onChange={onInputChange}
+				/>
+
+				<CustomTextField
+					label="Gender"
+					select
+					variant="outlined"
+					SelectProps={{
+						native: true,
+					}}
+					InputLabelProps={{
+						shrink: true,
+						required: false,
+					}}
+					required
+					{...gender}
 				>
-					BACK
-				</Button>
-				<Button 
-					type="submit" 
-					variant="contained"
-					color="primary"
-				>
-					NEXT PAGE
-				</Button>
-			</section>
-		</form>
+					<option disabled value="">
+						Select your Gender
+					</option>
+					<option value="Male">Male</option>
+					<option value="Female">Female</option>
+					<option value="Non-Binary">Non-Binary</option>
+				</CustomTextField>
+
+				<section className="buttons">
+					<Button
+						onClick={() => handlePageChange(1)}
+						type="button"
+						variant="outlined"
+						color="primary"
+					>
+						BACK
+					</Button>
+					<Button type="submit" variant="contained" color="primary">
+						NEXT PAGE
+					</Button>
+				</section>
+			</form>
 		</>
 	);
 };
