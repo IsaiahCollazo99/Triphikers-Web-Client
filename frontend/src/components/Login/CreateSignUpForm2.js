@@ -4,7 +4,7 @@ import { Button } from '@material-ui/core';
 import CustomTextField from '../General/CustomTextField';
 import FiberManualRecordIcon from "@material-ui/icons/FiberManualRecord";
 import RadioButtonUncheckedIcon from "@material-ui/icons/RadioButtonUnchecked";
-import "../../css/signUpIn/CreateSignUpForm1.css";
+import "../../css/signUpIn/CreateSignUpForm2.css";
 
 const CreateSignUpForm2 = (props) => {
 	const { firstName, lastName, birthday, gender, handlePageChange,
