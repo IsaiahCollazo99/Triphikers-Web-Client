@@ -1,48 +1,37 @@
-.signUp3 {
-	height: 80%;
-}
-
-.suf3-pfpContainer {
+.circleDiv1SP3 {
 	display: flex;
-	flex-direction: column;
-	align-items: center;
+	flex-direction: row;
 }
 
-.suf3-pfpContainer b {
-	align-self: flex-start;
+.circle1SP3 {
+   width: 1rem;
+	 height:1rem;
+	 margin: 1rem;
+   background: transparent; 
+   -moz-border-radius: 12px; 
+   -webkit-border-radius: 12px; 
+	 border-radius: 50%;
+   border: 3px solid #e45f00;;
 }
 
-#suf3-pfp {
-	width: 0.1px;
-	height: 0.1px;
-	opacity: 0;
-	overflow: hidden;
-	position: absolute;
-	z-index: -1;
+.circle2SP3 {
+	 width: 1rem;
+	 height:1rem;
+	 margin: 1rem;
+   background: transparent;
+   -moz-border-radius: 12px; 
+   -webkit-border-radius: 12px; 
+   border-radius: 50%;
+   border: 3px solid #e45f00;;
 }
 
-.signUp3 img {
-	height: 200px;
-	width: 200px;
-	object-fit: cover;
-	border-radius: 7em;
-	margin-bottom: 35px;
+.circle3SP3 {
+	 width: 1rem;
+	 height:1rem;
+	 margin: 1rem;
+   background: #e45f00;
+   -moz-border-radius: 12px; 
+   -webkit-border-radius: 12px; 
+   border-radius: 50%;
+   border: 3px solid #e45f00;;
 }
-
-.suf3-pfpContainer label {
-	margin-bottom: 35px;
-}
-
-.circle1 {
-	margin: 1rem;
-}
-
-.circle2 {
-	margin: 1rem;
-}
-
-.circle3 {
-	height: 32px;
-	width: 33px;
-}
-

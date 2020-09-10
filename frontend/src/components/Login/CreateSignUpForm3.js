@@ -46,10 +46,10 @@ const CreateSignUpForm3 = (props) => {
 		<>
 			<header>
 				<h1>CREATE AN ACCOUNT</h1>
-				<div>
-					<RadioButtonUncheckedIcon className="circle1" />
-					<RadioButtonUncheckedIcon className="circle2" />
-					<FiberManualRecordIcon className="circle3" />
+				<div circleDiv1SP3>
+					<RadioButtonUncheckedIcon className="circle1SP3" />
+					<RadioButtonUncheckedIcon className="circle2SP3" />
+					<FiberManualRecordIcon className="circle3SP3" />
 				</div>
 			</header>
 

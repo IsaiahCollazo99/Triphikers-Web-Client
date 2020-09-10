@@ -85,10 +85,10 @@ const CreateSignUpForm2 = (props) => {
 		<>
 			<header>
 				<h1>CREATE AN ACCOUNT</h1>
-				<div className="circleDiv">
-					<div className="circle1" ></div>
-					<div className="circle2" ></div>
-					<div className="circle3" ></div>
+				<div className="circleDiv2SP2">
+					<RadioButtonUncheckedIcon className="circle1SP2" />
+					<FiberManualRecordIcon className="circle2SP2" />
+					<RadioButtonUncheckedIcon className="circle3SP2" />
 				</div>
 			</header>
 

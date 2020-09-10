@@ -1,6 +1,7 @@
 .circle1 {
    width: 1rem;
    height:1rem;
+   margin: 1rem;
    background: #e45f00; 
    -moz-border-radius: 12px; 
    -webkit-border-radius: 12px; 
@@ -10,6 +11,7 @@
 .circle2 {
 	 width: 1rem;
    height:1rem;
+    margin: 1rem;
    background: transparent;
    -moz-border-radius: 12px; 
    -webkit-border-radius: 12px; 
@@ -20,6 +22,7 @@
 .circle3 {
 	 width: 1rem;
    height:1rem;
+    margin: 1rem;
    background: transparent;
    -moz-border-radius: 12px; 
    -webkit-border-radius: 12px; 
