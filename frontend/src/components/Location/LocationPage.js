@@ -34,10 +34,10 @@ const LocationPage = () => {
         <div className="locationContainer">
             <img src={imageRef} className="locationCoverImage"/>
             <div className="locationContent">
-                <div className="locationLeftSide">
+                <div className="locationTopInfo">
                     <LocationInfo city={city} coord={coord} country={country}/>
                 </div>
-                <div className="locationRightSide">
+                <div className="locationBottomMap">
                     <Route exact path={`/location/${country}/${city}/hotspots`}>
                         <LocationHotspots city={city} coord={coord} country={country}/>
                     </Route>

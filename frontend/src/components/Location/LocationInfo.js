@@ -96,7 +96,7 @@ const LocationInfo = ({ city, coord, country }) => {
             </div>
             <div className="locationInfoScroll">
                 <div className="locationInfoCard">
-                    <label className="locationTitle">Local Time: </label>
+                    <h1 className="locationTitle">Local Time: </h1>
                     <p>{convertTime(currentTime)}</p>
                 </div> 
                 <div className="locationInfoCard">

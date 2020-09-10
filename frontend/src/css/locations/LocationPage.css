@@ -1,9 +1,10 @@
 .locationContainer {
-    height: 220vh;
+    height: 100vh;
     width: 100vw;
     display: flex;
     flex-direction: column;
     margin-top: 5em;
+    background-color: #F3F3F3;
 }
 
 .locationCoverImage{
@@ -17,15 +18,22 @@
 
 .locationContent {
     display: flex;
+    flex-direction: column;
+    width: 100%;
+    height: 100%;
+}
+
+.locationTopInfo{
+    width: 100%;
+    height: 100%;
+    display: flex;
     flex-direction: row;
 }
 
-.locationLeftSide{
-    width: 50%;
-    margin-left: 2em;
-}
-
-.locationRightSide {
-    width: 50%;
-    margin-right: 2em;
+.locationBottomMap {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: row;
+    background-color: blue;
 }

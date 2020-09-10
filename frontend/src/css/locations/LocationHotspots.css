@@ -1,7 +1,10 @@
 .hotSpotContainer {
     display: flex;
-    flex-direction: column;
-    align-content: flex-end;
+    flex-direction: row;
+    width: 100%;
+    height: 90%;
+    background-color: black;
+    justify-content: space-evenly;
 }
 
 .hotSpotContainer h1 {
@@ -20,6 +23,7 @@
     flex-direction: column;
     align-items: center;
     background-color: white;
+    width: 80%;
     box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
     transition: 0.3s;
     padding: .5em;
@@ -33,11 +37,12 @@
     display: flex;
     flex-direction: column;
     justify-content: space-evenly;
+    margin-top: 9em;
     padding: 20px 30px;
-    width: 100%;
+    width: 40%;
+    height: 76%;
     background-color: white;
     border-radius: 1.5em;
-    margin-top: 2em;
 }
 
 .hotSpotForm h1 {
