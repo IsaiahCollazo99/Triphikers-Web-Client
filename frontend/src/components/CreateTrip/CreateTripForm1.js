@@ -78,9 +78,8 @@ const CreateTripForm1 = ( props ) => {
     return (
 			<>
 				<header>
-                    
-                <h1>Create a Trip</h1>
-					<div>
+					<h1>Create a Trip</h1>
+					<div className="circleDiv">
 						<FiberManualRecordIcon className="circle1" />
 						<RadioButtonUncheckedIcon className="circle2" />
 					</div>

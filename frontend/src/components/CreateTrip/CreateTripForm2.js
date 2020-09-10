@@ -3,8 +3,9 @@ import { Button } from '@material-ui/core';
 import CustomTextField from '../General/CustomTextField';
 import FiberManualRecordIcon from "@material-ui/icons/FiberManualRecord";
 import RadioButtonUncheckedIcon from "@material-ui/icons/RadioButtonUnchecked";
-// import "../../css/createTrip/CreateTripForm1.css";
 import '../../css/createTrip/createTripForms.css';
+import "../../css/createTrip/CreateTripForm2.css";
+
 
 const CreateTripForm2 = ( props ) => {
     const {
@@ -22,9 +23,9 @@ const CreateTripForm2 = ( props ) => {
 			<>
 				<header>
 					<h1>Create a Trip</h1>
-					<div>
-						<RadioButtonUncheckedIcon className="circle1" />
-						<FiberManualRecordIcon className="circle2" />
+					<div className="circleDivP2">
+						<RadioButtonUncheckedIcon className="circle1P2" />
+						<FiberManualRecordIcon className="circle2P2" />
 					</div>
 				</header>
 				<form onSubmit={handleSubmit} className="createTrip2">

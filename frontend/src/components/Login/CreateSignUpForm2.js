@@ -6,7 +6,7 @@ import FiberManualRecordIcon from "@material-ui/icons/FiberManualRecord";
 import RadioButtonUncheckedIcon from "@material-ui/icons/RadioButtonUnchecked";
 import "../../css/signUpIn/CreateSignUpForm2.css";
 
-const CreateSignUpForm2 = (props) => {
+const CreateSignUpForm2 = (props) => { 
 	const { firstName, lastName, birthday, gender, handlePageChange,
 	username, setUsername } = props;
 	const [ isValidUsername, setIsValidUsername ] = useState(true);
@@ -85,10 +85,10 @@ const CreateSignUpForm2 = (props) => {
 		<>
 			<header>
 				<h1>CREATE AN ACCOUNT</h1>
-				<div>
-					<RadioButtonUncheckedIcon className="circle1" />
-					<FiberManualRecordIcon className="circle2" />
-					<RadioButtonUncheckedIcon className="circle3" />
+				<div className="circleDiv">
+					<div className="circle1" ></div>
+					<div className="circle2" ></div>
+					<div className="circle3" ></div>
 				</div>
 			</header>
 
