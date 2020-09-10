@@ -1,6 +1,4 @@
 .locationInfoContainer{
-    width: 100%;
-    height: 100%;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -10,8 +8,6 @@
     display: flex;
     flex-direction: row;
     overflow-x: scroll;
-    height: 100%;
-    width: 100%;
 }
 
 .locationInfoCard {
