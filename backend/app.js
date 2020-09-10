@@ -4,7 +4,7 @@ const bodyParser = require("body-parser");
 require("dotenv").config();
 const { checkFirebaseToken } = require("./midleware/auth");
 
-const PORT = process.env.PORT;
+const PORT = process.env.PORT || 3001;
 
 const usersRouter = require("./routes/users/users");
 const tripsRouter = require("./routes/trips/trips");
