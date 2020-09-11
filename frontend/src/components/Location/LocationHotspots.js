@@ -153,21 +153,19 @@ const LocationHotspots = ({ city, coord, country }) => {
 
             {selectedHotspot ? (
                 <div className="selected">
-                    <p className="removeSelectedHotSpot" onClick={resetSelected}>X</p>
-                    <h1>Selected Hotspot</h1>
-
-                    <p className="selectedTitle"><b>Name:</b> {selectedHotspot.hotspot_title}</p>
-
                     <div className="selectedDesc">
+                        <div className="selectedTitleDiv">
+                            <h1 className="selectedTitle">{selectedHotspot.hotspot_title} </h1>
+                            <p className="removeSelectedHotSpot" onClick={resetSelected}>X</p>
+                        </div>
                         <label>Description:</label>
                         <p>{selectedHotspot.body}</p>
+                        <p><b>Submitted By:</b> {userName}</p>
+                        <p className="directions" onClick={() => window.open( `https://www.google.com/maps/dir/?api=1&destination=${selectedHotspot.lat}/${selectedHotspot.lng}&travelmode=driving`)}><b>Click Here for Directions</b></p>
                     </div>
-
-                    <img src={selectedHotspot.image} alt="hotspotImage"/>
-
-
-                    <p><b>Submitted By:</b> {userName}</p>
-                    <p className="directions" onClick={() => window.open( `https://www.google.com/maps/dir/?api=1&destination=${selectedHotspot.lat}/${selectedHotspot.lng}&travelmode=driving`)}><b>Click Here for Directions</b></p>
+                    <div className="selectedImg">
+                        <img className="hotSpotImage" src={selectedHotspot.image} alt="hotspotImage"/>
+                    </div>
                 </div>
             ) : null}
         </div>
