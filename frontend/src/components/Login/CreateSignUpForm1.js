@@ -1,9 +1,15 @@
 import React, { useState } from "react";
 import { getUserByEmail } from "../../util/apiCalls/getRequests";
 import { IconButton, InputAdornment, Button } from '@material-ui/core';
-import { Visibility, VisibilityOff } from '@material-ui/icons';
+import {
+	Visibility,
+	VisibilityOff,
+	CheckBoxOutlineBlankTwoTone,
+} from "@material-ui/icons";
+import FiberManualRecordIcon from "@material-ui/icons/FiberManualRecord";
 import CustomTextField from '../General/CustomTextField';
-
+import RadioButtonUncheckedIcon from "@material-ui/icons/RadioButtonUnchecked";
+import '../../css/signUpIn/CreateSignUpForm1.css';
 const CreateSignUpForm1 = (props) => {
 	const { email, password, confirmPassword, handlePageChange } = props;
 	const [ showPassword, setShowPassword ] = useState(false);
@@ -48,104 +54,108 @@ const CreateSignUpForm1 = (props) => {
 
 	const handleMouseDownPassword = ( e ) => {
 		e.preventDefault();
-	  };
+	};
+	
 	
 	return (
 		<>
-		<header>
-			<h1>CREATE AN ACCOUNT</h1>
-			<h3>1/3</h3>
-		</header>
+			<header>
+				<h1>CREATE AN ACCOUNT</h1>
+				<div>
+					<FiberManualRecordIcon className="circle1" />
+					<RadioButtonUncheckedIcon className="circle2" />
+					<RadioButtonUncheckedIcon className="circle3" />
+				</div>
+			</header>
 
-		<form onSubmit={handleSubmit} className="signUp1">
-			<CustomTextField 
-				label="Email"
-				type="email"
-				variant="outlined"
-				InputLabelProps={{
-					shrink: true,
-					required: false,
-				}}
-				helperText={errors.email}
-				FormHelperTextProps={{
-					style: {
-						display: errorsState.email ? "inherit" : "none"
-					}
-				}}
-				placeholder="Enter your Email Address"
-				required
-				error={errorsState.email}
-				{...email}
+			<form onSubmit={handleSubmit} className="signUp1">
+				<CustomTextField
+					label="Email"
+					type="email"
+					variant="outlined"
+					InputLabelProps={{
+						shrink: true,
+						required: false,
+					}}
+					helperText={errors.email}
+					FormHelperTextProps={{
+						style: {
+							display: errorsState.email ? "inherit" : "none",
+						},
+					}}
+					placeholder="Enter your Email Address"
+					required
+					error={errorsState.email}
+					{...email}
+				/>
 
-			/>
+				<CustomTextField
+					label="Password"
+					type={showPassword ? "text" : "password"}
+					variant="outlined"
+					InputLabelProps={{
+						shrink: true,
+						required: false,
+					}}
+					InputProps={{
+						endAdornment: (
+							<InputAdornment position="end">
+								<IconButton
+									onClick={handleShowPassword}
+									onMouseDown={handleMouseDownPassword}
+								>
+									{showPassword ? <Visibility /> : <VisibilityOff />}
+								</IconButton>
+							</InputAdornment>
+						),
+					}}
+					helperText={errors.password}
+					FormHelperTextProps={{
+						style: {
+							display: errorsState.password ? "inherit" : "none",
+						},
+					}}
+					placeholder="Enter your Password"
+					required
+					error={errorsState.password}
+					{...password}
+				/>
 
-			<CustomTextField 
-				label="Password"
-				type={showPassword ? "text" : "password"}
-				variant="outlined"
-				InputLabelProps={{
-					shrink: true,
-					required: false,
-				}}
-				InputProps={{
-					endAdornment: (
-						<InputAdornment position="end">
-							<IconButton
-								onClick={handleShowPassword}
-								onMouseDown={handleMouseDownPassword}
-							>
-								{showPassword ? <Visibility /> : <VisibilityOff />}
-							</IconButton>
-						</InputAdornment>
-					)
-				}}
-				helperText={errors.password}
-				FormHelperTextProps={{
-					style: {
-						display: errorsState.password ? "inherit" : "none"
-					}
-				}}
-				placeholder="Enter your Password"
-				required
-				error={errorsState.password}
-				{...password}
-				
-			/>
+				<CustomTextField
+					label="Confirm Password"
+					type={showConfirm ? "text" : "password"}
+					variant="outlined"
+					InputLabelProps={{
+						shrink: true,
+						required: false,
+					}}
+					InputProps={{
+						endAdornment: (
+							<InputAdornment position="end">
+								<IconButton
+									onClick={handleShowConfirm}
+									onMouseDown={handleMouseDownPassword}
+								>
+									{showConfirm ? <Visibility /> : <VisibilityOff />}
+								</IconButton>
+							</InputAdornment>
+						),
+					}}
+					placeholder="Confirm your Password"
+					required
+					error={errorsState.password}
+					{...confirmPassword}
+				/>
 
-			<CustomTextField 
-				label="Confirm Password"
-				type={showConfirm ? "text" : "password"}
-				variant="outlined"
-				InputLabelProps={{
-					shrink: true,
-					required: false,
-				}}
-				InputProps={{
-					endAdornment: (
-						<InputAdornment position="end">
-							<IconButton
-								onClick={handleShowConfirm}
-								onMouseDown={handleMouseDownPassword}
-							>
-								{showConfirm ? <Visibility /> : <VisibilityOff />}
-							</IconButton>
-						</InputAdornment>
-					)
-				}}
-				placeholder="Confirm your Password"
-				required
-				error={errorsState.password}
-				{...confirmPassword}
-
-			/>
-
-			<Button 
-				type="submit"
-				variant="contained"
-				color="primary"
-				style={{width: 'fit-content', alignSelf: 'center'}}
-			>Next Page</Button>
-		</form>
+				<Button
+					type="submit"
+					variant="contained"
+					color="primary"
+					style={{ width: "fit-content", alignSelf: "center" }}
+				>
+					Next Page
+				</Button>
+			</form>
 		</>
 	);
 };
