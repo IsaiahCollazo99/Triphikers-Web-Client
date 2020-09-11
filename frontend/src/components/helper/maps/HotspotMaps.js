@@ -7,8 +7,8 @@ const {
 } = process.env;
 const libraries = ["places"];
 const mapContainerStyle = {
-    width: "50vw",
-    height: "65vh",
+    width: "60vw",
+    height: "90vh",
 }
 
 const HotspotMap = ({ location, fetchData, allMarkers }) => {

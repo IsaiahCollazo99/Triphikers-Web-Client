@@ -36,10 +36,10 @@
     justify-content: space-evenly;
     margin-top: 9em;
     padding: 20px 30px;
-    width: 40%;
-    height: 76%;
+    width: 40vw;
+    height: 90vh;
     background-color: white;
-    border-radius: 1.5em;
+    /* border-radius: 1.5em; */
 }
 
 .hotSpotForm h1 {
@@ -96,12 +96,15 @@
 }
 
 .selected {
-    height: 70%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    margin-top: 9em;
     padding: 20px 30px;
-    width: 100%;
+    width: 40%;
+    height: 76%;
     background-color: white;
     border-radius: 1.5em;
-    margin-top: 2em;
 }
 
 .removeSelectedHotSpot {
@@ -138,7 +141,8 @@
 }
 
 .selected img {
-    width: 100%;
+    width: auto;
+    height: 50%;
     border: 1px solid #272A33;
     border-radius: 1em;
 }

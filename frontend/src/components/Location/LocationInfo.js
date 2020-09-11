@@ -65,7 +65,6 @@ const LocationInfo = ({ city, coord, country }) => {
         if(info !== undefined){
             return (
                 <div>
-                    <h1 className="locationTitle">Travel Advisory</h1>
                     <section className="li-labels">
                         <div className="locationTravelAd">
                             <label className="locationAdExtra"> Continent: </label>
@@ -105,12 +104,10 @@ const LocationInfo = ({ city, coord, country }) => {
     const currencyExchange = (rate) => {
         return (
             <div>
-                <h1 className="locationTitle">Currency Converter: </h1>
+                <p>1 USD = {rate} {exCountry}</p>
                 <form>
-                    <p>USD: </p>
-                    <input type="number" onChange={(e) => setConvertNum(e.target.value)}/>
-                    <p>{exCountry}:</p>
-                    <p>{convertNum * rate}</p>
+                    <p>USD: <input type="number" onChange={(e) => setConvertNum(e.target.value)}/></p>
+                    <p>{exCountry}: {convertNum * rate}</p>
                 </form>
             </div>
         )
@@ -128,25 +125,23 @@ const LocationInfo = ({ city, coord, country }) => {
             </div>
             <div className="locationInfoScroll">
                 <div className="locationInfoCard">
-                    <h1 className="locationTitle">Local Time: </h1>
+                    <h1 className="locationTitle">Local Time</h1>
                     <p>{convertTime(currentTime)}</p>
                 </div> 
                 <div className="locationInfoCard">
-                    <h1 className="locationTitle">Weather Forecast</h1>
+                    <h1 className="locationTitle">Weather</h1>
                     <div className="weatherForecast">
                         {printForecast}
                     </div>
                 </div>
                 <div className="locationInfoCard">
+                    <h1 className="locationTitle">Advisory</h1>
                     {advisoryPrint(travelAdv)}
                 </div>
                 <div className="locationInfoCard">
+                    <h1 className="locationTitle">Currency</h1>
                     {currencyExchange(currency)}
                 </div>
-                    {/* <div className="detailsCurrency">
-                        <h1 className="locationPageText">Currency Exchange</h1>
-                            {currencyPrint(currency)}
-                    </div> */}
                 {/* <div className="emergencyServices">
                     <p className="locationPageText">Emergency Services</p>
                     <p className="locationPageText">{info.emergency_services}</p>
