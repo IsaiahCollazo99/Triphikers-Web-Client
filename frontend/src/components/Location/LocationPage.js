@@ -42,15 +42,6 @@ const LocationPage = () => {
                         <LocationHotspots city={city} coord={coord} country={country}/>
                     </Route>
                 </div>
-                {/* <div className="locationNavbar">
-                    <LocationNavbar city={city} country={country}/>
-                    <Switch>
-                        <Route exact path={`/location/${country}/${city}/attractions`}>
-                            <LocationAttractions city={city} coord={coord} country={country}/>
-                        </Route>
-                    </Switch>
-                </div> */}
-
             </div>
         </div>
     )
