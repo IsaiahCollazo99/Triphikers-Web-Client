@@ -126,7 +126,7 @@ const LocationHotspots = ({ city, coord, country }) => {
                 <h1 className="mapTitle">Hotspots Map <span role="img" aria-label="pin">📍</span></h1>
                 <p>Submit your own Hotspot photo below!</p>
             </div>
-            <div className="mapAndInfoConatiner">
+            <div className="mapAndInfoContainer">
                 <div className="hotSpotMap">
                     {getMap(coord.lat, coord.lng)}
                 </div>
