@@ -16,15 +16,15 @@ const LandingPageFooter = () => {
             <p className="copyrightLine">© Triphikers LLC. 2020-2020. All rights reserved</p>
             <div className="shareSocial">
               <Twitter
-                link="http://localhost:3000/"
+                link="https://triphikers.netlify.app/"
                 title="Want to meet and travel with other people? Check out Triphikers!"
               />
               <Facebook
-                link="http://localhost:3000/"
+                link="https://triphikers.netlify.app/"
                 quote="Want to meet and travel with other people? Check out Triphikers!"
               />
               <Whatsapp
-                link="http://localhost:3000/"
+                link="https://triphikers.netlify.app/"
                 title="Want to meet and travel with other people? Check out Triphikers!"
               />
             </div>
