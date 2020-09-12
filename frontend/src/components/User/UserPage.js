@@ -25,7 +25,7 @@ const UserPage = () => {
     const [ userTrips, setUserTrips ] = useState([]);
     const [ friendRequests, setFriendRequests ] = useState([]);
     const [ friends, setFriends ] = useState([]);
-    const [newChatFormVisible, setNewChatFormVisible] = useState(false);
+    // const [newChatFormVisible, setNewChatFormVisible] = useState(false);
 
     const getUser = async () => {
         try {
@@ -161,9 +161,9 @@ const UserPage = () => {
         )
     })
 
-    const newChat = () => {
-        setNewChatFormVisible(true);
-    }
+    // const newChat = () => {
+    //     setNewChatFormVisible(true);
+    // }
 
     // if(newChatFormVisible) console.log(newChat);
 
