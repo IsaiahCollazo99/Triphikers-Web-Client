@@ -1,12 +1,12 @@
 .hotSpotContainer {
     display: flex;
-    flex-direction: row;
-    background-color: white;
-    color: #272A33;
-    min-height: 90vh;
-    justify-content: space-evenly;
+    flex-direction: column;
     align-items: center;
-    padding: 25px 0;
+}
+
+.mapAndInfoContainer{
+    display: flex;
+    flex-direction: row;
 }
 
 .hotSpotContainer h1 {
@@ -14,9 +14,27 @@
 }
 
 .mapTitle{
-    display: flex;
+    color: #E55F00;
+    font-weight: bold;
     /* flex-shrink: inherit;
     needs to be able to shrink when the aspect ratio is changed */
+}
+
+.mapTitleContainer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 80%;
+    height: fit-content;
+    background-color: white;
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+    transition: 0.3s;
+    padding: 1em;
+    border-radius: 5px;
+    opacity: 90%;
+    cursor: default;
+    margin-bottom: 1em;
 }
 
 .hotSpotForm {
@@ -24,17 +42,19 @@
     flex-direction: column;
     justify-content: space-evenly;
     padding: 20px 30px;
-    width: 30%;
-    background-color: #f3f3f3;
-    border-radius: 1.5em;
+    width: 40vw;
+    height: 70vh;
+    background-color: white;
 }
 
 .hotSpotForm h1 {
-    margin-bottom: 20px;
+    color: #E55F00;
+    font-weight: bold;
 }
 
 .submitCoords, .hotSpotForm input, .hotSpotForm textarea {
     margin-bottom: 15px;
+    color: black;
 }
 
 .hotSpotForm input[type="text"], .hotSpotForm textarea {
@@ -81,17 +101,25 @@
 }
 
 .selected {
-    height: 70%;
-    padding: 20px 30px;
-    width: 30%;
-    background-color: #f3f3f3;
-    border-radius: 1.5em;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    align-items: center;
+    padding: 1em;
+    width: 40vw;
+    height: 70vh;
+    background-color: white;
+}
+
+.selectedTitleDiv{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
 }
 
 .removeSelectedHotSpot {
-    width: fit-content;
-    float: right;
     font-size: 22px;
+    color: #E55F00;
     font-weight: bold;
 }
 
@@ -101,7 +129,9 @@
 }
 
 .selected h1 {
-    margin-bottom: 20px;
+    color: #E55F00;
+    font-weight: bold;
+    font-size: 26px;
 }
 
 .selectedCoords, .selectedTitle, .selectedDesc, .selected img {
@@ -110,14 +140,24 @@
 
 .selectedTitle {
     font-size: 24px;
-}
-
-.selectedDesc label {
+    color: black;
     font-weight: bold;
 }
 
-.selected img {
-    width: 100%;
+.selectedDesc label {
+    color: black;
+    font-weight: bold;
+}
+
+.selectedDesc {
+    width: 30vw;
+    height: max-content;
+    text-align: left;
+}
+
+.hotSpotImage {
+    height: 30vh;
+    width: auto;
     border: 1px solid #272A33;
     border-radius: 1em;
 }
@@ -128,6 +168,31 @@
 
 .directions:hover {
     color: #0062e2;
+}
+
+.findMe{
+    position: absolute;
+    top: .5rem;
+    right: 5rem;
+    z-index: 10;
+    width: fit-content;
+    height: fit-content;
+    background-color: white;
+    color: rgba(86,86,86);
+    box-shadow: rgba(0, 0, 0, 0.3) 0px 1px 4px -1px;
+    transition: 0.3s;
+    border-radius: 2px;
+    padding: 7px 17px;
+}
+
+.findMe p {
+    margin: 0;
+}
+
+.findMe:hover {
+    cursor: pointer;
+    color: black;
+    background-color: rgba(235, 235, 235);
 }
 
 @keyframes hide {

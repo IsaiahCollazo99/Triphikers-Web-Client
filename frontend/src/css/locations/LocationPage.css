@@ -1,5 +1,32 @@
 .locationContainer {
-    /* width: 100%;
-    height: 100% */
-    margin-top: 8em;
+    height: fit-content;
+    width: 100vw;
+    display: flex;
+    flex-direction: column;
+    margin-top: 5em;
+    background-color: #F3F3F3;
+}
+
+.locationCoverImage{
+    width: 100%;
+    height: 30vh;
+    object-fit: cover;
+    margin-bottom: 2em;
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+    transition: 0.3s;
+}
+
+.locationContent {
+    display: flex;
+    flex-direction: column;
+}
+
+.locationTopInfo{
+    display: flex;
+    flex-direction: row;
+}
+
+.locationBottomMap {
+    display: flex;
+    flex-direction: row;
 }

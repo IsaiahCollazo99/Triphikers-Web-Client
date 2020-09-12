@@ -1,10 +1,17 @@
-.messagesContainer{
-    margin-top: 7.2%;
+.messagesContainer {
+    margin-top: 5em;
     display: flex;
     flex-direction: row;
+    height: 100vh;
+    width: 100vw;
 }
 
-/* .messagesContent {
-    display: flex;
-    flex-direction: column;
-} */
+.messagesList {
+    height: 100%;
+    width: 30%;
+}
+
+.messagesContent {
+    height: 100%;
+    width: 70%;
+}

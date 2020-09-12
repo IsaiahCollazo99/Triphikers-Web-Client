@@ -10,18 +10,7 @@ import Button from '@material-ui/core/Button';
 // import { orange } from '@material-ui/core/colors';
 import { withStyles, makeStyles } from '@material-ui/core/styles';
 import "../../css/locations/LocationSearch.css";
-// import imgAfrica from "../../images/cities/africa.jpeg";
 require("dotenv").config()
-
-// const ColorButton = withStyles((theme) => ({
-//     root: {
-//       color: "white",
-//       backgroundColor: orange[500],
-//       '&:hover': {
-//         backgroundColor: orange[700],
-//       },
-//     },
-//   }))(Button);
 
 const useStyles = makeStyles((theme) => ({
     margin: {
