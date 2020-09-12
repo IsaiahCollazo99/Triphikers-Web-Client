@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { GoogleMap, useLoadScript, Marker } from '@react-google-maps/api';
 import HotspotIcon from '../../../images/Fire.png';
-import gspIcon from "../../../images/gps.png";
 
 const {
     REACT_APP_GOOGLEAPIKEY
@@ -35,12 +34,11 @@ const HotspotMap = ({ location, fetchData, allMarkers }) => {
 
     const Locate = ({ setEpicenter, setZoom, setMarkers }) => {
         return(
-            <div className="findMe">
-                <p><b>Locate Me:</b></p>
-                <img className="gpsIcon" src={gspIcon} alt="locate me" onClick={() => {
-                    navigator.geolocation.getCurrentPosition((position) => { setEpicenter({lat: position.coords.latitude, lng: position.coords.longitude})
-                    setMarkers({lat: position.coords.latitude, lng: position.coords.longitude})}, setZoom(14), () => null)
-                }}/>
+            <div className="findMe" onClick={() => {
+                navigator.geolocation.getCurrentPosition((position) => { setEpicenter({lat: position.coords.latitude, lng: position.coords.longitude})
+                setMarkers({lat: position.coords.latitude, lng: position.coords.longitude})}, setZoom(14), () => null)
+            }}>
+                <p>Locate Me</p>
             </div>
         )
     }
