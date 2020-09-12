@@ -7,11 +7,11 @@
     text-align: center;
     justify-content: space-evenly;
     margin: auto;
-    background-color: #ff9800;
+    background-color: #F3F3F3;
+    box-shadow: 8px 4px 8px 8px rgba(0,0,0,0.2);
     align-items: center;
     color: white;
     text-decoration: none;
-    text-shadow: 1px 1px 2px black;
   }
   
   .shareSocial {
@@ -22,18 +22,17 @@
   }
   
   .footerLinks {
-    text-shadow: 1px 1px 2px black;
-    color: white;
+    color: black;
   }
 
   .footerLinks:hover {
     cursor: pointer;
-    color: darkgrey;
+    color: #E55F00;
   }
 
   .copyrightLine {
-      color: lightgrey;
+      color: #E55F00;
       font-size: .75em;
       text-shadow: none;
-      margin-bottom: -2em;
+      margin-top: 1.5em;
   }

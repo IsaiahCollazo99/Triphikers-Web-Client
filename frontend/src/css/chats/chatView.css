@@ -1,11 +1,11 @@
 .chatViewContainer{
     margin-top: 7.8%;
-    height: 75%;
+    height: 100%;
     overflow: auto;
     box-sizing: border-box;
     overflow-y: scroll;
-    top: 5%;
-    width: 40%;
+    /* top: 5%; */
+    width: 70%;
     position: absolute
 }
 
@@ -13,43 +13,43 @@
     text-align: right;
     float: right;
     clear: both;
-    padding: 3%;
+    padding: .2em;
     box-sizing: border-box;
     word-wrap: break-word;
     margin-top: 1%;
     background-color: #30A0FE;
     color: white;
     width: 45%;
-    border-radius: 10px
+    border-radius: 10px;
+    margin-right: 1em;
 }
 
 .friendSent{
     float: left;
     clear: both;
-    padding: 3%;
+    padding: .2em;
     box-sizing: border-box;
     word-wrap: break-word;
     margin-top: 1%;
     background-color: #E6E5EB;
     color: black;
     width: 45%;
-    border-radius: 10px
+    border-radius: 10px;
+    margin-left: 1em;
 }
 
 .chatHeader {
-    width: 40%;
-    height: 6%;
-    background-color: #344195;
-    position: fixed;
-    /* margin-left: 301px; */
+    width: 70%;
+    height: 2em;
+    background-color: #FD832B;
+    position: absolute;
     font-size: 18px;
     text-align: center;
-    color: white;
+    color: black;
     padding-top: 10px;
     box-sizing: border-box
   }
 
   .chatTimestamp {
       font-size: 80%;
-      margin-top: 10%;
   }

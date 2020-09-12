@@ -120,7 +120,9 @@ const Messages = () => {
     
     return(
         <div className="messagesContainer">
-           <ChatList newChatButtonClicked = {newChatButtonClicked} selectChatButton={selectChatButton} chats={chats} email={email} selectedChatIndex={selectedChatIndex}/>
+            <div className="messagesList">
+                <ChatList newChatButtonClicked = {newChatButtonClicked} selectChatButton={selectChatButton} chats={chats} email={email} selectedChatIndex={selectedChatIndex}/>
+            </div>
            <div className="messagesContent">
             { newChatFormVisible ? null : <ChatView user={email} chat={chats[selectedChatIndex]}></ChatView> }
             {

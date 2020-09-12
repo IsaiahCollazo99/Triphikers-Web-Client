@@ -5,7 +5,6 @@ import { uploadPicture } from "../../util/firebaseFunction";
 import "../../css/locations/LocationHotspots.css";
 import { useContext } from "react";
 import { AuthContext } from "../../providers/AuthContext";
-
 let mapReset = 0;
 
 const LocationHotspots = ({ city, coord, country }) => {
@@ -122,54 +121,59 @@ const LocationHotspots = ({ city, coord, country }) => {
 
     return (
         <div className="hotSpotContainer">
-            <div className="hotSpotMap">
-                {getMap(coord.lat, coord.lng)}
+            <div className="mapTitleContainer">
+                <h1 className="mapTitle">Hotspots Map <span role="img" aria-label="pin">📍</span></h1>
+                <p>Submit your own Hotspot photo below!</p>
             </div>
-
-            <form className="hotSpotForm" onSubmit={handleSubmit} style={getFormDisplay}>
-                <h1>Hotspot Submission</h1>
-
-                <div className="submitCoords">
-                    <p><b>Latitude:</b> {submitCoordinates.lat}</p>
-                    <p><b>Longitude:</b> {submitCoordinates.lng}</p>
+            <div className="mapAndInfoContainer">
+                <div className="hotSpotMap">
+                    {getMap(coord.lat, coord.lng)}
                 </div>
 
-                <label htmlFor="title">Hotspot Name: </label>
-                <input type="text" placeholder="Hotspot Name" value={submitHotspotTitle}  onChange={handleTitleChange} name="title" required />
+                <form className="hotSpotForm" onSubmit={handleSubmit} style={getFormDisplay}>
+                    <h1>Hotspot Submission</h1>
 
-                <label htmlFor="desc">Description: ({charCount} remaining) </label>
-                <textarea placeholder="Type a Description" value={submitHotspotBody} onChange={handleBodyChange} name="desc" required cols="25" rows="5" maxLength="170" />
-
-                <label htmlFor="pic">Picture: (optional) </label>
-                <input type="file" onChange={handleFileChange} name="pic" />
-
-                <input type="submit"/>
-                {submitted ? (
-                    <div className="disappear">
-                        <p className="success">Submission Complete</p>
-                    </div>
-                ): null}
-            </form>
-
-            {selectedHotspot ? (
-                <div className="selected">
-                    <p className="removeSelectedHotSpot" onClick={resetSelected}>X</p>
-                    <h1>Selected Hotspot</h1>
-
-                    <p className="selectedTitle"><b>Name:</b> {selectedHotspot.hotspot_title}</p>
-
-                    <div className="selectedDesc">
-                        <label>Description:</label>
-                        <p>{selectedHotspot.body}</p>
+                    <div className="submitCoords">
+                        <p><b>Latitude:</b> {submitCoordinates.lat}</p>
+                        <p><b>Longitude:</b> {submitCoordinates.lng}</p>
                     </div>
 
-                    <img src={selectedHotspot.image} alt="hotspotImage"/>
+                    <label htmlFor="title">Hotspot Name: </label>
+                    <input type="text" placeholder="Hotspot Name" value={submitHotspotTitle}  onChange={handleTitleChange} name="title" required />
 
+                    <label htmlFor="desc">Description: ({charCount} remaining) </label>
+                    <textarea placeholder="Type a Description" value={submitHotspotBody} onChange={handleBodyChange} name="desc" required cols="25" rows="5" maxLength="170" />
 
-                    <p><b>Submitted By:</b> {userName}</p>
-                    <p className="directions" onClick={() => window.open( `https://www.google.com/maps/dir/?api=1&destination=${selectedHotspot.lat}/${selectedHotspot.lng}&travelmode=driving`)}><b>Click Here for Directions</b></p>
-                </div>
-            ) : null}
+                    <label htmlFor="pic">Picture: (optional) </label>
+                    <input type="file" onChange={handleFileChange} name="pic" />
+
+                    <input type="submit"/>
+                    {submitted ? (
+                        <div className="disappear">
+                            <p className="success">Submission Complete</p>
+                        </div>
+                    ): null}
+                </form>
+
+                {selectedHotspot ? (
+                    <div className="selected">
+                        <div className="selectedDesc">
+                            <div className="selectedTitleDiv">
+                                <h1 className="selectedTitle">{selectedHotspot.hotspot_title} </h1>
+                                <p className="removeSelectedHotSpot" onClick={resetSelected}>X</p>
+                            </div>
+                            <label>Description:</label>
+                            <p>{selectedHotspot.body}</p>
+                            <p><b>Submitted By:</b> {userName}</p>
+                            <p className="directions" onClick={() => window.open( `https://www.google.com/maps/dir/?api=1&destination=${selectedHotspot.lat}/${selectedHotspot.lng}&travelmode=driving`)}><b>Click Here for Directions</b></p>
+                        </div>
+                        <div className="selectedImg">
+                            <img className="hotSpotImage" src={selectedHotspot.image} alt="hotspotImage"/>
+                        </div>
+                    </div>
+                ) : null}
+
+            </div>
         </div>
     )
 }

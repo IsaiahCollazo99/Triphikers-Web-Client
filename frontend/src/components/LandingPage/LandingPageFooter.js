@@ -7,9 +7,6 @@ const LandingPageFooter = () => {
     return (
         <footer>
           <nav className="footer">
-            <NavLink className="footerLinks" exact to ="/about">
-              About
-            </NavLink>
             <NavLink className="footerLinks" exact to ="/terms&conditions">
               Terms and Conditions
             </NavLink>
