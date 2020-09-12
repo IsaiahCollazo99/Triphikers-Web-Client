@@ -8,7 +8,7 @@ import { getGeocode, getLatLng } from "use-places-autocomplete";
 import LocationCitySearch from "./LocationCitySearch.js";
 import Button from '@material-ui/core/Button';
 // import { orange } from '@material-ui/core/colors';
-import { withStyles, makeStyles } from '@material-ui/core/styles';
+import { makeStyles } from '@material-ui/core/styles';
 import "../../css/locations/LocationSearch.css";
 require("dotenv").config()
 

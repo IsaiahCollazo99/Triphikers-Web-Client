@@ -4,7 +4,6 @@ import { IconButton, InputAdornment, Button } from '@material-ui/core';
 import {
 	Visibility,
 	VisibilityOff,
-	CheckBoxOutlineBlankTwoTone,
 } from "@material-ui/icons";
 import FiberManualRecordIcon from "@material-ui/icons/FiberManualRecord";
 import CustomTextField from '../General/CustomTextField';

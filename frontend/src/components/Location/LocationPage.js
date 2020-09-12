@@ -26,11 +26,12 @@ const LocationPage = () => {
             setCountry(info.country);
             getPhoto(info.city);
         }
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [info])
 
     return(
         <div className="locationContainer">
-            <img src={imageRef} className="locationCoverImage"/>
+            <img src={imageRef} className="locationCoverImage" alt="coverImg"/>
             <div className="locationContent">
                 <div className="locationTopInfo">
                     <LocationInfo city={city} coord={coord} country={country}/>

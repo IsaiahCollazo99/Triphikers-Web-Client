@@ -1,15 +1,8 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import countryToCurrency from "../../components/helper/countryToCurrency.json";
-// import { AuthContext } from "../../providers/AuthContext";
-// import { getUserById } from '../../util/apiCalls/getRequests';
-
 import "../../css/locations/LocationInfo.css";
 
-// const {
-//     REACT_APP_PEXELSAPIKEY
-// } = process.env;
-//not working and must do for weather API as well
 let weatherkey = '18d629f0d66c4d5e831121754202907';
 let currencykey = 'cccf995117e0e3e8e23f';
 
@@ -20,20 +13,6 @@ const LocationInfo = ({ city, coord, country }) => {
     const [currency, setCurrency] = useState([]);
     const [exCountry, setExCountry] = useState([]);
     const [convertNum, setConvertNum] = useState([]);
-    // const [ profileUser, setProfileUser ] = useState({});
-    // const { currentUser } = useContext(AuthContext);
-
-    // const getUser = async () => {
-    //     try {
-    //         const data = await getUserById(currentUser.id);
-    //         let countries = await axios.get(`https://restcountries.eu/rest/v2/all`);
-    //         console.log(countries.data);
-    //         debugger
-    //         setProfileUser(data.user)
-    //    } catch (error) {
-    //         console.log(error)
-    //     }
-    // }
 
     
     const getAllInfo = async (city, coord, country) => {
@@ -114,8 +93,8 @@ const LocationInfo = ({ city, coord, country }) => {
     }
 
     useEffect(() => {
-        // getUser();
         getAllInfo(city, coord, country);
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [city])
     
     return(
@@ -142,11 +121,6 @@ const LocationInfo = ({ city, coord, country }) => {
                     <h1 className="locationTitle">Currency</h1>
                     {currencyExchange(currency)}
                 </div>
-                {/* <div className="emergencyServices">
-                    <p className="locationPageText">Emergency Services</p>
-                    <p className="locationPageText">{info.emergency_services}</p>
-                </div> */}
-
             </div>
         </div>
     )
