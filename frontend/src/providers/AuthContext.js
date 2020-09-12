@@ -1,6 +1,7 @@
 import React, { createContext, useState, useEffect } from "react";
 import firebase from "../firebase";
 import Loader from "../images/tour.gif";
+import "./../css/AuthContext/AuthContext.css";
 
 import { getFirebaseIdToken } from "../util/firebaseFunction";
 
@@ -38,7 +39,7 @@ const AuthProvider = ({ children }) => {
 		return (
 			<div className="loading">
 				<img src={Loader} alt="loader_image" />
-				<div>Loading...</div>
+				<div className="loadingText">Loading...</div>
 			</div>
 		);
 	return (
