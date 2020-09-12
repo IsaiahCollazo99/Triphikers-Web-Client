@@ -1,0 +1,23 @@
+.circleDiv {
+	display: flex;
+	flex-direction: row;
+}
+
+.circle1 {
+	width: 1rem;
+	height: 1rem;
+	background: #e45f00;
+	-moz-border-radius: 12px;
+	-webkit-border-radius: 12px;
+	border-radius: 50%;
+}
+
+.circle2 {
+	width: 1rem;
+	height: 1rem;
+	background: transparent;
+	-moz-border-radius: 12px;
+	-webkit-border-radius: 12px;
+	border-radius: 50%;
+	border: 3px solid #e45f00;
+}

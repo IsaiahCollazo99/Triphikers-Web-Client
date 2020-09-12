@@ -4,6 +4,9 @@ import axios from "axios";
 import CloudUploadIcon from '@material-ui/icons/CloudUpload';
 import CustomTextField from '../General/CustomTextField';
 import LanguageSelect from "../General/LanguageSelect";
+import FiberManualRecordIcon from "@material-ui/icons/FiberManualRecord";
+import RadioButtonUncheckedIcon from "@material-ui/icons/RadioButtonUnchecked";
+// import "../../css/signUpIn/CreateSignUpForm1.css";
 import '../../css/signUpIn/signUpForm3.css';
 
 const CreateSignUpForm3 = (props) => {
@@ -41,97 +44,103 @@ const CreateSignUpForm3 = (props) => {
 
 	return (
 		<>
-		<header>
-			<h1>CREATE AN ACCOUNT</h1>
-			<h3>3/3</h3>
-		</header>
+			<header>
+				<h1>CREATE AN ACCOUNT</h1>
+				<div circleDiv1SP3>
+					<RadioButtonUncheckedIcon className="circle1SP3" />
+					<RadioButtonUncheckedIcon className="circle2SP3" />
+					<FiberManualRecordIcon className="circle3SP3" />
+				</div>
+			</header>
 
-		<form onSubmit={handleSubmit} className="signUp3" style={{height: imagePreview ? '120%' : '80%'}}>
-			<CustomTextField 
-				label="Language"
-				select
-				variant="outlined"
-				SelectProps={{
-					native: true,
-				}}
-				InputLabelProps={{
-					shrink: true,
-					required: false,
-				}}
-				required
-				{...language}
+			<form
+				onSubmit={handleSubmit}
+				className="signUp3"
+				style={{ height: imagePreview ? "120%" : "80%" }}
 			>
-				<LanguageSelect />	
-			</CustomTextField>
-
-			<CustomTextField 
-				label="Country"
-				select
-				variant="outlined"
-				SelectProps={{
-					native: true,
-				}}
-				InputLabelProps={{
-					shrink: true,
-					required: false,
-				}}
-				required
-				{...country}
-			>
-				<option value="" disabled>Select a County</option>
-				{countryOptions}
-			</CustomTextField>
-
-			<CustomTextField 
-				multiline
-				label="Bio (optional)"
-				variant="outlined"
-				InputLabelProps={{
-					shrink: true,
-				}}
-				placeholder="Enter your Bio"
-				rows={4}
-				{...bio}
-			/>
-
-			<section className="suf3-pfpContainer">
-				<b>Preview: </b>
-                {displayPreview}
-
-				<label htmlFor="suf3-pfp" className="pfpLabel">
-                    <span className="MuiButton-startIcon MuiButton-iconSizeMedium">
-                        <CloudUploadIcon />
-                    </span>
-                    Upload a Profile Picture
-                </label>
-
-                <input
-                    type="file"
-                    accept=".png, .jpg, .jpeg"
-                    name="pfp"
-                    id="suf3-pfp"
-                    onChange={handleFileSelect}
-                />
-            </section>
-
-			<div className="buttons">
-				<Button 
-					onClick={() => handlePageChange(2)} 
-					type="button" 
-					color="primary"
+				<CustomTextField
+					label="Language"
+					select
 					variant="outlined"
+					SelectProps={{
+						native: true,
+					}}
+					InputLabelProps={{
+						shrink: true,
+						required: false,
+					}}
+					required
+					{...language}
 				>
-					BACK
-				</Button>
-				<Button 
-					type="submit"
-					color="primary"
-					variant="contained"
+					<LanguageSelect />
+				</CustomTextField>
+
+				<CustomTextField
+					label="Country"
+					select
+					variant="outlined"
+					SelectProps={{
+						native: true,
+					}}
+					InputLabelProps={{
+						shrink: true,
+						required: false,
+					}}
+					required
+					{...country}
 				>
-					SIGN UP
-				</Button>
-			</div>
-		</form>
+					<option value="" disabled>
+						Select a County
+					</option>
+					{countryOptions}
+				</CustomTextField>
+
+				<CustomTextField
+					multiline
+					label="Bio (optional)"
+					variant="outlined"
+					InputLabelProps={{
+						shrink: true,
+					}}
+					placeholder="Enter your Bio"
+					rows={4}
+					{...bio}
+				/>
+
+				<section className="suf3-pfpContainer">
+					<b>Preview: </b>
+					{displayPreview}
+
+					<label htmlFor="suf3-pfp" className="pfpLabel">
+						<span className="MuiButton-startIcon MuiButton-iconSizeMedium">
+							<CloudUploadIcon />
+						</span>
+						Upload a Profile Picture
+					</label>
+
+					<input
+						type="file"
+						accept=".png, .jpg, .jpeg"
+						name="pfp"
+						id="suf3-pfp"
+						onChange={handleFileSelect}
+					/>
+				</section>
+
+				<div className="buttons">
+					<Button
+						onClick={() => handlePageChange(2)}
+						type="button"
+						color="primary"
+						variant="outlined"
+					>
+						BACK
+					</Button>
+					<Button type="submit" color="primary" variant="contained">
+						SIGN UP
+					</Button>
+				</div>
+			</form>
 		</>
 	);
 };
