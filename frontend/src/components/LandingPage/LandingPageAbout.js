@@ -26,7 +26,7 @@ const LandingPageAbout = ({ redirect }) => {
                         <h1>FOR FREE</h1>
                     </div>
                     <LandingPageSearch redirect={redirect}/>
-                    <Button onClick={redirect} variant="contained" color="primary" className={classes.margin} style={{maxWidth: '200%', maxHeight: '10%', minWidth: '50%', minHeight: '5%'}}> Create Your Trip </Button>
+                    <Button onClick={redirect} variant="contained" color="primary" className={classes.margin} style={{maxWidth: '200%', maxHeight: '10%', minWidth: '65%', minHeight: '5%'}}> Create Your Trip </Button>
                 </div>
             </div>
             <div className="rightContainer">
