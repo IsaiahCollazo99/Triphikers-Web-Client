@@ -5,7 +5,6 @@ import { uploadPicture } from "../../util/firebaseFunction";
 import "../../css/locations/LocationHotspots.css";
 import { useContext } from "react";
 import { AuthContext } from "../../providers/AuthContext";
-
 let mapReset = 0;
 
 const LocationHotspots = ({ city, coord, country }) => {

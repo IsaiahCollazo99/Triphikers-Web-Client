@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { GoogleMap, useLoadScript, Marker } from '@react-google-maps/api';
 import HotspotIcon from '../../../images/Fire.png';
+import gspIcon from "../../../images/gps.png";
 
 const {
     REACT_APP_GOOGLEAPIKEY
@@ -23,7 +24,7 @@ const HotspotMap = ({ location, fetchData, allMarkers }) => {
     });
 
     useEffect(() => {
-        if(markers.length === undefined || selected !== null ) {
+        if(markers.length === undefined || selected !== null) {
             fetchData({
                 coordinates: markers,
                 selected: selected
@@ -31,6 +32,18 @@ const HotspotMap = ({ location, fetchData, allMarkers }) => {
         }
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [markers, selected])
+
+    const Locate = ({ setEpicenter, setZoom, setMarkers }) => {
+        return(
+            <div className="findMe">
+                <p><b>Locate Me:</b></p>
+                <img className="gpsIcon" src={gspIcon} alt="locate me" onClick={() => {
+                    navigator.geolocation.getCurrentPosition((position) => { setEpicenter({lat: position.coords.latitude, lng: position.coords.longitude})
+                    setMarkers({lat: position.coords.latitude, lng: position.coords.longitude})}, setZoom(14), () => null)
+                }}/>
+            </div>
+        )
+    }
     
     
     if(loadError) return "Error loading maps";
@@ -43,6 +56,7 @@ const HotspotMap = ({ location, fetchData, allMarkers }) => {
                 lat: e.latLng.lat(),
                 lng: e.latLng.lng(),
             })}}>
+            <Locate className="findMeButton" setEpicenter={setEpicenter} setZoom={setZoom} setMarkers={setMarkers}/>
 
                 {allMarkers.map((marker) => (
                     <Marker key={marker.id} position={{ lat: parseFloat(marker.lat), lng: parseFloat(marker.lng) }} icon={{url: `${HotspotIcon}`, scaledSize: new window.google.maps.Size(24, 24), origin: new window.google.maps.Point(0,0), anchor: new window.google.maps.Point(12,12)}} onClick={() => {setSelected(marker); setEpicenter({lat: parseFloat(marker.lat), lng: parseFloat(marker.lng)}); setZoom(16)}}/>

@@ -1,7 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { Route, Switch, useLocation } from "react-router-dom";
-import LocationAttractions from "./LocationAttractions";
-import LocationNavbar from "./LocationNavbar";
+import { Route, useLocation } from "react-router-dom";
 import LocationHotspots from "./LocationHotspots";
 import LocationInfo from "./LocationInfo";
 import "../../css/locations/LocationPage.css";

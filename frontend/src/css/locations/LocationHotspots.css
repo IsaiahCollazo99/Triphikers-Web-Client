@@ -170,6 +170,33 @@
     color: #0062e2;
 }
 
+.findMe{
+    position: absolute;
+    top: -.5rem;
+    right: 5rem;
+    z-index: 10;
+    display: flex;
+    flex-direction: column;
+    background-color: white;
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+    transition: 0.3s;
+    padding: 1em;
+    border-radius: 5px;
+    opacity: 95%;
+    cursor: default;
+    align-items: center;
+    margin: 1em;
+}
+
+.gpsIcon{
+    width: auto;
+    height: 30px;
+}
+
+.gpsIcon:hover {
+    cursor: pointer;
+}
+
 @keyframes hide {
     from { opacity: 1; }
     to { opacity: 0; }
