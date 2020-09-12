@@ -30,7 +30,7 @@ const DetailedTripTravelers = ({ trip = {} }) => {
             <article className="travelersCard" key={user.id}>
                 <section className="tc-info">
                     <img src={user.profile_picture} alt={user.full_name} />
-                    <Link to={`/user/${user.id}`}>{user.full_name}</Link>
+                    <Link to={`/user/${user.traveler_id}`}>{user.full_name}</Link>
                 </section>
             </article>
         )
