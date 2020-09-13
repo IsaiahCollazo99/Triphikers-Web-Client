@@ -2,10 +2,7 @@
     display: flex;
     flex-direction: row;
     justify-content: space-evenly;
-    padding: 1em;
     font-size: 1.25em;
-    border-bottom: 2px solid black;
-    border-top: 2px solid black;
 }
 
 .dt-nav a {
@@ -15,6 +12,7 @@
     font-weight: 800;
     padding: 10px 15px;
     border-radius: 0.75em;
+    width: fit-content;
 }
 
 .dt-nav a:hover:not(.active){

@@ -4,7 +4,7 @@
     padding-bottom: 30px;
     background-color: #f3f3f3;
     display: grid;
-    grid-template-columns: 25% 75%;
+    grid-template-columns: 20% 80%;
     min-height: 100vh;
     font-size: 18px;
 }
@@ -21,16 +21,15 @@
 .detailedTripContainer aside {
     display: flex;
     flex-direction: column;
-    justify-content: space-evenly;
     background-color: #f3f3f3;
-    font-size: 1.2em;
+    font-size: 16px;
     grid-column: 1 / 2;
     border-right: 2px solid black;
     height: 100vh;
     position: fixed;
     padding: 2em 0;
     padding-bottom: 5em;
-    width: 25%;
+    width: 20%;
 }
 
 .dt-user {
@@ -41,6 +40,7 @@
     font-weight: 600;
     justify-content: space-evenly;
     text-align: center;
+    margin-bottom: 10%;
 }
 
 .dt-user img {
@@ -78,7 +78,8 @@
     flex-direction: column;
     padding: 1em;
     justify-content: space-evenly;
-    height: 50%;
+    height: 20%;
+    margin-bottom: 10%;
 }
 
 .dt-userInfo p {
