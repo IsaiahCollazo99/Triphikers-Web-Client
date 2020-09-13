@@ -10,30 +10,36 @@
 }
 
 .userSent{
-    text-align: right;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    text-align: left;
     float: right;
     clear: both;
-    padding: .2em;
+    padding: 5px 15px;
     box-sizing: border-box;
     word-wrap: break-word;
     margin-top: 1%;
     background-color: #30A0FE;
     color: white;
-    width: 45%;
+    width: fit-content;
     border-radius: 10px;
     margin-right: 1em;
 }
 
 .friendSent{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
     float: left;
     clear: both;
-    padding: .2em;
+    padding: 5px 15px;
     box-sizing: border-box;
     word-wrap: break-word;
     margin-top: 1%;
     background-color: #E6E5EB;
     color: black;
-    width: 45%;
+    width: fit-content;
     border-radius: 10px;
     margin-left: 1em;
 }
