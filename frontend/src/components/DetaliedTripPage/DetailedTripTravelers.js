@@ -25,6 +25,12 @@ const DetailedTripTravelers = ({ trip = {} }) => {
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [])
 
+    const displayHost = ( user ) => {
+        return user.traveler_id === trip.planner_id ? (
+            <p>HOST</p>
+        ) : null;
+    }
+
     let travelersList = travelers.map((user) => {
         return (
             <article className="travelersCard" key={user.id}>
@@ -32,6 +38,7 @@ const DetailedTripTravelers = ({ trip = {} }) => {
                     <img src={user.profile_picture} alt={user.full_name} />
                     <Link to={`/user/${user.traveler_id}`}>{user.full_name}</Link>
                 </section>
+                {displayHost(user)}
             </article>
         )
     })

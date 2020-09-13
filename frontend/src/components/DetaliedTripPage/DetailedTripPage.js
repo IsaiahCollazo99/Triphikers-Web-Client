@@ -116,11 +116,11 @@ const DetailedTripPage = () => {
 
     if(trip.full_name) {
         return (
+            <>
+            <a href={imageRef} target="_blank" rel="noopener noreferrer" className="dt-coverContainer">
+                <img src={imageRef} alt={trip.destination} className="dt-coverImg" />
+            </a>
             <div className="detailedTripContainer">
-                <a href={imageRef} target="_blank" rel="noopener noreferrer" className="dt-coverContainer">
-                    <img src={imageRef} alt={trip.destination} className="dt-coverImg" />
-                </a>
-
                 <aside className="dt-header">
                     <section className="dt-user">
                         <img src={trip.profile_picture} alt={trip.full_name} />
@@ -140,12 +140,11 @@ const DetailedTripPage = () => {
                     </section>
                 </aside>
 
-                <main>
-                    <DetailedTripInfo trip={trip} getTripCall={getTripCall} />
+                <DetailedTripInfo trip={trip} getTripCall={getTripCall} />
 
-                    {displayNav()}
-                </main>
+                {displayNav()}
             </div>
+            </>
         )
     } else {
         return (

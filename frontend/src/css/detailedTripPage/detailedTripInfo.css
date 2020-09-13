@@ -1,8 +1,10 @@
 .dt-info {
     display: flex;
     flex-direction: column;
-    padding: 1em 1.5em 0 1.5em;
+    padding: 1em 1.5em;
     margin: auto 0;
+    grid-column: 2 / 3;
+    width: 100%;
 }
 
 .dt-info header {
