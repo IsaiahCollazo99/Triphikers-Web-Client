@@ -27,7 +27,7 @@ const LocationInfo = ({ city, coord, country }) => {
                 }
                 let exParam = `USD_${currencyCode}`
                 let travelAdvisory = await axios.get(`https://www.travel-advisory.info/api?countrycode=${country}`);
-                let weather = await axios.get(`http://api.weatherapi.com/v1/forecast.json?key=${weatherkey}&q=${coord.lat},${coord.lng}&days=7`);
+                let weather = await axios.get(`https://api.weatherapi.com/v1/forecast.json?key=${weatherkey}&q=${coord.lat},${coord.lng}&days=7`);
                 let currencyex = await axios.get(`https://free.currconv.com/api/v7/convert?q=USD_${currencyCode},${currencyCode}_USD&compact=ultra&apiKey=${currencykey}`)
                 setTravelAdv(travelAdvisory.data.data[country]);
                 setWeather(weather.data.forecast.forecastday);
