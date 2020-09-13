@@ -8,12 +8,14 @@ const TripsPageAdvanced = ({ isHidden, filters }) => {
     const [ userGender, setUserGender ] = useState(null);
     const { budget, tripType, splitCosts, groupType, itinerary, accommodation } = filters;
 
-    const getUserGender = async () => {
+    const getUserGender = async ( backOffTime = 1 ) => {
         try {
             const data = await getUserById(currentUser.id);
             setUserGender(data.user.gender);
         } catch ( error ) {
-            console.log(error);
+            setTimeout(() => {
+				getUserGender(backOffTime * 2);
+			}, backOffTime * 1000);
         }
     }
 

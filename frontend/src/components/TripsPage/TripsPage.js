@@ -102,16 +102,14 @@ const TripsPage = ( props ) => {
         }
     }
 
-    const getCurrentUser = async () => {
-        // debugger
+    const getCurrentUser = async ( backOffTime = 1 ) => {
         try {
             let data = await getUserById(currentUser.id);
-            // while(!data) {
-            //     data = await getUserById(currentUser.id);
-            // }
             setUser(data.user);
         } catch ( error ) {
-            console.log(error);
+            setTimeout(() => {
+				getCurrentUser(backOffTime * 2);
+			}, backOffTime * 1000);
         }
     }
     
