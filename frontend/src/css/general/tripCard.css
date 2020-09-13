@@ -1,6 +1,6 @@
 .tripCard {
     display: grid;
-    grid-template-columns: 1fr 3fr;
+    grid-template-columns: 20% 80%;
     grid-template-rows: 1fr 0.75fr;
     width: 70%;
     background-color: white;
@@ -24,7 +24,7 @@
     justify-content: space-evenly;
     align-items: center;
     border-right: 2px solid #272A33;
-    font-size: 18px;
+    font-size: 16px;
     font-weight: bold;
 }
 
@@ -37,8 +37,8 @@
 }
 
 .tripCard img {
-    width: 175px;
-    height: 175px;
+    width: 125px;
+    height: 125px;
     object-fit: cover;
     border-radius: 5em;
     margin-bottom: 10px;
@@ -85,7 +85,7 @@
 }
 
 .tripCard p {
-    font-size: 20px;
+    font-size: 16px;
     font-weight: 500;
 }
 
