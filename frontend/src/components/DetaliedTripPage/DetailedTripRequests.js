@@ -3,7 +3,7 @@ import { getTripRequests } from '../../util/apiCalls/getRequests';
 import '../../css/detailedTripPage/detailedTripRequest.css';
 import RequestCard from '../General/RequestCard';
 
-const DetailedTripRequests = ({ trip = {} }) => {
+const DetailedTripRequests = ({ trip = {}, refresh }) => {
     const [ requests, setRequests ] = useState([]);
     const [ response, setResponse ] = useState(null);
 
@@ -14,6 +14,7 @@ const DetailedTripRequests = ({ trip = {} }) => {
         } else {
             setRequests([]);
         }
+        refresh((prevState) => !prevState);
     }
 
     useEffect(() => {

@@ -3,7 +3,7 @@ import { NavLink } from 'react-router-dom';
 import '../../css/detailedTripPage/detailedTripNav.css';
 import { getTripRequests, getTripTravelers } from '../../util/apiCalls/getRequests';
 
-const DetailedTripNav = ({ trip = {} }) => {
+const DetailedTripNav = ({ trip = {}, refresh }) => {
     const [ requests, setRequests ] = useState([]);
     const [ travelers, setTravelers ] = useState([]);
 
@@ -29,7 +29,7 @@ const DetailedTripNav = ({ trip = {} }) => {
         getTravelersCall();
         getRequestsCall();
         // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, [])
+    }, [refresh])
     
     return (
         <nav className="dt-nav">

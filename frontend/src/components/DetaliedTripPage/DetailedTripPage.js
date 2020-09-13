@@ -20,6 +20,7 @@ const DetailedTripPage = () => {
     const [ trip, setTrip ] = useState({});
     const [ imageRef, setImageRef ] = useState("");
     const { currentUser } = useContext(AuthContext);
+    const [ refresh, setRefresh ] = useState(false);
 
     const getPhoto = async () => {
         const { destination } = trip;
@@ -92,14 +93,14 @@ const DetailedTripPage = () => {
         if(currentUser.id === trip.planner_id) {
             return (
                 <>
-                <DetailedTripNav trip={trip}/>
+                <DetailedTripNav trip={trip} refresh={refresh} />
                 <Switch>
                         <Route exact path={"/trips/:tripId"}>
                             <DetailedTripTravelers trip={trip} />
                         </Route>
                         
                         <ProtectedUserRoute exact path={"/trips/:tripId/requests"} trip={trip}>
-                            <DetailedTripRequests trip={trip} />
+                            <DetailedTripRequests trip={trip} refresh={setRefresh} />
                         </ProtectedUserRoute>
         
                     </Switch>
