@@ -140,7 +140,7 @@ const DetailedTripInfo = ({ trip = {}, getTripCall }) => {
     }
 
     const getDisplayDate = ( date ) => {
-        if(Number(trip.id) <= 4) return date;
+        if(Number(trip.id) <= 4 && window.location.hostname === "localhost") return date;
         const splitDate = date.split("-");
         let year = splitDate[0];
         let month = splitDate[1];
