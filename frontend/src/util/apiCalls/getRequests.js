@@ -106,3 +106,13 @@ export const getUserByUsername = async ( username ) => {
         throw error;
     }
 }
+
+export const getMarkers = async ( ) => {
+    try {
+        const res = await axios.get(API + `/api/hotspots`);
+        return res.data;
+    } catch ( error ) {
+        console.log(error);
+        throw error;
+    }
+}

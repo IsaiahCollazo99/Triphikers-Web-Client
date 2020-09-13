@@ -124,3 +124,12 @@ export const acceptFriendRequest = async ( requester_id, requested_id ) => {
         throw error;
     }
 }
+
+export const submitHotspot = async ( info ) => {
+    try {
+        const res = await axios.post(API + `/api/hotspots`, info);
+        return res.data;
+    } catch ( error ) {
+        throw error;
+    }
+}

@@ -5,6 +5,8 @@ import { uploadPicture } from "../../util/firebaseFunction";
 import "../../css/locations/LocationHotspots.css";
 import { useContext } from "react";
 import { AuthContext } from "../../providers/AuthContext";
+import { getUserById, getMarkers } from "../../util/apiCalls/getRequests";
+import { submitHotspot } from "../../util/apiCalls/postRequests";
 let mapReset = 0;
 
 const LocationHotspots = ({ city, coord, country }) => {
@@ -29,8 +31,8 @@ const LocationHotspots = ({ city, coord, country }) => {
 
     const fetchUserName = async (id) =>{
         try {
-            let name = await axios.get(`http://localhost:3001/api/users/${id}`);
-            let nameSplit = name.data.user.full_name.split(" ")[0]
+            let data = await getUserById(id);
+            let nameSplit = data.user.full_name.split(" ")[0]
             setUserName(nameSplit);
             //want to redirect page when clicking on the usernames name that submitted a photo
         } catch (error) {
@@ -40,8 +42,8 @@ const LocationHotspots = ({ city, coord, country }) => {
 
     const fetchMarkers = async () => {
         try {
-            let res = await axios.get(`http://localhost:3001/api/hotspots`);
-            setAllMarkers(res.data.hotspots)
+            let data = await getMarkers();
+            setAllMarkers(data.hotspots);
         } catch (error) {
             console.log(error)
         }
@@ -69,7 +71,7 @@ const LocationHotspots = ({ city, coord, country }) => {
             image: data.url,
             poster_id: currentUser.id
         }
-        await axios.post(`http://localhost:3001/api/hotspots`, submission);
+        await submitHotspot(submission);
         setSubmitted(true);
         setSubmitCoordinates([]);
         setSubmitHotspotTitle("");
