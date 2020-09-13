@@ -10,7 +10,6 @@
     flex-direction: row;
     width: 100%;
     justify-content: space-between;
-    padding-bottom: 1em;
     margin-bottom: 1em;
     font-size: 22px;
 }
@@ -34,6 +33,10 @@
     width: 30%;
 }
 
+.dti-dates {
+    margin-bottom: 0;
+}
+
 .dt-info article {
     padding: 1em 0; 
 }
@@ -44,7 +47,6 @@
 }
 
 .dt-info main {
-    margin-top: 1em;
     display: grid;
     grid-template-columns: 1fr 1fr 1fr;
     grid-template-rows: 1fr 1fr 1fr;

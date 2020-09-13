@@ -4,7 +4,7 @@
     background-color: #f3f3f3;
     display: grid;
     grid-template-columns: 20% 80%;
-    grid-template-rows: 25vh 75vh;
+    grid-template-rows: 25vh 65vh;
     font-size: 18px;
 }
 
@@ -31,6 +31,7 @@
     grid-column: 1 / 2;
     padding-bottom: 5em;
     width: 100%;
+    justify-content: space-evenly;
 }
 
 .dt-user {
