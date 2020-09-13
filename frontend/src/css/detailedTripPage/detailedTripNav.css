@@ -3,6 +3,7 @@
     flex-direction: row;
     justify-content: space-evenly;
     font-size: 1.25em;
+    padding-bottom: 20px;
 }
 
 .dt-nav a {
@@ -18,6 +19,7 @@
 .dt-nav a:hover:not(.active){
     background-color: #d4D4d4;
     color: #0091ea;
+    text-decoration: none;
 }
 
 .dt-nav .active {

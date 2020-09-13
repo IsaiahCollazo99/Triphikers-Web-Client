@@ -117,6 +117,10 @@ const DetailedTripPage = () => {
     if(trip.full_name) {
         return (
             <div className="detailedTripContainer">
+                <a href={imageRef} target="_blank" rel="noopener noreferrer" className="dt-coverContainer">
+                    <img src={imageRef} alt={trip.destination} className="dt-coverImg" />
+                </a>
+
                 <aside className="dt-header">
                     <section className="dt-user">
                         <img src={trip.profile_picture} alt={trip.full_name} />
@@ -130,16 +134,13 @@ const DetailedTripPage = () => {
                     </section>
     
                     <section className="dt-userInfo">
-                        <p><span>Age: </span>{trip.age}</p>
-                        <p><span>Country: </span>{trip.country_of_origin}</p>
-                        <p><span>Gender: </span>{trip.gender}</p>
+                        <p>{trip.age}</p>
+                        <p>{trip.country_of_origin}</p>
+                        <p>{trip.gender}</p>
                     </section>
                 </aside>
 
                 <main>
-                    <a href={imageRef} target="_blank" rel="noopener noreferrer">
-                        <img src={imageRef} alt={trip.destination} className="dt-coverImg" />
-                    </a>
                     <DetailedTripInfo trip={trip} getTripCall={getTripCall} />
 
                     {displayNav()}

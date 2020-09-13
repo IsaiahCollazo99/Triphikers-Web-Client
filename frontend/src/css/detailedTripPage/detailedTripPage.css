@@ -1,35 +1,36 @@
 .detailedTripContainer {
     width: 100%;
     padding-top: 85px;
-    padding-bottom: 30px;
     background-color: #f3f3f3;
     display: grid;
     grid-template-columns: 20% 80%;
-    min-height: 100vh;
+    grid-template-rows: 25vh 75vh;
     font-size: 18px;
+}
+
+.dt-coverContainer {
+    height: fit-content;
+    grid-column: 1 / 3;
+}
+
+.dt-coverImg {
+    height: 25vh;
+    width: 100%;
+    object-fit: cover;
 }
 
 .detailedTripContainer p {
     font-weight: 500;
 }
 
-.detailedTripContainer p > span {
-    font-weight: 800;
-    color: #0065a3;
-}
-
 .detailedTripContainer aside {
     display: flex;
     flex-direction: column;
     background-color: #f3f3f3;
-    font-size: 16px;
+    font-size: 18px;
     grid-column: 1 / 2;
-    border-right: 2px solid black;
-    height: 100vh;
-    position: fixed;
-    padding: 2em 0;
     padding-bottom: 5em;
-    width: 20%;
+    width: 100%;
 }
 
 .dt-user {
@@ -44,8 +45,8 @@
 }
 
 .dt-user img {
-    width: 200px;
-    height: 200px;
+    width: 175px;
+    height: 175px;
     object-fit: cover;
     border-radius: 7em;
     margin-bottom: 20px;
@@ -94,18 +95,15 @@
     margin-bottom: 0;
 }
 
-.detailedTripContainer > a {
-    height: fit-content;
-}
-
-.dt-coverImg {
-    height: 300px;
-    width: 100%;
-    object-fit: cover;
-}
-
 .detailedTripContainer > main {
     grid-column: 2 / 3;
     display: flex;
     flex-direction: column;
+    height: 100%;
+    overflow: scroll;
+}
+
+.detailedTripContainer p > span {
+    font-weight: 800;
+    color: #0065a3;
 }
