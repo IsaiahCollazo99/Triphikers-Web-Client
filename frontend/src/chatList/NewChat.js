@@ -83,7 +83,7 @@ const NewChat = ({ redirectToChat, newChatSubmit }) => {
                         <InputLabel htmlFor="new-chat-message">Enter Your Message</InputLabel>
                         <Input required className="input" onChange={(e) => userTyping('message', e)} id="new-chat-message"></Input>
                     </FormControl>
-                    <Button fullWidth className="submit" variant="contained" color="primary" type="submit">Submit</Button>
+                    <Button fullWidth className="submit" variant="contained" color="primary" style={{marginTop: "15px"}} type="submit">Submit</Button>
                 </form>
             </Paper>
         </main>

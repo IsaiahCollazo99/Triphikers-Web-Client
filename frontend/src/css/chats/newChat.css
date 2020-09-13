@@ -1,15 +1,19 @@
 .newChatMain {
     width: auto;
     display: block;
+    /* align-self: center; */
 }
 
 .paper {
+    margin: 7em auto 0 auto;
     position: absolute;
     width: 350px;
     top: 50px;
-    left: calc(50% + 150px - 175px)
+    left: calc(50% + 150px - 175px);
+    padding: 20px;
 }
 
 .form {
-    width: 100%
+    width: 100%;
+    margin: 15px 0;
 }
