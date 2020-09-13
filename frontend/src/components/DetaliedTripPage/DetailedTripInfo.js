@@ -140,7 +140,7 @@ const DetailedTripInfo = ({ trip = {}, getTripCall }) => {
     }
 
     const getDisplayDate = ( date ) => {
-        if(Number(trip.id) <= 4) return date;
+        if(Number(trip.id) <= 4 && window.location.hostname === "localhost") return date;
         const splitDate = date.split("-");
         let year = splitDate[0];
         let month = splitDate[1];
@@ -156,9 +156,10 @@ const DetailedTripInfo = ({ trip = {}, getTripCall }) => {
                 <section className="dt-hi">
                     <h2>{trip.trip_title}</h2>
                     <p><span>Destination: </span>{trip.destination}</p>
-                    <p>
+                    <p className="dti-dates">
                         <span>From </span>{getDisplayDate(trip.date_from)}
-                        <span> To </span>{getDisplayDate(trip.date_to)}</p>
+                        <span> To </span>{getDisplayDate(trip.date_to)}
+                    </p>
                 </section>
 
                 <section className="dt-buttons">

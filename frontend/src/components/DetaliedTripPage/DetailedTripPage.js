@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useContext } from 'react';
 import { useParams, Route, Switch, Link } from 'react-router-dom';
 import { getTripById } from '../../util/apiCalls/getRequests';
 import { ProtectedUserRoute } from '../../util/routesUtil';
@@ -12,12 +12,14 @@ import InstagramLogo from '../../images/glyph-logo_May2016.png';
 import TwitterLogo from '../../images/Twitter_Social_Icon_Circle_Color.png';
 import horizon from '../../images/horizon.jpg';
 import '../../css/detailedTripPage/detailedTripPage.css';
+import { AuthContext } from '../../providers/AuthContext';
 
 const DetailedTripPage = () => {
     const client = createClient(`563492ad6f9170000100000153f28b06267f4b548fc99fbb457455db`);
     const { id } = useParams();
     const [ trip, setTrip ] = useState({});
     const [ imageRef, setImageRef ] = useState("");
+    const { currentUser } = useContext(AuthContext);
 
     const getPhoto = async () => {
         const { destination } = trip;
@@ -86,8 +88,38 @@ const DetailedTripPage = () => {
         )
     }
 
+    const displayNav = () => {
+        if(currentUser.id === trip.planner_id) {
+            return (
+                <>
+                <DetailedTripNav trip={trip}/>
+                <Switch>
+                        <Route exact path={"/trips/:tripId"}>
+                            <DetailedTripTravelers trip={trip} />
+                        </Route>
+                        
+                        <ProtectedUserRoute exact path={"/trips/:tripId/requests"} trip={trip}>
+                            <DetailedTripRequests trip={trip} />
+                        </ProtectedUserRoute>
+        
+                    </Switch>
+                </>
+            )
+        } else {
+            return (
+                <>
+                <DetailedTripTravelers trip={trip} />
+                </>
+            )
+        }
+    }
+
     if(trip.full_name) {
         return (
+            <>
+            <a href={imageRef} target="_blank" rel="noopener noreferrer" className="dt-coverContainer">
+                <img src={imageRef} alt={trip.destination} className="dt-coverImg" />
+            </a>
             <div className="detailedTripContainer">
                 <aside className="dt-header">
                     <section className="dt-user">
@@ -102,34 +134,17 @@ const DetailedTripPage = () => {
                     </section>
     
                     <section className="dt-userInfo">
-                        <p><span>Age: </span>{trip.age}</p>
-                        <p><span>Country: </span>{trip.country_of_origin}</p>
-                        <p><span>Gender: </span>{trip.gender}</p>
+                        <p>{trip.age}</p>
+                        <p>{trip.country_of_origin}</p>
+                        <p>{trip.gender}</p>
                     </section>
                 </aside>
 
-                <main>
-                    <a href={imageRef} target="_blank" rel="noopener noreferrer">
-                        <img src={imageRef} alt={trip.destination} className="dt-coverImg" />
-                    </a>
+                <DetailedTripInfo trip={trip} getTripCall={getTripCall} />
 
-                    <DetailedTripNav trip={trip}/>
-                    <Switch>
-                        <Route exact path={"/trips/:tripId/"}>
-                            <DetailedTripInfo trip={trip} getTripCall={getTripCall} />
-                        </Route>
-        
-                        <Route exact path={"/trips/:tripId/travelers"}>
-                            <DetailedTripTravelers trip={trip} />
-                        </Route>
-                        
-                        <ProtectedUserRoute exact path={"/trips/:tripId/requests"} trip={trip}>
-                            <DetailedTripRequests trip={trip} />
-                        </ProtectedUserRoute>
-        
-                    </Switch>
-                </main>
+                {displayNav()}
             </div>
+            </>
         )
     } else {
         return (

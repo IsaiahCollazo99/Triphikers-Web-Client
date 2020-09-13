@@ -4,12 +4,12 @@
   display: grid;
   grid-template-columns: 20% 80%;
   background-color: #f3f3f3;
-  min-height: 100vh;
+  min-height: 90vh;
   font-size: 18px;
 }
 
 .userPageContainer > aside {
-  height: 100vh;
+  height: 90vh;
   position: fixed;
   width: 20%;
   padding: 5px 2em 0 2em;

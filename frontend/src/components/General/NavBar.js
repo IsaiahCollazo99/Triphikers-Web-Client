@@ -11,7 +11,8 @@ const style = {
 	'backgroundColor': '#f3f3f3',
 	'display': 'flex',
 	'flexDirection': 'row',
-	'justifyContent': 'space-between'
+	'justifyContent': 'space-between',
+	'height': '10vh'
 }
 
 const ElevationScroll = ({ children }) => {

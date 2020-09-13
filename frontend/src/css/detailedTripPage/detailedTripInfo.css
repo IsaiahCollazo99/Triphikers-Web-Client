@@ -1,8 +1,10 @@
 .dt-info {
     display: flex;
     flex-direction: column;
-    padding: 3.5em 1.5em 1em 1.5em;
+    padding: 1em 1.5em;
     margin: auto 0;
+    grid-column: 2 / 3;
+    width: 100%;
 }
 
 .dt-info header {
@@ -10,7 +12,6 @@
     flex-direction: row;
     width: 100%;
     justify-content: space-between;
-    padding-bottom: 1em;
     margin-bottom: 1em;
     font-size: 22px;
 }
@@ -34,6 +35,10 @@
     width: 30%;
 }
 
+.dti-dates {
+    margin-bottom: 0;
+}
+
 .dt-info article {
     padding: 1em 0; 
 }
@@ -44,7 +49,6 @@
 }
 
 .dt-info main {
-    margin-top: 1em;
     display: grid;
     grid-template-columns: 1fr 1fr 1fr;
     grid-template-rows: 1fr 1fr 1fr;

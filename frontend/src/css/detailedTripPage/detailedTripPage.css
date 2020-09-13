@@ -1,36 +1,38 @@
+.dt-coverContainer {
+    padding-top: 85px;
+    height: fit-content;
+    width: 100%;
+}
+
+.dt-coverImg {
+    height: 25vh;
+    width: 100%;
+    object-fit: cover;
+}
+
 .detailedTripContainer {
     width: 100%;
-    padding-top: 85px;
-    padding-bottom: 30px;
     background-color: #f3f3f3;
     display: grid;
-    grid-template-columns: 25% 75%;
-    min-height: 100vh;
+    grid-template-columns: 20% 80%;
+    grid-template-rows: 65vh auto auto;
+    min-height: 75vh;
     font-size: 18px;
+    align-items: center;
 }
 
 .detailedTripContainer p {
     font-weight: 500;
 }
 
-.detailedTripContainer p > span {
-    font-weight: 800;
-    color: #0065a3;
-}
-
 .detailedTripContainer aside {
     display: flex;
     flex-direction: column;
-    justify-content: space-evenly;
     background-color: #f3f3f3;
-    font-size: 1.2em;
+    font-size: 18px;
     grid-column: 1 / 2;
-    border-right: 2px solid black;
-    height: 100vh;
-    position: fixed;
-    padding: 2em 0;
-    padding-bottom: 5em;
-    width: 25%;
+    width: 100%;
+    justify-content: space-evenly;
 }
 
 .dt-user {
@@ -41,11 +43,12 @@
     font-weight: 600;
     justify-content: space-evenly;
     text-align: center;
+    margin-bottom: 10%;
 }
 
 .dt-user img {
-    width: 200px;
-    height: 200px;
+    width: 175px;
+    height: 175px;
     object-fit: cover;
     border-radius: 7em;
     margin-bottom: 20px;
@@ -78,7 +81,8 @@
     flex-direction: column;
     padding: 1em;
     justify-content: space-evenly;
-    height: 50%;
+    height: 20%;
+    margin-bottom: 10%;
 }
 
 .dt-userInfo p {
@@ -93,18 +97,12 @@
     margin-bottom: 0;
 }
 
-.detailedTripContainer > a {
-    height: fit-content;
-}
-
-.dt-coverImg {
-    height: 300px;
-    width: 100%;
-    object-fit: cover;
-}
-
 .detailedTripContainer > main {
-    grid-column: 2 / 3;
     display: flex;
     flex-direction: column;
+}
+
+.detailedTripContainer p > span {
+    font-weight: 800;
+    color: #0065a3;
 }
