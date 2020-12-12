@@ -1,0 +1,27 @@
+.landingPage {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;    
+}
+
+.landingPage button:not(.lp-carouselBtn):not(.tc-btn){
+    padding: 1em .5em;
+    width: 25%;
+    border-radius: 2em;
+    font-weight: bold;
+    font-family: 'Roboto';
+    font-size: 1.25em;
+}
+
+.lp-orange {
+    background-color: #FF9506;
+    border: 2px solid #272A33;
+    color: #272A33;
+    transition: 0.3s ease-in-out;
+}
+
+.lp-orange:hover {
+    background-color: #e08002;
+    cursor: pointer;
+}

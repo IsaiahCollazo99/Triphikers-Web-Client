@@ -1,0 +1,21 @@
+.App {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    min-height: 100vh;
+    background-color: #f3f3f3;
+}
+
+.error {
+    font-weight: bold;
+    color: red;
+}
+
+.success {
+    font-weight: bold;
+    color: rgb(0, 228, 0);
+}
+
+#back-to-top-anchor {
+    height: 0;
+}

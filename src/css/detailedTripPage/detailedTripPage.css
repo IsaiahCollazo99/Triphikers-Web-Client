@@ -1,0 +1,108 @@
+.dt-coverContainer {
+    padding-top: 85px;
+    height: fit-content;
+    width: 100%;
+}
+
+.dt-coverImg {
+    height: 25vh;
+    width: 100%;
+    object-fit: cover;
+}
+
+.detailedTripContainer {
+    width: 100%;
+    background-color: #f3f3f3;
+    display: grid;
+    grid-template-columns: 20% 80%;
+    grid-template-rows: 65vh auto auto;
+    min-height: 75vh;
+    font-size: 18px;
+    align-items: center;
+}
+
+.detailedTripContainer p {
+    font-weight: 500;
+}
+
+.detailedTripContainer aside {
+    display: flex;
+    flex-direction: column;
+    background-color: #f3f3f3;
+    font-size: 18px;
+    grid-column: 1 / 2;
+    width: 100%;
+    justify-content: space-evenly;
+}
+
+.dt-user {
+    padding: 1em;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    font-weight: 600;
+    justify-content: space-evenly;
+    text-align: center;
+    margin-bottom: 10%;
+}
+
+.dt-user img {
+    width: 175px;
+    height: 175px;
+    object-fit: cover;
+    border-radius: 7em;
+    margin-bottom: 20px;
+}
+
+.dt-user a {
+    color: #e45f00;
+    text-decoration: none;
+    align-self: center;
+}
+
+.dt-user a:hover {
+    cursor: pointer;
+}
+
+.dt-socialMedia {
+    display: flex;
+    width: 100%;
+}
+
+.dt-socialMedia img {
+    width: 39px;
+    height: 39px;
+    margin: 22.5px;
+    border-radius: 0;
+}
+
+.dt-userInfo {
+    display: flex;
+    flex-direction: column;
+    padding: 1em;
+    justify-content: space-evenly;
+    height: 20%;
+    margin-bottom: 10%;
+}
+
+.dt-userInfo p {
+    margin: 0.35em 0;
+}
+
+.dt-userInfo p:first-of-type {
+    margin-top: 0;
+}
+
+.dt-userInfo p:last-of-type {
+    margin-bottom: 0;
+}
+
+.detailedTripContainer > main {
+    display: flex;
+    flex-direction: column;
+}
+
+.detailedTripContainer p > span {
+    font-weight: 800;
+    color: #0065a3;
+}
