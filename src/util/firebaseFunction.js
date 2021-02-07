@@ -1,5 +1,5 @@
 import firebase from '../firebase';
-import { storage } from 'firebase';
+import app from 'firebase';
 
 firebase.auth().useDeviceLanguage();
 
@@ -64,7 +64,7 @@ const handleError = ( error ) => {
 export const uploadPicture = async ( folderPath, data, callback ) => {
     try {
         const now = new Date().toString();
-        let storageRef = storage().ref(folderPath + now);
+        let storageRef = app.storage().ref(folderPath + now);
         let upload = storageRef.put(data.file);
     
         upload.on('state_changed', handleSnapshot, handleError , async () => {

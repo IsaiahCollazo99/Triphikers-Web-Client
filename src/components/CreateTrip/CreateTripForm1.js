@@ -185,10 +185,8 @@ const CreateTripForm1 = ( props ) => {
 						<option value="" disabled>
 							Select a Group Type
 						</option>
-						<option value="Male">Male</option>
-						<option value="Female">Female</option>
-						{getGroupTypeOptions()}
 						<option value="Any">Any</option>
+						{getGroupTypeOptions()}
 					</CustomTextField>
 
 					<CustomTextField

@@ -112,8 +112,6 @@ const TripsPageAdvanced = ({ isHidden, filters }) => {
             >
                     <option value="" disabled>Select a Group Type</option>
                     <option value="none">No preference</option>
-                    <option value="Male">Male</option>
-                    <option value="Female">Female</option>
                     {getGroupTypeOptions()}
                     <option value="Any">Any</option>
             </CustomTextField>

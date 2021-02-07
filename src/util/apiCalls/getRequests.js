@@ -3,9 +3,10 @@ import { apiURL } from '../../util/apiURL';
 
 const API = apiURL();
 
-export const getAllTrips = async () => {
+export const getAllTrips = async ( userId ) => {
     try {
-        let res = await axios.get(API + "/api/trips");
+        const url = userId ? `/api/trips?userId=${userId}` : "/api/trips";
+        let res = await axios.get(API + url);
         return res.data;
     } catch (error) {
         throw error;
