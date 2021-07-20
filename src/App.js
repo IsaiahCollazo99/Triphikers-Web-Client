@@ -8,7 +8,7 @@ import LandingPage from "./components/landing-page/landing-page";
 import CreateSignUpContainer from "./components/sign-up/sign-up-container";
 import LocationPage from "./components/location-page/location-page"
 import Login	from "./components/login/login"
-import UserPage from "./components/User/UserPage";
+import UserPage from "./components/user-profile/UserPage";
 import NavBar from "./components/nav-bar/nav-bar";
 import AuthProvider from "./providers/AuthContext";
 import LocationSearch from "./components/Location/LocationSearch";
