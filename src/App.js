@@ -5,9 +5,9 @@ import TripsPage from "./components/TripsPage/TripsPage";
 import CreateTripsContainer from "./components/create-trip/create-trip-container";
 import DetailedTripPage from "./components/detailed-trip-page/detailed-trip-page";
 import LandingPage from "./components/landing-page/landing-page";
-import CreateSignUpContainer from "./components/Login/SignUpContainer";
+import CreateSignUpContainer from "./components/sign-up/sign-up-container";
 import LocationPage from "./components/location-page/location-page"
-import Login	from "./components/Login/Login"
+import Login	from "./components/login/login"
 import UserPage from "./components/User/UserPage";
 import NavBar from "./components/nav-bar/nav-bar";
 import AuthProvider from "./providers/AuthContext";

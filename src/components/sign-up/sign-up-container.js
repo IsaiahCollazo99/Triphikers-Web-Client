@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from "react";
 import { useInput } from "../../util/customHooks";
-import CreateSignUpForm1 from "./CreateSignUpForm1";
-import CreateSignUpForm2 from "./CreateSignUpForm2";
-import CreateSignUpForm3 from "./CreateSignUpForm3";
-import SignUpMethod from './SignUpMethod';
+import SignUpCredentials from "./sign-up-credentials";
+import SignUpPersonalInfo from "./sign-up-personal-info";
+import SignUpAccountInfo from "./sign-up-account-info";
+import SignUpMethod from './sign-up-method';
 import { createUser } from "../../util/apiCalls/postRequests";
 import { signUp, uploadPicture } from "../../util/firebaseFunction";
 import '../../css/signUpIn/signUp.css';
@@ -96,15 +96,19 @@ const CreateSignUpContainer = () => {
 			)
 		} else if (page === 1) {
 			return (
-				<CreateSignUpForm1 {...pageOne} handlePageChange={handlePageChange} />
+				<SignUpCredentials {...pageOne} handlePageChange={handlePageChange} />
 			);
 		} else if (page === 2) {
 			return (
-				<CreateSignUpForm2 {...pageTwo} handlePageChange={handlePageChange} />
+				<SignUpPersonalInfo {...pageTwo} handlePageChange={handlePageChange} />
 			);
 		} else if (page === 3) {
 			return (
-				<CreateSignUpForm3 {...pageThree} handlePageChange={handlePageChange} handleSubmit={handleSubmit} />
+				<SignUpAccountInfo 
+					{...pageThree} 
+					handlePageChange={handlePageChange} 
+					handleSubmit={handleSubmit} 
+				/>
 			);
 		}
 	};
