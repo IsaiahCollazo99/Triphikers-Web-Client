@@ -1,20 +1,21 @@
 import React from "react";
-import { AuthRoute, ProtectedRoute } from "./util/routesUtil";
 import { Switch, Route } from "react-router-dom";
-import TripsPage from "./components/trips-page/trips-page";
-import CreateTripsContainer from "./components/create-trip/create-trip-container";
-import DetailedTripPage from "./components/detailed-trip-page/detailed-trip-page";
-import LandingPage from "./components/landing-page/landing-page";
-import CreateSignUpContainer from "./components/sign-up/sign-up-container";
-import LocationPage from "./components/location-page/location-page"
-import Login	from "./components/login/login"
-import UserPage from "./components/user-profile/user-profile";
-import NavBar from "./components/nav-bar/nav-bar";
-import AuthProvider from "./providers/AuthContext";
-import LocationSearch from "./components/Location/LocationSearch";
-import UserPageEdit from "./components/edit-profile/edit-profile-page";
-import MessagesPage from "./components/chat-list/messages-page";
-import Safety from "./components/landing-page/safety";
+
+import CreateTripsContainer from "./pages/create-trip/create-trip-container";
+import DetailedTripPage from "./pages/detailed-trip-page/detailed-trip-page";
+import UserPageEdit from "./pages/edit-profile/edit-profile-page";
+import LandingPage from "./pages/landing-page/landing-page";
+import Safety from "./pages/landing-page/safety";
+import LocationPage from "./pages/location-page/location-page"
+import LocationSearch from "./pages/location-search/location-search";
+import Login	from "./pages/login/login"
+import MessagesPage from "./pages/messages-page/messages-page";
+import NavBar from "./pages/nav-bar/nav-bar";
+import CreateSignUpContainer from "./pages/sign-up/sign-up-container";
+import TripsPage from "./pages/trips-page/trips-page";
+import UserPage from "./pages/user-profile/user-profile";
+import AuthProvider from "./providers/auth-context";
+import { AuthRoute, ProtectedRoute } from "./util/routes-util";
 import "./App.css";
 
 function App() {
