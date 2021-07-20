@@ -2,12 +2,12 @@ import Button from '@material-ui/core/Button';
 import React, { useContext, useEffect, useState } from 'react';
 import { useHistory } from 'react-router-dom';
 
-import UserInfoEdit from './edit-user-info';
-import UserSocialEdit from './edit-user-social';
+import UserInfoEdit from './components/edit-user-info';
+import UserSocialEdit from './components/edit-user-social';
 import { AuthContext } from '../../providers/auth-context';
-import { getUserById, updateUser } from '../../util/apiCalls/get-requests';
+import { getUserById, updateUser } from '../../util/api-calls/get-requests';
 import { useInput } from '../../util/custom-hooks';
-import { uploadPicture } from '../../util/firebaseFunction';
+import { uploadPicture } from '../../util/firebase-functions';
 import './edit-profile.css';
 import '../user-profile/user-profile.css';
 

@@ -8,7 +8,7 @@
 
 .lp-about::before {
     content: "";
-    background-image: url(../../images/friendsOnBoat.jpg);
+    background-image: url(../../../images/friendsOnBoat.jpg);
     background-position: center;
     background-size: cover;
     position: absolute;

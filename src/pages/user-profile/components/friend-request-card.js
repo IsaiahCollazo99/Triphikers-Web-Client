@@ -1,9 +1,9 @@
 import { Link, Button } from '@material-ui/core';
 import React, { useContext } from 'react';
 
-import { AuthContext } from '../../providers/AuthContext';
-import { deleteFriendRequest } from '../../util/apiCalls/deleteRequests';
-import { acceptFriendRequest } from '../../util/apiCalls/postRequests';
+import { AuthContext } from '../../../providers/auth-context';
+import { deleteFriendRequest } from '../../../util/api-calls/delete-requests';
+import { acceptFriendRequest } from '../../../util/api-calls/post-requests';
 
 const FriendRequestCard = ({ user, refresh }) => {
     const { currentUser } = useContext(AuthContext);

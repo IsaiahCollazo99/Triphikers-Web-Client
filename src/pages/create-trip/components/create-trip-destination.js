@@ -2,9 +2,9 @@ import { useLoadScript } from "@react-google-maps/api";
 import axios from "axios";
 import React, { useState, useEffect} from "react";
 
-import PopulateLocationSelect from '../../../components/location-select/location-select';
 import CreateTripCitySearch from "./create-trip-city-search";
-import CustomTextField from '../../custom-components/custom-text-field/custom-text-field';
+import CustomTextField from '../../../components/custom-text-field/custom-text-field';
+import PopulateLocationSelect from '../../../components/location-select/location-select';
 
 const {
     REACT_APP_GOOGLEAPIKEY

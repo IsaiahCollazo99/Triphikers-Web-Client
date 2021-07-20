@@ -3,7 +3,7 @@ import { makeStyles } from '@material-ui/core/styles';
 import React from 'react';
 
 import LandingPageFooter from './landing-page-footer';
-import friendsSelfie from "../../images/friendsSelfieCar.jpg";
+import friendsSelfie from "../../../images/friendsSelfieCar.jpg";
 import './landing-page-why.css';
 
 const useStyles = makeStyles((theme) => ({

@@ -3,7 +3,7 @@ import React, { useEffect, useState } from 'react';
 import { FaSearch, FaSync } from 'react-icons/fa';
 
 import TripsPageAdvanced from './trips-page-advanced';
-import { useInput } from '../../util/customHooks';
+import { useInput } from '../../../util/custom-hooks';
 import './trips-page-filter.css';
 
 const TripsPageFilter = ({ filterTrips, getTripsCall }) => {

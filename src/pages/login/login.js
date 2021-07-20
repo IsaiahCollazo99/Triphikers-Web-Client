@@ -2,9 +2,9 @@ import { IconButton, InputAdornment, Button } from '@material-ui/core';
 import { Visibility, VisibilityOff } from '@material-ui/icons';
 import React, { useState } from "react";
 
+import CustomTextField from '../../components/custom-text-field/custom-text-field';
 import { useInput } from "../../util/custom-hooks";
-import { login } from "../../util/firebaseFunction";
-import CustomTextField from '../custom-components/custom-text-field/custom-text-field';
+import { login } from "../../util/firebase-functions";
 import './login.css';
 
 const Login = () => {

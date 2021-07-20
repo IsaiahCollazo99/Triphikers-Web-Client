@@ -4,7 +4,7 @@ import { useHistory } from 'react-router-dom';
 import CreateTripPage1 from './create-trip-page-1';
 import CreateTripPage2 from './create-trip-page-2';
 import { AuthContext } from '../../providers/auth-context';
-import { createTrip, approveTraveler } from '../../util/apiCalls/post-requests';
+import { createTrip, approveTraveler } from '../../util/api-calls/post-requests';
 import { useInput } from '../../util/custom-hooks';
 import './create-trip-container.css';
 

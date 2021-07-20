@@ -2,10 +2,10 @@ import { Button } from '@material-ui/core';
 import React, { useContext, useState, useEffect } from 'react';
 import { useHistory, Link } from 'react-router-dom';
 
-import { AuthContext } from '../../../providers/AuthContext';
-import { deleteTripRequest, deleteTrip } from '../../../util/apiCalls/deleteRequests';
-import { getTripRequests, getTripTravelers } from '../../../util/apiCalls/getRequests';
-import { createTripRequest } from '../../../util/apiCalls/postRequests';
+import { AuthContext } from '../../providers/auth-context';
+import { deleteTripRequest, deleteTrip } from '../../util/api-calls/delete-requests';
+import { getTripRequests, getTripTravelers } from '../../util/api-calls/get-requests';
+import { createTripRequest } from '../../util/api-calls/post-requests';
 import './trip-card.css';
 
 const TripCard = ({ trip, refresh }) => {

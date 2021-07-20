@@ -1,7 +1,7 @@
 import { FormControl, InputLabel, Input, Button, Paper, CssBaseline, Typography } from '@material-ui/core';
 import React, { useState } from 'react';
 
-import firebase from "../../firebase";
+import firebase from "../../../firebase";
 import "./new-chat.css";
 
 const NewChat = ({ redirectToChat, newChatSubmit }) => {

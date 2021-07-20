@@ -11,7 +11,7 @@ import InstagramLogo from '../../images/glyph-logo_May2016.png';
 import TwitterLogo from '../../images/Twitter_Social_Icon_Circle_Color.png';
 import horizon from '../../images/horizon.jpg';
 import { AuthContext } from '../../providers/auth-context';
-import { getTripById } from '../../util/apiCalls/get-requests';
+import { getTripById } from '../../util/api-calls/get-requests';
 import { ProtectedUserRoute } from '../../util/routes-util';
 import './detailed-trip-page.css';
 

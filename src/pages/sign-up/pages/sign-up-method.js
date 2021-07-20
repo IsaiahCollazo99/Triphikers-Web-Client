@@ -1,8 +1,9 @@
 import React from "react";
-import { signUpWithGoogle, signUpWithFacebook, signUpWithTwitter } from "../../util/firebaseFunction";
-import googleLogo from '../../images/btn_google_light_normal_ios.svg'
-import fBookLogo from '../../images/f_logo_RGB-Blue_1024.png'
-import '../../css/signUpIn/brandButtons.css';
+
+import { signUpWithGoogle, signUpWithFacebook, signUpWithTwitter } from "../../../util/firebase-functions";
+import googleLogo from '../../../images/btn_google_light_normal_ios.svg'
+import fBookLogo from '../../../images/f_logo_RGB-Blue_1024.png'
+import './brand-buttons.css';
 
 const SignUpMethod = ({ handlePageChange, setUser }) => {
 

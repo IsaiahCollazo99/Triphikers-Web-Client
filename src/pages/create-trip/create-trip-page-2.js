@@ -3,7 +3,7 @@ import FiberManualRecordIcon from "@material-ui/icons/FiberManualRecord";
 import RadioButtonUncheckedIcon from "@material-ui/icons/RadioButtonUnchecked";
 import React from 'react';
 
-import CustomTextField from '..custom-components/custom-text-field';
+import CustomTextField from '../../components/custom-text-field/custom-text-field';
 import "./create-trip-page-2.css";
 
 const CreateTripPage2 = ( props ) => {

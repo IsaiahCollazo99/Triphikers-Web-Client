@@ -4,10 +4,10 @@ import RadioButtonUncheckedIcon from "@material-ui/icons/RadioButtonUnchecked";
 import React, { useState, useContext, useEffect } from 'react';
 
 import CreateTripDestination from './components/create-trip-destination';
+import CustomTextField from "../../components/custom-text-field/custom-text-field";
 import LanguageSelect from '../../components/language-select/language-select';
 import { AuthContext } from '../../providers/auth-context';
-import { getUserById } from '../../util/apiCalls/get-requests';
-import CustomTextField from "../custom-components/custom-text-field/custom-text-field";
+import { getUserById } from '../../util/api-calls/get-requests';
 import "./create-trip-page-1.css";
 
 const CreateTripPage1 = ( props ) => {
@@ -16,6 +16,7 @@ const CreateTripPage1 = ( props ) => {
     const [ userGender, setUserGender ] = useState(null);
 
     const {
+		destination,
         dateFrom, 
         dateTo, 
         groupType, 

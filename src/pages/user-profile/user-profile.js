@@ -11,9 +11,9 @@ import FacebookLogo from '../../images/f_logo_RGB-Blue_1024.png';
 import InstagramLogo from '../../images/glyph-logo_May2016.png';
 import TwitterLogo from '../../images/Twitter_Social_Icon_Circle_Color.png'
 import { AuthContext } from '../../providers/auth-context';
-import { deleteFriendRequest } from '../../util/apiCalls/delete-requests';
-import { getUserById, getUserTrips, getUserFriendRequests, getUserFriends } from '../../util/apiCalls/get-requests'
-import { sendFriendRequest } from '../../util/apiCalls/post-requests';
+import { deleteFriendRequest } from '../../util/api-calls/delete-requests';
+import { getUserById, getUserTrips, getUserFriendRequests, getUserFriends } from '../../util/api-calls/get-requests'
+import { sendFriendRequest } from '../../util/api-calls/post-requests';
 import { ProtectedUserRoute } from '../../util/routes-util';
 import './user-profile.css'
 

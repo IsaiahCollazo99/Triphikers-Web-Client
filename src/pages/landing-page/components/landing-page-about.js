@@ -3,9 +3,9 @@ import { makeStyles } from '@material-ui/core/styles';
 import React from 'react';
 
 import LandingPageSearch from './landing-page-search';
-import worldIcon from "../../images/icons/around-the-globe-icon.png";
-import peopleIcon from "../../images/icons/people-icon.png";
-import selfieIcon from "../../images/icons/selfie-icon.png";
+import worldIcon from "../../../images/icons/around-the-globe-icon.png";
+import peopleIcon from "../../../images/icons/people-icon.png";
+import selfieIcon from "../../../images/icons/selfie-icon.png";
 import './landing-page-about.css';
 
 const useStyles = makeStyles((theme) => ({

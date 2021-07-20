@@ -2,8 +2,8 @@ import { Button } from '@material-ui/core';
 import React from 'react';
 import { Link } from 'react-router-dom';
 
-import { approveTraveler } from '../../util/apiCalls/postRequests';
-import { deleteTripRequest } from '../../util/apiCalls/deleteRequests';
+import { approveTraveler } from '../../../util/api-calls/post-requests';
+import { deleteTripRequest } from '../../../util/api-calls/delete-requests';
 
 const RequestCard = ({ user, tripId, setResponse, refresh }) => {
     const approveRequest = async () => {

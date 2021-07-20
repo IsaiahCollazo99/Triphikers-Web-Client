@@ -1,7 +1,7 @@
 import axios from "axios";
 import React, { useState, useEffect } from "react";
 
-import countryToCurrency from "../helper/country-to-currency.json";
+import countryToCurrency from "../../../util/json/country-to-currency.json";
 import "./location-page-info.css";
 
 let weatherkey = '18d629f0d66c4d5e831121754202907';

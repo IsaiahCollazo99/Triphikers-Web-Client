@@ -2,9 +2,9 @@ import { useLoadScript } from "@react-google-maps/api";
 import axios from "axios";
 import React, { useState, useEffect} from "react";
 
-import LandingPageCitySearch from "./components/landing-page-city-search";
-import CustomTextField from '../custom-components/custom-text-field/custom-text-field';
-import PopulateLocationSelect from "../custom-components/populate-location-select/populate-location-select";
+import LandingPageCitySearch from "./landing-page-city-search";
+import CustomTextField from '../../../components/custom-text-field/custom-text-field';
+import LocationSelect from "../../../components/location-select/location-select";
 
 const {
     REACT_APP_GOOGLEAPIKEY
@@ -59,7 +59,7 @@ const LandingPageSearch = () => {
                     required
                 >               
                     <option value="" disabled>Select a Country</option>
-                    <PopulateLocationSelect list={allCountries} />
+                    <LocationSelect list={allCountries} />
                 </CustomTextField>
             </label>
             { isLoaded ? 

@@ -2,10 +2,10 @@ import React, { useState, useEffect } from "react";
 import { useContext } from "react";
 
 import HotspotMap from "./hotspots-map";
-import { AuthContext } from "../../providers/AuthContext";
-import { getUserById, getMarkers } from "../../util/apiCalls/getRequests";
-import { submitHotspot } from "../../util/apiCalls/postRequests";
-import { uploadPicture } from "../../util/firebaseFunction";
+import { AuthContext } from "../../../providers/auth-context";
+import { getUserById, getMarkers } from "../../../util/api-calls/get-requests";
+import { submitHotspot } from "../../../util/api-calls/post-requests";
+import { uploadPicture } from "../../../util/firebase-functions";
 import "./location-page-hotspots.css";
 
 let mapReset = 0;

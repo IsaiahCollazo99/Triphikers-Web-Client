@@ -3,8 +3,8 @@ import FiberManualRecordIcon from "@material-ui/icons/FiberManualRecord";
 import RadioButtonUncheckedIcon from "@material-ui/icons/RadioButtonUnchecked";
 import React, { useState } from "react";
 
-import { getUserByUsername } from "../../util/apiCalls/getRequests";
-import CustomTextField from '../../components/custom-text-field/custom-text-field';
+import { getUserByUsername } from "../../../util/api-calls/get-requests";
+import CustomTextField from '../../../components/custom-text-field/custom-text-field';
 import "./sign-up-personal-info.css";
 
 const SignUpPersonalInfo = (props) => { 

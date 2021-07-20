@@ -3,8 +3,8 @@ import React, { useContext, useState, useEffect } from "react";
 import { NavLink, Link, useHistory } from "react-router-dom";
 
 import { AuthContext } from "../../providers/auth-context";
-import { getUserById } from "../../util/apiCalls/get-requests";
-import { logout } from "../../util/firebaseFunction";
+import { getUserById } from "../../util/api-calls/get-requests";
+import { logout } from "../../util/firebase-functions";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "./nav-bar.css";
 

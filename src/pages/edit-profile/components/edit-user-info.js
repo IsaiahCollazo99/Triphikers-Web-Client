@@ -2,7 +2,7 @@ import CloudUploadIcon from '@material-ui/icons/CloudUpload';
 import axios from 'axios';
 import React, { useState, useEffect } from 'react';
 
-import CustomTextField from '../custom-components/custom-text-field/custom-text-field';
+import CustomTextField from '../../../components/custom-text-field/custom-text-field';
 
 const UserInfoEdit = ( props ) => {
     const { 

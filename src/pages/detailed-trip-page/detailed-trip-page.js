@@ -2,16 +2,16 @@ import { createClient } from 'pexels';
 import React, { useEffect, useState, useContext } from 'react';
 import { useParams, Route, Switch, Link } from 'react-router-dom';
 
-import DetailedTripInfo from './detailed-trip-info';
-import DetailedTripNav from './detailed-trip-nav';
-import DetailedTripRequests from './detailed-trip-requests';
-import DetailedTripTravelers from './detailed-trip-travelers';
+import DetailedTripInfo from './components/detailed-trip-info';
+import DetailedTripNav from './components/detailed-trip-nav';
+import DetailedTripRequests from './components/detailed-trip-requests';
+import DetailedTripTravelers from './components/detailed-trip-travelers';
 import FacebookLogo from '../../images/f_logo_RGB-Blue_1024.png';
 import InstagramLogo from '../../images/glyph-logo_May2016.png';
 import TwitterLogo from '../../images/Twitter_Social_Icon_Circle_Color.png';
 import horizon from '../../images/horizon.jpg';
 import { AuthContext } from '../../providers/auth-context';
-import { getTripById } from '../../util/apiCalls/get-requests';
+import { getTripById } from '../../util/api-calls/get-requests';
 import { ProtectedUserRoute } from '../../util/routes-util';
 import './detailed-trip-page.css';
 

@@ -1,8 +1,8 @@
 import React, { useContext, useEffect, useState } from 'react';
 
 import CustomTextField from '../../../components/custom-text-field/custom-text-field';
-import { AuthContext } from '../../providers/AuthContext';
-import { getUserById } from '../../util/apiCalls/getRequests';
+import { AuthContext } from '../../../providers/auth-context';
+import { getUserById } from '../../../util/api-calls/get-requests';
 
 const TripsPageAdvanced = ({ isHidden, filters }) => {
     const { currentUser } = useContext(AuthContext);

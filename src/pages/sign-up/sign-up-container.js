@@ -1,12 +1,12 @@
 import React, { useState, useEffect } from "react";
 
-import SignUpMethod from './sign-up-method';
+import SignUpMethod from './pages/sign-up-method';
 import SignUpAccountInfo from "./pages/sign-up-account-info";
 import SignUpCredentials from "./pages/sign-up-credentials";
 import SignUpPersonalInfo from "./pages/sign-up-personal-info";
-import { createUser } from "../../util/apiCalls/post-requests";
+import { createUser } from "../../util/api-calls/post-requests";
 import { useInput } from "../../util/custom-hooks";
-import { signUp, uploadPicture } from "../../util/firebaseFunction";
+import { signUp, uploadPicture } from "../../util/firebase-functions";
 import './sign-up-container.css';
 
 const CreateSignUpContainer = () => {

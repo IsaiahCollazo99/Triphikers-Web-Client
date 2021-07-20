@@ -5,7 +5,7 @@ import CreateTripsContainer from "./pages/create-trip/create-trip-container";
 import DetailedTripPage from "./pages/detailed-trip-page/detailed-trip-page";
 import UserPageEdit from "./pages/edit-profile/edit-profile-page";
 import LandingPage from "./pages/landing-page/landing-page";
-import Safety from "./pages/landing-page/safety";
+import Safety from "./pages/landing-page/components/safety";
 import LocationPage from "./pages/location-page/location-page"
 import LocationSearch from "./pages/location-search/location-search";
 import Login	from "./pages/login/login"

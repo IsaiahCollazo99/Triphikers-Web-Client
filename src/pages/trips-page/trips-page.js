@@ -6,7 +6,7 @@ import React, { useEffect, useState, useContext } from 'react';
 import TripsPageFilter from './components/trips-page-filter';
 import TripCard from '../../components/trip-card/trip-card';
 import { AuthContext } from '../../providers/auth-context';
-import { getAllTrips } from '../../util/apiCalls/get-requests';
+import { getAllTrips } from '../../util/api-calls/get-requests';
 import './trips-page.css';
 
 const useStyles = makeStyles(theme => ({

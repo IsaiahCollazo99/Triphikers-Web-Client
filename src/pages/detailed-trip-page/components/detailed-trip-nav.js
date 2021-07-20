@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { NavLink } from 'react-router-dom';
 
-import { getTripRequests, getTripTravelers } from '../../util/apiCalls/getRequests';
+import { getTripRequests, getTripTravelers } from '../../../util/api-calls/get-requests';
 import './detailed-trip-nav.css';
 
 const DetailedTripNav = ({ trip = {} }) => {

@@ -2,7 +2,7 @@ import Autocomplete from '@material-ui/lab/Autocomplete';
 import React from 'react';
 import usePlacesAutocomplete from "use-places-autocomplete";
 
-import CustomTextField from '../custom-components/custom-text-field/custom-text-field';
+import CustomTextField from '../../components/custom-text-field/custom-text-field';
 
 const LocationCitySearch = ({ selectedCountry, setCity }) => {
     const { suggestions: { data }, setValue } = usePlacesAutocomplete({

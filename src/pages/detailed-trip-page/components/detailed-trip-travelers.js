@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 
-import { getTripTravelers } from '../../util/apiCalls/getRequests';
+import { getTripTravelers } from '../../../util/api-calls/get-requests';
 import './detailed-trip-travelers.css';
 
 const DetailedTripTravelers = ({ trip = {} }) => {

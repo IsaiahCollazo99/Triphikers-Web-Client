@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 
 import RequestCard from './request-card';
-import { getTripRequests } from '../../util/apiCalls/getRequests';
+import { getTripRequests } from '../../../util/api-calls/get-requests';
 import './detailed-trip-requests.css';
 
 const DetailedTripRequests = ({ trip = {} }) => {

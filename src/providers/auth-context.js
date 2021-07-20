@@ -4,7 +4,7 @@ import firebase from "../firebase";
 import Loader from "../images/tour.gif";
 import "./auth-context.css";
 
-import { getFirebaseIdToken } from "../util/firebaseFunction";
+import { getFirebaseIdToken } from "../util/firebase-functions";
 
 export const AuthContext = createContext();
 

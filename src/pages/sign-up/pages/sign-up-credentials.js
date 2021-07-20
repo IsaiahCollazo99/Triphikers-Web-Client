@@ -7,8 +7,8 @@ import {
 } from "@material-ui/icons";
 import React, { useState } from "react";
 
-import { getUserByEmail } from "../../util/apiCalls/getRequests";
-import CustomTextField from '../../components/custom-text-field/custom-text-field';
+import { getUserByEmail } from "../../../util/api-calls/get-requests";
+import CustomTextField from '../../../components/custom-text-field/custom-text-field';
 import './sign-up-credentials.css';
 
 const SignUpCredentials = (props) => {

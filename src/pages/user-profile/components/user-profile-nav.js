@@ -1,7 +1,7 @@
 import React, { useContext } from 'react';
 import { NavLink } from 'react-router-dom';
 
-import { AuthContext } from '../../providers/AuthContext';
+import { AuthContext } from '../../../providers/auth-context';
 import './user-profile-nav.css';
 
 const UserPageNav = ({ userId }) => {
