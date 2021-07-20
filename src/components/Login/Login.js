@@ -6,7 +6,7 @@ import { Visibility, VisibilityOff } from '@material-ui/icons';
 import CustomTextField from '../custom-components/custom-text-field';
 import '../../css/signUpIn/login.css';
 
-export default function Login() {
+const Login = () => {
 	const email = useInput("");
 	const password = useInput("");
 	const [ error, setError ] = useState(false);
@@ -91,3 +91,5 @@ export default function Login() {
        
 	);
 }
+
+export default Login;

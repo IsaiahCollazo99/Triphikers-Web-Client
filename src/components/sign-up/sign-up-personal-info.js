@@ -6,7 +6,7 @@ import FiberManualRecordIcon from "@material-ui/icons/FiberManualRecord";
 import RadioButtonUncheckedIcon from "@material-ui/icons/RadioButtonUnchecked";
 import "../../css/signUpIn/CreateSignUpForm2.css";
 
-const CreateSignUpForm2 = (props) => { 
+const SignUpPersonalInfo = (props) => { 
 	const { firstName, lastName, birthday, gender, handlePageChange,
 	username, setUsername } = props;
 	const [ isValidUsername, setIsValidUsername ] = useState(true);
@@ -197,4 +197,4 @@ const CreateSignUpForm2 = (props) => {
 	);
 };
 
-export default CreateSignUpForm2;
+export default SignUpPersonalInfo;

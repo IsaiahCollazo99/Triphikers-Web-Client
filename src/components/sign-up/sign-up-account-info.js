@@ -6,10 +6,9 @@ import CustomTextField from '../custom-components/custom-text-field';
 import LanguageSelect from "../custom-components/language-select";
 import FiberManualRecordIcon from "@material-ui/icons/FiberManualRecord";
 import RadioButtonUncheckedIcon from "@material-ui/icons/RadioButtonUnchecked";
-// import "../../css/signUpIn/CreateSignUpForm1.css";
 import '../../css/signUpIn/signUpForm3.css';
 
-const CreateSignUpForm3 = (props) => {
+const SignUpAccountInfo = (props) => {
 	const { 
 		language, 
 		country, 
@@ -145,4 +144,4 @@ const CreateSignUpForm3 = (props) => {
 	);
 };
 
-export default CreateSignUpForm3;
+export default SignUpAccountInfo;

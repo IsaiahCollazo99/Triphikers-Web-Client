@@ -9,7 +9,8 @@ import FiberManualRecordIcon from "@material-ui/icons/FiberManualRecord";
 import CustomTextField from '../custom-components/custom-text-field';
 import RadioButtonUncheckedIcon from "@material-ui/icons/RadioButtonUnchecked";
 import '../../css/signUpIn/CreateSignUpForm1.css';
-const CreateSignUpForm1 = (props) => {
+
+const SignUpCredentials = (props) => {
 	const { email, password, confirmPassword, handlePageChange } = props;
 	const [ showPassword, setShowPassword ] = useState(false);
 	const [ showConfirm, setShowConfirm ] = useState(false);
@@ -158,4 +159,4 @@ const CreateSignUpForm1 = (props) => {
 		</>
 	);
 };
-export default CreateSignUpForm1;
+export default SignUpCredentials;

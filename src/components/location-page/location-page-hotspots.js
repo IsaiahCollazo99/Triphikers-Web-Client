@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
-import HotspotMap from "../helper/maps/HotspotMaps";
+import HotspotMap from "../helper/maps/hotspots-map";
 import { uploadPicture } from "../../util/firebaseFunction";
 import "../../css/locations/LocationHotspots.css";
 import { useContext } from "react";

@@ -7,7 +7,7 @@ import '../../css/createTrip/createTripForms.css';
 import "../../css/createTrip/CreateTripForm2.css";
 
 
-const CreateTripForm2 = ( props ) => {
+const CreateTripPage2 = ( props ) => {
     const {
         title,
         accommodation,
@@ -127,4 +127,4 @@ const CreateTripForm2 = ( props ) => {
 		);
 }
 
-export default CreateTripForm2;
+export default CreateTripPage2;

@@ -1,8 +1,8 @@
 import React, { useState, useContext } from 'react';
 import { useHistory } from 'react-router-dom';
 import { useInput } from '../../util/customHooks';
-import CreateTripForm1 from './create-trip-page-1';
-import CreateTripForm2 from './create-trip-page-2';
+import CreateTripPage1 from './create-trip-page-1';
+import CreateTripPage2 from './create-trip-page-2';
 import { createTrip, approveTraveler } from '../../util/apiCalls/postRequests';
 import '../../css/createTrip/createTripContainer.css';
 import { AuthContext } from '../../providers/AuthContext';
@@ -61,8 +61,8 @@ const CreateTripsContainer = () => {
     }
 
     const formPageDisplay = page === 1 ? 
-        <CreateTripForm1 {...pageOne} handlePageChange={handlePageChange} /> :
-        <CreateTripForm2 {...pageTwo} handlePageChange={handlePageChange} handleSubmit={handleSubmit}/>
+        <CreateTripPage1 {...pageOne} handlePageChange={handlePageChange} /> :
+        <CreateTripPage2 {...pageTwo} handlePageChange={handlePageChange} handleSubmit={handleSubmit}/>
     
     return (
         <div className="createTripsContainer">

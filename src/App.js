@@ -1,7 +1,7 @@
 import React from "react";
 import { AuthRoute, ProtectedRoute } from "./util/routesUtil";
 import { Switch, Route } from "react-router-dom";
-import TripsPage from "./components/TripsPage/TripsPage";
+import TripsPage from "./components/trips-page/trips-page";
 import CreateTripsContainer from "./components/create-trip/create-trip-container";
 import DetailedTripPage from "./components/detailed-trip-page/detailed-trip-page";
 import LandingPage from "./components/landing-page/landing-page";

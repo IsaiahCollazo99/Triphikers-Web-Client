@@ -2,7 +2,7 @@ import React, { useEffect, useState, useContext } from 'react';
 import { getAllTrips } from '../../util/apiCalls/getRequests';
 import TripCard from '../custom-components/trip-card';
 import '../../css/tripsPage/tripsPage.css';
-import TripsPageFilter from './TripsPageFilter';
+import TripsPageFilter from './trips-page-filter';
 import { AuthContext } from '../../providers/AuthContext';
 import { useScrollTrigger, Zoom, Fab } from '@material-ui/core';
 import { KeyboardArrowUp } from '@material-ui/icons';

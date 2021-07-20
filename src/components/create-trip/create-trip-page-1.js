@@ -9,7 +9,8 @@ import CustomTextField from "../custom-components/custom-text-field";
 import FiberManualRecordIcon from "@material-ui/icons/FiberManualRecord";
 import RadioButtonUncheckedIcon from "@material-ui/icons/RadioButtonUnchecked";
 import "../../css/createTrip/CreateTripForm1.css";
-const CreateTripForm1 = ( props ) => {
+
+const CreateTripPage1 = ( props ) => {
     const [ error, setError ] = useState(null);
     const { currentUser } = useContext(AuthContext);
     const [ userGender, setUserGender ] = useState(null);
@@ -239,4 +240,4 @@ const CreateTripForm1 = ( props ) => {
 		);
 }
 
-export default CreateTripForm1;
+export default CreateTripPage1;

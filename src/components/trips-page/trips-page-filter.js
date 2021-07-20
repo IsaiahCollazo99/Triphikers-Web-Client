@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { useInput } from '../../util/customHooks';
 import { FaSearch } from 'react-icons/fa';
 import '../../css/tripsPage/tripsPageFilter.css';
-import TripsPageAdvanced from './TripsPageAdvanced';
+import TripsPageAdvanced from './trips-page-advanced';
 import { TextField, Button } from '@material-ui/core';
 import { FaSync } from 'react-icons/fa';
 
