@@ -14,7 +14,7 @@ import UserPageAbout from './UserPageAbout';
 import FacebookLogo from '../../images/f_logo_RGB-Blue_1024.png';
 import InstagramLogo from '../../images/glyph-logo_May2016.png';
 import TwitterLogo from '../../images/Twitter_Social_Icon_Circle_Color.png'
-// import NewChat from '../../chatList/NewChat';
+// import NewChat from '../../chat-list/new-chat';
 // import firebase from "../../firebase";
 import '../../css/userPage/userPage.css'
 

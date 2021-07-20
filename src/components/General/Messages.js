@@ -1,11 +1,11 @@
 import React, { useState, useEffect } from "react";
-import ChatList from "../../chatList/ChatList";
+import ChatList from "../../chat-list/chat-list";
 import firebase from "../../firebase";
 import { useHistory } from "react-router-dom";
 import "../../css/chats/messages.css";
-import ChatView from "../../chatList/ChatView";
-import ChatTextBox from "../../chatList/ChatTextBox";
-import NewChat from "../../chatList/NewChat";
+import ChatView from "../../chat-list/chat-view";
+import ChatTextBox from "../../chat-list/chat-text-box";
+import NewChat from "../../chat-list/new-chat";
 
 const Messages = () => {
     const history = useHistory();
