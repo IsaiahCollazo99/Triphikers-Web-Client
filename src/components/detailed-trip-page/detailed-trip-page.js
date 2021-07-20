@@ -3,15 +3,15 @@ import { useParams, Route, Switch, Link } from 'react-router-dom';
 import { getTripById } from '../../util/apiCalls/getRequests';
 import { ProtectedUserRoute } from '../../util/routesUtil';
 import { createClient } from 'pexels';
-import DetailedTripNav from './DetailedTripNav';
-import DetailedTripInfo from './DetailedTripInfo';
-import DetailedTripRequests from './DetailedTripRequests';
-import DetailedTripTravelers from './DetailedTripTravelers';
+import DetailedTripNav from './detailed-trip-nav';
+import DetailedTripInfo from './detailed-trip-info';
+import DetailedTripRequests from './detailed-trip-requests';
+import DetailedTripTravelers from './detailed-trip-travelers';
 import FacebookLogo from '../../images/f_logo_RGB-Blue_1024.png';
 import InstagramLogo from '../../images/glyph-logo_May2016.png';
 import TwitterLogo from '../../images/Twitter_Social_Icon_Circle_Color.png';
 import horizon from '../../images/horizon.jpg';
-import '../../css/detailedTripPage/detailedTripPage.css';
+import '../../css/detailed-trip-page/detailed-trip-page.css';
 import { AuthContext } from '../../providers/AuthContext';
 
 const DetailedTripPage = () => {

@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { getTripRequests } from '../../util/apiCalls/getRequests';
-import '../../css/detailedTripPage/detailedTripRequest.css';
+import '../../css/detailed-trip-page/detailedTripRequest.css';
 import RequestCard from '../General/RequestCard';
 
 const DetailedTripRequests = ({ trip = {} }) => {

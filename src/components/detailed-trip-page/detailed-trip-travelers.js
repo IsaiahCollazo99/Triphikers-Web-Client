@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { getTripTravelers } from '../../util/apiCalls/getRequests';
-import '../../css/detailedTripPage/detailedTripTravelers.css';
+import '../../css/detailed-trip-page/detailed-trip-travelers.css';
 import { Link } from 'react-router-dom';
 
 const DetailedTripTravelers = ({ trip = {} }) => {

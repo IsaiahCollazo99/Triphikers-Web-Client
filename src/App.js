@@ -3,7 +3,7 @@ import { AuthRoute, ProtectedRoute } from "./util/routesUtil";
 import { Switch, Route } from "react-router-dom";
 import TripsPage from "./components/TripsPage/TripsPage";
 import CreateTripsContainer from "./components/create-trip/create-trip-container";
-import DetailedTripPage from "./components/DetaliedTripPage/DetailedTripPage";
+import DetailedTripPage from "./components/detailed-trip-page/detailed-trip-page";
 import LandingPage from "./components/LandingPage/LandingPage";
 import CreateSignUpContainer from "./components/Login/SignUpContainer";
 import LocationPage from "./components/Location/LocationPage"

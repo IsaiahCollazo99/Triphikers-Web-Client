@@ -1,5 +1,5 @@
 import React, { useState, useContext, useEffect } from 'react';
-import '../../css/detailedTripPage/detailedTripInfo.css';
+import '../../css/detailed-trip-page/detailed-trip-info.css';
 import { deleteTrip, deleteTripRequest } from '../../util/apiCalls/deleteRequests';
 import { useHistory } from 'react-router-dom';
 import { AuthContext } from '../../providers/AuthContext';
