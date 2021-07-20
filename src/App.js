@@ -13,8 +13,8 @@ import NavBar from "./components/General/NavBar";
 import AuthProvider from "./providers/AuthContext";
 import LocationSearch from "./components/Location/LocationSearch";
 import UserPageEdit from "./components/UserEdit/UserPageEdit";
-import Messages from "./components/General/Messages";
-import Safety from "./components/General/Safety";
+import MessagesPage from "./components/chat-list/messages-page";
+import Safety from "./components/LandingPage/safety";
 import "./App.css";
 
 function App() {
@@ -52,7 +52,7 @@ function App() {
 					</ProtectedRoute>
 
 					<ProtectedRoute exact path="/messages">
-						<Messages />
+						<MessagesPage />
 					</ProtectedRoute>
 
 					<ProtectedRoute exact path="/updated/:id">

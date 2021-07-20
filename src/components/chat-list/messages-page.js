@@ -1,13 +1,13 @@
 import React, { useState, useEffect } from "react";
-import ChatList from "../../chat-list/chat-list";
+import ChatList from "./chat-list";
 import firebase from "../../firebase";
 import { useHistory } from "react-router-dom";
 import "../../css/chats/messages.css";
-import ChatView from "../../chat-list/chat-view";
-import ChatTextBox from "../../chat-list/chat-text-box";
-import NewChat from "../../chat-list/new-chat";
+import ChatView from "./chat-view";
+import ChatTextBox from "./chat-text-box";
+import NewChat from "./new-chat";
 
-const Messages = () => {
+const MessagesPage = () => {
     const history = useHistory();
     const [selectedChatIndex, setSelectedChatIndex] = useState(null);
     const [newChatFormVisible, setNewChatFormVisible] = useState(false);
@@ -136,4 +136,4 @@ const Messages = () => {
     )
 }
 
-export default Messages;
+export default MessagesPage;

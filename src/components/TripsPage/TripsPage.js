@@ -1,6 +1,6 @@
 import React, { useEffect, useState, useContext } from 'react';
 import { getAllTrips } from '../../util/apiCalls/getRequests';
-import TripCard from '../General/TripCard';
+import TripCard from '../custom-components/trip-card';
 import '../../css/tripsPage/tripsPage.css';
 import TripsPageFilter from './TripsPageFilter';
 import { AuthContext } from '../../providers/AuthContext';

@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import TripCard from '../General/TripCard';
+import TripCard from '../custom-components/trip-card';
 import { getAllTrips } from '../../util/apiCalls/getRequests';
 import { useHistory } from 'react-router-dom';
 import '../../css/landingPage/landingPageCarousel.css';

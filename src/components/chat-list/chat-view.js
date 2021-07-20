@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-import "../css/chats/chatView.css"
+import "../../css/chats/chatView.css"
 
 const ChatView = ({user, chat}) => {
 

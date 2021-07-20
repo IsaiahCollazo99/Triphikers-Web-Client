@@ -3,7 +3,7 @@ import { Button } from '@material-ui/core';
 import axios from "axios";
 import CloudUploadIcon from '@material-ui/icons/CloudUpload';
 import CustomTextField from '../custom-components/custom-text-field';
-import LanguageSelect from "../General/LanguageSelect";
+import LanguageSelect from "../custom-components/language-select";
 import FiberManualRecordIcon from "@material-ui/icons/FiberManualRecord";
 import RadioButtonUncheckedIcon from "@material-ui/icons/RadioButtonUnchecked";
 // import "../../css/signUpIn/CreateSignUpForm1.css";

@@ -9,7 +9,7 @@ import Divider from '@material-ui/core/Divider';
 import Button from '@material-ui/core/Button';
 import ListItemIcon from '@material-ui/core/ListItemIcon';
 import NotificationImportant from '@material-ui/icons/NotificationImportant';
-import "../css/chats/chatList.css";
+import "../../css/chats/chatList.css";
 
 
 const ChatList = ({ newChatButtonClicked, chats, email, selectedChatIndex, selectChatButton }) => {

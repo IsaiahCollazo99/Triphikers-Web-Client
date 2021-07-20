@@ -6,7 +6,7 @@ import { sendFriendRequest } from '../../util/apiCalls/postRequests';
 import { deleteFriendRequest } from '../../util/apiCalls/deleteRequests';
 import { ProtectedUserRoute } from '../../util/routesUtil';
 import Button from '@material-ui/core/Button';
-import TripCard from '../General/TripCard';
+import TripCard from '../custom-components/trip-card';
 import UserPageFriends from './UserPageFriends';
 import UserPageNav from './UserPageNav';
 import UserPageRequests from './UserPageRequests';

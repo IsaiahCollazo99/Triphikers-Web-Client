@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { FormControl, InputLabel, Input, Button, Paper, CssBaseline, Typography } from '@material-ui/core';
-import firebase from "../firebase";
-import "../css/chats/newChat.css";
+import firebase from "../../firebase";
+import "../../css/chats/newChat.css";
 
 const NewChat = ({ redirectToChat, newChatSubmit }) => {
     const [userName, setUserName] = useState(null);
