@@ -5,10 +5,10 @@ import { useInput } from '../../util/customHooks';
 import { uploadPicture } from '../../util/firebaseFunction';
 import { useHistory } from 'react-router-dom';
 import Button from '@material-ui/core/Button';
-import UserInfoEdit from './UserInfoEdit';
+import UserInfoEdit from './edit-user-info';
 import '../../css/userPage/userPage.css';
 import '../../css/userPage/userPageEdit.css';
-import UserSocialEdit from './UserSocialEdit';
+import UserSocialEdit from './edit-user-social';
 
 const UserPageEdit = () => {
     const history = useHistory();

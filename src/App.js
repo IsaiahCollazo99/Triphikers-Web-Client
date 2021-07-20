@@ -8,11 +8,11 @@ import LandingPage from "./components/landing-page/landing-page";
 import CreateSignUpContainer from "./components/sign-up/sign-up-container";
 import LocationPage from "./components/location-page/location-page"
 import Login	from "./components/login/login"
-import UserPage from "./components/user-profile/UserPage";
+import UserPage from "./components/user-profile/user-profile";
 import NavBar from "./components/nav-bar/nav-bar";
 import AuthProvider from "./providers/AuthContext";
 import LocationSearch from "./components/Location/LocationSearch";
-import UserPageEdit from "./components/UserEdit/UserPageEdit";
+import UserPageEdit from "./components/edit-profile/edit-profile-page";
 import MessagesPage from "./components/chat-list/messages-page";
 import Safety from "./components/landing-page/safety";
 import "./App.css";

@@ -7,10 +7,10 @@ import { deleteFriendRequest } from '../../util/apiCalls/deleteRequests';
 import { ProtectedUserRoute } from '../../util/routesUtil';
 import Button from '@material-ui/core/Button';
 import TripCard from '../custom-components/trip-card';
-import UserPageFriends from './UserPageFriends';
-import UserPageNav from './UserPageNav';
-import UserPageRequests from './UserPageRequests';
-import UserPageAbout from './UserPageAbout';
+import UserPageFriends from './user-profile-friends';
+import UserPageNav from './user-profile-nav';
+import UserPageRequests from './user-profile-requests';
+import UserPageAbout from './user-profile-about';
 import FacebookLogo from '../../images/f_logo_RGB-Blue_1024.png';
 import InstagramLogo from '../../images/glyph-logo_May2016.png';
 import TwitterLogo from '../../images/Twitter_Social_Icon_Circle_Color.png'

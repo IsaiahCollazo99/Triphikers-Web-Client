@@ -1,5 +1,5 @@
 import React from 'react';
-import FriendCard from './FriendCard';
+import FriendCard from './friend-card';
 import '../../css/userPage/userPageFriends.css';
 
 const UserPageFriends = ({ userFriends = [], refresh }) => {

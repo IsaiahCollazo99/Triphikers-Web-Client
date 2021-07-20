@@ -1,5 +1,5 @@
 import React from 'react';
-import FriendRequestCard from './FriendRequestCard';
+import FriendRequestCard from './friend-request-card';
 
 const UserPageRequests = ({ friendRequests = [], refresh }) => {
 
