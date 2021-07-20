@@ -1,6 +1,6 @@
 import React, { useState, useContext, useEffect } from 'react';
 import '../../css/createTrip/createTripForms.css';
-import CreateTripDestination from './CreateTripDestination';
+import CreateTripDestination from './create-trip-destination';
 import LanguageSelect from '../General/LanguageSelect';
 import { AuthContext } from '../../providers/AuthContext';
 import { getUserById } from '../../util/apiCalls/getRequests';

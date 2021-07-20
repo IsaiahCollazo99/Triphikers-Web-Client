@@ -1,8 +1,8 @@
 import React, { useState, useContext } from 'react';
 import { useHistory } from 'react-router-dom';
 import { useInput } from '../../util/customHooks';
-import CreateTripForm1 from './CreateTripForm1';
-import CreateTripForm2 from './CreateTripForm2';
+import CreateTripForm1 from './create-trip-page-1';
+import CreateTripForm2 from './create-trip-page-2';
 import { createTrip, approveTraveler } from '../../util/apiCalls/postRequests';
 import '../../css/createTrip/createTripContainer.css';
 import { AuthContext } from '../../providers/AuthContext';

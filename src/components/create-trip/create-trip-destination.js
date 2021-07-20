@@ -1,7 +1,7 @@
 import React, { useState, useEffect} from "react";
 import axios from "axios";
 import PopulateLocationSelect from '../helper/populateLocationSelect';
-import CreateTripCitySearch from "./CreateTripCitySearch";
+import CreateTripCitySearch from "./create-trip-city-search";
 import { useLoadScript } from "@react-google-maps/api";
 import CustomTextField from '../custom-components/custom-text-field';
 
