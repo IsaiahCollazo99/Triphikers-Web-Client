@@ -6,7 +6,7 @@ import {
 	VisibilityOff,
 } from "@material-ui/icons";
 import FiberManualRecordIcon from "@material-ui/icons/FiberManualRecord";
-import CustomTextField from '../General/CustomTextField';
+import CustomTextField from '../custom-components/custom-text-field';
 import RadioButtonUncheckedIcon from "@material-ui/icons/RadioButtonUnchecked";
 import '../../css/signUpIn/CreateSignUpForm1.css';
 const CreateSignUpForm1 = (props) => {

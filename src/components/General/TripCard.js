@@ -192,7 +192,7 @@ const TripCard = ({ trip, refresh }) => {
     }
 
     const getDisplayDate = ( date ) => {
-        if(Number(trip.id) <= 4 && window.location.hostname === "localhost") return date;
+        if((Number(trip.id) <= 4 || Number(trip.id) >= 7)&& window.location.hostname === "localhost") return date;
         const splitDate = date.split("-");
         let year = splitDate[0];
         let month = splitDate[1];

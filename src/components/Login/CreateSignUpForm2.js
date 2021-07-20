@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { getUserByUsername } from "../../util/apiCalls/getRequests";
 import { Button } from '@material-ui/core';
-import CustomTextField from '../General/CustomTextField';
+import CustomTextField from '../custom-components/custom-text-field';
 import FiberManualRecordIcon from "@material-ui/icons/FiberManualRecord";
 import RadioButtonUncheckedIcon from "@material-ui/icons/RadioButtonUnchecked";
 import "../../css/signUpIn/CreateSignUpForm2.css";

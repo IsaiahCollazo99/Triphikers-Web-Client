@@ -1,5 +1,5 @@
 import React from 'react';
-import CustomTextField from '../General/CustomTextField';
+import CustomTextField from '../custom-components/custom-text-field';
 import { InputAdornment } from '@material-ui/core';
 
 const UserSocialEdit = ( props ) => {

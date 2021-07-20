@@ -1,7 +1,7 @@
 import React, { useState, useEffect} from "react";
 import PopulateLocationSelect from "../helper/populateLocationSelect";
 import axios from "axios";
-import CustomTextField from '../General/CustomTextField';
+import CustomTextField from '..custom-components/custom-text-field';
 import { useLoadScript } from "@react-google-maps/api";
 import LandingPageCitySearch from "./LandingPageCitySearch";
 require("dotenv").config()

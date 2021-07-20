@@ -3,7 +3,7 @@ import axios from "axios";
 import PopulateLocationSelect from '../helper/populateLocationSelect';
 import CreateTripCitySearch from "./CreateTripCitySearch";
 import { useLoadScript } from "@react-google-maps/api";
-import CustomTextField from '../General/CustomTextField';
+import CustomTextField from '../custom-components/custom-text-field';
 
 const {
     REACT_APP_GOOGLEAPIKEY

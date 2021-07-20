@@ -3,7 +3,7 @@ import { login } from "../../util/firebaseFunction";
 import { useInput } from "../../util/customHooks";
 import { IconButton, InputAdornment, Button } from '@material-ui/core';
 import { Visibility, VisibilityOff } from '@material-ui/icons';
-import CustomTextField from '../General/CustomTextField';
+import CustomTextField from '../custom-components/custom-text-field';
 import '../../css/signUpIn/login.css';
 
 export default function Login() {

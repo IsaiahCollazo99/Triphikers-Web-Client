@@ -1,7 +1,7 @@
 import React from 'react';
 import usePlacesAutocomplete from "use-places-autocomplete";
 import Autocomplete from '@material-ui/lab/Autocomplete';
-import CustomTextField from '../General/CustomTextField';
+import CustomTextField from '..custom-components/custom-text-field';
 
 const LandingPageCitySearch = ({ selectedCountry }) => {
 

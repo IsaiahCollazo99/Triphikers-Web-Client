@@ -1,7 +1,7 @@
 import React, { useState, useEffect} from "react";
 import PopulateLocationSelect from "../helper/populateLocationSelect";
 import axios from "axios";
-import CustomTextField from '../General/CustomTextField';
+import CustomTextField from '..custom-components/custom-text-field';
 import { useLoadScript } from "@react-google-maps/api";
 import { useHistory } from "react-router-dom";
 import { getGeocode, getLatLng } from "use-places-autocomplete";
