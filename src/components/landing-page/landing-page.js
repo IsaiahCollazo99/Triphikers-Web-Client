@@ -1,8 +1,8 @@
 import React from "react";
 import '../../css/landingPage/landingPage.css';
 import { useHistory } from "react-router-dom";
-import LandingPageAbout from "./LandingPageAbout";
-import LandingPageWhy from "./LandingPageWhy";
+import LandingPageAbout from "./landing-page-about";
+import LandingPageWhy from "./landing-page-why";
 
 const LandingPage = () => {
 	const history = useHistory();

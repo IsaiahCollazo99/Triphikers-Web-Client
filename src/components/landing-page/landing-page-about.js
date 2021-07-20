@@ -1,6 +1,6 @@
 import React from 'react';
 import '../../css/landingPage/landingPageAbout.css';
-import LandingPageSearch from './LandingPageSearch';
+import LandingPageSearch from './landing-page-search';
 import worldIcon from "../../images/icons/around-the-globe-icon.png";
 import peopleIcon from "../../images/icons/people-icon.png";
 import selfieIcon from "../../images/icons/selfie-icon.png";

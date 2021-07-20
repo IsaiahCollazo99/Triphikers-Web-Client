@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { Route, useLocation } from "react-router-dom";
-import LocationHotspots from "./LocationHotspots";
-import LocationInfo from "./LocationInfo";
+import LocationHotspots from "./location-page-hotspots";
+import LocationInfo from "./location-page-info";
 import "../../css/locations/LocationPage.css";
 import { createClient } from 'pexels';
 

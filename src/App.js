@@ -4,17 +4,17 @@ import { Switch, Route } from "react-router-dom";
 import TripsPage from "./components/TripsPage/TripsPage";
 import CreateTripsContainer from "./components/create-trip/create-trip-container";
 import DetailedTripPage from "./components/detailed-trip-page/detailed-trip-page";
-import LandingPage from "./components/LandingPage/LandingPage";
+import LandingPage from "./components/landing-page/landing-page";
 import CreateSignUpContainer from "./components/Login/SignUpContainer";
-import LocationPage from "./components/Location/LocationPage"
+import LocationPage from "./components/location-page/location-page"
 import Login	from "./components/Login/Login"
 import UserPage from "./components/User/UserPage";
-import NavBar from "./components/General/NavBar";
+import NavBar from "./components/nav-bar/nav-bar";
 import AuthProvider from "./providers/AuthContext";
 import LocationSearch from "./components/Location/LocationSearch";
 import UserPageEdit from "./components/UserEdit/UserPageEdit";
 import MessagesPage from "./components/chat-list/messages-page";
-import Safety from "./components/LandingPage/safety";
+import Safety from "./components/landing-page/safety";
 import "./App.css";
 
 function App() {

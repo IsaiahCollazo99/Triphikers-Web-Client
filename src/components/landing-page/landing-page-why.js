@@ -1,6 +1,6 @@
 import React from 'react';
 import '../../css/landingPage/landingPageWhy.css';
-import LandingPageFooter from './LandingPageFooter';
+import LandingPageFooter from './landing-page-footer';
 import Button from '@material-ui/core/Button';
 import { makeStyles } from '@material-ui/core/styles';
 import friendsSelfie from "../../images/friendsSelfieCar.jpg";
